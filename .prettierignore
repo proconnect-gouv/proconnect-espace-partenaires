@@ -1,0 +1,6 @@
+build
+dist
+public
+.next
+.source
+prisma/generated_clients

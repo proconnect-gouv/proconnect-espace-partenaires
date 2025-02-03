@@ -1,14 +1,14 @@
-import { GetServerSideProps } from "next";
-import { getServerSession } from "next-auth/next";
-import { signIn } from "next-auth/react";
-import Head from "next/head";
-import { fr } from "@codegouvfr/react-dsfr";
-import { Input } from "@codegouvfr/react-dsfr/Input";
-import { Button } from "@codegouvfr/react-dsfr/Button";
-import { Alert } from "@codegouvfr/react-dsfr/Alert";
-import { useState } from "react";
-import { authOptions } from "./api/auth/[...nextauth]";
-import { useRouter } from "next/router";
+import { GetServerSideProps } from 'next';
+import { getServerSession } from 'next-auth/next';
+import { signIn } from 'next-auth/react';
+import Head from 'next/head';
+import { fr } from '@codegouvfr/react-dsfr';
+import { Input } from '@codegouvfr/react-dsfr/Input';
+import { Button } from '@codegouvfr/react-dsfr/Button';
+import { Alert } from '@codegouvfr/react-dsfr/Alert';
+import { useState } from 'react';
+import { authOptions } from './api/auth/[...nextauth]';
+import { useRouter } from 'next/router';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getServerSession(context.req, context.res, authOptions);
@@ -27,29 +27,29 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 export default function Login() {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    setError("");
+    setError('');
 
     try {
-      const result = await signIn("email", {
+      const result = await signIn('email', {
         email,
         redirect: false,
       });
 
       if (result?.error) {
-        setError("Une erreur est survenue. Veuillez réessayer.");
+        setError('Une erreur est survenue. Veuillez réessayer.');
       } else if (result?.ok) {
         router.push('/auth/verify-request');
       }
     } catch (err) {
-      setError("Une erreur est survenue. Veuillez réessayer.");
+      setError('Une erreur est survenue. Veuillez réessayer.');
     } finally {
       setIsLoading(false);
     }
@@ -60,20 +60,21 @@ export default function Login() {
       <Head>
         <title>Connexion | ProConnect</title>
       </Head>
-      <div className={fr.cx("fr-py-6w")}>
-        <div className={fr.cx("fr-grid-row", "fr-grid-row--center")}>
-          <div className={fr.cx("fr-col-12", "fr-col-md-8", "fr-col-lg-6")}>
-            <div className={fr.cx("fr-card", "fr-p-4w")}>
+      <div className={fr.cx('fr-py-6w')}>
+        <div className={fr.cx('fr-grid-row', 'fr-grid-row--center')}>
+          <div className={fr.cx('fr-col-12', 'fr-col-md-8', 'fr-col-lg-6')}>
+            <div className={fr.cx('fr-card', 'fr-p-4w')}>
               <h1>Connexion</h1>
               <p>
-                Connectez-vous pour accéder à votre Espace Partenaire ProConnect et gérer vos applications.
+                Connectez-vous pour accéder à votre Espace Partenaire ProConnect
+                et gérer vos applications.
               </p>
 
               {error && (
                 <Alert
                   severity="error"
                   description={error}
-                  className={fr.cx("fr-mb-3w")}
+                  className={fr.cx('fr-mb-3w')}
                 />
               )}
 
@@ -81,25 +82,24 @@ export default function Login() {
                 <Input
                   label="Email professionnel"
                   nativeInputProps={{
-                    type: "email",
+                    type: 'email',
                     value: email,
                     onChange: (e) => setEmail(e.target.value),
                     required: true,
-                    autoComplete: "email",
+                    autoComplete: 'email',
                     disabled: isLoading,
                   }}
                 />
-                <div className={fr.cx("fr-mt-2w")}>
-                  <Button
-                    type="submit"
-                    disabled={isLoading || !email}
-                  >
-                    {isLoading ? "Envoi en cours..." : "Recevoir un lien de connexion"}
+                <div className={fr.cx('fr-mt-2w')}>
+                  <Button type="submit" disabled={isLoading || !email}>
+                    {isLoading
+                      ? 'Envoi en cours...'
+                      : 'Recevoir un lien de connexion'}
                   </Button>
                 </div>
               </form>
 
-              <p className={fr.cx("fr-mt-3w", "fr-text--sm")}>
+              <p className={fr.cx('fr-mt-3w', 'fr-text--sm')}>
                 Un lien de connexion sécurisé vous sera envoyé par email.
                 <br />
                 Ce lien est valable 24 heures.
@@ -110,4 +110,4 @@ export default function Login() {
       </div>
     </>
   );
-} 
+}

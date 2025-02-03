@@ -1,16 +1,16 @@
-import NextAuth from "next-auth";
-import EmailProvider from "next-auth/providers/email";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { prisma_espace } from "../../../lib/prisma";
-import { sendVerificationRequest } from "../../../lib/auth";
+import NextAuth from 'next-auth';
+import EmailProvider from 'next-auth/providers/email';
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import { prisma_espace } from '../../../lib/prisma';
+import { sendVerificationRequest } from '../../../lib/auth';
 
 export const authOptions = {
   adapter: PrismaAdapter(prisma_espace),
   providers: [
     EmailProvider({
       server: {
-        host: process.env.EMAIL_SERVER_HOST ,
-        port: parseInt(process.env.EMAIL_SERVER_PORT || "1025", 10),
+        host: process.env.EMAIL_SERVER_HOST,
+        port: parseInt(process.env.EMAIL_SERVER_PORT || '1025', 10),
         auth: {
           user: process.env.EMAIL_SERVER_USER,
           pass: process.env.EMAIL_SERVER_PASSWORD,
@@ -27,7 +27,7 @@ export const authOptions = {
     verifyRequest: '/login',
   },
   session: {
-    strategy: "database",
+    strategy: 'database',
     maxAge: 24 * 60 * 60, // 24 hours
   },
   callbacks: {
@@ -40,4 +40,4 @@ export const authOptions = {
   },
 };
 
-export default NextAuth(authOptions); 
+export default NextAuth(authOptions);

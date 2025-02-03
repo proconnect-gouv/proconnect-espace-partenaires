@@ -1,7 +1,7 @@
 //
 
-import type { PropsWithChildren } from "@kitajs/html";
-import { blueFranceSun_113, fontFamily } from "./style";
+import type { PropsWithChildren } from '@kitajs/html';
+import { blueFranceSun_113, fontFamily } from './style';
 
 //
 
@@ -12,19 +12,19 @@ export function Button(attributes: PropsWithChildren<JSX.HtmlLinkTag>) {
     <a
       style={{
         backgroundColor: blueFranceSun_113,
-        borderRadius: "4px",
-        color: "white",
-        display: "block",
+        borderRadius: '4px',
+        color: 'white',
+        display: 'block',
         fontFamily,
-        fontSize: "16px",
-        fontStyle: "normal",
-        fontWeight: "bold",
-        lineHeight: "24px",
-        padding: "5px",
-        textAlign: "center",
-        textDecoration: "none",
-        wordBreak: "break-word",
-        wordWrap: "break-word",
+        fontSize: '16px',
+        fontStyle: 'normal',
+        fontWeight: 'bold',
+        lineHeight: '24px',
+        padding: '5px',
+        textAlign: 'center',
+        textDecoration: 'none',
+        wordBreak: 'break-word',
+        wordWrap: 'break-word',
         margin: 0,
         ...(style as object),
       }}

@@ -12,12 +12,12 @@ type Props = {
   label?: string;
 };
 
-export const ProviderUrl = ({ 
-  urls = [], 
+export const ProviderUrl = ({
+  urls = [],
   onUpdate,
-  title = "",
-  description = "",
-  label = ""
+  title = '',
+  description = '',
+  label = '',
 }: Props) => {
   const [inputUrl, setInputUrl] = useState<string>('');
   const [inputError, setInputError] = useState<string | null>(null);
@@ -30,7 +30,7 @@ export const ProviderUrl = ({
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const value = e.target.value;
     setInputUrl(value);
-    
+
     // Clear error when input is empty
     if (!value) {
       setInputError(null);
@@ -48,7 +48,9 @@ export const ProviderUrl = ({
     if (!trimmedUrl) return;
 
     if (!validateUrl(trimmedUrl)) {
-      setInputError("L'URL doit commencer par https:// ou http:// et contenir un nom de domaine");
+      setInputError(
+        "L'URL doit commencer par https:// ou http:// et contenir un nom de domaine"
+      );
       return;
     }
 
@@ -62,12 +64,12 @@ export const ProviderUrl = ({
   };
 
   return (
-    <div className={fr.cx("fr-mb-10v")}>
+    <div className={fr.cx('fr-mb-10v')}>
       <h2>{title}</h2>
       <p>{description}</p>
 
       {urls && urls.length > 0 && (
-        <div className={fr.cx("fr-mb-4v")}>
+        <div className={fr.cx('fr-mb-4v')}>
           <Table
             data={urls.map((url, i) => [
               url,
@@ -79,22 +81,24 @@ export const ProviderUrl = ({
                 title="Supprimer cette URL"
               >
                 Supprimer
-              </Button>
+              </Button>,
             ])}
-            className={fr.cx("fr-table--no-caption")}
-            headers={["URLs configurées", ""]}
+            className={fr.cx('fr-table--no-caption')}
+            headers={['URLs configurées', '']}
             bordered={false}
             noCaption
           />
         </div>
       )}
 
-      <div className={fr.cx("fr-form-group")}>
-        <div style={{ position: 'relative', paddingRight: '7rem', width: '650px' }}>
+      <div className={fr.cx('fr-form-group')}>
+        <div
+          style={{ position: 'relative', paddingRight: '7rem', width: '650px' }}
+        >
           <div>
             <Input
               label={label}
-              state={inputError ? "error" : "default"}
+              state={inputError ? 'error' : 'default'}
               stateRelatedMessage={inputError}
               nativeInputProps={{
                 value: inputUrl,
@@ -105,15 +109,17 @@ export const ProviderUrl = ({
                     e.preventDefault();
                     addUrlInArray();
                   }
-                }
+                },
               }}
             />
           </div>
-          <div style={{ 
-            position: 'absolute', 
-            right: 0, 
-            top: '2.1rem' // Aligns with input field accounting for label
-          }}>
+          <div
+            style={{
+              position: 'absolute',
+              right: 0,
+              top: '2.1rem', // Aligns with input field accounting for label
+            }}
+          >
             <Button
               disabled={!inputUrl || !!inputError}
               onClick={addUrlInArray}
@@ -125,4 +131,4 @@ export const ProviderUrl = ({
       </div>
     </div>
   );
-}; 
+};

@@ -8,21 +8,21 @@ type Props = {
   onSuccessClose?: () => void;
 };
 
-export const NotificationsContainer = ({ 
-  error, 
-  success, 
-  onErrorClose, 
-  onSuccessClose 
+export const NotificationsContainer = ({
+  error,
+  success,
+  onErrorClose,
+  onSuccessClose,
 }: Props) => {
   return (
-    <div 
+    <div
       style={{
         position: 'fixed',
         bottom: '1.5rem',
         right: '1.5rem',
         zIndex: 10000,
         maxWidth: '400px',
-        backgroundColor: 'white'
+        backgroundColor: 'white',
       }}
     >
       {error && (
@@ -45,4 +45,4 @@ export const NotificationsContainer = ({
       )}
     </div>
   );
-}; 
+};

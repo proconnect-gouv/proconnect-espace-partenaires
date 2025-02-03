@@ -3,7 +3,10 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../auth/[...nextauth]';
 import { prisma_proconnect } from '../../../lib/prisma';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method !== 'PATCH') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
@@ -46,4 +49,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.error('Failed to update app:', error);
     return res.status(500).json({ message: 'Error updating app' });
   }
-} 
+}

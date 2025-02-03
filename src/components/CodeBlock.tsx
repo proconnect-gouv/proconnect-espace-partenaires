@@ -11,7 +11,11 @@ interface CodeBlockProps {
 
 // TODO: filename? https://www.nikolailehbr.ink/blog/syntax-highlighting-shiki-next-js
 // TODO: investigate compile-time only? https://mdxjs.com/guides/syntax-highlighting/#syntax-highlighting-at-compile-time
-export default function CodeBlock({ code, lang = 'typescript', theme = 'nord' }: CodeBlockProps) {
+export default function CodeBlock({
+  code,
+  lang = 'typescript',
+  theme = 'nord',
+}: CodeBlockProps) {
   const [html, setHtml] = useState<string>('');
 
   useEffect(() => {
@@ -34,7 +38,11 @@ export default function CodeBlock({ code, lang = 'typescript', theme = 'nord' }:
 
   return (
     <div className={styles.container}>
-      <div dangerouslySetInnerHTML={{ __html: html || `<pre><code>${code}</code></pre>` }} />
+      <div
+        dangerouslySetInnerHTML={{
+          __html: html || `<pre><code>${code}</code></pre>`,
+        }}
+      />
       <CopyToClipboard code={code} />
     </div>
   );

@@ -5,7 +5,10 @@ import { prisma_proconnect } from '../../../lib/prisma';
 import crypto from 'crypto';
 import { ObjectId } from 'bson';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
@@ -16,10 +19,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-
     const newId = new ObjectId();
-      
-  
+
     const newApp = await prisma_proconnect.oidcClient.create({
       data: {
         // id: newId,
@@ -36,35 +37,34 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         post_logout_redirect_uris: [],
 
         credentialsFlow: false,
-        claims: ["amr"],
-        IPServerAddressesAndRanges: ["1.1.1.1"],
+        claims: ['amr'],
+        IPServerAddressesAndRanges: ['1.1.1.1'],
         active: true,
         type: 'public',
         updatedAt: new Date(),
-        updatedBy: "espace-partenaires", // TODO
+        updatedBy: 'espace-partenaires', // TODO
 
         scopes: [
-          "openid",
-          "given_name",
-          "usual_name",
-          "email",
-          "uid",
-          "siren",
-          "siret",
-          "organizational_unit",
-          "belonging_population",
-          "phone",
-          "chorusdt",
-          "idp_id",
-          "idp_acr",
-          "custom"
+          'openid',
+          'given_name',
+          'usual_name',
+          'email',
+          'uid',
+          'siren',
+          'siret',
+          'organizational_unit',
+          'belonging_population',
+          'phone',
+          'chorusdt',
+          'idp_id',
+          'idp_acr',
+          'custom',
         ],
 
-        id_token_signed_response_alg: "RS256",
-        userinfo_signed_response_alg: "RS256",
+        id_token_signed_response_alg: 'RS256',
+        userinfo_signed_response_alg: 'RS256',
 
-        jwks_uri: ""
-
+        jwks_uri: '',
       },
     });
 
@@ -73,4 +73,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.error('Failed to create app:', error);
     return res.status(500).json({ message: 'Error creating app' });
   }
-} 
+}

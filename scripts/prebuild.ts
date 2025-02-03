@@ -1,11 +1,11 @@
-import path from "path";
-import fs from "fs";
+import path from 'path';
+import fs from 'fs';
 
-export const filePath = path.join(__dirname, "../public/robots.txt");
+export const filePath = path.join(__dirname, '../public/robots.txt');
 
 export const generateRobotsTxt = (isOnProduction: boolean, host: string) => {
-  const robotsDev = ["User-agent: *", "Disallow: /"].join("\n");
-  const robotsProd = ["User-agent: *", "Allow: /"].join("\n");
+  const robotsDev = ['User-agent: *', 'Disallow: /'].join('\n');
+  const robotsProd = ['User-agent: *', 'Allow: /'].join('\n');
 
   const robot = isOnProduction ? robotsProd : robotsDev;
 
@@ -15,7 +15,7 @@ export const generateRobotsTxt = (isOnProduction: boolean, host: string) => {
 const run = () => {
   generateRobotsTxt(
     process.env.PRODUCTION ? true : false,
-    process.env.NEXT_PUBLIC_SITE_URL ?? "localhost"
+    process.env.NEXT_PUBLIC_SITE_URL ?? 'localhost'
   );
   console.log(`Robots.txt generated, production:${!!process.env.PRODUCTION}`);
 };

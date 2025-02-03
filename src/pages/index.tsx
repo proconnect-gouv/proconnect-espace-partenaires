@@ -1,20 +1,29 @@
-import * as React from "react";
-import Head from "next/head";
-import { NextPage } from "next";
-import { fr } from "@codegouvfr/react-dsfr";
-import { Button } from "@codegouvfr/react-dsfr/Button";
-import Image from "next/image";
+import * as React from 'react';
+import Head from 'next/head';
+import { NextPage } from 'next';
+import { fr } from '@codegouvfr/react-dsfr';
+import { Button } from '@codegouvfr/react-dsfr/Button';
+import Image from 'next/image';
 
 const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>ProConnect | Identifiez les professionnels sur les sites de l'administration</title>
+        <title>
+          ProConnect | Identifiez les professionnels sur les sites de
+          l’administration
+        </title>
       </Head>
 
-      <div className={fr.cx("fr-py-6w")}>
-        <div className={fr.cx("fr-grid-row", "fr-grid-row--gutters", "fr-grid-row--middle")}>
-          <div className={fr.cx("fr-col-12", "fr-col-md-6")}>
+      <div className={fr.cx('fr-py-6w')}>
+        <div
+          className={fr.cx(
+            'fr-grid-row',
+            'fr-grid-row--gutters',
+            'fr-grid-row--middle'
+          )}
+        >
+          <div className={fr.cx('fr-col-12', 'fr-col-md-6')}>
             <h1>
               Nous identifions pour vous
               <br />
@@ -23,10 +32,16 @@ const Home: NextPage = () => {
               et du public.
             </h1>
 
-            <div className={fr.cx("fr-btns-group", "fr-btns-group--inline", "fr-mt-4w")}>
+            <div
+              className={fr.cx(
+                'fr-btns-group',
+                'fr-btns-group--inline',
+                'fr-mt-4w'
+              )}
+            >
               <Button
                 linkProps={{
-                  href: "/demo"
+                  href: '/demo',
                 }}
                 priority="primary"
               >
@@ -35,7 +50,7 @@ const Home: NextPage = () => {
 
               <Button
                 linkProps={{
-                  href: "/docs"
+                  href: '/docs',
                 }}
                 priority="secondary"
               >
@@ -44,7 +59,7 @@ const Home: NextPage = () => {
             </div>
           </div>
 
-          <div className={fr.cx("fr-col-12", "fr-col-md-6")}>
+          <div className={fr.cx('fr-col-12', 'fr-col-md-6')}>
             <Image
               src="/images/home-laptop.svg"
               alt="Illustration d'un ordinateur portable avec l'interface de connexion"
@@ -55,43 +70,48 @@ const Home: NextPage = () => {
           </div>
         </div>
 
-        <section className={fr.cx("fr-mt-10w")}>
+        <section className={fr.cx('fr-mt-10w')}>
           <h2>Pourquoi intégrer ProConnect ?</h2>
 
-          <div className={fr.cx("fr-grid-row", "fr-grid-row--gutters", "fr-mt-4w")}>
-            <div className={fr.cx("fr-col-12", "fr-col-md-4")}>
-              <div className={fr.cx("fr-card", "fr-card--no-border")}>
-                <div className={fr.cx("fr-card__body")}>
-                  <div className={fr.cx("fr-card__content")}>
+          <div
+            className={fr.cx('fr-grid-row', 'fr-grid-row--gutters', 'fr-mt-4w')}
+          >
+            <div className={fr.cx('fr-col-12', 'fr-col-md-4')}>
+              <div className={fr.cx('fr-card', 'fr-card--no-border')}>
+                <div className={fr.cx('fr-card__body')}>
+                  <div className={fr.cx('fr-card__content')}>
                     <h3>Gagnez du temps de développement</h3>
                     <p>
-                      Nous nous chargeons de connecter vos utilisateurs à votre service numérique.
+                      Nous nous chargeons de connecter vos utilisateurs à votre
+                      service numérique.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className={fr.cx("fr-col-12", "fr-col-md-4")}>
-              <div className={fr.cx("fr-card", "fr-card--no-border")}>
-                <div className={fr.cx("fr-card__body")}>
-                  <div className={fr.cx("fr-card__content")}>
-                    <h3>Profitez de notre process d'identification</h3>
+            <div className={fr.cx('fr-col-12', 'fr-col-md-4')}>
+              <div className={fr.cx('fr-card', 'fr-card--no-border')}>
+                <div className={fr.cx('fr-card__body')}>
+                  <div className={fr.cx('fr-card__content')}>
+                    <h3>Profitez de notre process d’identification</h3>
                     <p>
-                      Notre algorithme identifie les organisations, s'adapte à leur taille et apprend de chaque partenaire.
+                      Notre algorithme identifie les organisations, s’adapte à
+                      leur taille et apprend de chaque partenaire.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className={fr.cx("fr-col-12", "fr-col-md-4")}>
-              <div className={fr.cx("fr-card", "fr-card--no-border")}>
-                <div className={fr.cx("fr-card__body")}>
-                  <div className={fr.cx("fr-card__content")}>
+            <div className={fr.cx('fr-col-12', 'fr-col-md-4')}>
+              <div className={fr.cx('fr-card', 'fr-card--no-border')}>
+                <div className={fr.cx('fr-card__body')}>
+                  <div className={fr.cx('fr-card__content')}>
                     <h3>Simplifier votre service</h3>
                     <p>
-                      Offrez un parcours simple, rapide et utilisé sur plusieurs services de l'État.
+                      Offrez un parcours simple, rapide et utilisé sur plusieurs
+                      services de l’État.
                     </p>
                   </div>
                 </div>
@@ -99,10 +119,16 @@ const Home: NextPage = () => {
             </div>
           </div>
 
-          <div className={fr.cx("fr-btns-group", "fr-btns-group--center", "fr-mt-4w")}>
+          <div
+            className={fr.cx(
+              'fr-btns-group',
+              'fr-btns-group--center',
+              'fr-mt-4w'
+            )}
+          >
             <Button
               linkProps={{
-                href: "/demo"
+                href: '/demo',
               }}
             >
               Faire le parcours démo

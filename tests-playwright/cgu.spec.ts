@@ -1,8 +1,8 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from '@playwright/test';
 
-const url = "/cgu";
+const url = '/cgu';
 
-test("has title", async ({ page }) => {
+test('has title', async ({ page }) => {
   await page.goto(url);
 
   await expect(page).toHaveTitle(
@@ -10,24 +10,24 @@ test("has title", async ({ page }) => {
   );
 });
 
-test("has proper headers", async ({ page }) => {
+test('has proper headers', async ({ page }) => {
   await page.goto(url);
 
   // Expect a title "to contain" a substring.
-  await expect(page.getByRole("heading", { level: 1 })).toContainText(
+  await expect(page.getByRole('heading', { level: 1 })).toContainText(
     "Conditions générales d'utilisation"
   );
 
   const requiredHeaders = [
-    "Présentation",
-    "Vos données",
-    "Absence de garantie",
+    'Présentation',
+    'Vos données',
+    'Absence de garantie',
   ];
 
   await Promise.all(
     requiredHeaders.map(async (text) =>
       expect(
-        await page.getByRole("heading", { level: 2 }).getByText(text).count()
+        await page.getByRole('heading', { level: 2 }).getByText(text).count()
       ).toBe(1)
     )
   );

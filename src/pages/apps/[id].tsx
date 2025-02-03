@@ -1,23 +1,25 @@
-import { Button } from "@codegouvfr/react-dsfr/Button";
-import { fr } from "@codegouvfr/react-dsfr";
-import { ProviderUrl } from "../../components/ProviderUrl";
-import { SideMenu } from "../../components/AppSideMenu";
-import { GetServerSideProps } from "next";
-import { useState, useCallback } from "react";
+import { Button } from '@codegouvfr/react-dsfr/Button';
+import { fr } from '@codegouvfr/react-dsfr';
+import { ProviderUrl } from '../../components/ProviderUrl';
+import { SideMenu } from '../../components/AppSideMenu';
+import { GetServerSideProps } from 'next';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../api/auth/[...nextauth]';
 import { prisma_proconnect, OidcClient } from '../../lib/prisma';
-import debounce from "lodash/debounce";
-import { CopyableField } from "../../components/CopyableField";
-import { Input } from "@codegouvfr/react-dsfr/Input";
-import { NotificationsContainer } from "../../components/NotificationsContainer";
-import { Select } from "@codegouvfr/react-dsfr/Select";
+import debounce from 'lodash/debounce';
+import { CopyableField } from '../../components/CopyableField';
+import { Input } from '@codegouvfr/react-dsfr/Input';
+import { NotificationsContainer } from '../../components/NotificationsContainer';
+import { Select } from '@codegouvfr/react-dsfr/Select';
 
 type Props = {
   initialData: OidcClient;
 };
 
-export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
+export const getServerSideProps: GetServerSideProps<Props> = async (
+  context
+) => {
   const session = await getServerSession(context.req, context.res, authOptions);
 
   // Redirect to login if not authenticated
@@ -39,7 +41,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
     const oidcClient = await prisma_proconnect.oidcClient.findFirst({
       where: {
         id,
-        email: session.user.email
+        email: session.user.email,
       },
     });
 
@@ -60,17 +62,17 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
 
 const SIGNATURE_ALGORITHMS = [
   {
-    label: "RS256 (RSA + SHA256) - Recommandé", 
-    value: "RS256"
+    label: 'RS256 (RSA + SHA256) - Recommandé',
+    value: 'RS256',
   },
   {
-    label: "ES256 (EC + SHA256) - Recommandé",
-    value: "ES256"
+    label: 'ES256 (EC + SHA256) - Recommandé',
+    value: 'ES256',
   },
   {
-    label: "HS256 (HMAC + SHA256) - Non recommandé",
-    value: "HS256"
-  }
+    label: 'HS256 (HMAC + SHA256) - Non recommandé',
+    value: 'HS256',
+  },
 ] as const;
 
 export default function AppDetailPage({ initialData }: Props) {
@@ -78,48 +80,58 @@ export default function AppDetailPage({ initialData }: Props) {
   const [saveError, setSaveError] = useState<string | null>(null);
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [signatureAlg, setSignatureAlg] = useState(
-    data.id_token_signed_response_alg || "RS256"
+    data.id_token_signed_response_alg || 'RS256'
   );
 
-  const saveData = async (updates: Partial<OidcClient>) => {
-    setSaveError(null);
-    setSaveSuccess(false);
+  const saveData = useCallback(
+    async (updates: Partial<OidcClient>) => {
+      setSaveError(null);
+      setSaveSuccess(false);
 
-    try {
-      const response = await fetch(`/api/apps/${data.id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updates),
-      });
+      try {
+        const response = await fetch(`/api/apps/${data.id}`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(updates),
+        });
 
-      if (!response.ok) {
-        throw new Error('Failed to save changes');
+        if (!response.ok) {
+          throw new Error('Failed to save changes');
+        }
+
+        const updatedApp = await response.json();
+        setData(updatedApp);
+        setSaveSuccess(true);
+
+        // Hide success message after 3 seconds
+        setTimeout(() => setSaveSuccess(false), 3000);
+      } catch (error) {
+        console.error('Error saving app:', error);
+        setSaveError('Une erreur est survenue lors de la sauvegarde');
       }
-
-      const updatedApp = await response.json();
-      setData(updatedApp);
-      setSaveSuccess(true);
-      
-      // Hide success message after 3 seconds
-      setTimeout(() => setSaveSuccess(false), 3000);
-    } catch (error) {
-      console.error('Error saving app:', error);
-      setSaveError('Une erreur est survenue lors de la sauvegarde');
-    }
-  };
-
-  // Debounced save for title
-  const debouncedSave = useCallback(
-    debounce((updates: Partial<OidcClient>) => saveData(updates), 500),
+    },
     [data.id]
   );
 
+  // Create a memoized debounced save function
+  const debouncedSave = useMemo(
+    () => debounce((updates: Partial<OidcClient>) => saveData(updates), 500),
+    [saveData]
+  );
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      debouncedSave.cancel();
+    };
+  }, [debouncedSave]);
+
   const handleUpdate = (updates: Partial<OidcClient>) => {
-    setData(prev => ({
+    setData((prev) => ({
       ...prev,
-      ...updates
+      ...updates,
     }));
 
     // For title changes, use debounced save
@@ -131,26 +143,16 @@ export default function AppDetailPage({ initialData }: Props) {
     }
   };
 
-  const generateKeys = async () => {
-    // TODO: Replace with actual API call
-    const mockKeys = {
-      clientId: "client_" + Math.random().toString(36).substring(7),
-      clientSecret: "secret_" + Math.random().toString(36).substring(7)
-    };
-
-    handleUpdate(mockKeys);
-  };
-
-  const hasKeys = Boolean(data.key && data.client_secret);
-
-  const handleSignatureAlgChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSignatureAlgChange = async (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     const newAlg = e.target.value;
     setSignatureAlg(newAlg);
-    
+
     try {
       const updates = {
         id_token_signed_response_alg: newAlg,
-        userinfo_signed_response_alg: newAlg
+        userinfo_signed_response_alg: newAlg,
       };
 
       await saveData(updates);
@@ -163,19 +165,19 @@ export default function AppDetailPage({ initialData }: Props) {
   return (
     <>
       <h1>{data.name}</h1>
-      <div className={fr.cx("fr-container--fluid", "fr-mt-10v")}>
-        <div className={fr.cx("fr-grid-row")}>
+      <div className={fr.cx('fr-container--fluid', 'fr-mt-10v')}>
+        <div className={fr.cx('fr-grid-row')}>
           <SideMenu />
-          <div className={fr.cx("fr-col-12", "fr-col-md-9")}>
-            <div className={fr.cx("fr-mb-10v")}>
+          <div className={fr.cx('fr-col-12', 'fr-col-md-9')}>
+            <div className={fr.cx('fr-mb-10v')}>
               <Input
-                className={fr.cx("fr-col-md-7")}
-                state={data.name === "" ? "error" : "default"}
+                className={fr.cx('fr-col-md-7')}
+                state={data.name === '' ? 'error' : 'default'}
                 stateRelatedMessage="Nom de projet obligatoire"
                 label="Nom du projet"
                 nativeInputProps={{
-                  type: "text",
-                  placeholder: "Test - date",
+                  type: 'text',
+                  placeholder: 'Test - date',
                   onChange: (e) => handleUpdate({ name: e.target.value }),
                   required: true,
                   value: data.name,
@@ -183,38 +185,31 @@ export default function AppDetailPage({ initialData }: Props) {
               />
             </div>
 
-            <div className={fr.cx("fr-mb-10v")}>
-              <h2>Clés d'API</h2>
-              {!hasKeys ? (
-                <Button onClick={generateKeys}>Générer les clés</Button>
-              ) : (
-                <div className={fr.cx("fr-grid-row", "fr-grid-row--gutters")}>
-                  <div className={fr.cx("fr-col-12")}>
-                    <CopyableField
-                      label="Client ID"
-                      value={data.key}
-                    />
-                  </div>
-                  <div className={fr.cx("fr-col-12", "fr-mt-2w")}>
-                    <CopyableField
-                      label="Client Secret"
-                      value={data.client_secret}
-                    />
-                  </div>
+            <div className={fr.cx('fr-mb-10v')}>
+              <h2>Clés d’API</h2>
+              <div className={fr.cx('fr-grid-row', 'fr-grid-row--gutters')}>
+                <div className={fr.cx('fr-col-12')}>
+                  <CopyableField label="Client ID" value={data.key} />
                 </div>
-              )}
+                <div className={fr.cx('fr-col-12', 'fr-mt-2w')}>
+                  <CopyableField
+                    label="Client Secret"
+                    value={data.client_secret}
+                  />
+                </div>
+              </div>
             </div>
 
             <ProviderUrl
               urls={data.redirect_uris}
-              onUpdate={redirect_uris => handleUpdate({ redirect_uris })}
+              onUpdate={(redirect_uris) => handleUpdate({ redirect_uris })}
               title="Configuration des URLs"
               description="Saisissez l'url de la ou les pages sur lesquelles vous souhaitez utiliser le bouton de connexion MonComptePro"
               label="URL de la page de connexion :"
             />
             <ProviderUrl
               urls={data.post_logout_redirect_uris}
-              onUpdate={post_logout_redirect_uris => 
+              onUpdate={(post_logout_redirect_uris) =>
                 handleUpdate({ post_logout_redirect_uris })
               }
               title="Configuration des URLs de déconnexion"
@@ -222,17 +217,18 @@ export default function AppDetailPage({ initialData }: Props) {
               label="URL de la page de déconnexion :"
             />
 
-            <div className={fr.cx("fr-mb-10v")}>
+            <div className={fr.cx('fr-mb-10v')}>
               <h2>Algorithme de signature</h2>
               <p>
-                L'algorithme de signature est utilisé pour signer les jetons d'identité et les informations utilisateur.
+                L’algorithme de signature est utilisé pour signer les jetons
+                d’identité et les informations utilisateur.
               </p>
               <Select
                 label="Algorithme de signature"
                 hint="Algorithme utilisé pour signer les jetons d'identité et les informations utilisateur"
                 nativeSelectProps={{
                   value: signatureAlg,
-                  onChange: handleSignatureAlgChange
+                  onChange: handleSignatureAlgChange,
                 }}
               >
                 {SIGNATURE_ALGORITHMS.map((alg) => (
@@ -248,7 +244,7 @@ export default function AppDetailPage({ initialData }: Props) {
 
       <NotificationsContainer
         error={saveError}
-        success={saveSuccess ? "Les modifications ont été enregistrées" : null}
+        success={saveSuccess ? 'Les modifications ont été enregistrées' : null}
         onErrorClose={() => setSaveError(null)}
         onSuccessClose={() => setSaveSuccess(false)}
       />

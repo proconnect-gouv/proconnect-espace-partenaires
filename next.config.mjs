@@ -27,13 +27,12 @@ const moduleExports = {
   experimental: {
     esmExternals: false
   },
-  // output: "export",
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(woff2|webmanifest)$/,
       type: "asset/resource",
     });
-    
+
     return config;
   },
   sentry: {

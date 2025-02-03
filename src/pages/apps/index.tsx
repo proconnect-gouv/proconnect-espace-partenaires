@@ -26,13 +26,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     const oidcClients = await prisma_proconnect.oidcClient.findMany({
       where: {
-        email: session.user.email
+        email: session.user.email,
       },
       orderBy: {
         name: 'asc',
       },
     });
-    
+
     return {
       props: {
         // Need to serialize dates for Next.js
@@ -47,9 +47,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   }
-}
+};
 
-export default function AppsPage({ oidcClients }: { oidcClients: OidcClient[] }) {
+export default function AppsPage({
+  oidcClients,
+}: {
+  oidcClients: OidcClient[];
+}) {
   const router = useRouter();
 
   const handleCreateApp = async () => {
@@ -74,21 +78,31 @@ export default function AppsPage({ oidcClients }: { oidcClients: OidcClient[] })
   };
 
   return (
-    <div className={fr.cx("fr-mb-10v")}>
-      <div className={fr.cx("fr-grid-row", "fr-grid-row--middle", "fr-grid-row--gutters", "fr-mb-3w")}>
-        <div className={fr.cx("fr-col")}>
+    <div className={fr.cx('fr-mb-10v')}>
+      <div
+        className={fr.cx(
+          'fr-grid-row',
+          'fr-grid-row--middle',
+          'fr-grid-row--gutters',
+          'fr-mb-3w'
+        )}
+      >
+        <div className={fr.cx('fr-col')}>
           <h1>Vos applications</h1>
         </div>
-        <div className={fr.cx("fr-col-auto")}>
+        <div className={fr.cx('fr-col-auto')}>
           <Button onClick={handleCreateApp} iconId="fr-icon-add-line">
             Créer une application
           </Button>
         </div>
       </div>
 
-      <div className={fr.cx("fr-grid-row", "fr-grid-row--gutters")}>
+      <div className={fr.cx('fr-grid-row', 'fr-grid-row--gutters')}>
         {oidcClients.map((oidcClient) => (
-          <div key={oidcClient.id} className={fr.cx("fr-col-12", "fr-col-md-6")}>
+          <div
+            key={oidcClient.id}
+            className={fr.cx('fr-col-12', 'fr-col-md-6')}
+          >
             <Card
               background
               border
@@ -100,15 +114,15 @@ export default function AppsPage({ oidcClients }: { oidcClients: OidcClient[] })
               size="small"
               start={
                 <>
-                  <ul className={fr.cx("fr-badges-group")}>
+                  <ul className={fr.cx('fr-badges-group')}>
                     <li>
-                      <Badge severity={oidcClient.active ? "info" : "warning"}>
-                        {oidcClient.active ? "Actif" : "Inactif"}
+                      <Badge severity={oidcClient.active ? 'info' : 'warning'}>
+                        {oidcClient.active ? 'Actif' : 'Inactif'}
                       </Badge>
                     </li>
                   </ul>
                   {oidcClient.site && (
-                    <p className={fr.cx("fr-mb-0", "fr-text--xs")}>
+                    <p className={fr.cx('fr-mb-0', 'fr-text--xs')}>
                       → {oidcClient.site}
                     </p>
                   )}

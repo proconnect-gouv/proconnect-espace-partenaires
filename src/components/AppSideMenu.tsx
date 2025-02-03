@@ -32,9 +32,9 @@ export const SideMenu = () => {
               href: '#alg',
             },
             text: 'Algorithme',
-          }
+          },
         ]}
       />
     </div>
   );
-}; 
+};
