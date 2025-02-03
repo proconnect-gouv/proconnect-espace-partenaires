@@ -1,0 +1,42 @@
+name: ⛑️ Lint
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+concurrency:
+  cancel-in-progress: true
+  group: lint-${{ github.ref }}
+
+jobs:
+  code:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "yarn"
+      - name: Install dependencies
+        run: |
+          yarn --immutable
+      - name: Lint
+        run: |
+          yarn lint
+
+  docker:
+    name: Lint Dockerfile
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Lint Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile
+          verbose: true

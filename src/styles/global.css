@@ -1,0 +1,3 @@
+.fr-collapse, .fr-collapse--expanded, .fr-collapsing, .fr-collapse::before  {
+    transition: none !important;
+}

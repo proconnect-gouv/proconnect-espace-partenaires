@@ -1,46 +1,38 @@
-#
+ARG NODE_VERSION=20-alpine3.19@sha256:ef3f47741e161900ddd07addcaca7e76534a9205e4cd73b2ed091ba339004a75
 
-FROM node:lts-buster-slim as base
+# Install dependencies only when needed
+FROM node:$NODE_VERSION AS builder
+# hadolint ignore=DL3018
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
 
-ENV TZ Europe/Paris
-RUN cp /usr/share/zoneinfo/Europe/Paris /etc/localtime
+COPY yarn.lock package.json ./
+RUN yarn  --immutable
+COPY . .
 
-RUN --mount=type=cache,target=/root/.npm,sharing=locked \
-  npm install -g npm@latest
+ARG PRODUCTION
+ENV PRODUCTION $PRODUCTION
+ARG GITHUB_SHA
+ENV GITHUB_SHA $GITHUB_SHA
+ARG NEXT_PUBLIC_SITE_URL
+ENV NEXT_PUBLIC_SITE_URL $NEXT_PUBLIC_SITE_URL
 
-WORKDIR /home/node/app
+ENV NODE_ENV production
+ENV NEXT_PUBLIC_BASE_PATH ""
 
-COPY ./package.json ./
-COPY ./back/package.json ./back/
-COPY ./front/package.json ./front/
-COPY ./front/public/ ./front/public/
+WORKDIR /app
 
-RUN --mount=type=cache,target=/root/.npm,sharing=locked \
-  npm install --omit=dev
+RUN yarn postinstall # if you have postinstall script in your package.json
+RUN if [ -z "$PRODUCTION" ]; then \
+    echo "Overriding .env for staging"; \
+    cp .env.staging .env.production; \
+    fi && \
+    yarn build
 
-#
+# Production image, copy all the files and run nginx
+FROM ghcr.io/socialgouv/docker/nginx:sha-1d70757 AS runner
 
-FROM base AS build
+COPY --from=builder /app/out /usr/share/nginx/html
 
-RUN --mount=type=cache,target=/root/.npm,sharing=locked \
-  npm install
-
-COPY ./back/ ./back/
-COPY ./front/ ./front/
-
-ENV NODE_ENV=production
-
-RUN npm run build
-
-#
-
-FROM base
-
-COPY --from=build /home/node/app/back/dist/ ./back/dist/
-COPY --from=build /home/node/app/front/dist/ ./front/dist/
-
-#
-
-USER node
-EXPOSE 3000/tcp
-ENTRYPOINT [ "npm", "start" ]
+# Disable nextjs telemetry
+ENV NEXT_TELEMETRY_DISABLED 1
