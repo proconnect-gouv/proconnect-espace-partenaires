@@ -1,5 +1,4 @@
-import { Alert } from '@codegouvfr/react-dsfr/Alert';
-import { fr } from '@codegouvfr/react-dsfr';
+import { Alert } from "@codegouvfr/react-dsfr/Alert";
 
 type Props = {
   error?: string | null;
@@ -17,12 +16,12 @@ export const NotificationsContainer = ({
   return (
     <div
       style={{
-        position: 'fixed',
-        bottom: '1.5rem',
-        right: '1.5rem',
+        position: "fixed",
+        bottom: "1.5rem",
+        right: "1.5rem",
         zIndex: 10000,
-        maxWidth: '400px',
-        backgroundColor: 'white',
+        maxWidth: "400px",
+        backgroundColor: "white",
       }}
     >
       {error && (

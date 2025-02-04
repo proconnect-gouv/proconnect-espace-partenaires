@@ -1,9 +1,8 @@
-import * as React from 'react';
-import Head from 'next/head';
-import { NextPage } from 'next';
-import { fr } from '@codegouvfr/react-dsfr';
-import { Button } from '@codegouvfr/react-dsfr/Button';
-import Image from 'next/image';
+import { fr } from "@codegouvfr/react-dsfr";
+import { Button } from "@codegouvfr/react-dsfr/Button";
+import { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
 
 const Home: NextPage = () => {
   return (
@@ -15,15 +14,15 @@ const Home: NextPage = () => {
         </title>
       </Head>
 
-      <div className={fr.cx('fr-py-6w')}>
+      <div className={fr.cx("fr-py-6w")}>
         <div
           className={fr.cx(
-            'fr-grid-row',
-            'fr-grid-row--gutters',
-            'fr-grid-row--middle'
+            "fr-grid-row",
+            "fr-grid-row--gutters",
+            "fr-grid-row--middle"
           )}
         >
-          <div className={fr.cx('fr-col-12', 'fr-col-md-6')}>
+          <div className={fr.cx("fr-col-12", "fr-col-md-6")}>
             <h1>
               Nous identifions pour vous
               <br />
@@ -34,14 +33,14 @@ const Home: NextPage = () => {
 
             <div
               className={fr.cx(
-                'fr-btns-group',
-                'fr-btns-group--inline',
-                'fr-mt-4w'
+                "fr-btns-group",
+                "fr-btns-group--inline",
+                "fr-mt-4w"
               )}
             >
               <Button
                 linkProps={{
-                  href: '/demo',
+                  href: "/demo",
                 }}
                 priority="primary"
               >
@@ -50,7 +49,7 @@ const Home: NextPage = () => {
 
               <Button
                 linkProps={{
-                  href: '/docs',
+                  href: "/docs",
                 }}
                 priority="secondary"
               >
@@ -59,7 +58,7 @@ const Home: NextPage = () => {
             </div>
           </div>
 
-          <div className={fr.cx('fr-col-12', 'fr-col-md-6')}>
+          <div className={fr.cx("fr-col-12", "fr-col-md-6")}>
             <Image
               src="/images/home-laptop.svg"
               alt="Illustration d'un ordinateur portable avec l'interface de connexion"
@@ -70,16 +69,16 @@ const Home: NextPage = () => {
           </div>
         </div>
 
-        <section className={fr.cx('fr-mt-10w')}>
+        <section className={fr.cx("fr-mt-10w")}>
           <h2>Pourquoi intégrer ProConnect ?</h2>
 
           <div
-            className={fr.cx('fr-grid-row', 'fr-grid-row--gutters', 'fr-mt-4w')}
+            className={fr.cx("fr-grid-row", "fr-grid-row--gutters", "fr-mt-4w")}
           >
-            <div className={fr.cx('fr-col-12', 'fr-col-md-4')}>
-              <div className={fr.cx('fr-card', 'fr-card--no-border')}>
-                <div className={fr.cx('fr-card__body')}>
-                  <div className={fr.cx('fr-card__content')}>
+            <div className={fr.cx("fr-col-12", "fr-col-md-4")}>
+              <div className={fr.cx("fr-card", "fr-card--no-border")}>
+                <div className={fr.cx("fr-card__body")}>
+                  <div className={fr.cx("fr-card__content")}>
                     <h3>Gagnez du temps de développement</h3>
                     <p>
                       Nous nous chargeons de connecter vos utilisateurs à votre
@@ -90,10 +89,10 @@ const Home: NextPage = () => {
               </div>
             </div>
 
-            <div className={fr.cx('fr-col-12', 'fr-col-md-4')}>
-              <div className={fr.cx('fr-card', 'fr-card--no-border')}>
-                <div className={fr.cx('fr-card__body')}>
-                  <div className={fr.cx('fr-card__content')}>
+            <div className={fr.cx("fr-col-12", "fr-col-md-4")}>
+              <div className={fr.cx("fr-card", "fr-card--no-border")}>
+                <div className={fr.cx("fr-card__body")}>
+                  <div className={fr.cx("fr-card__content")}>
                     <h3>Profitez de notre process d’identification</h3>
                     <p>
                       Notre algorithme identifie les organisations, s’adapte à
@@ -104,10 +103,10 @@ const Home: NextPage = () => {
               </div>
             </div>
 
-            <div className={fr.cx('fr-col-12', 'fr-col-md-4')}>
-              <div className={fr.cx('fr-card', 'fr-card--no-border')}>
-                <div className={fr.cx('fr-card__body')}>
-                  <div className={fr.cx('fr-card__content')}>
+            <div className={fr.cx("fr-col-12", "fr-col-md-4")}>
+              <div className={fr.cx("fr-card", "fr-card--no-border")}>
+                <div className={fr.cx("fr-card__body")}>
+                  <div className={fr.cx("fr-card__content")}>
                     <h3>Simplifier votre service</h3>
                     <p>
                       Offrez un parcours simple, rapide et utilisé sur plusieurs
@@ -121,14 +120,14 @@ const Home: NextPage = () => {
 
           <div
             className={fr.cx(
-              'fr-btns-group',
-              'fr-btns-group--center',
-              'fr-mt-4w'
+              "fr-btns-group",
+              "fr-btns-group--center",
+              "fr-mt-4w"
             )}
           >
             <Button
               linkProps={{
-                href: '/demo',
+                href: "/demo",
               }}
             >
               Faire le parcours démo

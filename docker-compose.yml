@@ -1,7 +1,7 @@
 # Services for local development
 services:
   postgresql:
-    image: postgres:16
+    image: postgres:16.6
     environment:
       - POSTGRES_DB=proconnect_ep
       - POSTGRES_USER=usr
@@ -24,7 +24,7 @@ services:
       - /data/configdb
 
   mailcatcher:
-    image: sj26/mailcatcher:latest
+    image: maildev/maildev:2.2.1
     ports:
       - "1081:1080"
       - "1025:1025"

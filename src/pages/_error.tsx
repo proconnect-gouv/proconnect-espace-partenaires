@@ -1,7 +1,7 @@
-import NextErrorComponent, { ErrorProps as NextErrorProps } from 'next/error';
-import { NextPageContext } from 'next';
+import { NextPageContext } from "next";
+import NextErrorComponent, { ErrorProps as NextErrorProps } from "next/error";
 
-import * as Sentry from '@sentry/nextjs';
+import * as Sentry from "@sentry/nextjs";
 
 export type ErrorPageProps = {
   err: Error;

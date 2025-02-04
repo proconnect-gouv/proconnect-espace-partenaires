@@ -1,17 +1,16 @@
-import { Button } from '@codegouvfr/react-dsfr/Button';
-import { fr } from '@codegouvfr/react-dsfr';
-import { ProviderUrl } from '../../components/ProviderUrl';
-import { SideMenu } from '../../components/AppSideMenu';
-import { GetServerSideProps } from 'next';
-import { useState, useCallback, useMemo, useEffect } from 'react';
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '../api/auth/[...nextauth]';
-import { prisma_proconnect, OidcClient } from '../../lib/prisma';
-import debounce from 'lodash/debounce';
-import { CopyableField } from '../../components/CopyableField';
-import { Input } from '@codegouvfr/react-dsfr/Input';
-import { NotificationsContainer } from '../../components/NotificationsContainer';
-import { Select } from '@codegouvfr/react-dsfr/Select';
+import { fr } from "@codegouvfr/react-dsfr";
+import { Input } from "@codegouvfr/react-dsfr/Input";
+import { Select } from "@codegouvfr/react-dsfr/Select";
+import debounce from "lodash/debounce";
+import { GetServerSideProps } from "next";
+import { getServerSession } from "next-auth/next";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { SideMenu } from "../../components/AppSideMenu";
+import { CopyableField } from "../../components/CopyableField";
+import { NotificationsContainer } from "../../components/NotificationsContainer";
+import { ProviderUrl } from "../../components/ProviderUrl";
+import { OidcClient, prisma_proconnect } from "../../lib/prisma";
+import { authOptions } from "../api/auth/[...nextauth]";
 
 type Props = {
   initialData: OidcClient;
@@ -26,14 +25,14 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
   if (!session?.user?.email) {
     return {
       redirect: {
-        destination: '/login',
+        destination: "/login",
         permanent: false,
       },
     };
   }
 
   const id = context.params?.id;
-  if (typeof id !== 'string') {
+  if (typeof id !== "string") {
     return { notFound: true };
   }
 
@@ -55,23 +54,23 @@ export const getServerSideProps: GetServerSideProps<Props> = async (
       },
     };
   } catch (error) {
-    console.error('Failed to fetch OIDC client:', error);
+    console.error("Failed to fetch OIDC client:", error);
     return { notFound: true };
   }
 };
 
 const SIGNATURE_ALGORITHMS = [
   {
-    label: 'RS256 (RSA + SHA256) - Recommandé',
-    value: 'RS256',
+    label: "RS256 (RSA + SHA256) - Recommandé",
+    value: "RS256",
   },
   {
-    label: 'ES256 (EC + SHA256) - Recommandé',
-    value: 'ES256',
+    label: "ES256 (EC + SHA256) - Recommandé",
+    value: "ES256",
   },
   {
-    label: 'HS256 (HMAC + SHA256) - Non recommandé',
-    value: 'HS256',
+    label: "HS256 (HMAC + SHA256) - Non recommandé",
+    value: "HS256",
   },
 ] as const;
 
@@ -80,7 +79,7 @@ export default function AppDetailPage({ initialData }: Props) {
   const [saveError, setSaveError] = useState<string | null>(null);
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [signatureAlg, setSignatureAlg] = useState(
-    data.id_token_signed_response_alg || 'RS256'
+    data.id_token_signed_response_alg || "RS256"
   );
 
   const saveData = useCallback(
@@ -90,15 +89,15 @@ export default function AppDetailPage({ initialData }: Props) {
 
       try {
         const response = await fetch(`/api/apps/${data.id}`, {
-          method: 'PATCH',
+          method: "PATCH",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(updates),
         });
 
         if (!response.ok) {
-          throw new Error('Failed to save changes');
+          throw new Error("Failed to save changes");
         }
 
         const updatedApp = await response.json();
@@ -108,8 +107,8 @@ export default function AppDetailPage({ initialData }: Props) {
         // Hide success message after 3 seconds
         setTimeout(() => setSaveSuccess(false), 3000);
       } catch (error) {
-        console.error('Error saving app:', error);
-        setSaveError('Une erreur est survenue lors de la sauvegarde');
+        console.error("Error saving app:", error);
+        setSaveError("Une erreur est survenue lors de la sauvegarde");
       }
     },
     [data.id]
@@ -135,7 +134,7 @@ export default function AppDetailPage({ initialData }: Props) {
     }));
 
     // For title changes, use debounced save
-    if ('name' in updates) {
+    if ("name" in updates) {
       debouncedSave(updates);
     } else {
       // For URLs, save immediately
@@ -157,27 +156,27 @@ export default function AppDetailPage({ initialData }: Props) {
 
       await saveData(updates);
     } catch (error) {
-      console.error('Error updating signature algorithm:', error);
-      setSaveError('Failed to update signature algorithm');
+      console.error("Error updating signature algorithm:", error);
+      setSaveError("Failed to update signature algorithm");
     }
   };
 
   return (
     <>
       <h1>{data.name}</h1>
-      <div className={fr.cx('fr-container--fluid', 'fr-mt-10v')}>
-        <div className={fr.cx('fr-grid-row')}>
+      <div className={fr.cx("fr-container--fluid", "fr-mt-10v")}>
+        <div className={fr.cx("fr-grid-row")}>
           <SideMenu />
-          <div className={fr.cx('fr-col-12', 'fr-col-md-9')}>
-            <div className={fr.cx('fr-mb-10v')}>
+          <div className={fr.cx("fr-col-12", "fr-col-md-9")}>
+            <div className={fr.cx("fr-mb-10v")}>
               <Input
-                className={fr.cx('fr-col-md-7')}
-                state={data.name === '' ? 'error' : 'default'}
+                className={fr.cx("fr-col-md-7")}
+                state={data.name === "" ? "error" : "default"}
                 stateRelatedMessage="Nom de projet obligatoire"
                 label="Nom du projet"
                 nativeInputProps={{
-                  type: 'text',
-                  placeholder: 'Test - date',
+                  type: "text",
+                  placeholder: "Test - date",
                   onChange: (e) => handleUpdate({ name: e.target.value }),
                   required: true,
                   value: data.name,
@@ -185,13 +184,13 @@ export default function AppDetailPage({ initialData }: Props) {
               />
             </div>
 
-            <div className={fr.cx('fr-mb-10v')}>
+            <div className={fr.cx("fr-mb-10v")}>
               <h2>Clés d’API</h2>
-              <div className={fr.cx('fr-grid-row', 'fr-grid-row--gutters')}>
-                <div className={fr.cx('fr-col-12')}>
+              <div className={fr.cx("fr-grid-row", "fr-grid-row--gutters")}>
+                <div className={fr.cx("fr-col-12")}>
                   <CopyableField label="Client ID" value={data.key} />
                 </div>
-                <div className={fr.cx('fr-col-12', 'fr-mt-2w')}>
+                <div className={fr.cx("fr-col-12", "fr-mt-2w")}>
                   <CopyableField
                     label="Client Secret"
                     value={data.client_secret}
@@ -217,7 +216,7 @@ export default function AppDetailPage({ initialData }: Props) {
               label="URL de la page de déconnexion :"
             />
 
-            <div className={fr.cx('fr-mb-10v')}>
+            <div className={fr.cx("fr-mb-10v")}>
               <h2>Algorithme de signature</h2>
               <p>
                 L’algorithme de signature est utilisé pour signer les jetons
@@ -244,7 +243,7 @@ export default function AppDetailPage({ initialData }: Props) {
 
       <NotificationsContainer
         error={saveError}
-        success={saveSuccess ? 'Les modifications ont été enregistrées' : null}
+        success={saveSuccess ? "Les modifications ont été enregistrées" : null}
         onErrorClose={() => setSaveError(null)}
         onSuccessClose={() => setSaveSuccess(false)}
       />

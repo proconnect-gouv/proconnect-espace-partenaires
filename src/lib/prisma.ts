@@ -1,8 +1,8 @@
-import { PrismaClient as PrismaClientEspace } from '../../prisma/generated_clients/db_espace';
+import { PrismaClient as PrismaClientEspace } from "../../prisma/generated_clients/db_espace";
 import {
   PrismaClient as PrismaClientProconnect,
   type OidcClient,
-} from '../../prisma/generated_clients/db_proconnect';
+} from "../../prisma/generated_clients/db_proconnect";
 
 // Global type augmentation for development
 declare global {
@@ -31,7 +31,7 @@ export const prisma_proconnect =
     },
   });
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== "production") {
   global.prisma_espace = prisma_espace;
   global.prisma_proconnect = prisma_proconnect;
 }

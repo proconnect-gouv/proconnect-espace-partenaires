@@ -1,70 +1,70 @@
-import { SideMenuProps } from '@codegouvfr/react-dsfr/SideMenu';
+import { SideMenuProps } from "@codegouvfr/react-dsfr/SideMenu";
 
 export const docTree: SideMenuProps.Item[] = [
   {
-    text: 'Fournisseur de Service',
+    text: "Fournisseur de Service",
     //linkProps: { href: "/docs/fournisseur-service" },
     items: [
       {
-        text: 'Introduction',
-        linkProps: { href: '/docs/fournisseur-service' },
+        text: "Introduction",
+        linkProps: { href: "/docs/fournisseur-service" },
       },
       {
-        text: 'Implémentation technique',
+        text: "Implémentation technique",
         linkProps: {
-          href: '/docs/fournisseur-service/implementation_technique',
+          href: "/docs/fournisseur-service/implementation_technique",
         },
       },
       {
-        text: 'Recommandations parcours',
+        text: "Recommandations parcours",
         linkProps: {
-          href: '/docs/fournisseur-service/recommandation_parcours',
+          href: "/docs/fournisseur-service/recommandation_parcours",
         },
       },
       {
-        text: 'Bouton ProConnect',
-        linkProps: { href: '/docs/fournisseur-service/bouton_proconnect' },
+        text: "Bouton ProConnect",
+        linkProps: { href: "/docs/fournisseur-service/bouton_proconnect" },
       },
       {
-        text: 'Données fournies',
-        linkProps: { href: '/docs/fournisseur-service/donnees_fournies' },
+        text: "Données fournies",
+        linkProps: { href: "/docs/fournisseur-service/donnees_fournies" },
       },
       {
-        text: 'Scopes et claims',
-        linkProps: { href: '/docs/fournisseur-service/scope-claims' },
+        text: "Scopes et claims",
+        linkProps: { href: "/docs/fournisseur-service/scope-claims" },
       },
       {
-        text: 'Scope custom',
-        linkProps: { href: '/docs/fournisseur-service/custom-scope' },
+        text: "Scope custom",
+        linkProps: { href: "/docs/fournisseur-service/custom-scope" },
       },
 
       {
-        text: 'Connaître le FI utilisé',
+        text: "Connaître le FI utilisé",
         linkProps: {
-          href: '/docs/fournisseur-service/connaitre-le-fi-utilise',
+          href: "/docs/fournisseur-service/connaitre-le-fi-utilise",
         },
       },
       {
-        text: 'Redirection vers un FI',
-        linkProps: { href: '/docs/fournisseur-service/idp_hint_usage' },
+        text: "Redirection vers un FI",
+        linkProps: { href: "/docs/fournisseur-service/idp_hint_usage" },
       },
       {
-        text: 'Identifiants de test',
-        linkProps: { href: '/docs/fournisseur-service/identifiants-fi-test' },
+        text: "Identifiants de test",
+        linkProps: { href: "/docs/fournisseur-service/identifiants-fi-test" },
       },
       {
-        text: 'Remplir le DataPass',
-        linkProps: { href: '/docs/fournisseur-service/datapass-fs' },
+        text: "Remplir le DataPass",
+        linkProps: { href: "/docs/fournisseur-service/datapass-fs" },
       },
       {
-        text: 'Migration AgentConnect',
+        text: "Migration AgentConnect",
         linkProps: {
-          href: '/docs/fournisseur-service/changement-agentconnect-proconnect-fs',
+          href: "/docs/fournisseur-service/changement-agentconnect-proconnect-fs",
         },
       },
       {
-        text: 'Glossaire',
-        linkProps: { href: '/docs/fournisseur-service/glossaire' },
+        text: "Glossaire",
+        linkProps: { href: "/docs/fournisseur-service/glossaire" },
       },
     ],
   },
@@ -73,58 +73,58 @@ export const docTree: SideMenuProps.Item[] = [
     //linkProps: { href: "/docs/fournisseur-identite" },
     items: [
       {
-        text: 'Introduction',
-        linkProps: { href: '/docs/fournisseur-identite' },
+        text: "Introduction",
+        linkProps: { href: "/docs/fournisseur-identite" },
       },
       {
-        text: 'Prérequis',
-        linkProps: { href: '/docs/fournisseur-identite/prerequis-fi' },
+        text: "Prérequis",
+        linkProps: { href: "/docs/fournisseur-identite/prerequis-fi" },
       },
       {
-        text: 'Configuration',
-        linkProps: { href: '/docs/fournisseur-identite/configuration' },
+        text: "Configuration",
+        linkProps: { href: "/docs/fournisseur-identite/configuration" },
       },
       {
-        text: 'Test de configuration',
-        linkProps: { href: '/docs/fournisseur-identite/test-configuration-fi' },
+        text: "Test de configuration",
+        linkProps: { href: "/docs/fournisseur-identite/test-configuration-fi" },
       },
       {
-        text: 'Troubleshooting',
-        linkProps: { href: '/docs/fournisseur-identite/troubleshooting-fi' },
+        text: "Troubleshooting",
+        linkProps: { href: "/docs/fournisseur-identite/troubleshooting-fi" },
       },
       {
-        text: 'Plateformes et Hybridge',
-        linkProps: { href: '/docs/fournisseur-identite/plateformes_fi' },
+        text: "Plateformes et Hybridge",
+        linkProps: { href: "/docs/fournisseur-identite/plateformes_fi" },
       },
       {
-        text: 'Certificats',
-        linkProps: { href: '/docs/fournisseur-identite/certificats_fi' },
+        text: "Certificats",
+        linkProps: { href: "/docs/fournisseur-identite/certificats_fi" },
       },
       {
-        text: 'LemonLDAP',
+        text: "LemonLDAP",
         linkProps: {
-          href: '/docs/fournisseur-identite/idp-configs/lemon-ldap',
+          href: "/docs/fournisseur-identite/idp-configs/lemon-ldap",
         },
       },
       {
-        text: 'Migration AgentConnect',
+        text: "Migration AgentConnect",
         linkProps: {
-          href: '/docs/fournisseur-identite/changement-agentconnect-proconnect-fi',
+          href: "/docs/fournisseur-identite/changement-agentconnect-proconnect-fi",
         },
       },
     ],
   },
   {
-    text: 'Ressources communes',
+    text: "Ressources communes",
     //linkProps: { href: "/docs/fournisseur-identite" },
     items: [
       {
-        text: 'Flux OpenID Connect',
-        linkProps: { href: '/docs/ressources/flux_oidc' },
+        text: "Flux OpenID Connect",
+        linkProps: { href: "/docs/ressources/flux_oidc" },
       },
       {
-        text: 'Valeur de PROCONNECT_DOMAIN',
-        linkProps: { href: '/docs/ressources/valeur_ac_domain' },
+        text: "Valeur de PROCONNECT_DOMAIN",
+        linkProps: { href: "/docs/ressources/valeur_ac_domain" },
       },
     ],
   },

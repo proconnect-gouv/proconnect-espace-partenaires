@@ -1,7 +1,7 @@
-import { Button } from '@codegouvfr/react-dsfr/Button';
-import { Input } from '@codegouvfr/react-dsfr/Input';
-import { fr } from '@codegouvfr/react-dsfr';
-import { useState } from 'react';
+import { fr } from "@codegouvfr/react-dsfr";
+import { Button } from "@codegouvfr/react-dsfr/Button";
+import { Input } from "@codegouvfr/react-dsfr/Input";
+import { useState } from "react";
 
 type Props = {
   label: string;
@@ -22,8 +22,8 @@ export const CopyableField = ({ label, value, readOnly = true }: Props) => {
   };
 
   return (
-    <div className={fr.cx('fr-grid-row')}>
-      <div className={fr.cx('fr-col-md-7')}>
+    <div className={fr.cx("fr-grid-row")}>
+      <div className={fr.cx("fr-col-md-7")}>
         <Input
           label={label}
           nativeInputProps={{
@@ -33,17 +33,17 @@ export const CopyableField = ({ label, value, readOnly = true }: Props) => {
         />
       </div>
       <div
-        className={fr.cx('fr-col-md-auto')}
-        style={{ paddingTop: 'calc(1.5rem + 8px)', paddingLeft: '1rem' }}
+        className={fr.cx("fr-col-md-auto")}
+        style={{ paddingTop: "calc(1.5rem + 8px)", paddingLeft: "1rem" }}
       >
         <Button
-          priority={copied ? 'success' : 'secondary'}
+          priority={copied ? "success" : "secondary"}
           onClick={copyToClipBoard}
           iconId={
-            copied ? 'fr-icon-checkbox-circle-fill' : 'fr-icon-clipboard-line'
+            copied ? "fr-icon-checkbox-circle-fill" : "fr-icon-clipboard-line"
           }
         >
-          {copied ? 'Copié !' : 'Copier'}
+          {copied ? "Copié !" : "Copier"}
         </Button>
       </div>
     </div>

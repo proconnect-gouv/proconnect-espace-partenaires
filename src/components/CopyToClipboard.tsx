@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import styles from './CodeBlock.module.css';
+import styles from "./CodeBlock.module.css";
 
 export default function CopyToClipboard({ code }: { code: string }) {
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(code);
-      console.log('Copied to clipboard');
+      console.log("Copied to clipboard");
     } catch (error) {
-      console.error('Error copying to clipboard', error);
+      console.error("Error copying to clipboard", error);
     } finally {
       setTimeout(() => {
         // do something

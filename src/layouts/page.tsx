@@ -1,15 +1,15 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
-import { useSession, signOut } from 'next-auth/react';
+import { signOut, useSession } from "next-auth/react";
 
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { Footer } from '@codegouvfr/react-dsfr/Footer';
-import { fr } from '@codegouvfr/react-dsfr';
-import { Header } from '@codegouvfr/react-dsfr/Header';
-import { SkipLinks } from '@codegouvfr/react-dsfr/SkipLinks';
+import { fr } from "@codegouvfr/react-dsfr";
+import { Footer } from "@codegouvfr/react-dsfr/Footer";
+import { Header } from "@codegouvfr/react-dsfr/Header";
+import { SkipLinks } from "@codegouvfr/react-dsfr/SkipLinks";
+import Head from "next/head";
+import { useRouter } from "next/router";
 
-import pkg from '../../package.json';
+import pkg from "../../package.json";
 
 const brandTop = (
   <>
@@ -20,31 +20,31 @@ const brandTop = (
 );
 
 const homeLinkPops = {
-  href: '/',
-  title: 'Espace Partenaires ProConnect - Accueil',
+  href: "/",
+  title: "Espace Partenaires ProConnect - Accueil",
 };
 
 const bottomLinks = [
   {
     text: "Conditions générales d'utilisation",
     linkProps: {
-      href: 'https://www.proconnect.gouv.fr/cgu',
+      href: "https://www.proconnect.gouv.fr/cgu",
     },
   },
   {
-    text: 'Statistiques',
+    text: "Statistiques",
     linkProps: {
-      href: 'https://www.proconnect.gouv.fr/stats',
+      href: "https://www.proconnect.gouv.fr/stats",
     },
   },
   {
-    text: 'Statuts des services',
+    text: "Statuts des services",
     linkProps: {
-      href: 'https://status.agentconnect.gouv.fr/',
+      href: "https://status.agentconnect.gouv.fr/",
     },
   },
   {
-    text: 'Contribuer sur GitHub',
+    text: "Contribuer sur GitHub",
     linkProps: {
       href: `${process.env.NEXT_PUBLIC_APP_REPOSITORY_URL}`,
     },
@@ -64,34 +64,34 @@ export function PageLayout({ children }: LayoutProps) {
     session && session.user
       ? [
           {
-            iconId: 'fr-icon-question-line' as const,
+            iconId: "fr-icon-question-line" as const,
             linkProps: {
-              href: 'https://agentconnect.crisp.help/fr/',
+              href: "https://agentconnect.crisp.help/fr/",
             },
-            text: 'Aide',
+            text: "Aide",
           },
           {
             buttonProps: {
-              onClick: () => signOut({ callbackUrl: '/' }),
+              onClick: () => signOut({ callbackUrl: "/" }),
             },
-            iconId: 'fr-icon-logout-box-r-line' as const,
+            iconId: "fr-icon-logout-box-r-line" as const,
             text: `Déconnecter ${session.user.email}`,
           },
         ]
       : [
           {
-            iconId: 'fr-icon-question-line' as const,
+            iconId: "fr-icon-question-line" as const,
             linkProps: {
-              href: 'https://agentconnect.crisp.help/fr/',
+              href: "https://agentconnect.crisp.help/fr/",
             },
-            text: 'Aide',
+            text: "Aide",
           },
           {
-            iconId: 'fr-icon-account-line' as const,
+            iconId: "fr-icon-account-line" as const,
             linkProps: {
-              href: '/login',
+              href: "/login",
             },
-            text: 'Se connecter',
+            text: "Se connecter",
           },
         ];
 
@@ -114,12 +114,12 @@ export function PageLayout({ children }: LayoutProps) {
       <SkipLinks
         links={[
           {
-            anchor: '#content',
-            label: 'Contenu',
+            anchor: "#content",
+            label: "Contenu",
           },
           {
-            anchor: '#header-navigation',
-            label: 'Menu',
+            anchor: "#header-navigation",
+            label: "Menu",
           },
         ]}
       />
@@ -131,29 +131,29 @@ export function PageLayout({ children }: LayoutProps) {
         quickAccessItems={quickAccessItems}
         navigation={[
           {
-            text: 'Accueil',
+            text: "Accueil",
             linkProps: {
-              href: '/',
+              href: "/",
             },
-            isActive: router.asPath === '/',
+            isActive: router.asPath === "/",
           },
           {
-            text: 'Documentation technique',
+            text: "Documentation technique",
             linkProps: {
-              href: '/docs',
+              href: "/docs",
             },
-            isActive: router.asPath.startsWith('/docs'),
+            isActive: router.asPath.startsWith("/docs"),
           },
           {
-            text: 'Vos applications',
+            text: "Vos applications",
             linkProps: {
-              href: '/apps',
+              href: "/apps",
             },
-            isActive: router.asPath.startsWith('/apps'),
+            isActive: router.asPath.startsWith("/apps"),
           },
         ]}
       />
-      <main role="main" className={fr.cx('fr-container')} id="content">
+      <main role="main" className={fr.cx("fr-container")} id="content">
         {children}
       </main>
       <Footer
@@ -163,10 +163,10 @@ export function PageLayout({ children }: LayoutProps) {
         homeLinkProps={homeLinkPops}
         license={`Sauf mention explicite de propriété intellectuelle détenue par des tiers, les contenus de ce site sont proposés sous licence ${pkg.license}`}
         accessibilityLinkProps={{
-          href: 'https://www.proconnect.gouv.fr/accessibilite',
+          href: "https://www.proconnect.gouv.fr/accessibilite",
         }}
         termsLinkProps={{
-          href: 'https://www.proconnect.gouv.fr/mentions-legales',
+          href: "https://www.proconnect.gouv.fr/mentions-legales",
         }}
         bottomItems={[...bottomLinks]}
       />

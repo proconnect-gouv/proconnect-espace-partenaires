@@ -1,9 +1,9 @@
-import { SideMenu as DsfrSideMenu } from '@codegouvfr/react-dsfr/SideMenu';
-import { useRouter } from 'next/router';
+import { SideMenu as DsfrSideMenu } from "@codegouvfr/react-dsfr/SideMenu";
+import { useRouter } from "next/router";
 
 export const SideMenu = () => {
   const router = useRouter();
-  const hash = router.asPath.split('#')[1] || '';
+  const hash = router.asPath.split("#")[1] || "";
 
   return (
     <div className="fr-col-12 fr-col-md-3">
@@ -13,25 +13,25 @@ export const SideMenu = () => {
         burgerMenuButtonText="Dans cette rubrique"
         items={[
           {
-            isActive: hash === 'keys',
+            isActive: hash === "keys",
             linkProps: {
-              href: '#keys',
+              href: "#keys",
             },
-            text: 'Clés',
+            text: "Clés",
           },
           {
-            isActive: hash === 'url',
+            isActive: hash === "url",
             linkProps: {
-              href: '#url',
+              href: "#url",
             },
-            text: 'URLs',
+            text: "URLs",
           },
           {
-            isActive: hash === 'alg',
+            isActive: hash === "alg",
             linkProps: {
-              href: '#alg',
+              href: "#alg",
             },
-            text: 'Algorithme',
+            text: "Algorithme",
           },
         ]}
       />

@@ -1,7 +1,7 @@
 //
 
-import type { PropsWithChildren } from '@kitajs/html';
-import { Html, ProConnectLogo, Section, Text } from './components';
+import type { PropsWithChildren } from "@kitajs/html";
+import { Html, ProConnectLogo, Section, Text } from "./components";
 
 //
 
@@ -22,8 +22,8 @@ export function Layout({ children }: PropsWithChildren<LayoutProps>) {
       <Section
         width="800"
         style={{
-          maxWidth: '800px',
-          width: '100%',
+          maxWidth: "800px",
+          width: "100%",
         }}
       >
         <VSpacing height={64} />
@@ -37,7 +37,7 @@ export function Layout({ children }: PropsWithChildren<LayoutProps>) {
         <Section
           bgcolor="#FFFFFF"
           style={{
-            boxShadow: '0px 2px 6px 0px rgba(0, 0, 18, 0.16)',
+            boxShadow: "0px 2px 6px 0px rgba(0, 0, 18, 0.16)",
           }}
         >
           <VSpacing height={64} />
@@ -45,14 +45,14 @@ export function Layout({ children }: PropsWithChildren<LayoutProps>) {
           <Section
             width="600"
             style={{
-              maxWidth: '600px',
-              width: '100%',
-              padding: '24px',
+              maxWidth: "600px",
+              width: "100%",
+              padding: "24px",
             }}
           >
             {children}
 
-            <Text style={{ marginTop: '16px' }}>
+            <Text style={{ marginTop: "16px" }}>
               Cordialement,
               <br />
               L'équipe ProConnect

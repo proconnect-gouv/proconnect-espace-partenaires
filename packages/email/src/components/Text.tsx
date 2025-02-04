@@ -1,7 +1,7 @@
 //
 
-import type { PropsWithChildren } from '@kitajs/html';
-import { fontFamily } from './style';
+import type { PropsWithChildren } from "@kitajs/html";
+import { fontFamily } from "./style";
 
 //
 
@@ -11,11 +11,11 @@ export function Text(attributes: PropsWithChildren<JSX.HtmlTag>) {
   return (
     <p
       style={{
-        color: '#000',
+        color: "#000",
         fontFamily,
-        fontSize: '16px',
+        fontSize: "16px",
         fontWeight: 400,
-        lineHeight: '24px',
+        lineHeight: "24px",
         margin: 0,
         ...(style as object),
       }}

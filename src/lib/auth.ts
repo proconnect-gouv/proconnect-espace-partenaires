@@ -1,7 +1,7 @@
-import { createTransport } from 'nodemailer';
-import { convert } from 'html-to-text';
+import { convert } from "html-to-text";
+import { createTransport } from "nodemailer";
 
-import { MagicLink } from '@gouvfr-lasuite/proconnect.email';
+import { MagicLink } from "@gouvfr-lasuite/proconnect.email";
 
 export async function sendVerificationRequest(params: any) {
   const { identifier, url, provider } = params;
@@ -22,6 +22,6 @@ export async function sendVerificationRequest(params: any) {
   });
   const failed = result.rejected.concat(result.pending).filter(Boolean);
   if (failed.length) {
-    throw new Error(`Email(s) (${failed.join(', ')}) could not be sent`);
+    throw new Error(`Email(s) (${failed.join(", ")}) could not be sent`);
   }
 }

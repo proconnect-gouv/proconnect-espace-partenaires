@@ -1,43 +1,43 @@
-import '../styles/global.css';
+import "../styles/global.css";
 
-import { useEffect } from 'react';
-import type { AppProps } from 'next/app';
+import type { AppProps } from "next/app";
+import { useEffect } from "react";
 
-import Link from 'next/link';
-import { SessionProvider } from 'next-auth/react';
+import { SessionProvider } from "next-auth/react";
+import Link from "next/link";
 
-import { createEmotionSsrAdvancedApproach } from 'tss-react/next';
-import { createNextDsfrIntegrationApi } from '@codegouvfr/react-dsfr/next-pagesdir';
+import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesdir";
+import { createEmotionSsrAdvancedApproach } from "tss-react/next";
 
-import { init } from '@socialgouv/matomo-next';
+import { init } from "@socialgouv/matomo-next";
 
-import { PageLayout } from '../layouts/page';
-import { DocsLayoutFactory } from '../layouts/docs';
+import { DocsLayoutFactory } from "../layouts/docs";
+import { PageLayout } from "../layouts/page";
 
-declare module '@codegouvfr/react-dsfr/next-pagesdir' {
+declare module "@codegouvfr/react-dsfr/next-pagesdir" {
   interface RegisterLink {
     Link: typeof Link;
   }
 }
 
-declare module '@codegouvfr/react-dsfr' {
+declare module "@codegouvfr/react-dsfr" {
   interface RegisterLink {
     Link: typeof Link;
   }
 }
 
 const { withDsfr, dsfrDocumentApi } = createNextDsfrIntegrationApi({
-  defaultColorScheme: 'light',
+  defaultColorScheme: "light",
   Link,
-  useLang: () => 'fr',
-  preloadFonts: ['Marianne-Regular', 'Marianne-Medium', 'Marianne-Bold'],
+  useLang: () => "fr",
+  preloadFonts: ["Marianne-Regular", "Marianne-Medium", "Marianne-Bold"],
 });
 
 export { dsfrDocumentApi };
 
 const { withAppEmotionCache, augmentDocumentWithEmotionCache } =
   createEmotionSsrAdvancedApproach({
-    key: 'css',
+    key: "css",
   });
 
 export { augmentDocumentWithEmotionCache };
@@ -49,8 +49,8 @@ function App({
 }: AppProps) {
   useEffect(() => {
     init({
-      url: process.env.NEXT_PUBLIC_MATOMO_URL ?? '',
-      siteId: process.env.NEXT_PUBLIC_MATOMO_SITE_ID ?? '',
+      url: process.env.NEXT_PUBLIC_MATOMO_URL ?? "",
+      siteId: process.env.NEXT_PUBLIC_MATOMO_SITE_ID ?? "",
     });
   }, []);
 
@@ -58,7 +58,7 @@ function App({
 
   if (router.pathname.match(/^\/docs/)) {
     Layout = DocsLayoutFactory({
-      pathname: router.pathname.replace(/^\/docs\//, ''),
+      pathname: router.pathname.replace(/^\/docs\//, ""),
     });
   }
 
@@ -66,9 +66,9 @@ function App({
     <SessionProvider session={session}>
       <div
         style={{
-          minHeight: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
         }}
       >
         <Layout>

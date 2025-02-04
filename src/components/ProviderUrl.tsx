@@ -1,8 +1,8 @@
-import { Button } from '@codegouvfr/react-dsfr/Button';
-import { Input } from '@codegouvfr/react-dsfr/Input';
-import { Table } from '@codegouvfr/react-dsfr/Table';
-import { fr } from '@codegouvfr/react-dsfr';
-import { ChangeEvent, useState } from 'react';
+import { fr } from "@codegouvfr/react-dsfr";
+import { Button } from "@codegouvfr/react-dsfr/Button";
+import { Input } from "@codegouvfr/react-dsfr/Input";
+import { Table } from "@codegouvfr/react-dsfr/Table";
+import { ChangeEvent, useState } from "react";
 
 type Props = {
   urls: string[];
@@ -15,11 +15,11 @@ type Props = {
 export const ProviderUrl = ({
   urls = [],
   onUpdate,
-  title = '',
-  description = '',
-  label = '',
+  title = "",
+  description = "",
+  label = "",
 }: Props) => {
-  const [inputUrl, setInputUrl] = useState<string>('');
+  const [inputUrl, setInputUrl] = useState<string>("");
   const [inputError, setInputError] = useState<string | null>(null);
 
   const validateUrl = (url: string): boolean => {
@@ -55,7 +55,7 @@ export const ProviderUrl = ({
     }
 
     onUpdate([...(urls || []), trimmedUrl]);
-    setInputUrl('');
+    setInputUrl("");
     setInputError(null);
   };
 
@@ -64,12 +64,12 @@ export const ProviderUrl = ({
   };
 
   return (
-    <div className={fr.cx('fr-mb-10v')}>
+    <div className={fr.cx("fr-mb-10v")}>
       <h2>{title}</h2>
       <p>{description}</p>
 
       {urls && urls.length > 0 && (
-        <div className={fr.cx('fr-mb-4v')}>
+        <div className={fr.cx("fr-mb-4v")}>
           <Table
             data={urls.map((url, i) => [
               url,
@@ -83,29 +83,29 @@ export const ProviderUrl = ({
                 Supprimer
               </Button>,
             ])}
-            className={fr.cx('fr-table--no-caption')}
-            headers={['URLs configurées', '']}
+            className={fr.cx("fr-table--no-caption")}
+            headers={["URLs configurées", ""]}
             bordered={false}
             noCaption
           />
         </div>
       )}
 
-      <div className={fr.cx('fr-form-group')}>
+      <div className={fr.cx("fr-form-group")}>
         <div
-          style={{ position: 'relative', paddingRight: '7rem', width: '650px' }}
+          style={{ position: "relative", paddingRight: "7rem", width: "650px" }}
         >
           <div>
             <Input
               label={label}
-              state={inputError ? 'error' : 'default'}
+              state={inputError ? "error" : "default"}
               stateRelatedMessage={inputError}
               nativeInputProps={{
                 value: inputUrl,
-                placeholder: 'https://',
+                placeholder: "https://",
                 onChange: handleInputChange,
                 onKeyPress: (e) => {
-                  if (e.key === 'Enter') {
+                  if (e.key === "Enter") {
                     e.preventDefault();
                     addUrlInArray();
                   }
@@ -115,9 +115,9 @@ export const ProviderUrl = ({
           </div>
           <div
             style={{
-              position: 'absolute',
+              position: "absolute",
               right: 0,
-              top: '2.1rem', // Aligns with input field accounting for label
+              top: "2.1rem", // Aligns with input field accounting for label
             }}
           >
             <Button

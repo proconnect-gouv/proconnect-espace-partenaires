@@ -1,17 +1,17 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from "@playwright/test";
 
-const url = '/';
+const url = "/";
 
-test('has title', async ({ page }) => {
+test("has title", async ({ page }) => {
   await page.goto(url);
 
   await expect(page).toHaveTitle(/Template | beta.gouv.fr/);
 });
 
-test('has proper headers', async ({ page }) => {
+test("has proper headers", async ({ page }) => {
   await page.goto(url);
 
-  await expect(page.getByRole('heading', { level: 1 })).toContainText(
-    'Template'
+  await expect(page.getByRole("heading", { level: 1 })).toContainText(
+    "Template"
   );
 });

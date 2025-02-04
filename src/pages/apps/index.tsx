@@ -1,13 +1,13 @@
-import { Badge } from '@codegouvfr/react-dsfr/Badge';
-import { Card } from '@codegouvfr/react-dsfr/Card';
-import { Button } from '@codegouvfr/react-dsfr/Button';
-import { fr } from '@codegouvfr/react-dsfr';
-import { OidcClient } from '../../types';
-import { prisma_proconnect } from '../../lib/prisma';
-import { GetServerSideProps } from 'next';
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '../api/auth/[...nextauth]';
-import { useRouter } from 'next/router';
+import { fr } from "@codegouvfr/react-dsfr";
+import { Badge } from "@codegouvfr/react-dsfr/Badge";
+import { Button } from "@codegouvfr/react-dsfr/Button";
+import { Card } from "@codegouvfr/react-dsfr/Card";
+import { GetServerSideProps } from "next";
+import { getServerSession } from "next-auth/next";
+import { useRouter } from "next/router";
+import { prisma_proconnect } from "../../lib/prisma";
+import { OidcClient } from "../../types";
+import { authOptions } from "../api/auth/[...nextauth]";
 
 // Get data from MongoDB through Prisma
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -17,7 +17,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (!session?.user?.email) {
     return {
       redirect: {
-        destination: '/login',
+        destination: "/login",
         permanent: false,
       },
     };
@@ -29,7 +29,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         email: session.user.email,
       },
       orderBy: {
-        name: 'asc',
+        name: "asc",
       },
     });
 
@@ -40,7 +40,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   } catch (error) {
-    console.error('Failed to fetch OIDC clients:', error);
+    console.error("Failed to fetch OIDC clients:", error);
     return {
       props: {
         oidcClients: [],
@@ -58,50 +58,50 @@ export default function AppsPage({
 
   const handleCreateApp = async () => {
     try {
-      const response = await fetch('/api/apps/create', {
-        method: 'POST',
+      const response = await fetch("/api/apps/create", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       });
 
       if (!response.ok) {
-        throw new Error('Failed to create app');
+        throw new Error("Failed to create app");
       }
 
       const newApp = await response.json();
       router.push(`/apps/${newApp.id}`);
     } catch (error) {
-      console.error('Error creating app:', error);
+      console.error("Error creating app:", error);
       // You might want to add proper error handling/display here
     }
   };
 
   return (
-    <div className={fr.cx('fr-mb-10v')}>
+    <div className={fr.cx("fr-mb-10v")}>
       <div
         className={fr.cx(
-          'fr-grid-row',
-          'fr-grid-row--middle',
-          'fr-grid-row--gutters',
-          'fr-mb-3w'
+          "fr-grid-row",
+          "fr-grid-row--middle",
+          "fr-grid-row--gutters",
+          "fr-mb-3w"
         )}
       >
-        <div className={fr.cx('fr-col')}>
+        <div className={fr.cx("fr-col")}>
           <h1>Vos applications</h1>
         </div>
-        <div className={fr.cx('fr-col-auto')}>
+        <div className={fr.cx("fr-col-auto")}>
           <Button onClick={handleCreateApp} iconId="fr-icon-add-line">
             Créer une application
           </Button>
         </div>
       </div>
 
-      <div className={fr.cx('fr-grid-row', 'fr-grid-row--gutters')}>
+      <div className={fr.cx("fr-grid-row", "fr-grid-row--gutters")}>
         {oidcClients.map((oidcClient) => (
           <div
             key={oidcClient.id}
-            className={fr.cx('fr-col-12', 'fr-col-md-6')}
+            className={fr.cx("fr-col-12", "fr-col-md-6")}
           >
             <Card
               background
@@ -114,15 +114,15 @@ export default function AppsPage({
               size="small"
               start={
                 <>
-                  <ul className={fr.cx('fr-badges-group')}>
+                  <ul className={fr.cx("fr-badges-group")}>
                     <li>
-                      <Badge severity={oidcClient.active ? 'info' : 'warning'}>
-                        {oidcClient.active ? 'Actif' : 'Inactif'}
+                      <Badge severity={oidcClient.active ? "info" : "warning"}>
+                        {oidcClient.active ? "Actif" : "Inactif"}
                       </Badge>
                     </li>
                   </ul>
                   {oidcClient.site && (
-                    <p className={fr.cx('fr-mb-0', 'fr-text--xs')}>
+                    <p className={fr.cx("fr-mb-0", "fr-text--xs")}>
                       → {oidcClient.site}
                     </p>
                   )}

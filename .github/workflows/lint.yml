@@ -13,30 +13,18 @@ concurrency:
 jobs:
   code:
     name: Lint
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
-          cache: "yarn"
+          node-version-file: package.json
+          cache: "npm"
       - name: Install dependencies
-        run: |
-          yarn --immutable
+        run: npm ci
+      - name: Build workspaces
+        run: npm run build:workspaces
       - name: Lint
-        run: |
-          yarn lint
-
-  docker:
-    name: Lint Dockerfile
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Lint Dockerfile
-        uses: hadolint/hadolint-action@v3.1.0
-        with:
-          dockerfile: Dockerfile
-          verbose: true
+        run: npm run test:lint

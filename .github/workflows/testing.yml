@@ -13,21 +13,18 @@ concurrency:
 jobs:
   test:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.0
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
-          cache: "yarn"
+          node-version-file: package.json
+          cache: "npm"
       - name: Install dependencies
-        run: |
-          yarn --immutable
-      - name: Build code
-        run: |
-          yarn build
-      - name: Test code
-        run: |
-          yarn test
+        run: npm ci
+      - name: Build workspaces
+        run: npm run build
+      - name: Run tests
+        run: npm run test

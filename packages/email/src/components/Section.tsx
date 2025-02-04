@@ -1,6 +1,6 @@
 //
 
-import type { PropsWithChildren } from '@kitajs/html';
+import type { PropsWithChildren } from "@kitajs/html";
 
 //
 
@@ -16,7 +16,7 @@ export function Section(attributes: PropsWithChildren<JSX.HtmlTableTag>) {
       cellpadding="0"
       cellspacing="0"
       role="presentation"
-      style={style ?? ''}
+      style={style ?? ""}
     >
       <tbody>
         <tr>

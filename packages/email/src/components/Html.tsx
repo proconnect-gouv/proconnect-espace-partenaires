@@ -1,6 +1,6 @@
 //
 
-import type { PropsWithChildren } from '@kitajs/html';
+import type { PropsWithChildren } from "@kitajs/html";
 
 //
 
@@ -14,7 +14,7 @@ export function Html(attributes: PropsWithChildren<JSX.HtmlHtmlTag>) {
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body style={{ backgroundColor: '#FAFAFA', paddingTop: '32px' }}>
+      <body style={{ backgroundColor: "#FAFAFA", paddingTop: "32px" }}>
         <table
           width="100%"
           border={0}
