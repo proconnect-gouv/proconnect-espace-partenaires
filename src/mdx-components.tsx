@@ -5,6 +5,7 @@ import type { MDXComponents } from "mdx/types";
 import Image from "next/image";
 import NextLink from "next/link";
 import { Fragment, ReactNode } from "react";
+import { Step, VerticalStepper } from "./components/VerticalStepper";
 
 // This file allows you to provide custom React components
 // to be used in MDX files. You can import and use any
@@ -128,6 +129,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       }
       return <pre {...props} />;
     },
+    VerticalStepper,
+    Step,
     ...components,
   };
 }

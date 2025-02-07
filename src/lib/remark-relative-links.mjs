@@ -3,7 +3,6 @@ import path from 'path'
 
 // Plugin to handle relative links based on source file
 export const remarkRelativeLinks = () => (tree, file) => {
-  // const isIndexFile = file.path.endsWith('/index.md');
 
   visit(tree, 'link', (node) => {
 
@@ -31,7 +30,7 @@ export const remarkRelativeLinks = () => (tree, file) => {
 
     // Remove .md extension and normalize paths
     node.url = node.url
-      .replace(/\.md$/, '')
+      .replace(/\.mdx?$/, '')
       .replace(/\/index$/, '');
 
     // Add hash back to href if it exists

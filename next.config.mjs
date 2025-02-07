@@ -2,17 +2,17 @@ import { withSentryConfig } from "@sentry/nextjs";
 import createMDX from '@next/mdx';
 import ContentSecurityPolicy from "./csp.config.mjs";
 import pkg from "./package.json" with { type: "json" };
-import remarkGfm from 'remark-gfm'
-import rehypeRaw from 'rehype-raw'
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import { remarkRelativeLinks } from "./src/lib/remark-relative-links.mjs";
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
     remarkPlugins: [remarkGfm, remarkRelativeLinks],
-    rehypePlugins: [
-      [rehypeRaw, { passThrough: ['element'] }]
-    ]
+    rehypePlugins: [[rehypeRaw, {
+      passThrough: ['mdxjsEsm', 'mdxFlowExpression', 'mdxJsxFlowElement', 'mdxJsxTextElement']
+    }]],
   },
 });
 
@@ -31,10 +31,6 @@ const moduleExports = {
     });
 
     return config;
-  },
-  sentry: {
-    //disableClientWebpackPlugin: true,
-    //disableServerWebpackPlugin: true,
   },
   env: {
     NEXT_PUBLIC_APP_VERSION: version,
