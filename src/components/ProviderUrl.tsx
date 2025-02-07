@@ -91,7 +91,7 @@ export const ProviderUrl = ({
         </div>
       )}
 
-      <div className={fr.cx("fr-form-group")}>
+      <div>
         <div
           style={{ position: "relative", paddingRight: "7rem", width: "650px" }}
         >

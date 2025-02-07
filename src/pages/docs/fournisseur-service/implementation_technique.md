@@ -6,7 +6,7 @@ Pour tester la configuration de votre Fournisseur de Service tout au long de l'i
 Vous trouverez [ici](./identifiants-fi-test.md) les identifiants pour vous connecter au Fournisseur d'Identité de test.
 
 ### 1.2. Valeur de PROCONNECT_DOMAIN
-Pour savoir quelles URL appeler au cours de l'authentification, vous aurez besoin de connaître la valeur de PROCONNECT_DOMAIN qui correspond à votre environnement et votre réseau. Vous la trouverez à [ce lien](../resources/valeur_ac_domain.md).
+Pour savoir quelles URL appeler au cours de l'authentification, vous aurez besoin de connaître la valeur de PROCONNECT_DOMAIN qui correspond à votre environnement et votre réseau. Vous la trouverez à [ce lien](../ressources/valeur_ac_domain.md).
 
 ### 1.3. Modification des redirect_uri
 Si au cours de l'intégration, vous souhaitez changer les redirect_uri de connexion ou de déconnexion configurées par ProConnect, vous pouvez faire la demande en 2 minutes ici : https://www.demarches-simplifiees.fr/commencer/demande-de-modification-d-un-fournisseur-de-service
@@ -48,7 +48,7 @@ https://openid.net/specs/openid-connect-core-1_0.html#AuthorizationEndpoint
 | `client_id` | requis | string | `<CLIENT_ID>` Identifiant du FS, communiqué lors de son inscription auprès de ProConnect |
 | `redirect_uri` | requis | string |`<FS_URL>/<URL_CALLBACK>` URL de retour vers le FS, communiquée dans le formulaire Démarches Simplifiées. Attention, cette URL doit être encodée pour être passée en query parameter, doit correspondre exactement à celle communiquée à ProConnect, et est sensible à la présence ou non du `/` final |
 | `scope` | requis | string | `<SCOPES>` Liste des scopes demandés séparés par des espaces (%20 au format unicode dans l'URL) ou des '+' |
-| `claims` | optionnel | string | `<CLAIMS>` Objet JSON encodé décrivant les claims demandés. Pour récupérer le claim `amr` qui indique le mode d'authentification double facteur utilisé, spécifiez la valeur `{"id_token":{"amr":{"essential":true}}}`. Cf. [quelles sont les valeurs possibles pour le champ amr ?](../resources/claim_amr.md) |
+| `claims` | optionnel | string | `<CLAIMS>` Objet JSON encodé décrivant les claims demandés. Pour récupérer le claim `amr` qui indique le mode d'authentification double facteur utilisé, spécifiez la valeur `{"id_token":{"amr":{"essential":true}}}`. Cf. [quelles sont les valeurs possibles pour le champ amr ?](../ressources/claim_amr.md) |
 | `state` | requis | string (minimum 32 caractères) | `<STATE>` Champ obligatoire, généré aléatoirement par le FS, que ProConnect renvoie tel quel dans la redirection qui suit l'authentification, pour être ensuite vérifié par le FS. Il est utilisé afin d’empêcher l’exploitation de failles CSRF |
 | `nonce` | requis | string (minimum 32 caractères) | `<NONCE>` Champ obligatoire, généré aléatoirement par le FS que ProConnect renvoie tel quel dans la réponse à l'appel au `Token Endpoint`, pour être ensuite vérifié par le FS. Il est utilisé pour empêcher les attaques par rejeu |
 | `prompt` | optionnel | string | `login` si le FS veut forcer la reauthentification au FI. Par défaut, le FI réutilisera une session existante sans demander une reconnexion. (Single Sign-On côté FI) |

@@ -32,12 +32,9 @@ export const CopyableField = ({ label, value, readOnly = true }: Props) => {
           }}
         />
       </div>
-      <div
-        className={fr.cx("fr-col-md-auto")}
-        style={{ paddingTop: "calc(1.5rem + 8px)", paddingLeft: "1rem" }}
-      >
+      <div style={{ paddingTop: "calc(1.5rem + 8px)", paddingLeft: "1rem" }}>
         <Button
-          priority={copied ? "success" : "secondary"}
+          priority={copied ? "primary" : "secondary"}
           onClick={copyToClipBoard}
           iconId={
             copied ? "fr-icon-checkbox-circle-fill" : "fr-icon-clipboard-line"

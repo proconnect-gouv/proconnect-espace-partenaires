@@ -40,7 +40,7 @@ const Home: NextPage = () => {
             >
               <Button
                 linkProps={{
-                  href: "/demo",
+                  href: "/apps",
                 }}
                 priority="primary"
               >
@@ -127,7 +127,7 @@ const Home: NextPage = () => {
           >
             <Button
               linkProps={{
-                href: "/demo",
+                href: "/apps",
               }}
             >
               Faire le parcours démo

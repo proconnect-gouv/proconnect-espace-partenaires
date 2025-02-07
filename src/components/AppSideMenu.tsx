@@ -6,35 +6,34 @@ export const SideMenu = () => {
   const hash = router.asPath.split("#")[1] || "";
 
   return (
-    <div className="fr-col-12 fr-col-md-3">
-      <DsfrSideMenu
-        sticky
-        fullHeight
-        burgerMenuButtonText="Dans cette rubrique"
-        items={[
-          {
-            isActive: hash === "keys",
-            linkProps: {
-              href: "#keys",
-            },
-            text: "Clés",
+    <DsfrSideMenu
+      className="fr-col-12 fr-col-md-3"
+      sticky
+      fullHeight
+      burgerMenuButtonText="Dans cette rubrique"
+      items={[
+        {
+          isActive: hash === "keys",
+          linkProps: {
+            href: "#keys",
           },
-          {
-            isActive: hash === "url",
-            linkProps: {
-              href: "#url",
-            },
-            text: "URLs",
+          text: "Clés",
+        },
+        {
+          isActive: hash === "url",
+          linkProps: {
+            href: "#url",
           },
-          {
-            isActive: hash === "alg",
-            linkProps: {
-              href: "#alg",
-            },
-            text: "Algorithme",
+          text: "URLs",
+        },
+        {
+          isActive: hash === "alg",
+          linkProps: {
+            href: "#alg",
           },
-        ]}
-      />
-    </div>
+          text: "Algorithme",
+        },
+      ]}
+    />
   );
 };

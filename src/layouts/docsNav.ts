@@ -62,10 +62,6 @@ export const docTree: SideMenuProps.Item[] = [
           href: "/docs/fournisseur-service/changement-agentconnect-proconnect-fs",
         },
       },
-      {
-        text: "Glossaire",
-        linkProps: { href: "/docs/fournisseur-service/glossaire" },
-      },
     ],
   },
   {
@@ -125,6 +121,14 @@ export const docTree: SideMenuProps.Item[] = [
       {
         text: "Valeur de PROCONNECT_DOMAIN",
         linkProps: { href: "/docs/ressources/valeur_ac_domain" },
+      },
+      {
+        text: "Claim amr",
+        linkProps: { href: "/docs/ressources/claim_amr" },
+      },
+      {
+        text: "Glossaire",
+        linkProps: { href: "/docs/ressources/glossaire" },
       },
     ],
   },

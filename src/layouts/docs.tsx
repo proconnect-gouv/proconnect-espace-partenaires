@@ -16,112 +16,102 @@ interface FlatPage {
   href: string;
 }
 
-function flattenPages(items: SideMenuProps.Item[]): FlatPage[] {
-  return items.reduce<FlatPage[]>((acc, item) => {
+interface TraversalResult {
+  flatPages: FlatPage[];
+  hasCurrentPage: boolean;
+  breadcrumbSegments: Array<{ label: string; linkProps: { href: string } }>;
+}
+
+function traverseTree(
+  items: SideMenuProps.Item[],
+  targetPath: string,
+  parentSections: SideMenuProps.Item[] = []
+): TraversalResult {
+  let result: TraversalResult = {
+    flatPages: [],
+    hasCurrentPage: false,
+    breadcrumbSegments: [
+      { label: "Accueil", linkProps: { href: "/" } },
+      { label: "Documentation technique", linkProps: { href: "/docs" } },
+    ],
+  };
+
+  for (const item of items) {
     if (item.linkProps?.href) {
-      acc.push({
+      const page = {
         text: item.text?.toString() || "",
-        href: item.linkProps.href,
-      });
+        href: item.linkProps.href.toString(),
+      };
+      result.flatPages.push(page);
+
+      if (item.linkProps.href === "/docs/" + targetPath) {
+        item.isActive = true;
+        result.hasCurrentPage = true;
+
+        // For all pages except root sections
+        if (parentSections.length > 0) {
+          // Mark all parent sections as expanded
+          parentSections.forEach((section) => {
+            // @ts-ignore
+            section.expandedByDefault = true;
+          });
+
+          // Build breadcrumb segments from parent sections
+          parentSections.forEach((section) => {
+            // @ts-ignore
+            const sectionPath = section.items?.[0]?.linkProps?.href;
+            result.breadcrumbSegments.push({
+              label: section.text?.toString() || "",
+              linkProps: { href: sectionPath || "/docs" },
+            });
+          });
+
+          // For non-intro pages, add the page itself to breadcrumb
+          if (item.text !== "Introduction") {
+            result.breadcrumbSegments.push({
+              label: item.text?.toString() || "",
+              linkProps: { href: item.linkProps.href },
+            });
+          }
+        }
+      }
     }
+
+    // @ts-ignore
     if (item.items) {
-      acc.push(...flattenPages(item.items));
+      // @ts-ignore
+      const childResult = traverseTree(item.items, targetPath, [
+        ...parentSections,
+        item,
+      ]);
+      result.flatPages.push(...childResult.flatPages);
+      if (childResult.hasCurrentPage) {
+        result = childResult;
+      }
     }
-    return acc;
-  }, []);
+  }
+
+  return result;
 }
 
 function DocsLayout({ children, pathname }: DocsLayoutProps) {
-  // Memoize the section tree
-  const sectionTree = useMemo(
-    () => JSON.parse(JSON.stringify(docTree)),
-    [] // docTree is a constant, so empty deps array is fine
-  );
+  const { sectionTree, flatPages, breadcrumbSegments, currentIndex } =
+    useMemo(() => {
+      const tree = structuredClone(docTree);
+      const { flatPages, breadcrumbSegments } = traverseTree(tree, pathname);
+      return {
+        sectionTree: tree,
+        flatPages,
+        breadcrumbSegments,
+        currentIndex: flatPages.findIndex(
+          (page) => page.href === "/docs/" + pathname
+        ),
+      };
+    }, [pathname]);
 
-  // Memoize these values to avoid recalculations
-  const { currentPageLabel, currentSection } = useMemo(() => {
-    let currentPageLabel: string | undefined = undefined;
-    let currentSection: string | undefined = undefined;
-
-    // Set isActive to true for the current section and page, recursively
-    const setIsActive = (items: SideMenuProps.Item[]) => {
-      items.forEach((item) => {
-        if (item.linkProps?.href === "/docs/" + pathname) {
-          item.isActive = true;
-          currentPageLabel = item.text?.toString();
-          // Set current section for breadcrumb
-          if (item.linkProps.href.split("/").length > 2) {
-            const section = sectionTree.find((s) =>
-              s.items?.some((i) => i.linkProps?.href === item.linkProps?.href)
-            );
-            if (section) {
-              currentSection = section.text?.toString();
-              section.expandedByDefault = true;
-              // For introduction pages, use section title instead
-              if (currentPageLabel === "Introduction") {
-                currentPageLabel = section.text?.toString();
-              }
-            }
-          }
-        }
-        if (item.items) {
-          setIsActive(item.items);
-        }
-      });
-    };
-
-    // Set active states in the tree
-    setIsActive(sectionTree);
-
-    return { currentPageLabel, currentSection };
-  }, [pathname, sectionTree]);
-
-  // Get flat list of pages for prev/next navigation
-  const flatPages = useMemo(() => flattenPages(docTree), []);
-
-  // Memoize segments array
-  const segments = useMemo(() => {
-    const baseSegments = [
-      { label: "Accueil", linkProps: { href: "/" } },
-      { label: "Documentation technique", linkProps: { href: "/docs" } },
-    ];
-
-    if (
-      currentSection &&
-      pathname.split("/").length > 1 &&
-      currentPageLabel !== currentSection
-    ) {
-      baseSegments.push({
-        label: currentSection,
-        linkProps: { href: `/docs/${pathname.split("/")[0]}` },
-      });
-    }
-
-    if (currentPageLabel) {
-      baseSegments.push({
-        label: currentPageLabel,
-        linkProps: { href: `/docs/${pathname}` },
-      });
-    }
-
-    return baseSegments;
-  }, [currentSection, currentPageLabel, pathname]);
-
-  const currentIndex = useMemo(
-    () => flatPages.findIndex((page) => page.href === "/docs/" + pathname),
-    [flatPages, pathname]
-  );
-
-  const prevPage = useMemo(
-    () => (currentIndex > 0 ? flatPages[currentIndex - 1] : null),
-    [currentIndex, flatPages]
-  );
-
-  const nextPage = useMemo(
-    () =>
-      currentIndex < flatPages.length - 1 ? flatPages[currentIndex + 1] : null,
-    [currentIndex, flatPages]
-  );
+  const prevPage = currentIndex > 0 ? flatPages[currentIndex - 1] : null;
+  const nextPage =
+    currentIndex < flatPages.length - 1 ? flatPages[currentIndex + 1] : null;
 
   return (
     <PageLayout>
@@ -141,8 +131,10 @@ function DocsLayout({ children, pathname }: DocsLayoutProps) {
         </div>
         <div className={fr.cx("fr-col-12", "fr-col-md-8", "fr-py-12v")}>
           <Breadcrumb
-            segments={segments}
-            currentPageLabel={currentPageLabel}
+            segments={breadcrumbSegments.slice(0, -1)}
+            currentPageLabel={
+              breadcrumbSegments[breadcrumbSegments.length - 1]?.label
+            }
           />
           {children}
           {/* Navigation prev/next */}
@@ -165,7 +157,7 @@ function DocsLayout({ children, pathname }: DocsLayoutProps) {
                 </a>
               </p>
             )}
-            {nextPage && (
+            {nextPage && pathname != "/docs" && (
               <p className="fr-mb-0">
                 <a
                   href={nextPage.href}

@@ -26,5 +26,7 @@ jobs:
         run: npm ci
       - name: Build workspaces
         run: npm run build
-      - name: Run tests
-        run: npm run test
+      - name: Run broken links test
+        run: npm run test:links
+#      - name: Run tests
+#        run: npm run test

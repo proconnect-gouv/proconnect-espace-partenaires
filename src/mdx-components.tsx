@@ -63,28 +63,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         <p className={fr.cx("fr-text--md", "fr-mb-2w")}>{children}</p>
     ),*/
     a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
-      //const router = useRouter();
       let href = props.href || "";
 
       // Skip external links
-      if (href.startsWith("http") || href.startsWith("//")) {
+      if (href.match(/^(https?:)?\/\//)) {
         return (
           <NextLink {...props} target="_blank" rel="noopener noreferrer" />
         );
-      }
-
-      // Remove .md extension and handle index.md special case
-      href = href.replace(/\.md$/, "").replace(/\/index$/, "");
-      /*
-        // If it's a relative path, make it absolute
-        if (!href.startsWith('/')) {
-          const base = router.pathname.replace(/\/[^/]+$/, '/');
-          href = new URL(href, 'http://base.com' + base).pathname;
-        }
-*/
-      // Ensure /docs prefix
-      if (!href.startsWith("/docs/")) {
-        href = "/docs/" + href.replace(/^\//, "");
       }
 
       return <NextLink {...props} href={href} className={fr.cx("fr-link")} />;

@@ -4,12 +4,12 @@ import ContentSecurityPolicy from "./csp.config.mjs";
 import pkg from "./package.json" with { type: "json" };
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
-
+import { remarkRelativeLinks } from "./src/lib/remark-relative-links.mjs";
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: [remarkGfm, remarkRelativeLinks],
     rehypePlugins: [
       [rehypeRaw, { passThrough: ['element'] }]
     ]
@@ -51,7 +51,7 @@ const moduleExports = {
   typescript: {
     // TODO this will be removed
     ignoreBuildErrors: true,
-  },
+  }
 };
 
 export default withMDX(withSentryConfig(moduleExports, { silent: true }));
