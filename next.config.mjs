@@ -22,11 +22,8 @@ const version = pkg.version;
 const moduleExports = {
   basePath: process.env.NEXT_PUBLIC_BASE_PATH,
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx", "md"],
+  productionBrowserSourceMaps: false,
   reactStrictMode: true,
-  swcMinify: true,
-  experimental: {
-    esmExternals: false
-  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(woff2|webmanifest)$/,
