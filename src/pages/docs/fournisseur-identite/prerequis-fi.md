@@ -1,7 +1,8 @@
 # Quels sont les prérequis pour devenir Fournisseur d'Identité pour ProConnect ?
 
 Les prérequis sont les suivants :
--  être l'entité légitime qui gère le processus RH d'un agent jusqu'à la fin du contrat
+
+- être l'entité légitime qui gère le processus RH d'un agent jusqu'à la fin du contrat
 - pouvoir déployer une cinématique au standard OpenID Connect - authorization code flow
 - être en capacité de transmettre à ProConnect les 5 données obligatoires :
   - nom de famille de l'agent

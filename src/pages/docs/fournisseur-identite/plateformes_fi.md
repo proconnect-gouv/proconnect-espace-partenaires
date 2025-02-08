@@ -26,8 +26,8 @@ Ex : Accès au portail du CISIRH depuis l’annuaire Passage 2 (MI)
 
 L'Hybridge permet de relier un Fournisseur d’Identité RIE à un Fournisseur de Services Internet (et non l'inverse)
 
-| *FI/FS*                             | Fournisseur de Services RIE | Fournisseur de Services Internet |
-|-------------------------------------|-----------------------------|----------------------------------| 
+| _FI/FS_                             | Fournisseur de Services RIE | Fournisseur de Services Internet |
+| ----------------------------------- | --------------------------- | -------------------------------- |
 | **Fournisseur d'Identité RIE**      | Oui                         | Oui (via l'Hybridge)             |
 | **Fournisseur d'Identité Internet** | Non                         | Oui                              |
 
@@ -38,7 +38,6 @@ Une agente peut se connecter depuis un contexte internet ou RIE à une instance 
 ### Contexte Internet
 
 ![Connexion contexte Internet](/images/docs/network-flowchart-internet.excalidraw.svg)
-
 
 ## Connexion contexte RIE
 
