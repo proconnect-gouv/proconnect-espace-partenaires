@@ -6,10 +6,12 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { remarkRelativeLinks } from "./src/lib/remark-relative-links.mjs";
 import remarkShiki from "./src/lib/remark-shiki.mjs";
+import remarkAlerts from "./src/lib/remark-alerts.mjs";
+
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [remarkGfm, remarkRelativeLinks, remarkShiki],
+    remarkPlugins: [remarkGfm, remarkRelativeLinks, remarkShiki, remarkAlerts],
     rehypePlugins: [[rehypeRaw, {
       passThrough: ['mdxjsEsm', 'mdxFlowExpression', 'mdxJsxFlowElement', 'mdxJsxTextElement']
     }]],

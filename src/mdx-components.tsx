@@ -1,11 +1,13 @@
 import CodeBlock from "@/components/CodeBlock";
 import { fr } from "@codegouvfr/react-dsfr";
 import { CallOut, CallOutProps } from "@codegouvfr/react-dsfr/CallOut";
+import { Quote } from "@codegouvfr/react-dsfr/Quote";
 import type { MDXComponents } from "mdx/types";
 import Image from "next/image";
 import NextLink from "next/link";
 import { Fragment, ReactNode } from "react";
 import { Step, VerticalStepper } from "./components/VerticalStepper";
+import React from "react";
 
 // This file allows you to provide custom React components
 // to be used in MDX files. You can import and use any
@@ -76,45 +78,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return <NextLink {...props} href={href} className={fr.cx("fr-link")} />;
     },
     blockquote: (props) => {
-      // Map GitHub alert types to DSFR CallOut color variants
-      // https://docs.github.com/fr/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts
-      // https://www.systeme-de-design.gouv.fr/composants-et-modeles/composants/mise-en-avant/
-      // TODO icons?
-      // Note: we couldn't use the Alert component because it only supports text description, not any children
-      const alertColorMap: Record<
-        string,
-        CallOutProps.ColorVariant | undefined
-      > = {
-        NOTE: undefined,
-        TIP: "green-menthe",
-        IMPORTANT: "orange-terre-battue",
-        WARNING: "yellow-tournesol",
-        CAUTION: "pink-macaron",
-      };
-
-      if (
-        props.children &&
-        Array.isArray(props.children) &&
-        props.children.length === 3
-      ) {
-        const lines = props.children[1]?.props?.children;
-        if (lines.length > 1 && typeof lines[0] === "string") {
-          const match = lines[0].match(
-            /\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]/
-          );
-          if (match) {
-            return (
-              <CallOut colorVariant={alertColorMap[match[1]]}>
-                {lines.slice(2)}
-              </CallOut>
-            );
-          }
-        }
-        return <CallOut>{props.children[1].props.children}</CallOut>;
+      if (Array.isArray(props.children) && props.children.length === 3) {
+        // TODO if blockquote last line starts with "Source:", integrate natively in the Quote component
+        return (
+          <Quote text={(props.children[1] as any)?.props?.children} size="large" />
+        )
       }
-
-      // Default case for regular blockquotes
-      return <CallOut>{props.children}</CallOut>;
+      return <blockquote>{props.children}</blockquote>
     },
     pre: (props) => {
       if (
@@ -131,6 +101,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       }
       return <pre {...props} />;
     },
+    CallOut,
     VerticalStepper,
     Step,
     ...components,
