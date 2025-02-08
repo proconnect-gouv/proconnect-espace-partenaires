@@ -5,11 +5,11 @@ import pkg from "./package.json" with { type: "json" };
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { remarkRelativeLinks } from "./src/lib/remark-relative-links.mjs";
-
+import remarkShiki from "./src/lib/remark-shiki.mjs";
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [remarkGfm, remarkRelativeLinks],
+    remarkPlugins: [remarkGfm, remarkRelativeLinks, remarkShiki],
     rehypePlugins: [[rehypeRaw, {
       passThrough: ['mdxjsEsm', 'mdxFlowExpression', 'mdxJsxFlowElement', 'mdxJsxTextElement']
     }]],

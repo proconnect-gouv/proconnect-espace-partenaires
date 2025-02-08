@@ -119,13 +119,15 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     pre: (props) => {
       if (
         typeof props.children === "object" &&
-        props.children.type === "code"
+        props.children.type === "code" &&
+        props["data-code"]
       ) {
-        const { children, className = "" } = props.children.props;
-        // Extract language from className (format: "language-xxx")
-        const lang = className.replace("language-", "");
-
-        return <CodeBlock code={children} lang={lang || "text"} theme="nord" />;
+        return (
+          <CodeBlock
+            rendered={props.children.props.children}
+            code={decodeURIComponent(props["data-code"])}
+          />
+        );
       }
       return <pre {...props} />;
     },
