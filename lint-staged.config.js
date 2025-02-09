@@ -7,8 +7,5 @@ const buildEslintCommand = (filenames) =>
 
 module.exports = {
   "**/*.ts?(x)": () => "tsc -p tsconfig.json --noEmit",
-  "*.spec.{js,ts,tsx,jsx}": [
-    "vitest --bail 1 --changed",
-    buildEslintCommand,
-  ],
+  "*.spec.{js,ts,tsx,jsx}": ["vitest --bail 1 --changed", buildEslintCommand],
 };

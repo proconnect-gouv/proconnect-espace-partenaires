@@ -48,7 +48,7 @@ export default function Login() {
       } else if (result?.ok) {
         router.push("/auth/verify-request");
       }
-    } catch (err) {
+    } catch {
       setError("Une erreur est survenue. Veuillez réessayer.");
     } finally {
       setIsLoading(false);

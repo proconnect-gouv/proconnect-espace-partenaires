@@ -1,4 +1,3 @@
-import { ObjectId } from "bson";
 import crypto from "crypto";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth/next";
@@ -19,11 +18,8 @@ export default async function handler(
   }
 
   try {
-    const newId = new ObjectId();
-
     const newApp = await prisma_proconnect.oidcClient.create({
       data: {
-        // id: newId,
         name: "Nouvelle application",
         title: "Nouvelle application",
         email: session.user.email,

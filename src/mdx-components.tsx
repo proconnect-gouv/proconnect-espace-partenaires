@@ -1,13 +1,12 @@
 import CodeBlock from "@/components/CodeBlock";
 import { fr } from "@codegouvfr/react-dsfr";
-import { CallOut, CallOutProps } from "@codegouvfr/react-dsfr/CallOut";
+import { CallOut } from "@codegouvfr/react-dsfr/CallOut";
 import { Quote } from "@codegouvfr/react-dsfr/Quote";
 import type { MDXComponents } from "mdx/types";
 import Image from "next/image";
 import NextLink from "next/link";
-import { Fragment, ReactNode } from "react";
+import React, { Fragment, ReactNode } from "react";
 import { Step, VerticalStepper } from "./components/VerticalStepper";
-import React from "react";
 
 // This file allows you to provide custom React components
 // to be used in MDX files. You can import and use any
@@ -66,7 +65,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         <p className={fr.cx("fr-text--md", "fr-mb-2w")}>{children}</p>
     ),*/
     a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
-      let href = props.href || "";
+      const href = props.href || "";
 
       // Skip external links
       if (href.match(/^(https?:)?\/\//)) {
@@ -81,10 +80,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       if (Array.isArray(props.children) && props.children.length === 3) {
         // TODO if blockquote last line starts with "Source:", integrate natively in the Quote component
         return (
-          <Quote text={(props.children[1] as any)?.props?.children} size="large" />
-        )
+          <Quote
+            text={(props.children[1] as ReactNode)?.props?.children}
+            size="large"
+          />
+        );
       }
-      return <blockquote>{props.children}</blockquote>
+      return <blockquote>{props.children}</blockquote>;
     },
     pre: (props) => {
       if (

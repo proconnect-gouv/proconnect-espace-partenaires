@@ -1,7 +1,7 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { Select } from "@codegouvfr/react-dsfr/Select";
-import debounce from "lodash/debounce";
+import debounce from "debounce";
 import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth/next";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -123,7 +123,7 @@ export default function AppDetailPage({ initialData }: Props) {
   // Cleanup on unmount
   useEffect(() => {
     return () => {
-      debouncedSave.cancel();
+      debouncedSave.clear();
     };
   }, [debouncedSave]);
 

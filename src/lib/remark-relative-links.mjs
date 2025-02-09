@@ -1,11 +1,9 @@
-import { visit } from 'unist-util-visit'
-import path from 'path'
+import path from "path";
+import { visit } from "unist-util-visit";
 
 // Plugin to handle relative links based on source file
 export const remarkRelativeLinks = () => (tree, file) => {
-
-  visit(tree, 'link', (node) => {
-
+  visit(tree, "link", (node) => {
     // Skip external links
     if (node.url.match(/^(https?:)?\/\//) || node.url.match(/^mailto:/)) {
       return;
@@ -14,13 +12,16 @@ export const remarkRelativeLinks = () => (tree, file) => {
     // Remove #hash from href and store it in a variable
     let hash = node.url.match(/#.*$/);
     if (hash) {
-      node.url = node.url.replace(hash[0], '');
+      node.url = node.url.replace(hash[0], "");
     }
 
-    const pagesPath = path.join(path.dirname(import.meta.url).replace(/^file\:/, ""), "../../src/pages");
+    const pagesPath = path.join(
+      path.dirname(import.meta.url).replace(/^file\:/, ""),
+      "../../src/pages"
+    );
 
     // Handle relative links
-    if (!node.url.startsWith('/')) {;
+    if (!node.url.startsWith("/")) {
       node.url = path.join(path.dirname(file.path), node.url);
       if (!node.url.startsWith(pagesPath)) {
         throw new Error("Invalid link: " + node.url);
@@ -29,9 +30,7 @@ export const remarkRelativeLinks = () => (tree, file) => {
     }
 
     // Remove .md extension and normalize paths
-    node.url = node.url
-      .replace(/\.mdx?$/, '')
-      .replace(/\/index$/, '');
+    node.url = node.url.replace(/\.mdx?$/, "").replace(/\/index$/, "");
 
     // Add hash back to href if it exists
     if (hash) {

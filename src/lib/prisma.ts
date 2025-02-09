@@ -5,14 +5,15 @@ import {
 } from "../../prisma/generated_clients/db_proconnect";
 
 // Global type augmentation for development
-declare global {
-  var prisma_espace: PrismaClientEspace | undefined;
-  var prisma_proconnect: PrismaClientProconnect | undefined;
-}
+// This makes sure that the prisma clients are not re-initialized at each reload locally.
+const globalForPrisma = global as unknown as {
+  prisma_espace?: PrismaClientEspace;
+  prisma_proconnect?: PrismaClientProconnect;
+};
 
 // Initialize clients with proper connection URLs
 export const prisma_espace =
-  global.prisma_espace ||
+  globalForPrisma.prisma_espace ||
   new PrismaClientEspace({
     datasources: {
       db: {
@@ -22,7 +23,7 @@ export const prisma_espace =
   });
 
 export const prisma_proconnect =
-  global.prisma_proconnect ||
+  globalForPrisma.prisma_proconnect ||
   new PrismaClientProconnect({
     datasources: {
       db: {
@@ -32,8 +33,8 @@ export const prisma_proconnect =
   });
 
 if (process.env.NODE_ENV !== "production") {
-  global.prisma_espace = prisma_espace;
-  global.prisma_proconnect = prisma_proconnect;
+  globalForPrisma.prisma_espace = prisma_espace;
+  globalForPrisma.prisma_proconnect = prisma_proconnect;
 }
 
 export { OidcClient };

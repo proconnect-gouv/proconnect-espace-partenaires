@@ -2,8 +2,11 @@ import { convert } from "html-to-text";
 import { createTransport } from "nodemailer";
 
 import { MagicLink } from "@gouvfr-lasuite/proconnect.email";
+import { SendVerificationRequestParams } from "next-auth/providers/email";
 
-export async function sendVerificationRequest(params: any) {
+export async function sendVerificationRequest(
+  params: SendVerificationRequestParams
+) {
   const { identifier, url, provider } = params;
   const { host } = new URL(url);
   const transport = createTransport(provider.server);

@@ -1,6 +1,7 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
 import { SideMenu, SideMenuProps } from "@codegouvfr/react-dsfr/SideMenu";
+import Link from "next/link";
 import { ReactNode, useMemo } from "react";
 import styles from "./docs.module.css";
 import { docTree } from "./docsNav";
@@ -52,13 +53,13 @@ function traverseTree(
         if (parentSections.length > 0) {
           // Mark all parent sections as expanded
           parentSections.forEach((section) => {
-            // @ts-ignore
+            // @ts-expect-error doesn't seem to infer type correctly
             section.expandedByDefault = true;
           });
 
           // Build breadcrumb segments from parent sections
           parentSections.forEach((section) => {
-            // @ts-ignore
+            // @ts-expect-error doesn't seem to infer type correctly
             const sectionPath = section.items?.[0]?.linkProps?.href;
             result.breadcrumbSegments.push({
               label: section.text?.toString() || "",
@@ -77,9 +78,9 @@ function traverseTree(
       }
     }
 
-    // @ts-ignore
+    // @ts-expect-error doesn't seem to infer type correctly
     if (item.items) {
-      // @ts-ignore
+      // @ts-expect-error doesn't seem to infer type correctly
       const childResult = traverseTree(item.items, targetPath, [
         ...parentSections,
         item,
@@ -149,22 +150,22 @@ function DocsLayout({ children, pathname }: DocsLayoutProps) {
           >
             {prevPage && (
               <p className="fr-mb-0">
-                <a
+                <Link
                   href={prevPage.href}
                   className="fr-link fr-icon-arrow-left-line fr-link--icon-left"
                 >
                   {prevPage.text}
-                </a>
+                </Link>
               </p>
             )}
             {nextPage && pathname != "/docs" && (
               <p className="fr-mb-0">
-                <a
+                <Link
                   href={nextPage.href}
                   className="fr-link fr-icon-arrow-right-line fr-link--icon-right fr-mt-auto fr-mr-0"
                 >
                   {nextPage.text}
-                </a>
+                </Link>
               </p>
             )}
           </div>
