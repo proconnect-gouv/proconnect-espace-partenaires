@@ -1,7 +1,7 @@
 {
-  "name": "proconnect-espace-partenaire",
-  "description": "Espace partenaire de ProConnect",
-  "version": "1.0.0",
+  "name": "proconnect-espace-partenaires",
+  "description": "Espace Partenaires de ProConnect",
+  "version": "0.1.0",
   "private": true,
   "author": "DINUM",
   "license": "Apache-2.0",
@@ -42,7 +42,7 @@
     ]
   },
   "dependencies": {
-    "@codegouvfr/react-dsfr": "1.17.0",
+    "@codegouvfr/react-dsfr": "1.18.0",
     "@emotion/react": "^11.14.0",
     "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.14.0",

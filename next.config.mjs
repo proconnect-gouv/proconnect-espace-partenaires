@@ -37,7 +37,10 @@ const version = pkg.default.version;
 /** @type {import('next').NextConfig} */
 const moduleExports = {
   basePath: process.env.NEXT_PUBLIC_BASE_PATH,
+  crossOrigin: "anonymous",
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx", "md"],
+  poweredByHeader: false,
+  bundlePagesRouterDependencies: true,
   productionBrowserSourceMaps: false,
   reactStrictMode: true,
   webpack: (config) => {
@@ -45,7 +48,6 @@ const moduleExports = {
       test: /\.(woff2|webmanifest)$/,
       type: "asset/resource",
     });
-
     return config;
   },
   env: {
