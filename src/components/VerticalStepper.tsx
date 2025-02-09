@@ -82,7 +82,7 @@ export function VerticalStepper({ children }: VerticalStepperProps) {
     if (React.isValidElement(child)) {
       return React.cloneElement(child, {
         isLast: index === React.Children.count(children) - 1,
-      });
+      } as StepProps);
     }
     return child;
   });

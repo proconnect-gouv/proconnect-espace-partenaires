@@ -56,9 +56,13 @@ const moduleExports = {
     CONTENT_SECURITY_POLICY: ContentSecurityPolicy,
   },
   transpilePackages: ["@codegouvfr/react-dsfr", "tss-react"],
-  typescript: {
-    // TODO this will be removed
-    ignoreBuildErrors: true,
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [{ key: "Cross-Origin-Opener-Policy", value: "same-origin" }],
+      },
+    ];
   },
 };
 

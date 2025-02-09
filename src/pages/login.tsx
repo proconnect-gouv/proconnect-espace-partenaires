@@ -2,7 +2,7 @@ import { fr } from "@codegouvfr/react-dsfr";
 import { Alert } from "@codegouvfr/react-dsfr/Alert";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth/next";
 import { signIn } from "next-auth/react";
 import Head from "next/head";
@@ -11,7 +11,11 @@ import { useState } from "react";
 import { authOptions } from "./api/auth/[...nextauth]";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getServerSession(context.req, context.res, authOptions);
+  const session = await getServerSession(
+    context.req as NextApiRequest,
+    context.res as NextApiResponse,
+    authOptions
+  );
 
   // Redirect to apps if already authenticated
   if (session) {
@@ -75,6 +79,7 @@ export default function Login() {
                   severity="error"
                   description={error}
                   className={fr.cx("fr-mb-3w")}
+                  small
                 />
               )}
 
@@ -84,7 +89,7 @@ export default function Login() {
                   nativeInputProps={{
                     type: "email",
                     value: email,
-                    onChange: (e) => setEmail(e.target.value),
+                    onChange: (e) => setEmail(e.target.value.trim()),
                     required: true,
                     autoComplete: "email",
                     disabled: isLoading,

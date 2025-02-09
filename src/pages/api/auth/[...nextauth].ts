@@ -1,10 +1,10 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import NextAuth from "next-auth";
+import NextAuth, { AuthOptions } from "next-auth";
 import EmailProvider from "next-auth/providers/email";
 import { sendVerificationRequest } from "../../../lib/auth";
 import { prisma_espace } from "../../../lib/prisma";
 
-export const authOptions = {
+export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma_espace),
   providers: [
     EmailProvider({
@@ -27,8 +27,8 @@ export const authOptions = {
     verifyRequest: "/login",
   },
   session: {
-    strategy: "database",
-    maxAge: 24 * 60 * 60, // 24 hours
+    strategy: "database" as const,
+    maxAge: 7 * 24 * 60 * 60, // 7 days
   },
   callbacks: {
     async session({ session, user }) {

@@ -20,8 +20,8 @@ export async function sendVerificationRequest(
     to: identifier,
     from: provider.from,
     subject: `Lien de connexion à l'Espace Partenaires ProConnect`,
-    text: convert(html),
-    html,
+    text: convert(html.toString()),
+    html: html.toString(),
   });
   const failed = result.rejected.concat(result.pending).filter(Boolean);
   if (failed.length) {

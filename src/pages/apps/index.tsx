@@ -5,8 +5,7 @@ import { Card } from "@codegouvfr/react-dsfr/Card";
 import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth/next";
 import { useRouter } from "next/router";
-import { prisma_proconnect } from "../../lib/prisma";
-import { OidcClient } from "../../types";
+import { OidcClient, prisma_proconnect } from "../../lib/prisma";
 import { authOptions } from "../api/auth/[...nextauth]";
 
 // Get data from MongoDB through Prisma
@@ -90,7 +89,7 @@ export default function AppsPage({
         <div className={fr.cx("fr-col")}>
           <h1>Vos applications</h1>
         </div>
-        <div className={fr.cx("fr-col-auto")}>
+        <div>
           <Button onClick={handleCreateApp} iconId="fr-icon-add-line">
             Créer une application
           </Button>

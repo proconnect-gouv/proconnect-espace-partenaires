@@ -10,7 +10,8 @@ const SENTRY_ENV = process.env.SENTRY_ENV || process.env.NEXT_PUBLIC_SENTRY_ENV;
 Sentry.init({
   dsn: SENTRY_DSN ?? "",
   environment: SENTRY_ENV ?? "development",
-  release: "proconnect-espace-partenaires@" + process.env.NEXT_PUBLIC_APP_VERSION,
+  release:
+    "proconnect-espace-partenaires@" + process.env.NEXT_PUBLIC_APP_VERSION,
   // Adjust this value in production, or use tracesSampler for greater control
   tracesSampleRate: 0.1,
 

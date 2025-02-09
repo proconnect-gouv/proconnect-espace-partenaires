@@ -5,7 +5,7 @@ import { Quote } from "@codegouvfr/react-dsfr/Quote";
 import type { MDXComponents } from "mdx/types";
 import Image from "next/image";
 import NextLink from "next/link";
-import React, { Fragment, ReactNode } from "react";
+import React, { Fragment } from "react";
 import { Step, VerticalStepper } from "./components/VerticalStepper";
 
 // This file allows you to provide custom React components
@@ -18,23 +18,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     // Add table components that use DSFR classes
     table: (props: React.HTMLAttributes<HTMLTableElement>) => (
       <div className={fr.cx("fr-table")}>
-        <table {...props} className={fr.cx("fr-table__body")} />
+        <table {...props} />
       </div>
     ),
-    thead: (props: React.HTMLAttributes<HTMLTableSectionElement>) => (
-      <thead {...props} className={fr.cx("fr-table__head")} />
-    ),
-    th: (props: React.ThHTMLAttributes<HTMLTableHeaderCellElement>) => (
-      <th {...props} className={fr.cx("fr-table__header")} />
-    ),
-    tr: (props: React.HTMLAttributes<HTMLTableRowElement>) => (
-      <tr {...props} className={fr.cx("fr-table__row")} />
-    ),
-    td: (props: React.TdHTMLAttributes<HTMLTableDataCellElement>) => (
-      <td {...props} className={fr.cx("fr-table__cell")} />
-    ),
-    img: (props) => {
-      const { src, alt, ...rest } = props;
+    img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
+      const { src, alt, width, height, ...rest } = props;
 
       if (!src) return null;
 
@@ -42,8 +30,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         <Image
           src={src}
           alt={alt || ""}
-          width={800} // Those are only fallback dimensions and will be overridden by the image dimensions in style
-          height={600}
+          width={Number(width) || 800} // Those are only fallback dimensions and will be overridden by the image dimensions in style
+          height={Number(height) || 600}
           style={{
             maxWidth: "100%",
             height: "auto",
@@ -52,16 +40,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         />
       );
     },
-    h1: ({ children }: { children: ReactNode }) => (
-      <h1 className={fr.cx("fr-h1")}>{children}</h1>
-    ),
-    h2: ({ children }: { children: ReactNode }) => (
+    h1: ({ children }) => <h1 className={fr.cx("fr-h1")}>{children}</h1>,
+    h2: ({ children }) => (
       <h2 className={fr.cx("fr-h2", "fr-mt-3w")}>{children}</h2>
     ),
-    h3: ({ children }: { children: ReactNode }) => (
+    h3: ({ children }) => (
       <h3 className={fr.cx("fr-h3", "fr-mt-3w")}>{children}</h3>
     ),
-    /*p: ({ children }: { children: ReactNode }) => (
+    /*p: ({ children }) => (
         <p className={fr.cx("fr-text--md", "fr-mb-2w")}>{children}</p>
     ),*/
     a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
@@ -70,25 +56,27 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       // Skip external links
       if (href.match(/^(https?:)?\/\//)) {
         return (
-          <NextLink {...props} target="_blank" rel="noopener noreferrer" />
+          <NextLink
+            {...props}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={fr.cx("fr-link")}
+          />
         );
       }
 
       return <NextLink {...props} href={href} className={fr.cx("fr-link")} />;
     },
-    blockquote: (props) => {
+    blockquote: (props: React.BlockquoteHTMLAttributes<HTMLQuoteElement>) => {
       if (Array.isArray(props.children) && props.children.length === 3) {
         // TODO if blockquote last line starts with "Source:", integrate natively in the Quote component
-        return (
-          <Quote
-            text={(props.children[1] as ReactNode)?.props?.children}
-            size="large"
-          />
-        );
+        return <Quote text={props.children[1]?.props?.children} size="large" />;
       }
       return <blockquote>{props.children}</blockquote>;
     },
-    pre: (props) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    pre: (props: any) => {
       if (
         typeof props.children === "object" &&
         props.children.type === "code" &&

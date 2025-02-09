@@ -1,6 +1,4 @@
-import type { NextPage } from "next";
-
-const HealthZ: NextPage = () => {
+export default function HealthZ() {
   return (
     <>
       <div className="fr-my-6w">
@@ -8,6 +6,4 @@ const HealthZ: NextPage = () => {
       </div>
     </>
   );
-};
-
-export default HealthZ;
+}
