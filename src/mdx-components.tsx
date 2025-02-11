@@ -40,12 +40,35 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         />
       );
     },
-    h1: ({ children }) => <h1 className={fr.cx("fr-h1")}>{children}</h1>,
-    h2: ({ children }) => (
-      <h2 className={fr.cx("fr-h2", "fr-mt-3w")}>{children}</h2>
+    h1: ({ children, ...props }) => (
+      <h1 {...props} className={fr.cx("fr-h1")}>
+        {children}
+      </h1>
     ),
-    h3: ({ children }) => (
-      <h3 className={fr.cx("fr-h3", "fr-mt-3w")}>{children}</h3>
+    h2: ({ children, ...props }) => (
+      <h2 {...props} className={fr.cx("fr-h2", "fr-mt-3w")}>
+        {children}
+      </h2>
+    ),
+    h3: ({ children, ...props }) => (
+      <h3 {...props} className={fr.cx("fr-h3", "fr-mt-3w")}>
+        {children}
+      </h3>
+    ),
+    h4: ({ children, ...props }) => (
+      <h4 {...props} className={fr.cx("fr-h4", "fr-mt-3w")}>
+        {children}
+      </h4>
+    ),
+    h5: ({ children, ...props }) => (
+      <h5 {...props} className={fr.cx("fr-h5", "fr-mt-3w")}>
+        {children}
+      </h5>
+    ),
+    h6: ({ children, ...props }) => (
+      <h6 {...props} className={fr.cx("fr-h6", "fr-mt-3w")}>
+        {children}
+      </h6>
     ),
     /*p: ({ children }) => (
         <p className={fr.cx("fr-text--md", "fr-mb-2w")}>{children}</p>

@@ -9,8 +9,6 @@ import { SkipLinks } from "@codegouvfr/react-dsfr/SkipLinks";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-import pkg from "../../package.json";
-
 const brandTop = (
   <>
     République
@@ -161,7 +159,6 @@ export function PageLayout({ children }: LayoutProps) {
         accessibility="non compliant"
         contentDescription={``}
         homeLinkProps={homeLinkPops}
-        license={`Sauf mention explicite de propriété intellectuelle détenue par des tiers, les contenus de ce site sont proposés sous licence ${pkg.license}`}
         accessibilityLinkProps={{
           href: "https://www.proconnect.gouv.fr/accessibilite",
         }}

@@ -1,4 +1,6 @@
 import { fr } from "@codegouvfr/react-dsfr";
+import { Badge } from "@codegouvfr/react-dsfr/Badge";
+import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { Select } from "@codegouvfr/react-dsfr/Select";
 import debounce from "debounce";
@@ -163,11 +165,35 @@ export default function AppDetailPage({ initialData }: Props) {
 
   return (
     <>
-      <h1>{data.name}</h1>
-      <div className={fr.cx("fr-container--fluid", "fr-mt-10v")}>
-        <div className={fr.cx("fr-grid-row")}>
+      <div className={fr.cx("fr-container")}>
+        <div className={fr.cx("fr-grid-row", "fr-grid-row--gutters")}>
           <SideMenu />
-          <div className={fr.cx("fr-col-12", "fr-col-md-9")}>
+
+          <div className={fr.cx("fr-col-12", "fr-col-md-9", "fr-py-12v")}>
+            <Breadcrumb
+              currentPageLabel={initialData.name}
+              segments={[
+                { label: "Applications", linkProps: { href: "/apps" } },
+              ]}
+            />
+
+            <div
+              className={fr.cx(
+                "fr-grid-row",
+                "fr-grid-row--middle",
+                "fr-mb-4w"
+              )}
+            >
+              <div className={fr.cx("fr-col")}>
+                <h2>{initialData.name}</h2>
+              </div>
+              <div>
+                <Badge severity={initialData.active ? "success" : "info"}>
+                  {initialData.active ? "Active" : "Inactive"}
+                </Badge>
+              </div>
+            </div>
+
             <div className={fr.cx("fr-mb-10v")}>
               <Input
                 className={fr.cx("fr-col-md-7")}
@@ -184,8 +210,8 @@ export default function AppDetailPage({ initialData }: Props) {
               />
             </div>
 
-            <div className={fr.cx("fr-mb-10v")}>
-              <h2>Clés d’API</h2>
+            <div id="cles" className={fr.cx("fr-mb-10v")}>
+              <h3>Clés d’API</h3>
               <div className={fr.cx("fr-grid-row", "fr-grid-row--gutters")}>
                 <div className={fr.cx("fr-col-12")}>
                   <CopyableField label="Client ID" value={data.key} />
@@ -199,32 +225,37 @@ export default function AppDetailPage({ initialData }: Props) {
               </div>
             </div>
 
-            <ProviderUrl
-              urls={data.redirect_uris}
-              onUpdate={(redirect_uris) => handleUpdate({ redirect_uris })}
-              title="Configuration des URLs"
-              description="Saisissez l'url de la ou les pages sur lesquelles vous souhaitez utiliser le bouton de connexion MonComptePro"
-              label="URL de la page de connexion :"
-            />
-            <ProviderUrl
-              urls={data.post_logout_redirect_uris}
-              onUpdate={(post_logout_redirect_uris) =>
-                handleUpdate({ post_logout_redirect_uris })
-              }
-              title="Configuration des URLs de déconnexion"
-              description="Saisissez l'url de la ou les pages sur lesquelles vous souhaitez rediriger l'utilisateur après sa déconnexion"
-              label="URL de la page de déconnexion :"
-            />
+            <div id="urls">
+              <ProviderUrl
+                urls={data.redirect_uris}
+                onUpdate={(redirect_uris) => handleUpdate({ redirect_uris })}
+                title="Configuration des URLs"
+                description="Saisissez l’url de la ou les pages sur lesquelles vous souhaitez utiliser le bouton de connexion MonComptePro"
+                label="URL de la page de connexion :"
+              />
+            </div>
 
-            <div className={fr.cx("fr-mb-10v")}>
-              <h2>Algorithme de signature</h2>
+            <div id="urls-deconnexion">
+              <ProviderUrl
+                urls={data.post_logout_redirect_uris}
+                onUpdate={(post_logout_redirect_uris) =>
+                  handleUpdate({ post_logout_redirect_uris })
+                }
+                title="Configuration des URLs de déconnexion"
+                description="Saisissez l’url de la ou les pages sur lesquelles vous souhaitez rediriger l’utilisateur après sa déconnexion"
+                label="URL de la page de déconnexion :"
+              />
+            </div>
+
+            <div id="alg" className={fr.cx("fr-mb-10v")}>
+              <h3>Algorithme de signature</h3>
               <p>
                 L’algorithme de signature est utilisé pour signer les jetons
                 d’identité et les informations utilisateur.
               </p>
               <Select
                 label="Algorithme de signature"
-                hint="Algorithme utilisé pour signer les jetons d'identité et les informations utilisateur"
+                hint="Algorithme utilisé pour signer les jetons d’identité et les informations utilisateur"
                 nativeSelectProps={{
                   value: signatureAlg,
                   onChange: handleSignatureAlgChange,

@@ -1,6 +1,7 @@
 import createMDX from "@next/mdx";
 import { withSentryConfig } from "@sentry/nextjs";
 import rehypeRaw from "rehype-raw";
+import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import ContentSecurityPolicy from "./csp.config.mjs";
 import remarkAlerts from "./src/lib/remark-alerts.mjs";
@@ -23,6 +24,7 @@ const withMDX = createMDX({
           ],
         },
       ],
+      rehypeSlug,
     ],
   },
 });

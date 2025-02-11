@@ -8,21 +8,24 @@ export const SideMenu = () => {
   return (
     <DsfrSideMenu
       className="fr-col-12 fr-col-md-3"
+      classes={{
+        inner: "fr-pt-12v",
+      }}
       sticky
       fullHeight
       burgerMenuButtonText="Dans cette rubrique"
       items={[
         {
-          isActive: hash === "keys",
+          isActive: hash === "cles",
           linkProps: {
-            href: "#keys",
+            href: "#cles",
           },
           text: "Clés",
         },
         {
-          isActive: hash === "url",
+          isActive: hash === "urls",
           linkProps: {
-            href: "#url",
+            href: "#urls",
           },
           text: "URLs",
         },
