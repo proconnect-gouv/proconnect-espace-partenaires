@@ -4,15 +4,13 @@ import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Card } from "@codegouvfr/react-dsfr/Card";
 import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth/next";
-import { useRouter } from "next/router";
-import { OidcClient, prisma_proconnect } from "../../lib/prisma";
+import { useState } from "react";
+import { OidcClient, pcdbClient } from "../../lib/pcdbapi";
 import { authOptions } from "../api/auth/[...nextauth]";
 
-// Get data from MongoDB through Prisma
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getServerSession(context.req, context.res, authOptions);
 
-  // Redirect to login if not authenticated
   if (!session?.user?.email) {
     return {
       redirect: {
@@ -23,45 +21,36 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   try {
-    const oidcClients = await prisma_proconnect.oidcClient.findMany({
-      where: {
-        email: session.user.email,
-      },
-      orderBy: {
-        name: "asc",
-      },
-    });
-
-    return {
-      props: {
-        // Need to serialize dates for Next.js
-        oidcClients: JSON.parse(JSON.stringify(oidcClients)),
-      },
-    };
+    const apps = await pcdbClient.listOidcClients(session.user.email);
+    return { props: { apps } };
   } catch (error) {
-    console.error("Failed to fetch OIDC clients:", error);
-    return {
-      props: {
-        oidcClients: [],
-      },
-    };
+    return { props: { apps: [], error: String(error) } };
   }
 };
 
-export default function AppsPage({
-  oidcClients,
+export default function AppsIndex({
+  apps,
+  error,
 }: {
-  oidcClients: OidcClient[];
+  apps: OidcClient[];
+  error?: string;
 }) {
-  const router = useRouter();
+  const [isCreating, setIsCreating] = useState(false);
 
-  const handleCreateApp = async () => {
+  if (error) {
+    return (
+      <div className={fr.cx("fr-alert", "fr-alert--error", "fr-mb-3w")}>
+        <p>{error}</p>
+      </div>
+    );
+  }
+
+  const handleCreate = async () => {
+    setIsCreating(true);
     try {
-      const response = await fetch("/api/apps/create", {
+      const response = await fetch("/api/apps", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
       });
 
       if (!response.ok) {
@@ -69,10 +58,11 @@ export default function AppsPage({
       }
 
       const newApp = await response.json();
-      router.push(`/apps/${newApp.id}`);
+      window.location.href = `/apps/${newApp._id}`;
     } catch (error) {
-      console.error("Error creating app:", error);
-      // You might want to add proper error handling/display here
+      console.error("Failed to create app:", error);
+    } finally {
+      setIsCreating(false);
     }
   };
 
@@ -90,44 +80,45 @@ export default function AppsPage({
           <h1>Vos applications</h1>
         </div>
         <div>
-          <Button onClick={handleCreateApp} iconId="fr-icon-add-line">
-            Créer une application
+          <Button
+            onClick={handleCreate}
+            disabled={isCreating}
+            iconId="fr-icon-add-line"
+          >
+            {isCreating ? "Création en cours..." : "Créer une application"}
           </Button>
         </div>
       </div>
 
       <div className={fr.cx("fr-grid-row", "fr-grid-row--gutters")}>
-        {oidcClients.map((oidcClient) => (
-          <div
-            key={oidcClient.id}
-            className={fr.cx("fr-col-12", "fr-col-md-6")}
-          >
+        {apps.map((app) => (
+          <div key={app._id} className={fr.cx("fr-col-12", "fr-col-md-6")}>
             <Card
               background
               border
-              desc={oidcClient.title || oidcClient.name}
+              // desc={app.title || app.name}
               horizontal
               linkProps={{
-                href: `/apps/${oidcClient.id}`,
+                href: `/apps/${app._id}`,
               }}
               size="small"
               start={
                 <>
                   <ul className={fr.cx("fr-badges-group")}>
                     <li>
-                      <Badge severity={oidcClient.active ? "info" : "warning"}>
-                        {oidcClient.active ? "Actif" : "Inactif"}
+                      <Badge severity={app.active ? "info" : "warning"}>
+                        {app.active ? "Actif" : "Inactif"}
                       </Badge>
                     </li>
                   </ul>
-                  {oidcClient.site && (
+                  {/* {app.site && (
                     <p className={fr.cx("fr-mb-0", "fr-text--xs")}>
-                      → {oidcClient.site}
+                      → {app.site}
                     </p>
-                  )}
+                  )} */}
                 </>
               }
-              title={oidcClient.name}
+              title={app.name}
               titleAs="h2"
             />
           </div>

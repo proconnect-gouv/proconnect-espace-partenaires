@@ -69,3 +69,10 @@ prisma/generated_clients/
 
 # MongoDB keyfile
 docker/mongodb/mongodb-keyfile
+
+# Python
+__pycache__/
+.pytest_cache/
+*.pyc
+.ruff_cache/
+.coverage

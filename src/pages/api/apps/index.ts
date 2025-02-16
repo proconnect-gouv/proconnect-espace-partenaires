@@ -12,23 +12,22 @@ export default async function handler(
     return res.status(401).json({ message: "Not authenticated" });
   }
 
-  const { id } = req.query;
-  if (typeof id !== "string") {
-    return res.status(400).json({ message: "Invalid ID" });
-  }
-
   try {
-    if (req.method === "PATCH") {
-      const app = await pcdbClient.updateOidcClient(
-        id,
-        session.user.email,
-        req.body
-      );
-      return res.status(200).json(app);
+    if (req.method === "GET") {
+      const apps = await pcdbClient.listOidcClients(session.user.email);
+      return res.status(200).json(apps);
     }
 
-    if (req.method === "GET") {
-      const app = await pcdbClient.getOidcClient(id, session.user.email);
+    if (req.method === "POST") {
+      const app = await pcdbClient.createOidcClient(session.user.email, {
+        name: "Nouvelle application",
+        redirect_uris: [],
+        post_logout_redirect_uris: [],
+        active: true,
+        id_token_signed_response_alg: "RS256",
+        userinfo_signed_response_alg: "RS256",
+      });
+
       return res.status(200).json(app);
     }
 

@@ -6,57 +6,25 @@ import { Select } from "@codegouvfr/react-dsfr/Select";
 import debounce from "debounce";
 import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth/next";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { SideMenu } from "../../components/AppSideMenu";
 import { CopyableField } from "../../components/CopyableField";
 import { NotificationsContainer } from "../../components/NotificationsContainer";
 import { ProviderUrl } from "../../components/ProviderUrl";
-import { OidcClient, prisma_proconnect } from "../../lib/prisma";
+import { OidcClient, pcdbClient } from "../../lib/pcdbapi";
 import { authOptions } from "../api/auth/[...nextauth]";
 
-type Props = {
-  initialData: OidcClient;
-};
-
-export const getServerSideProps: GetServerSideProps<Props> = async (
-  context
-) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getServerSession(context.req, context.res, authOptions);
-
-  // Redirect to login if not authenticated
   if (!session?.user?.email) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
+    return { redirect: { destination: "/login", permanent: false } };
   }
 
-  const id = context.params?.id;
-  if (typeof id !== "string") {
-    return { notFound: true };
-  }
-
+  const { id } = context.params as { id: string };
   try {
-    const oidcClient = await prisma_proconnect.oidcClient.findFirst({
-      where: {
-        id,
-        email: session.user.email,
-      },
-    });
-
-    if (!oidcClient) {
-      return { notFound: true };
-    }
-
-    return {
-      props: {
-        initialData: JSON.parse(JSON.stringify(oidcClient)),
-      },
-    };
-  } catch (error) {
-    console.error("Failed to fetch OIDC client:", error);
+    const app = await pcdbClient.getOidcClient(id, session.user.email);
+    return { props: { app } };
+  } catch {
     return { notFound: true };
   }
 };
@@ -76,58 +44,48 @@ const SIGNATURE_ALGORITHMS = [
   },
 ] as const;
 
-export default function AppDetailPage({ initialData }: Props) {
-  const [data, setData] = useState(initialData);
+export default function AppDetailPage({ app }: { app: OidcClient }) {
+  const [data, setData] = useState(app);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [signatureAlg, setSignatureAlg] = useState(
     data.id_token_signed_response_alg || "RS256"
   );
 
-  const saveData = useCallback(
+  const handleSave = useCallback(
     async (updates: Partial<OidcClient>) => {
-      setSaveError(null);
-      setSaveSuccess(false);
-
       try {
-        const response = await fetch(`/api/apps/${data.id}`, {
+        const response = await fetch(`/api/apps/${data._id}`, {
           method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(updates),
         });
 
         if (!response.ok) {
-          throw new Error("Failed to save changes");
+          throw new Error("Failed to update app");
         }
 
-        const updatedApp = await response.json();
-        setData(updatedApp);
+        const updated = await response.json();
+        setData(updated);
         setSaveSuccess(true);
+        setSaveError(null);
 
-        // Hide success message after 3 seconds
-        setTimeout(() => setSaveSuccess(false), 3000);
+        // Auto-hide success message after 2 seconds
+        setTimeout(() => setSaveSuccess(false), 2000);
       } catch (error) {
-        console.error("Error saving app:", error);
-        setSaveError("Une erreur est survenue lors de la sauvegarde");
+        console.error("Failed to update app:", error);
+        setSaveError("Failed to update app");
+        setSaveSuccess(false);
       }
     },
-    [data.id]
+    [data._id]
   );
 
   // Create a memoized debounced save function
   const debouncedSave = useMemo(
-    () => debounce((updates: Partial<OidcClient>) => saveData(updates), 500),
-    [saveData]
+    () => debounce((updates: Partial<OidcClient>) => handleSave(updates), 2000),
+    [handleSave]
   );
-
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      debouncedSave.clear();
-    };
-  }, [debouncedSave]);
 
   const handleUpdate = (updates: Partial<OidcClient>) => {
     setData((prev) => ({
@@ -135,12 +93,12 @@ export default function AppDetailPage({ initialData }: Props) {
       ...updates,
     }));
 
-    // For title changes, use debounced save
     if ("name" in updates) {
+      // For name, use debounced save
       debouncedSave(updates);
     } else {
       // For URLs, save immediately
-      saveData(updates);
+      handleSave(updates);
     }
   };
 
@@ -151,12 +109,10 @@ export default function AppDetailPage({ initialData }: Props) {
     setSignatureAlg(newAlg);
 
     try {
-      const updates = {
+      handleUpdate({
         id_token_signed_response_alg: newAlg,
         userinfo_signed_response_alg: newAlg,
-      };
-
-      await saveData(updates);
+      });
     } catch (error) {
       console.error("Error updating signature algorithm:", error);
       setSaveError("Failed to update signature algorithm");
@@ -171,7 +127,7 @@ export default function AppDetailPage({ initialData }: Props) {
 
           <div className={fr.cx("fr-col-12", "fr-col-md-9", "fr-py-12v")}>
             <Breadcrumb
-              currentPageLabel={initialData.name}
+              currentPageLabel={data.name}
               segments={[
                 { label: "Applications", linkProps: { href: "/apps" } },
               ]}
@@ -185,11 +141,11 @@ export default function AppDetailPage({ initialData }: Props) {
               )}
             >
               <div className={fr.cx("fr-col")}>
-                <h2>{initialData.name}</h2>
+                <h2>{data.name}</h2>
               </div>
               <div>
-                <Badge severity={initialData.active ? "success" : "info"}>
-                  {initialData.active ? "Active" : "Inactive"}
+                <Badge severity={data.active ? "success" : "info"}>
+                  {data.active ? "Active" : "Inactive"}
                 </Badge>
               </div>
             </div>
@@ -211,15 +167,15 @@ export default function AppDetailPage({ initialData }: Props) {
             </div>
 
             <div id="cles" className={fr.cx("fr-mb-10v")}>
-              <h3>Clés d’API</h3>
+              <h3>Clés d&rsquo;API</h3>
               <div className={fr.cx("fr-grid-row", "fr-grid-row--gutters")}>
                 <div className={fr.cx("fr-col-12")}>
-                  <CopyableField label="Client ID" value={data.key} />
+                  <CopyableField label="Client ID" value={data.key || ""} />
                 </div>
                 <div className={fr.cx("fr-col-12", "fr-mt-2w")}>
                   <CopyableField
                     label="Client Secret"
-                    value={data.client_secret}
+                    value={data.client_secret || ""}
                   />
                 </div>
               </div>
@@ -230,19 +186,19 @@ export default function AppDetailPage({ initialData }: Props) {
                 urls={data.redirect_uris}
                 onUpdate={(redirect_uris) => handleUpdate({ redirect_uris })}
                 title="Configuration des URLs"
-                description="Saisissez l’url de la ou les pages sur lesquelles vous souhaitez utiliser le bouton de connexion MonComptePro"
+                description="Saisissez l&rsquo;url de la ou les pages sur lesquelles vous souhaitez utiliser le bouton de connexion MonComptePro"
                 label="URL de la page de connexion :"
               />
             </div>
 
             <div id="urls-deconnexion">
               <ProviderUrl
-                urls={data.post_logout_redirect_uris}
+                urls={data.post_logout_redirect_uris || []}
                 onUpdate={(post_logout_redirect_uris) =>
                   handleUpdate({ post_logout_redirect_uris })
                 }
                 title="Configuration des URLs de déconnexion"
-                description="Saisissez l’url de la ou les pages sur lesquelles vous souhaitez rediriger l’utilisateur après sa déconnexion"
+                description="Saisissez l&rsquo;url de la ou les pages sur lesquelles vous souhaitez rediriger l&rsquo;utilisateur après sa déconnexion"
                 label="URL de la page de déconnexion :"
               />
             </div>
@@ -250,12 +206,12 @@ export default function AppDetailPage({ initialData }: Props) {
             <div id="alg" className={fr.cx("fr-mb-10v")}>
               <h3>Algorithme de signature</h3>
               <p>
-                L’algorithme de signature est utilisé pour signer les jetons
-                d’identité et les informations utilisateur.
+                L&rsquo;algorithme de signature est utilisé pour signer les
+                jetons d&rsquo;identité et les informations utilisateur.
               </p>
               <Select
                 label="Algorithme de signature"
-                hint="Algorithme utilisé pour signer les jetons d’identité et les informations utilisateur"
+                hint="Algorithme utilisé pour signer les jetons d&rsquo;identité et les informations utilisateur"
                 nativeSelectProps={{
                   value: signatureAlg,
                   onChange: handleSignatureAlgChange,

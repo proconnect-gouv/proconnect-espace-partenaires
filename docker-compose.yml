@@ -9,6 +9,7 @@ services:
     ports:
       - "5432:5432"
 
+  # This MongoDB will be seeded with mock data at each restart
   mongodb:
     image: mongo:5.0.23
     environment:
@@ -22,6 +23,39 @@ services:
     tmpfs:
       - /data/db
       - /data/configdb
+
+  pcdbapi:
+    build: ./pcdbapi
+    environment:
+      - MONGODB_URL=mongodb://fc:pass@mongodb:27017/core-fca-low?authSource=admin&replicaSet=rs0&directConnection=true
+      - API_SECRET=pcdb-api-secret-key
+      - CANT_RUN_TESTS=1
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./pcdbapi:/app
+    depends_on:
+      - mongodb
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/healthz"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+  pcdbapi-test:
+    build:
+      context: ./pcdbapi
+      dockerfile: Dockerfile.test
+    pull_policy: build
+    profiles: ["test"]
+    volumes:
+      - ./pcdbapi:/app
+    environment:
+      - MONGODB_URL=mongodb://fc:pass@mongodb:27017/proconnect_test?authSource=admin&replicaSet=rs0
+      - API_SECRET=pcdb-api-secret-key
+    depends_on:
+      - mongodb
 
   mailcatcher:
     image: maildev/maildev:2.2.1

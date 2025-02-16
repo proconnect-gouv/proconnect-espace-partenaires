@@ -34,3 +34,9 @@ npm run test
 # lancer les tests end-to-end
 npm run e2e --ui
 ```
+
+### Documentation
+
+La documentation est disponible dans le dossier `docs`.
+
+- [Architecture](docs/architecture.md)
