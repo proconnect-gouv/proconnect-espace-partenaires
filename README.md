@@ -1,89 +1,42 @@
-# Espace Partenaires
+# Espace Partenaire ProConnect
 
-Espace Partenaires is a tool that makes it easy to integrate a MonComptePro button.
+https://partenaires.proconnect.gouv.fr/
 
-It allows you to manage access tokens, the name and description of the project, the URLs where the login button will appear and the authorization request.
+Cette application permet aux partenaires de ProConnect (fournisseurs de services et fournisseurs d'identité) de créer de nouveaux identifiants en preprod, ainsi que de consulter la [documentation d'implémentation](https://partenaires.proconnect.gouv.fr/docs).
 
-## Requirements:
+Son code est basé sur [Next.js](https://nextjs.org/), connecté à deux bases de données :
 
-- docker et docker compose
-- make
-- node js / npm (pour le front)
+- une base de données PostgreSQL pour les sessions en cours
+- la base de données MongoDB externe de ProConnect où sont stockés les applications
 
-## Installation
+Ce dépôt a été initié à partir du [template Next.js de betagouv](https://github.com/betagouv/template-nextjs).
 
-Install locally the application:
+## Lancer le code
 
-```
-git clone git@github.com:betagouv/espace-partenaire.git
-```
+Après avoir cloné le projet :
 
-```sh
-$ npm install
-$ npm run dev # will do a docker compose up !
-$ npm build
-$ npm start
+### Développement
+
+```bash
+docker-compose up -d # pour lancer les conteneurs de base de données
+npm install # pour installer les dépendances
+npm run dev # pour lancer en mode développement
 ```
 
-## Start backend
+Il suffit ensuite de se rendre sur [http://127.0.0.1:3000/](http://127.0.0.1:3000/).
 
-Launch backend
-
-```
-make sb
-```
-
-You can access the project here : http://localhost:3000/welcome
-
-If you want to launch a the front served by the backend:
+### Tests
 
 ```
-make f
+# lancer les tests unitaires
+npm run test
+
+# lancer les tests end-to-end
+npm run e2e --ui
 ```
 
-You can see the static front on http://localhost:3000
+### Documentation
 
-## Start front end for dev
+La documentation est disponible dans le dossier `docs`.
 
-Launch the project with another node server locally (not on docker this time):
-
-```
-make sf
-```
-
-You can access it on http://localhost:3001/ :
-
-## Global Architecture
-
-```mermaid
-flowchart LR
-    subgraph EspacePartenaire
-        subgraph Front
-        ViteReact
-        end
-        subgraph Back
-            BuiltFront --> NestStatic
-            subgraph NestJs
-                Api  --> Controller
-                NestStatic --> Api
-            end
-        end
-        Controller --> PSQL[(PSQL)]
-    end
-    User --> BuiltFront
-    Application? --> Api
-```
-
-There are two main subrepos in the EspacePartenaire project: back and front.
-
-The frontend is built with Vite React. The build result is then moved to the backend repository and served with [Nest's serve static property](https://docs.nestjs.com/recipes/serve-static).
-
-## How to build the project
-
-Start front-end and back-end applications, then launch:
-
-```
-make f
-```
-
-Enjoy ! ✨
+- [Architecture](docs/architecture.md)

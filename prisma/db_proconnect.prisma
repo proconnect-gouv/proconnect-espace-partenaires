@@ -1,0 +1,49 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGODB_CONNECTION_STRING")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "generated_clients/db_proconnect"
+}
+
+model OidcClient {
+  // https://github.com/france-connect/sources/blob/main/back/libs/service-provider-adapter-mongo/src/schemas/service-provider-adapter-mongo.schema.ts
+  id                String    @id @map("_id") @db.ObjectId
+  name              String
+  active            Boolean   @default(true)
+  key               String    @unique
+  entityId          String
+  client_secret     String
+  scopes            String[]
+  redirect_uris     String[]
+  id_token_signed_response_alg    String?
+  id_token_encrypted_response_alg String?
+  id_token_encrypted_response_enc String?
+  userinfo_signed_response_alg    String?
+  userinfo_encrypted_response_alg String?
+  userinfo_encrypted_response_enc String?
+  jwks_uri          String
+  idpFilterExclude  Boolean   @default(false)
+  idpFilterList     String[]
+  type              String
+  identityConsent   Boolean   @default(false)
+  ssoDisabled       Boolean   @default(false)
+  platform          String?
+  rep_scope         String[]
+
+  // Not in the schema file?
+  post_logout_redirect_uris String[]
+  title             String?
+  site              String[]
+  credentialsFlow   Boolean   @default(false)
+  email             String?
+  IPServerAddressesAndRanges String[]
+  updatedAt         DateTime  @db.Date
+  updatedBy         String?
+  claims            String[]
+  trustedIdentity   Boolean   @default(false)
+
+  @@map("oidc_clients")
+}

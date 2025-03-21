@@ -1,0 +1,41 @@
+/* Basic code block styling */
+.container {
+  position: relative;
+  margin: var(--text-spacing);
+}
+
+.container pre {
+  margin: 0;
+  padding: 0.75rem;
+  background-color: #2e3440ff;
+  border-radius: 10px;
+  overflow: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #ccc;
+}
+
+.copyButton {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.25rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+
+.copyButton:hover {
+  opacity: 1;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.copyButton svg {
+  width: 20px;
+  height: 20px;
+  transition: all 0.2s ease;
+}
