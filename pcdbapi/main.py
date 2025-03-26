@@ -15,6 +15,8 @@ from middleware import encode_response, verify_signature
 # All config in one place
 CONFIG = {
     "mongodb_url": os.getenv("MONGODB_URL"),
+    "mongodb_username": os.getenv("MONGODB_USERNAME"),
+    "mongodb_password": os.getenv("MONGODB_PASSWORD"),
     "api_secret": os.getenv("API_SECRET"),  # shared secret
     "max_timestamp_diff": 300,  # 5 minutes
 }
@@ -43,9 +45,14 @@ def validate_objectid(_id: str) -> ObjectId:
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup
-    app.mongodb_client = AsyncIOMotorClient(CONFIG["mongodb_url"])
+    app.mongodb_client = AsyncIOMotorClient(
+        CONFIG["mongodb_url"],
+        username = CONFIG['mongodb_username'],
+        password = CONFIG['mongodb_password'])
+
     app.db = app.mongodb_client.get_default_database()
-    app.collection = app.db.oidc_clients
+    app.collection = app.db.get_collection('client')
+    ping_response = { "ok": 0 }
     # Wait for database to be ready
     for _ in range(10):
         try:

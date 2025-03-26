@@ -13,8 +13,10 @@ services:
   mongodb:
     image: mongo:5.0.23
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=fc
+      - MONGO_INITDB_ROOT_USERNAME=fc_admin
       - MONGO_INITDB_ROOT_PASSWORD=pass
+      - MONGO_INITDB_API_USERNAME=fc
+      - MONGO_INITDB_API_PASSWORD=pass
     ports:
       - "27017:27017"
     volumes:
@@ -27,7 +29,9 @@ services:
   pcdbapi:
     build: ./pcdbapi
     environment:
-      - MONGODB_URL=mongodb://fc:pass@mongodb:27017/core-fca-low?authSource=admin&replicaSet=rs0&directConnection=true
+      - MONGODB_URL=mongodb://mongodb:27017/core-fca-low?authSource=core-fca-low&replicaSet=rs0&directConnection=true
+      - MONGODB_USERNAME=fc
+      - MONGODB_PASSWORD=pass
       - API_SECRET=pcdb-api-secret-key
       - CANT_RUN_TESTS=1
     ports:
@@ -52,7 +56,9 @@ services:
     volumes:
       - ./pcdbapi:/app
     environment:
-      - MONGODB_URL=mongodb://fc:pass@mongodb:27017/proconnect_test?authSource=admin&replicaSet=rs0
+      - MONGODB_URL=mongodb://mongodb:27017/proconnect_test?authSource=admin&replicaSet=rs0
+      - MONGODB_USERNAME=fc
+      - MONGODB_PASSWORD=pass
       - API_SECRET=pcdb-api-secret-key
     depends_on:
       - mongodb

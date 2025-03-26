@@ -21,12 +21,40 @@ db.createUser({
   pwd: "${MONGO_INITDB_ROOT_PASSWORD}",
   roles: [{ role: "root", db: "admin" }]
 });
+
 db = db.getSiblingDB("core-fca-low")
-db.createCollection('oidc_clients')
+db.createCollection('client')
+EOF
+
+echo "Creating the runtime user"
+
+mongo --username=${MONGO_INITDB_ROOT_USERNAME} --password=${MONGO_INITDB_ROOT_PASSWORD} <<EOF
+use admin
+
+db = db.getSiblingDB("core-fca-low")
+
+db.createRole({
+  role: "role_user_api_partenaires",
+  roles: [],
+  privileges: [
+    {
+      resource: { db: "core-fca-low", collection: "client" },
+      actions: [ "find", "update", "insert" ]
+    }
+  ]
+});
+
+db.createUser({
+  user: "${MONGO_INITDB_API_USERNAME}",
+  pwd: "${MONGO_INITDB_API_PASSWORD}",
+  roles: [
+    { role: "role_user_api_partenaires", db: "core-fca-low"}
+  ]
+});
 EOF
 
 echo "Seeding the database..."
-mongoimport --username=${MONGO_INITDB_ROOT_USERNAME} --password=${MONGO_INITDB_ROOT_PASSWORD} --authenticationDatabase=admin --db core-fca-low --collection oidc_clients --file /init/mockdata.json --jsonArray
+mongoimport --username=${MONGO_INITDB_ROOT_USERNAME} --password=${MONGO_INITDB_ROOT_PASSWORD} --authenticationDatabase=admin --db core-fca-low --collection client --file /init/mockdata.json --jsonArray
 
 # Keep the container running
 wait
