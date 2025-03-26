@@ -20,7 +20,8 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - ./docker/mongodb:/init
+      - ./docker/mongodb:/init:ro
+      - ./docker/ssl:/etc/ssl:ro
     entrypoint: ["/init/entrypoint.sh"]
     tmpfs:
       - /data/db
@@ -29,15 +30,18 @@ services:
   pcdbapi:
     build: ./pcdbapi
     environment:
-      - MONGODB_URL=mongodb://mongodb:27017/core-fca-low?authSource=core-fca-low&replicaSet=rs0&directConnection=true
+      - MONGODB_URL=mongodb://mongodb:27017/core-fca-low?authSource=core-fca-low&directConnection=true
       - MONGODB_USERNAME=fc
       - MONGODB_PASSWORD=pass
+      - MONGODB_CERTIFICATE_FILEPATH=/etc/ssl/mongo.pem
+      - MONGODB_CA_FILEPATH=/etc/ssl/docker-stack-ca.crt
       - API_SECRET=pcdb-api-secret-key
       - CANT_RUN_TESTS=1
     ports:
       - "8000:8000"
     volumes:
       - ./pcdbapi:/app
+      - ./docker/ssl:/etc/ssl:ro
     depends_on:
       - mongodb
     healthcheck:
@@ -55,10 +59,13 @@ services:
     profiles: ["test"]
     volumes:
       - ./pcdbapi:/app
+      - ./docker/ssl:/etc/ssl:ro
     environment:
-      - MONGODB_URL=mongodb://mongodb:27017/proconnect_test?authSource=admin&replicaSet=rs0
+      - MONGODB_URL=mongodb://mongodb:27017/proconnect_test?authSource=admin
       - MONGODB_USERNAME=fc
       - MONGODB_PASSWORD=pass
+      - MONGODB_CERTIFICATE_FILEPATH=/etc/ssl/mongo.pem
+      - MONGODB_CA_FILEPATH=/etc/ssl/docker-stack-ca.crt
       - API_SECRET=pcdb-api-secret-key
     depends_on:
       - mongodb

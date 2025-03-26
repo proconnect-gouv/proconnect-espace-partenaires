@@ -17,6 +17,8 @@ CONFIG = {
     "mongodb_url": os.getenv("MONGODB_URL"),
     "mongodb_username": os.getenv("MONGODB_USERNAME"),
     "mongodb_password": os.getenv("MONGODB_PASSWORD"),
+    "mongodb_certificate_filepath": os.getenv("MONGODB_CERTIFICATE_FILEPATH"),
+    "mongodb_ca_filepath": os.getenv("MONGODB_CA_FILEPATH"),
     "api_secret": os.getenv("API_SECRET"),  # shared secret
     "max_timestamp_diff": 300,  # 5 minutes
 }
@@ -47,8 +49,11 @@ async def lifespan(app: FastAPI):
     # Startup
     app.mongodb_client = AsyncIOMotorClient(
         CONFIG["mongodb_url"],
-        username = CONFIG['mongodb_username'],
-        password = CONFIG['mongodb_password'])
+        username=CONFIG["mongodb_username"],
+        password=CONFIG["mongodb_password"],
+        tls=True,
+        tlsCAFile=CONFIG["mongodb_ca_filepath"],
+        tlsCertificateKeyFile=CONFIG["mongodb_certificate_filepath"])
 
     app.db = app.mongodb_client.get_default_database()
     app.collection = app.db.get_collection('client')

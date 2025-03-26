@@ -21,6 +21,9 @@ packages/*/dist
 .DS_Store
 *.pem
 
+# ssl certificates used in dev-env only
+!docker/ssl/*
+
 # debug
 npm-debug.log*
 yarn-debug.log*
