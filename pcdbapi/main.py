@@ -15,6 +15,10 @@ from middleware import encode_response, verify_signature
 # All config in one place
 CONFIG = {
     "mongodb_url": os.getenv("MONGODB_URL"),
+    "mongodb_username": os.getenv("MONGODB_USERNAME"),
+    "mongodb_password": os.getenv("MONGODB_PASSWORD"),
+    "mongodb_certificate_filepath": os.getenv("MONGODB_CERTIFICATE_FILEPATH"),
+    "mongodb_ca_filepath": os.getenv("MONGODB_CA_FILEPATH"),
     "api_secret": os.getenv("API_SECRET"),  # shared secret
     "max_timestamp_diff": 300,  # 5 minutes
 }
@@ -43,9 +47,18 @@ def validate_objectid(_id: str) -> ObjectId:
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup
-    app.mongodb_client = AsyncIOMotorClient(CONFIG["mongodb_url"])
+    app.mongodb_client = AsyncIOMotorClient(
+        CONFIG["mongodb_url"],
+        username=CONFIG["mongodb_username"],
+        password=CONFIG["mongodb_password"],
+        tls=True,
+        tlsCAFile=CONFIG["mongodb_ca_filepath"],
+        tlsCertificateKeyFile=CONFIG["mongodb_certificate_filepath"],
+    )
+
     app.db = app.mongodb_client.get_default_database()
-    app.collection = app.db.oidc_clients
+    app.collection = app.db.get_collection("client")
+    ping_response = {"ok": 0}
     # Wait for database to be ready
     for _ in range(10):
         try:
@@ -92,16 +105,13 @@ async def create_oidc_client(data: OidcClient, request: Request):
             "createdAt": datetime.now(),
             "updatedAt": datetime.now(),
             "updatedBy": "espace-partenaires",
-
             # TODO: fix these fields?
             "title": "Nouvelle application",
             "site": ["https://site.com"],
-
             # Generate IDs in correct format
             "key": secrets.token_hex(32),  # 64 hex chars
             "client_secret": secrets.token_hex(32),  # 64 hex chars
             "entityId": secrets.token_hex(32),  # 64 hex chars
-
             "credentialsFlow": False,
             "claims": ["amr"],
             "IPServerAddressesAndRanges": ["1.1.1.1"],

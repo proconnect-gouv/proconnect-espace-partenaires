@@ -10,15 +10,18 @@ services:
       - "5432:5432"
 
   # This MongoDB will be seeded with mock data at each restart
-  mongodb:
+  mongo:
     image: mongo:5.0.23
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=fc
+      - MONGO_INITDB_ROOT_USERNAME=fc_admin
       - MONGO_INITDB_ROOT_PASSWORD=pass
+      - MONGO_INITDB_API_USERNAME=fc
+      - MONGO_INITDB_API_PASSWORD=pass
     ports:
       - "27017:27017"
     volumes:
-      - ./docker/mongodb:/init
+      - ./docker/mongodb:/init:ro
+      - ./docker/ssl:/etc/ssl:ro
     entrypoint: ["/init/entrypoint.sh"]
     tmpfs:
       - /data/db
@@ -27,15 +30,20 @@ services:
   pcdbapi:
     build: ./pcdbapi
     environment:
-      - MONGODB_URL=mongodb://fc:pass@mongodb:27017/core-fca-low?authSource=admin&replicaSet=rs0&directConnection=true
+      - MONGODB_URL=mongodb://mongo:27017/core-fca-low?authSource=core-fca-low&directConnection=true
+      - MONGODB_USERNAME=fc
+      - MONGODB_PASSWORD=pass
+      - MONGODB_CERTIFICATE_FILEPATH=/etc/ssl/mongo.pem
+      - MONGODB_CA_FILEPATH=/etc/ssl/docker-stack-ca.crt
       - API_SECRET=pcdb-api-secret-key
       - CANT_RUN_TESTS=1
     ports:
       - "8000:8000"
     volumes:
       - ./pcdbapi:/app
+      - ./docker/ssl:/etc/ssl:ro
     depends_on:
-      - mongodb
+      - mongo
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/healthz"]
       interval: 10s
@@ -51,11 +59,16 @@ services:
     profiles: ["test"]
     volumes:
       - ./pcdbapi:/app
+      - ./docker/ssl:/etc/ssl:ro
     environment:
-      - MONGODB_URL=mongodb://fc:pass@mongodb:27017/proconnect_test?authSource=admin&replicaSet=rs0
+      - MONGODB_URL=mongodb://mongo:27017/proconnect_test?authSource=admin&directConnection=true
+      - MONGODB_USERNAME=fc_admin
+      - MONGODB_PASSWORD=pass
+      - MONGODB_CERTIFICATE_FILEPATH=/etc/ssl/mongo.pem
+      - MONGODB_CA_FILEPATH=/etc/ssl/docker-stack-ca.crt
       - API_SECRET=pcdb-api-secret-key
     depends_on:
-      - mongodb
+      - mongo
 
   mailcatcher:
     image: maildev/maildev:2.2.1
