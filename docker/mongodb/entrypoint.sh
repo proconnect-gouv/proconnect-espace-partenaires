@@ -3,8 +3,14 @@
 MONGO_SSL_OPTIONS='--tls --tlsCertificateKeyFile /etc/ssl/mongo.pem --tlsCAFile /etc/ssl/docker-stack-ca.crt'
 MONGOIMPORT_SSL_OPTIONS='--ssl --sslPEMKeyFile /etc/ssl/mongo.pem --sslCAFile /etc/ssl/docker-stack-ca.crt'
 
+echo "Copying keyfile and setting permissions..."
+mkdir -p ~/.mongodb-ssl/
+cp /init/keyfile ~/.mongodb-ssl/keyfile
+chmod 400 ~/.mongodb-ssl/keyfile
+chown 999:999 ~/.mongodb-ssl/keyfile
+
 echo "Starting MongoDB in the background..."
-mongod --replSet rs0 --bind_ip_all --tlsMode requireTLS --tlsCertificateKeyFile /etc/ssl/mongo.pem --keyFile /init/keyfile &
+mongod --replSet rs0 --bind_ip_all --tlsMode requireTLS --tlsCertificateKeyFile /etc/ssl/mongo.pem --keyFile ~/.mongodb-ssl/keyfile &
 
 echo "Waiting for MongoDB to start..."
 until mongo ${MONGO_SSL_OPTIONS} --eval "printjson(rs.initiate())" 2>/dev/null; do
@@ -27,6 +33,8 @@ db.createUser({
 
 db = db.getSiblingDB("core-fca-low")
 db.createCollection('client')
+db_test = db.getSiblingDB("proconnect_test")
+db_test.createCollection('client')
 EOF
 
 echo "Creating the runtime user"

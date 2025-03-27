@@ -53,11 +53,12 @@ async def lifespan(app: FastAPI):
         password=CONFIG["mongodb_password"],
         tls=True,
         tlsCAFile=CONFIG["mongodb_ca_filepath"],
-        tlsCertificateKeyFile=CONFIG["mongodb_certificate_filepath"])
+        tlsCertificateKeyFile=CONFIG["mongodb_certificate_filepath"],
+    )
 
     app.db = app.mongodb_client.get_default_database()
-    app.collection = app.db.get_collection('client')
-    ping_response = { "ok": 0 }
+    app.collection = app.db.get_collection("client")
+    ping_response = {"ok": 0}
     # Wait for database to be ready
     for _ in range(10):
         try:
@@ -104,16 +105,13 @@ async def create_oidc_client(data: OidcClient, request: Request):
             "createdAt": datetime.now(),
             "updatedAt": datetime.now(),
             "updatedBy": "espace-partenaires",
-
             # TODO: fix these fields?
             "title": "Nouvelle application",
             "site": ["https://site.com"],
-
             # Generate IDs in correct format
             "key": secrets.token_hex(32),  # 64 hex chars
             "client_secret": secrets.token_hex(32),  # 64 hex chars
             "entityId": secrets.token_hex(32),  # 64 hex chars
-
             "credentialsFlow": False,
             "claims": ["amr"],
             "IPServerAddressesAndRanges": ["1.1.1.1"],

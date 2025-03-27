@@ -61,8 +61,8 @@ services:
       - ./pcdbapi:/app
       - ./docker/ssl:/etc/ssl:ro
     environment:
-      - MONGODB_URL=mongodb://mongo:27017/proconnect_test?authSource=admin
-      - MONGODB_USERNAME=fc
+      - MONGODB_URL=mongodb://mongo:27017/proconnect_test?authSource=admin&directConnection=true
+      - MONGODB_USERNAME=fc_admin
       - MONGODB_PASSWORD=pass
       - MONGODB_CERTIFICATE_FILEPATH=/etc/ssl/mongo.pem
       - MONGODB_CA_FILEPATH=/etc/ssl/docker-stack-ca.crt
