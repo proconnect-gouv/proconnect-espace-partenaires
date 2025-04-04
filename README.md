@@ -28,7 +28,7 @@ Il suffit ensuite de se rendre sur [http://127.0.0.1:3000/](http://127.0.0.1:300
 
 ### Tests
 
-```
+```bash
 # lancer les tests unitaires
 npm run test
 
@@ -36,8 +36,28 @@ npm run test
 npm run e2e --ui
 ```
 
+### PCDB API
+
+Le module `pcdbapi` est un serveur Python FastAPI qui communique avec la base de données
+MongoDB ProConnect. Il fournit l'API unique utilisée par l'espace partenaires pour y lire
+et y écrire des données de façon sécurisée.
+
+Il est synchronisé vers (et deployé depuis) GitLab.
+
+#### Commandes
+
+```bash
+# Lancer les tests avec couverture de code (100% requis)
+npm run test:pcdbapi
+
+# Linter et formatage du code
+npm run lint:pcdbapi
+
+```
+
 ### Documentation
 
 La documentation est disponible dans le dossier `docs`.
 
 - [Architecture](docs/architecture.md)
+- [Bonnes pratiques](/docs/best-practices.md)
