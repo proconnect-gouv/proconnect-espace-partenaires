@@ -5,8 +5,15 @@
 Vous pouvez à tout moment tester l'intégration de votre FI à la fédération ProConnect. Vous trouverez les informations de test [ici](./test-configuration-fi.md).
 En cas d'erreur, deux documents vous permettront d'analyser vos erreurs :
 
-- [le troubleshooting](./troubleshooting-fi.md)
+- [les erreurs récurrentes](./troubleshooting-fi.md)
 - [la liste des codes d'erreurs possibles renvoyés par ProConnect](https://github.com/france-connect/sources/blob/main/back/_doc/erreurs.md)
+
+## Configurations spécifiques
+
+Certains logiciels nécessitent des configurations particulières pour fonctionner avec ProConnect. Vous pouvez consulter ces spécificités si votre logiciel se trouve dans la liste ci-dessous :
+
+- [LemonLDAP](./idp-configs/lemon-ldap.md)
+- [Keycloak](./idp-configs/keycloak/configuration.md)
 
 ## Trouver la Discovery URL
 
@@ -33,6 +40,10 @@ https://PROCONNECT_DOMAIN/api/v2/client/logout-callback
 
 À l'appel au `authorization_endpoint`, ProConnect envoie en query param `login_hint`, qui contient l'email renseigné par l'utilisateur sur la mire ProConnect.
 Pour simplifier le parcours de l'utilisateur, il est demandé au FI d'utiliser la valeur fournie pour pré-remplir le champ email de sa mire d'authentification lorsque cela est pertinent.
+
+## Spécifier la client authentication method
+
+ProConnect se connecte au Fournisseur d'Identité avec la client_authentication_method `client_secret_post`. Celle-ci doit être autorisée par le Fournisseur d'Identité.
 
 ## Renseigner le claim `amr`
 
@@ -80,12 +91,22 @@ La liste des scopes demandés par ProConnect est la suivante :
 | chorusdt |
 
 Parmi ces champs, seuls sont obligatoires :
-|Champs | Description| Format |
-|---- | ------ | ------ |
-|given_name |Prénoms séparés par des espaces (standard OpenIDConnect)| UTF-8 (standard OpenIDConnect)|
-|usual_name |Nom de famille d'usage (par défaut = family_name)| UTF-8 |
-|email |Adresse courriel |UTF-8 (standard OpenIDConnect)|
-|uid |Identifiant unique de l'agent auprès du FI| String (standard OpenIDConnect)|
+|Champ | Description| Contraintes | Format |
+|---- | ------ |------ | ------ |
+|given_name |Prénoms séparés par des espaces (standard OpenIDConnect)| 1 caractère minimum, 256 maximum | string (standard OpenIDConnect)|
+|usual_name |Nom de famille d'usage (par défaut = family_name)| 1 caractère minimum, 256 maximum | string |
+|email |Adresse courriel | email |string (standard OpenIDConnect)|
+|siret |SIRET de l'organisation de rattachement| 14 caractères [Lunh](https://fr.wikipedia.org/wiki/Formule_de_Luhn) | string|
+|uid | Identifiant unique de l'agent auprès du FI | 1 caractère minimum | string |
+
+Est également exigé un champ sub:
+
+| Champ | Description                                  | Contraintes         | Format |
+| ----- | -------------------------------------------- | ------------------- | ------ |
+| sub   | L'identifiant unique du FI pour une identité | 1 caractère minimum | ASCI   |
+
+> [!IMPORTANT]
+> Le champ SIRET est obligatoire, s'il ne vous est pas possible de le renseigner ou si son format est incorrect, nous attribuerons un champ SIRET par défaut pour le Fournisseur d'Identité (généralement celui de l'entité qui gère le Fournisseur d'Identité).
 
 Les autres champs, si vous ne possédez pas l'information correspondante dans votre annuaire, doivent être **ignorés**. (cf. [RFC OIDC](https://openid.net/specs/openid-connect-core-1_0.html#IDToken) : _Any Claims used that are not understood MUST be ignored._)
 Selon votre Fournisseur d'Identité, il est possible qu'il vous faille spécifier, pour chacun des scopes demandés, une valeur de retour nulle, indéfinie, ou simplement ignorée.
@@ -93,9 +114,3 @@ Selon votre Fournisseur d'Identité, il est possible qu'il vous faille spécifie
 ## Configurer le champ `acr`
 
 Le champ `acr` renvoyé par le Fournisseur d'Identité doit valoir `eidas1`.
-
-## Configurations spécifiques
-
-Certains logiciels nécessitent des configurations particulières pour fonctionner avec ProConnect. Vous pouvez consulter ces spécificités si votre logiciel se trouve dans la liste ci-dessous :
-
-- [LemonLDAP](./idp-configs/lemon-ldap.md)

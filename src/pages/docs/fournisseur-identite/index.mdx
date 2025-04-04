@@ -6,14 +6,38 @@ Vous souhaitez rejoindre la fédération d'identité et être Fournisseur d'Iden
 
 Voici un résumé des étapes pour être Fournisseur d'Identité ProConnect :
 
-- [ ] Je vérifie que je respecte bien les [pré-requis pour devenir FI pour ProConnect](./prerequis-fi.md)
-- [ ] Je me familiarise avec le flux OIDC - authorization code flow : voir [concepts de base](../ressources/flux_oidc.md). NB: si vous êtes Fournisseur d'Identité, vous êtes _provider_ et ProConnect est _client_.
-- [ ] Je configure mon Fournisseur d'Identité pour qu'il puisse s'intégrer à la fédération ProConnect avec le [mode d'emploi technique](./configuration.md)
-- [ ] Je renseigne à l'équipe ProConnect les informations nécessaires pour que ProConnect créé la configuration de mon FI en remplissant [le formulaire dédié](https://www.demarches-simplifiees.fr/commencer/demande-creation-fi-fca)
-- [ ] [_Optionnel_] Je contacte l'équipe ProConnect pour qu'elle puisse répondre à mes questions si j'en ai : support+partenaire@agentconnect-ntitfa.on.crisp.email ou [sur notre chaîne Tchap](https://www.tchap.gouv.fr/#/room/!kBghcRpyMNThkFQjdW:agent.dinum.tchap.gouv.fr)
-- [ ] Je contractualise officiellement ma collaboration avec la Dinum en remplissant le [DataPass dédié](https://datapass.api.gouv.fr/agent-connect-fi).
-- [ ] Je remplis [le formulaire](https://www.demarches-simplifiees.fr/commencer/demande-creation-fi-fca) pour que ProConnect créé la configuration pour mon FI en production
-- [ ] Mise en production 🚀
+<VerticalStepper>
+  <Step number={1} title="Pré-requis">
+    Je vérifie que je respecte bien les [pré-requis pour devenir FI pour ProConnect](./prerequis-fi.md)
+  </Step>
+  <Step number={2} title="Familiarisation avec OIDC">
+    Je me familiarise avec le flux OIDC - authorization code flow : voir [concepts de base](../ressources/flux_oidc.md).
+
+    NB: si vous êtes Fournisseur d&rsquo;Identité, vous êtes _provider_ et ProConnect est _client_.
+
+  </Step>
+  <Step number={3} title="Configuration">
+    Je configure mon Fournisseur d&rsquo;Identité pour qu&rsquo;il puisse s&rsquo;intégrer à la fédération ProConnect avec le [mode d&rsquo;emploi technique](./configuration.md)
+  </Step>
+  <Step number={4} title="Environnement d'intégration">
+    Je renseigne à l&rsquo;équipe ProConnect les informations concernant mon Fournisseur d&rsquo;Identité d&rsquo;**intégration** via [le formulaire dédié](https://www.demarches-simplifiees.fr/commencer/demande-creation-fi-fca). L&rsquo;équipe créé ma configuration **dans les 5 jours ouvrés**.
+  </Step>
+  <Step number={5} title="Support">
+    Si besoin, je contacte l&rsquo;équipe ProConnect pour qu&rsquo;elle puisse répondre à mes questions : support+partenaires@proconnect.gouv.fr ou [sur notre chaîne Tchap](https://www.tchap.gouv.fr/#/room/!kBghcRpyMNThkFQjdW:agent.dinum.tchap.gouv.fr)
+  </Step>
+  <Step number={6} title="Contractualisation">
+    Je contractualise officiellement ma collaboration avec la Dinum en remplissant le [DataPass dédié](https://datapass.api.gouv.fr/agent-connect-fi). Je peux passer à l&rsquo;étape suivante même si le Datapass n&rsquo;est pas encore complété ou approuvé pour gagner du temps. Après complétude, le Datapass me revient signé dans les **2 jours ouvrés**.
+  </Step>
+  <Step number={7} title="Environnement de production">
+    Je renseigne à l&rsquo;équipe ProConnect les informations concernant mon Fournisseur d&rsquo;Identité de **production** via [le formulaire dédié](https://www.demarches-simplifiees.fr/commencer/demande-creation-fi-fca)
+  </Step>
+  <Step number={8} title="Recettage">
+    L&rsquo;équipe ProConnect crée ma configuration et me contacte pour procéder à un recettage pour tester que tout marche bien. Si tout se passe bien, je décide avec l&rsquo;équipe de ProConnect de la date de mise en production
+  </Step>
+  <Step number={9} title="Mise en production">
+    Mise en production le jour convenu 🚀
+  </Step>
+</VerticalStepper>
 
 ---
 

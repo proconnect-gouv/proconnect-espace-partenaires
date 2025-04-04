@@ -12,7 +12,7 @@ En amont, le _client_ s'inscrit (en général manuellement) auprès du _provider
 
 Lorsque l'internaute clique sur le bouton d'authentification du client, le flux est le suivant :
 
-![fournisseur-service_fca](/images/docs/flux_openid.png)
+![doc_fs_fca](/images/docs/flux_openid.png)
 
 1. Le client fait une redirection **navigateur** vers le `authorization_endpoint` du provider avec son `client_id` et sa `redirect_uri`.
 2. Le provider redirige alors l'internaute vers sa mire d'authentification.
