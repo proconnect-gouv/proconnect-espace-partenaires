@@ -15,16 +15,11 @@ test("has proper headers", async ({ page }) => {
     "Politique de confidentialité"
   );
 
-  const requiredHeaders = [
-    "Traitement des données à caractère personnel",
-    "Cookies",
-  ];
+  const requiredHeaders = ["Traitement des données à caractère personnel", "Cookies"];
 
   await Promise.all(
     requiredHeaders.map(async (text) =>
-      expect(
-        await page.getByRole("heading", { level: 2 }).getByText(text).count()
-      ).toBe(1)
+      expect(await page.getByRole("heading", { level: 2 }).getByText(text).count()).toBe(1)
     )
   );
 });

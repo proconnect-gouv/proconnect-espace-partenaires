@@ -4,7 +4,5 @@ import Page from "../src/pages/index";
 
 test("Has index page", () => {
   render(<Page />);
-  expect(
-    screen.getByRole("heading", { level: 1, name: "Template" })
-  ).toBeDefined();
+  expect(screen.getByRole("heading", { level: 1, name: "Template" })).toBeDefined();
 });

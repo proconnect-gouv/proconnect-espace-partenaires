@@ -5,9 +5,7 @@ const url = "/cgu";
 test("has title", async ({ page }) => {
   await page.goto(url);
 
-  await expect(page).toHaveTitle(
-    /Conditions générales d'utilisation | template/
-  );
+  await expect(page).toHaveTitle(/Conditions générales d'utilisation | template/);
 });
 
 test("has proper headers", async ({ page }) => {
@@ -18,17 +16,11 @@ test("has proper headers", async ({ page }) => {
     "Conditions générales d'utilisation"
   );
 
-  const requiredHeaders = [
-    "Présentation",
-    "Vos données",
-    "Absence de garantie",
-  ];
+  const requiredHeaders = ["Présentation", "Vos données", "Absence de garantie"];
 
   await Promise.all(
     requiredHeaders.map(async (text) =>
-      expect(
-        await page.getByRole("heading", { level: 2 }).getByText(text).count()
-      ).toBe(1)
+      expect(await page.getByRole("heading", { level: 2 }).getByText(text).count()).toBe(1)
     )
   );
 });

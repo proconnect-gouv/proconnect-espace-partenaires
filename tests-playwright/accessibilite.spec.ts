@@ -23,9 +23,7 @@ test("has proper headers", async ({ page }) => {
 
   await Promise.all(
     requiredHeaders.map(async (text) =>
-      expect(
-        await page.getByRole("heading", { level: 2 }).getByText(text).count()
-      ).toBe(1)
+      expect(await page.getByRole("heading", { level: 2 }).getByText(text).count()).toBe(1)
     )
   );
 });

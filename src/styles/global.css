@@ -4,3 +4,7 @@
 .fr-collapse::before {
   transition: none !important;
 }
+
+.fc-text--center {
+  text-align: center;
+}

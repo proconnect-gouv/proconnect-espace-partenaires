@@ -29,6 +29,7 @@ services:
 
   pcdbapi:
     build: ./pcdbapi
+    pull_policy: build
     environment:
       - MONGODB_URL=mongodb://mongo:27017/core-fca-low?authSource=core-fca-low&directConnection=true
       - MONGODB_USERNAME=fc

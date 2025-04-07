@@ -64,23 +64,18 @@ export default function Login() {
       <Head>
         <title>Connexion | ProConnect</title>
       </Head>
-      <div className={fr.cx("fr-py-6w")}>
+      <div className={fr.cx("fr-py-6w", "fr-container")}>
         <div className={fr.cx("fr-grid-row", "fr-grid-row--center")}>
           <div className={fr.cx("fr-col-12", "fr-col-md-8", "fr-col-lg-6")}>
             <div className={fr.cx("fr-card", "fr-p-4w")}>
               <h1>Connexion</h1>
               <p>
-                Connectez-vous pour accéder à votre Espace Partenaire ProConnect
-                et gérer vos applications.
+                Connectez-vous pour accéder à votre Espace Partenaire ProConnect et gérer vos
+                applications.
               </p>
 
               {error && (
-                <Alert
-                  severity="error"
-                  description={error}
-                  className={fr.cx("fr-mb-3w")}
-                  small
-                />
+                <Alert severity="error" description={error} className={fr.cx("fr-mb-3w")} small />
               )}
 
               <form onSubmit={handleSubmit}>
@@ -97,9 +92,7 @@ export default function Login() {
                 />
                 <div className={fr.cx("fr-mt-2w")}>
                   <Button type="submit" disabled={isLoading || !email}>
-                    {isLoading
-                      ? "Envoi en cours..."
-                      : "Recevoir un lien de connexion"}
+                    {isLoading ? "Envoi en cours..." : "Recevoir un lien de connexion"}
                   </Button>
                 </div>
               </form>

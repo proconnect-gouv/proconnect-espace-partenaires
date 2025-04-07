@@ -81,10 +81,7 @@ function traverseTree(
     // @ts-expect-error doesn't seem to infer type correctly
     if (item.items) {
       // @ts-expect-error doesn't seem to infer type correctly
-      const childResult = traverseTree(item.items, targetPath, [
-        ...parentSections,
-        item,
-      ]);
+      const childResult = traverseTree(item.items, targetPath, [...parentSections, item]);
       result.flatPages.push(...childResult.flatPages);
       if (childResult.hasCurrentPage) {
         result = childResult;
@@ -96,27 +93,23 @@ function traverseTree(
 }
 
 function DocsLayout({ children, pathname }: DocsLayoutProps) {
-  const { sectionTree, flatPages, breadcrumbSegments, currentIndex } =
-    useMemo(() => {
-      const tree = structuredClone(docTree);
-      const { flatPages, breadcrumbSegments } = traverseTree(tree, pathname);
-      return {
-        sectionTree: tree,
-        flatPages,
-        breadcrumbSegments,
-        currentIndex: flatPages.findIndex(
-          (page) => page.href === "/docs/" + pathname
-        ),
-      };
-    }, [pathname]);
+  const { sectionTree, flatPages, breadcrumbSegments, currentIndex } = useMemo(() => {
+    const tree = structuredClone(docTree);
+    const { flatPages, breadcrumbSegments } = traverseTree(tree, pathname);
+    return {
+      sectionTree: tree,
+      flatPages,
+      breadcrumbSegments,
+      currentIndex: flatPages.findIndex((page) => page.href === "/docs/" + pathname),
+    };
+  }, [pathname]);
 
   const prevPage = currentIndex > 0 ? flatPages[currentIndex - 1] : null;
-  const nextPage =
-    currentIndex < flatPages.length - 1 ? flatPages[currentIndex + 1] : null;
+  const nextPage = currentIndex < flatPages.length - 1 ? flatPages[currentIndex + 1] : null;
 
   return (
     <PageLayout>
-      <div className={fr.cx("fr-grid-row")}>
+      <div className={fr.cx("fr-grid-row", "fr-container")}>
         <div className={fr.cx("fr-col-12", "fr-col-md-4")}>
           <SideMenu
             align="left"
@@ -133,9 +126,7 @@ function DocsLayout({ children, pathname }: DocsLayoutProps) {
         <div className={fr.cx("fr-col-12", "fr-col-md-8", "fr-py-12v")}>
           <Breadcrumb
             segments={breadcrumbSegments.slice(0, -1)}
-            currentPageLabel={
-              breadcrumbSegments[breadcrumbSegments.length - 1]?.label
-            }
+            currentPageLabel={breadcrumbSegments[breadcrumbSegments.length - 1]?.label}
           />
           {children}
           {/* Navigation prev/next */}

@@ -48,9 +48,7 @@ export const ProviderUrl = ({
     if (!trimmedUrl) return;
 
     if (!validateUrl(trimmedUrl)) {
-      setInputError(
-        "L'URL doit commencer par https:// ou http:// et contenir un nom de domaine"
-      );
+      setInputError("L'URL doit commencer par https:// ou http:// et contenir un nom de domaine");
       return;
     }
 
@@ -92,9 +90,7 @@ export const ProviderUrl = ({
       )}
 
       <div>
-        <div
-          style={{ position: "relative", paddingRight: "7rem", width: "650px" }}
-        >
+        <div style={{ position: "relative", paddingRight: "7rem", width: "650px" }}>
           <div>
             <Input
               label={label}
@@ -120,10 +116,7 @@ export const ProviderUrl = ({
               top: "2.1rem", // Aligns with input field accounting for label
             }}
           >
-            <Button
-              disabled={!inputUrl || !!inputError}
-              onClick={addUrlInArray}
-            >
+            <Button disabled={!inputUrl || !!inputError} onClick={addUrlInArray}>
               Ajouter
             </Button>
           </div>

@@ -48,9 +48,7 @@ export default function AppDetailPage({ app }: { app: OidcClient }) {
   const [data, setData] = useState(app);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [saveSuccess, setSaveSuccess] = useState(false);
-  const [signatureAlg, setSignatureAlg] = useState(
-    data.id_token_signed_response_alg || "RS256"
-  );
+  const [signatureAlg, setSignatureAlg] = useState(data.id_token_signed_response_alg || "RS256");
 
   const handleSave = useCallback(
     async (updates: Partial<OidcClient>) => {
@@ -65,7 +63,12 @@ export default function AppDetailPage({ app }: { app: OidcClient }) {
           throw new Error("Failed to update app");
         }
 
-        const updated = await response.json();
+        // const updated = await response.json();
+
+        // Temporary workaround to get the updated app with clean fields
+        const response_after_update = await fetch(`/api/apps/${data._id}`);
+        const updated = await response_after_update.json();
+
         setData(updated);
         setSaveSuccess(true);
         setSaveError(null);
@@ -102,9 +105,7 @@ export default function AppDetailPage({ app }: { app: OidcClient }) {
     }
   };
 
-  const handleSignatureAlgChange = async (
-    e: React.ChangeEvent<HTMLSelectElement>
-  ) => {
+  const handleSignatureAlgChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newAlg = e.target.value;
     setSignatureAlg(newAlg);
 
@@ -128,18 +129,10 @@ export default function AppDetailPage({ app }: { app: OidcClient }) {
           <div className={fr.cx("fr-col-12", "fr-col-md-9", "fr-py-12v")}>
             <Breadcrumb
               currentPageLabel={data.name}
-              segments={[
-                { label: "Applications", linkProps: { href: "/apps" } },
-              ]}
+              segments={[{ label: "Applications", linkProps: { href: "/apps" } }]}
             />
 
-            <div
-              className={fr.cx(
-                "fr-grid-row",
-                "fr-grid-row--middle",
-                "fr-mb-4w"
-              )}
-            >
+            <div className={fr.cx("fr-grid-row", "fr-grid-row--middle", "fr-mb-4w")}>
               <div className={fr.cx("fr-col")}>
                 <h2>{data.name}</h2>
               </div>
@@ -173,10 +166,7 @@ export default function AppDetailPage({ app }: { app: OidcClient }) {
                   <CopyableField label="Client ID" value={data.key || ""} />
                 </div>
                 <div className={fr.cx("fr-col-12", "fr-mt-2w")}>
-                  <CopyableField
-                    label="Client Secret"
-                    value={data.client_secret || ""}
-                  />
+                  <CopyableField label="Client Secret" value={data.client_secret || ""} />
                 </div>
               </div>
             </div>
@@ -206,8 +196,8 @@ export default function AppDetailPage({ app }: { app: OidcClient }) {
             <div id="alg" className={fr.cx("fr-mb-10v")}>
               <h3>Algorithme de signature</h3>
               <p>
-                L&rsquo;algorithme de signature est utilisé pour signer les
-                jetons d&rsquo;identité et les informations utilisateur.
+                L&rsquo;algorithme de signature est utilisé pour signer les jetons d&rsquo;identité
+                et les informations utilisateur.
               </p>
               <Select
                 label="Algorithme de signature"

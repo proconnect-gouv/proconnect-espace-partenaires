@@ -36,9 +36,7 @@ export const CopyableField = ({ label, value, readOnly = true }: Props) => {
         <Button
           priority={copied ? "primary" : "secondary"}
           onClick={copyToClipBoard}
-          iconId={
-            copied ? "fr-icon-checkbox-circle-fill" : "fr-icon-clipboard-line"
-          }
+          iconId={copied ? "fr-icon-checkbox-circle-fill" : "fr-icon-clipboard-line"}
         >
           {copied ? "Copié !" : "Copier"}
         </Button>

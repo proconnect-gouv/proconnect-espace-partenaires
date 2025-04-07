@@ -3,10 +3,7 @@ import { getServerSession } from "next-auth/next";
 import { pcdbClient } from "../../../lib/pcdbapi";
 import { authOptions } from "../auth/[...nextauth]";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await getServerSession(req, res, authOptions);
   if (!session?.user?.email) {
     return res.status(401).json({ message: "Not authenticated" });
@@ -19,11 +16,7 @@ export default async function handler(
 
   try {
     if (req.method === "PATCH") {
-      const app = await pcdbClient.updateOidcClient(
-        id,
-        session.user.email,
-        req.body
-      );
+      const app = await pcdbClient.updateOidcClient(id, session.user.email, req.body);
       return res.status(200).json(app);
     }
 

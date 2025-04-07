@@ -35,18 +35,13 @@ const { withDsfr, dsfrDocumentApi } = createNextDsfrIntegrationApi({
 
 export { dsfrDocumentApi };
 
-const { withAppEmotionCache, augmentDocumentWithEmotionCache } =
-  createEmotionSsrAdvancedApproach({
-    key: "css",
-  });
+const { withAppEmotionCache, augmentDocumentWithEmotionCache } = createEmotionSsrAdvancedApproach({
+  key: "css",
+});
 
 export { augmentDocumentWithEmotionCache };
 
-function App({
-  Component,
-  pageProps: { session, ...pageProps },
-  router,
-}: AppProps) {
+function App({ Component, pageProps: { session, ...pageProps }, router }: AppProps) {
   useEffect(() => {
     init({
       url: process.env.NEXT_PUBLIC_MATOMO_URL ?? "",

@@ -12,7 +12,7 @@ const Error500: NextPage = () => {
 
   return (
     <div>
-      <div className="fr-my-6w">
+      <div className="fr-my-6w fr-container">
         <div className="fr-grid-row fr-grid-row--center fr-grid-row--gutters">
           <div className="fr-server__body fr-col-12 fr-col-md-8">
             <h1 className="fr-h1" data-h1="Erreur 404">
@@ -22,8 +22,7 @@ const Error500: NextPage = () => {
               Un erreur s’est produite lors de l’execution de la page
             </p>
             <p className="fr-text--xl">
-              Nos équipes ont été notifiées et interviendront dans les meilleurs
-              délais.
+              Nos équipes ont été notifiées et interviendront dans les meilleurs délais.
               <br />
               Ré-essayez en passant par la <Link href="/">Page d’accueil</Link>.
             </p>

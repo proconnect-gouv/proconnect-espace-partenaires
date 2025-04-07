@@ -14,15 +14,13 @@ const NotFound: NextPage = () => {
 
   return (
     <div>
-      <div className="fr-my-6w">
+      <div className="fr-my-6w fr-container">
         <div className="fr-grid-row fr-grid-row--center fr-grid-row--gutters">
           <div className="fr-server__body fr-col-12 fr-col-md-8">
             <h1 className="fr-h1" data-h1="Erreur 404">
               Erreur 404
             </h1>
-            <p data-p="La page n’a pas été trouvée">
-              La page n’a pas été trouvée
-            </p>
+            <p data-p="La page n’a pas été trouvée">La page n’a pas été trouvée</p>
             <p className="fr-text--xl">
               Impossible de trouver la ressource demandée.
               <br />

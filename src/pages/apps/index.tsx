@@ -28,18 +28,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 };
 
-export default function AppsIndex({
-  apps,
-  error,
-}: {
-  apps: OidcClient[];
-  error?: string;
-}) {
+export default function AppsIndex({ apps, error }: { apps: OidcClient[]; error?: string }) {
   const [isCreating, setIsCreating] = useState(false);
 
   if (error) {
     return (
-      <div className={fr.cx("fr-alert", "fr-alert--error", "fr-mb-3w")}>
+      <div className={fr.cx("fr-alert", "fr-alert--error", "fr-mb-3w", "fr-container")}>
         <p>{error}</p>
       </div>
     );
@@ -67,63 +61,74 @@ export default function AppsIndex({
   };
 
   return (
-    <div className={fr.cx("fr-mb-10v")}>
-      <div
-        className={fr.cx(
-          "fr-grid-row",
-          "fr-grid-row--middle",
-          "fr-grid-row--gutters",
-          "fr-mb-3w"
-        )}
+    <>
+      <section
+        className={fr.cx("fr-pt-6w", "fr-pb-4w")}
+        style={{
+          backgroundColor: "var(--background-alt-blue-france)",
+        }}
+        id="apps-hero"
       >
-        <div className={fr.cx("fr-col")}>
+        <div className={fr.cx("fr-container")}>
           <h1>Vos applications</h1>
+          <p>Gérez vos applications OpenID Connect en cours de développement.</p>
         </div>
-        <div>
-          <Button
-            onClick={handleCreate}
-            disabled={isCreating}
-            iconId="fr-icon-add-line"
-          >
-            {isCreating ? "Création en cours..." : "Créer une application"}
-          </Button>
-        </div>
-      </div>
+      </section>
 
-      <div className={fr.cx("fr-grid-row", "fr-grid-row--gutters")}>
-        {apps.map((app) => (
-          <div key={app._id} className={fr.cx("fr-col-12", "fr-col-md-6")}>
-            <Card
-              background
-              border
-              // desc={app.title || app.name}
-              horizontal
-              linkProps={{
-                href: `/apps/${app._id}`,
-              }}
-              size="small"
-              start={
-                <>
-                  <ul className={fr.cx("fr-badges-group")}>
-                    <li>
-                      <Badge severity={app.active ? "info" : "warning"}>
-                        {app.active ? "Actif" : "Inactif"}
-                      </Badge>
-                    </li>
-                  </ul>
-                  {/* {app.site && (
-                    <p className={fr.cx("fr-mb-0", "fr-text--xs")}>
-                      → {app.site}
-                    </p>
-                  )} */}
-                </>
-              }
-              title={app.name}
-              titleAs="h2"
-            />
+      <div className={fr.cx("fr-my-4w", "fr-container")}>
+        <div
+          className={fr.cx(
+            "fr-grid-row",
+            "fr-grid-row--middle",
+            "fr-grid-row--gutters",
+            "fr-mb-3w"
+          )}
+        >
+          <div className={fr.cx("fr-col")}>
+            <h2>Fournisseurs de Service</h2>
           </div>
-        ))}
+          <div>
+            <Button onClick={handleCreate} disabled={isCreating} iconId="fr-icon-add-line">
+              {isCreating ? "Création en cours..." : "Créer un nouveau fournisseur de service"}
+            </Button>
+          </div>
+        </div>
+
+        <div className={fr.cx("fr-grid-row", "fr-grid-row--gutters")}>
+          {apps.map((app) => (
+            <div key={app._id} className={fr.cx("fr-col-12", "fr-col-md-6")}>
+              <Card
+                background
+                border
+                // desc={app.title || app.name}
+                horizontal
+                linkProps={{
+                  href: `/apps/${app._id}`,
+                }}
+                size="small"
+                start={
+                  <>
+                    <ul className={fr.cx("fr-badges-group")}>
+                      <li>
+                        <Badge severity={app.active ? "info" : "warning"}>
+                          {app.active ? "Actif" : "Inactif"}
+                        </Badge>
+                      </li>
+                    </ul>
+                    {/* {app.site && (
+                      <p className={fr.cx("fr-mb-0", "fr-text--xs")}>
+                        → {app.site}
+                      </p>
+                    )} */}
+                  </>
+                }
+                title={app.name}
+                titleAs="h2"
+              />
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

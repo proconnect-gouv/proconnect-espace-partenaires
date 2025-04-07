@@ -2,7 +2,6 @@ import { ReactNode } from "react";
 
 import { signOut, useSession } from "next-auth/react";
 
-import { fr } from "@codegouvfr/react-dsfr";
 import { Footer } from "@codegouvfr/react-dsfr/Footer";
 import { Header } from "@codegouvfr/react-dsfr/Header";
 import { SkipLinks } from "@codegouvfr/react-dsfr/SkipLinks";
@@ -64,7 +63,7 @@ export function PageLayout({ children }: LayoutProps) {
           {
             iconId: "fr-icon-question-line" as const,
             linkProps: {
-              href: "https://agentconnect.crisp.help/fr/",
+              href: "https://proconnect.crisp.help/fr/",
             },
             text: "Aide",
           },
@@ -80,7 +79,7 @@ export function PageLayout({ children }: LayoutProps) {
           {
             iconId: "fr-icon-question-line" as const,
             linkProps: {
-              href: "https://agentconnect.crisp.help/fr/",
+              href: "https://proconnect.crisp.help/fr/",
             },
             text: "Aide",
           },
@@ -98,10 +97,7 @@ export function PageLayout({ children }: LayoutProps) {
       <Head>
         <title>Espace Partenaires ProConnect</title>
         {contentSecurityPolicy && (
-          <meta
-            httpEquiv="Content-Security-Policy"
-            content={contentSecurityPolicy}
-          />
+          <meta httpEquiv="Content-Security-Policy" content={contentSecurityPolicy} />
         )}
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -151,7 +147,7 @@ export function PageLayout({ children }: LayoutProps) {
           },
         ]}
       />
-      <main role="main" className={fr.cx("fr-container")} id="content">
+      <main role="main" id="content">
         {children}
       </main>
       <Footer

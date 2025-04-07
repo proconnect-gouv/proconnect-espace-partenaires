@@ -4,9 +4,7 @@ import { createTransport } from "nodemailer";
 import { MagicLink } from "@gouvfr-lasuite/proconnect.email";
 import { SendVerificationRequestParams } from "next-auth/providers/email";
 
-export async function sendVerificationRequest(
-  params: SendVerificationRequestParams
-) {
+export async function sendVerificationRequest(params: SendVerificationRequestParams) {
   const { identifier, url, provider } = params;
   const { host } = new URL(url);
   const transport = createTransport(provider.server);

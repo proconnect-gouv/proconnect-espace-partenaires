@@ -7,12 +7,7 @@ type Props = {
   onSuccessClose?: () => void;
 };
 
-export const NotificationsContainer = ({
-  error,
-  success,
-  onErrorClose,
-  onSuccessClose,
-}: Props) => {
+export const NotificationsContainer = ({ error, success, onErrorClose, onSuccessClose }: Props) => {
   return (
     <div
       style={{
@@ -25,22 +20,10 @@ export const NotificationsContainer = ({
       }}
     >
       {error && (
-        <Alert
-          severity="error"
-          description={error}
-          small
-          closable
-          onClose={onErrorClose}
-        />
+        <Alert severity="error" description={error} small closable onClose={onErrorClose} />
       )}
       {success && (
-        <Alert
-          severity="success"
-          description={success}
-          small
-          closable
-          onClose={onSuccessClose}
-        />
+        <Alert severity="success" description={success} small closable onClose={onSuccessClose} />
       )}
     </div>
   );

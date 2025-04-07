@@ -15,13 +15,7 @@ export function Html(attributes: PropsWithChildren<JSX.HtmlHtmlTag>) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body style={{ backgroundColor: "#FAFAFA", paddingTop: "32px" }}>
-        <table
-          width="100%"
-          border={0}
-          cellpadding="0"
-          cellspacing="0"
-          bgcolor="#FAFAFA"
-        >
+        <table width="100%" border={0} cellpadding="0" cellspacing="0" bgcolor="#FAFAFA">
           <tr>
             <td align="center" valign="top">
               {children}
