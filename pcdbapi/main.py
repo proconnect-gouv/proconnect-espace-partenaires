@@ -150,6 +150,7 @@ async def create_oidc_client(data: OidcClient, request: Request):
     result = await app.collection.insert_one(d)
     if not result.acknowledged:  # pragma: no cover
         raise HTTPException(status_code=500)
+    format_oidc_client(d)
     return d
 
 
@@ -180,4 +181,5 @@ async def update_oidc_client(id: str, updates: OidcClient, request: Request):
     if not result.matched_count:
         raise HTTPException(status_code=404)
     updated = await app.collection.find_one({"_id": oid})
+    format_oidc_client(updated)
     return updated

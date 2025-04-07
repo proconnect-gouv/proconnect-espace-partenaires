@@ -27,7 +27,7 @@
     "test:watch": "vitest watch",
     "test:lint": "prettier '**/*.{ts,tsx,css,md,mdx,mjs,js}' --list-different && next lint --no-cache && npm run type-check",
     "test:links": "start-server-and-test 'npm run dev' 3000 'linkinator 'http://localhost:3000' --recurse --skip \"^(?!http://localhost:3000)\"'",
-    "test:pcdbapi": "docker-compose run -T --rm pcdbapi-test pytest -vv --cov=. --cov-report term-missing --cov-fail-under=100",
+    "test:pcdbapi": "docker-compose run -T --rm pcdbapi-test pytest -vv --cov=. --cov-report term-missing --cov-fail-under=100; docker-compose --profile test down",
     "type-check": "tsc --noEmit",
     "db_espace:reset": "dotenv -e .env.local -e .env.development -- prisma db push --schema=./prisma/db_espace.prisma",
     "db_espace:browse": "dotenv -e .env.local -e .env.development -- prisma studio --schema=./prisma/db_espace.prisma",
