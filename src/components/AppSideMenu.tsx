@@ -36,6 +36,13 @@ export const SideMenu = () => {
           },
           text: "Algorithme",
         },
+        {
+          isActive: hash === "production",
+          linkProps: {
+            href: "#production",
+          },
+          text: "Production",
+        },
       ]}
     />
   );
