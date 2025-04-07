@@ -176,7 +176,7 @@ export default function AppDetailPage({ app }: { app: OidcClient }) {
                 urls={data.redirect_uris}
                 onUpdate={(redirect_uris) => handleUpdate({ redirect_uris })}
                 title="Configuration des URLs"
-                description="Saisissez l&rsquo;url de la ou les pages sur lesquelles vous souhaitez utiliser le bouton de connexion MonComptePro"
+                description="Saisissez l&rsquo;url de la ou les pages sur lesquelles vous souhaitez utiliser le bouton de connexion ProConnect"
                 label="URL de la page de connexion :"
               />
             </div>
