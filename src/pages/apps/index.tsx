@@ -76,25 +76,26 @@ export default function AppsIndex({ apps, error }: { apps: OidcClient[]; error?:
       </section>
 
       <div className={fr.cx("fr-my-4w", "fr-container")}>
-        <div
-          className={fr.cx(
-            "fr-grid-row",
-            "fr-grid-row--middle",
-            "fr-grid-row--gutters",
-            "fr-mb-3w"
-          )}
-        >
+        <div className={fr.cx("fr-grid-row", "fr-grid-row--middle", "fr-grid-row--gutters")}>
           <div className={fr.cx("fr-col")}>
             <h2>Fournisseurs de Service</h2>
           </div>
-          <div>
+        </div>
+
+        <div className={fr.cx("fr-grid-row", "fr-grid-row--gutters", "fr-pb-6w")}>
+          {apps.length === 0 && (
+            <div className={fr.cx("fr-col-12")}>
+              <p>Aucun Fournisseur de Service n&rsquo;est encore associé à votre email.</p>
+              <p>Vous pouvez en créer un avec le bouton ci-dessous.</p>
+            </div>
+          )}
+
+          <div className={fr.cx("fr-col-12")}>
             <Button onClick={handleCreate} disabled={isCreating} iconId="fr-icon-add-line">
               {isCreating ? "Création en cours..." : "Créer un nouveau fournisseur de service"}
             </Button>
           </div>
-        </div>
 
-        <div className={fr.cx("fr-grid-row", "fr-grid-row--gutters")}>
           {apps.map((app) => (
             <div key={app._id} className={fr.cx("fr-col-12", "fr-col-md-6")}>
               <Card
@@ -110,17 +111,28 @@ export default function AppsIndex({ apps, error }: { apps: OidcClient[]; error?:
                   <>
                     <ul className={fr.cx("fr-badges-group")}>
                       <li>
-                        <Badge severity={app.active ? "info" : "warning"}>
+                        <Badge severity="info">EN TEST</Badge>
+                      </li>
+                      <li>
+                        <Badge severity={app.active ? "success" : "error"}>
                           {app.active ? "Actif" : "Inactif"}
                         </Badge>
                       </li>
                     </ul>
-                    {/* {app.site && (
-                      <p className={fr.cx("fr-mb-0", "fr-text--xs")}>
-                        → {app.site}
-                      </p>
-                    )} */}
                   </>
+                }
+                end={
+                  <span className={fr.cx("fr-mb-0", "fr-text--xs")}>
+                    {app.createdAt && app.updatedAt && (
+                      <span className={fr.cx("fr-mb-0", "fr-text--md")}>
+                        <strong>Date de création :</strong> {app.createdAt.substring(8, 10)}/
+                        {app.createdAt.substring(5, 7)}/{app.createdAt.substring(0, 4)}
+                        <br />
+                        <strong>Date de mise à jour :</strong> {app.updatedAt.substring(8, 10)}/
+                        {app.updatedAt.substring(5, 7)}/{app.updatedAt.substring(0, 4)}
+                      </span>
+                    )}
+                  </span>
                 }
                 title={app.name}
                 titleAs="h2"

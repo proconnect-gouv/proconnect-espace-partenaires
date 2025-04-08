@@ -23,7 +23,8 @@ export interface OidcClient {
   claims?: string[];
   IPServerAddressesAndRanges?: string[];
   credentialsFlow?: boolean;
-  updatedAt?: Date;
+  createdAt?: string;
+  updatedAt?: string;
   updatedBy?: string;
   type?: string;
   jwks_uri?: string;

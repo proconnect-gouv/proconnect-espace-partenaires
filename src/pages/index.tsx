@@ -111,7 +111,7 @@ const Home: NextPage = () => {
             />
             <h3 className="fr-mb-3v fr-mb-md-5 fr-h5">Identifiez vos utilisateurs</h3>
             <p className="fr-text--lg">
-              Associez chaque utilisateur à son organisation grâce au code SIRET.
+              Associez chaque utilisateur de façon sécurisée au SIRET de son organisation.
             </p>
           </div>
           <div className="fr-col-12 fr-col-sm-9 fr-col-md-7 fr-col-lg-4 fc-text--center">
@@ -292,12 +292,12 @@ const Home: NextPage = () => {
         </div>
 
         <div className="fc-text--center">
-          <a href="https://www.proconnect.gouv.fr/services" className={fr.cx("fr-link")}>
+          <a
+            href="https://www.proconnect.gouv.fr/services"
+            className={fr.cx("fr-link")}
+            target="_blank"
+          >
             Découvrez l&rsquo;annuaire des services{" "}
-            <span
-              className="fr-icon-arrow-right-line fr-icon--sm fr-ml-2v"
-              aria-hidden="true"
-            ></span>
           </a>
         </div>
       </section>

@@ -6,6 +6,7 @@ import { Select } from "@codegouvfr/react-dsfr/Select";
 import debounce from "debounce";
 import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth/next";
+import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
 import { SideMenu } from "../../components/AppSideMenu";
 import { CopyableField } from "../../components/CopyableField";
@@ -132,14 +133,21 @@ export default function AppDetailPage({ app }: { app: OidcClient }) {
               segments={[{ label: "Applications", linkProps: { href: "/apps" } }]}
             />
 
-            <div className={fr.cx("fr-grid-row", "fr-grid-row--middle", "fr-mb-4w")}>
+            <div className={fr.cx("fr-mb-4w")}>
               <div className={fr.cx("fr-col")}>
-                <h2>{data.name}</h2>
+                <h2>Gestion de votre Fournisseur de Service</h2>
               </div>
               <div>
-                <Badge severity={data.active ? "success" : "info"}>
-                  {data.active ? "Active" : "Inactive"}
-                </Badge>
+                <ul className={fr.cx("fr-badges-group")}>
+                  <li>
+                    <Badge severity="info">EN TEST</Badge>
+                  </li>
+                  <li>
+                    <Badge severity={app.active ? "success" : "error"}>
+                      {app.active ? "Actif" : "Inactif"}
+                    </Badge>
+                  </li>
+                </ul>
               </div>
             </div>
 
@@ -148,7 +156,7 @@ export default function AppDetailPage({ app }: { app: OidcClient }) {
                 className={fr.cx("fr-col-md-7")}
                 state={data.name === "" ? "error" : "default"}
                 stateRelatedMessage="Nom de projet obligatoire"
-                label="Nom du projet"
+                label="Nom de l&rsquo;application"
                 nativeInputProps={{
                   type: "text",
                   placeholder: "Test - date",
@@ -188,7 +196,7 @@ export default function AppDetailPage({ app }: { app: OidcClient }) {
                   handleUpdate({ post_logout_redirect_uris })
                 }
                 title="Configuration des URLs de déconnexion"
-                description="Saisissez l&rsquo;url de la ou les pages sur lesquelles vous souhaitez rediriger l&rsquo;utilisateur après sa déconnexion"
+                description="Saisissez l&rsquo;adresse des pages sur lesquelles vous souhaitez rediriger l&rsquo;utilisateur après sa déconnexion."
                 label="URL de la page de déconnexion :"
               />
             </div>
@@ -213,6 +221,18 @@ export default function AppDetailPage({ app }: { app: OidcClient }) {
                   </option>
                 ))}
               </Select>
+            </div>
+
+            <div id="production" className={fr.cx("fr-mb-10v")}>
+              <h3>Passage en production</h3>
+              <p>Cette application est encore en test.</p>
+              <p>
+                Pour connaître les étapes à suivre pour passer en production, veuillez{" "}
+                <Link href="/docs/fournisseur-service" className={fr.cx("fr-link")}>
+                  consulter la documentation
+                </Link>
+                .
+              </p>
             </div>
           </div>
         </div>
