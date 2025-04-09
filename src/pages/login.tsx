@@ -5,11 +5,10 @@ import { Input } from "@codegouvfr/react-dsfr/Input";
 import { GetServerSideProps, NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth/next";
 import { signIn } from "next-auth/react";
-import Head from "next/head";
+import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { authOptions } from "./api/auth/[...nextauth]";
-
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getServerSession(
     context.req as NextApiRequest,
@@ -61,9 +60,7 @@ export default function Login() {
 
   return (
     <>
-      <Head>
-        <title>Connexion | ProConnect</title>
-      </Head>
+      <NextSeo title="Connexion" />
       <div className={fr.cx("fr-py-6w", "fr-container")}>
         <div className={fr.cx("fr-grid-row", "fr-grid-row--center")}>
           <div className={fr.cx("fr-col-12", "fr-col-md-8", "fr-col-lg-6")}>

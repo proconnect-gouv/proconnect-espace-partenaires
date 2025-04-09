@@ -21,41 +21,49 @@ const homeLinkPops = {
   title: "Espace Partenaires ProConnect - Accueil",
 };
 
-const bottomLinks = [
-  {
-    text: "Conditions générales d'utilisation",
-    linkProps: {
-      href: "https://www.proconnect.gouv.fr/cgu",
-    },
-  },
-  {
-    text: "Statistiques",
-    linkProps: {
-      href: "https://www.proconnect.gouv.fr/stats",
-    },
-  },
-  {
-    text: "Statuts des services",
-    linkProps: {
-      href: "https://status.agentconnect.gouv.fr/",
-    },
-  },
-  {
-    text: "Contribuer sur GitHub",
-    linkProps: {
-      href: `${process.env.NEXT_PUBLIC_APP_REPOSITORY_URL}`,
-    },
-  },
-];
-
 type LayoutProps = {
   children: ReactNode;
+};
+
+const getGithubDeepLink = (path: string) => {
+  if (path.startsWith("/docs")) {
+    return "/tree/main/src/pages/docs";
+  } else {
+    return "";
+  }
 };
 
 export function PageLayout({ children }: LayoutProps) {
   const router = useRouter();
   const { data: session } = useSession();
   const contentSecurityPolicy = process.env.CONTENT_SECURITY_POLICY;
+
+  const bottomLinks = [
+    {
+      text: "Conditions générales d'utilisation",
+      linkProps: {
+        href: "https://www.proconnect.gouv.fr/cgu",
+      },
+    },
+    {
+      text: "Statistiques",
+      linkProps: {
+        href: "https://www.proconnect.gouv.fr/stats",
+      },
+    },
+    {
+      text: "Statuts des services",
+      linkProps: {
+        href: "https://status.agentconnect.gouv.fr/",
+      },
+    },
+    {
+      text: "Contribuer sur GitHub",
+      linkProps: {
+        href: `${process.env.NEXT_PUBLIC_APP_REPOSITORY_URL}` + getGithubDeepLink(router.asPath),
+      },
+    },
+  ];
 
   const quickAccessItems =
     session && session.user
@@ -95,15 +103,10 @@ export function PageLayout({ children }: LayoutProps) {
   return (
     <>
       <Head>
-        <title>Espace Partenaires ProConnect</title>
         {contentSecurityPolicy && (
           <meta httpEquiv="Content-Security-Policy" content={contentSecurityPolicy} />
         )}
         <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content="Documentation technique et gestion des applications en développement"
-        />
       </Head>
       <SkipLinks
         links={[
@@ -112,8 +115,12 @@ export function PageLayout({ children }: LayoutProps) {
             label: "Contenu",
           },
           {
-            anchor: "#header-navigation",
+            anchor: "#fr-header",
             label: "Menu",
+          },
+          {
+            anchor: "#fr-footer",
+            label: "Pied de page",
           },
         ]}
       />

@@ -29,75 +29,79 @@ export const docTree: SideMenuProps.Item[] = [
         },
       },
       {
-        text: "Bouton ProConnect",
-        linkProps: { href: "/docs/fournisseur-service/bouton_proconnect" },
-      },
-      {
         text: "Remplir le DataPass",
         linkProps: { href: "/docs/fournisseur-service/datapass-fs" },
       },
       {
-        text: "Données fournies",
-        linkProps: { href: "/docs/fournisseur-service/donnees_fournies" },
-      },
-      {
-        text: "Scopes et claims",
-        linkProps: { href: "/docs/fournisseur-service/scope-claims" },
-      },
-      {
-        text: "Scope custom",
-        linkProps: { href: "/docs/fournisseur-service/custom-scope" },
-      },
-
-      {
-        text: "Connaître le FI utilisé",
-        linkProps: {
-          href: "/docs/fournisseur-service/connaitre-le-fi-utilise",
-        },
-      },
-      {
-        text: "Redirection vers un FI",
-        linkProps: { href: "/docs/fournisseur-service/idp_hint_usage" },
-      },
-      {
-        text: "Préremplir l'email",
-        linkProps: {
-          href: "/docs/fournisseur-service/login_hint_usage",
-        },
-      },
-      {
-        text: "Identifiants de test",
-        linkProps: { href: "/docs/fournisseur-service/identifiants-fi-test" },
-      },
-      {
-        text: "Migration AgentConnect",
-        linkProps: {
-          href: "/docs/fournisseur-service/changement-agentconnect-proconnect-fs",
-        },
-      },
-      {
-        text: "Single Sign-On",
-        linkProps: {
-          href: "/docs/fournisseur-service/sso",
-        },
-      },
-      {
-        text: "Certification dirigeant",
-        linkProps: {
-          href: "/docs/fournisseur-service/certification-dirigeant",
-        },
-      },
-      {
-        text: "Erreurs récurrentes",
-        linkProps: {
-          href: "/docs/fournisseur-service/troubleshooting-fs",
-        },
-      },
-      {
-        text: "Aide et support",
-        linkProps: {
-          href: "/docs/fournisseur-service/aide_support",
-        },
+        text: "Ressources",
+        items: [
+          {
+            text: "Aide et support",
+            linkProps: {
+              href: "/docs/fournisseur-service/aide_support",
+            },
+          },
+          {
+            text: "Bouton ProConnect",
+            linkProps: { href: "/docs/fournisseur-service/bouton_proconnect" },
+          },
+          {
+            text: "Données fournies",
+            linkProps: { href: "/docs/fournisseur-service/donnees_fournies" },
+          },
+          {
+            text: "Scopes et claims",
+            linkProps: { href: "/docs/fournisseur-service/scope-claims" },
+          },
+          {
+            text: "Scope custom",
+            linkProps: { href: "/docs/fournisseur-service/custom-scope" },
+          },
+          {
+            text: "Connaître le FI utilisé",
+            linkProps: {
+              href: "/docs/fournisseur-service/connaitre-le-fi-utilise",
+            },
+          },
+          {
+            text: "Redirection vers un FI",
+            linkProps: { href: "/docs/fournisseur-service/idp_hint_usage" },
+          },
+          {
+            text: "Préremplir l'email",
+            linkProps: {
+              href: "/docs/fournisseur-service/login_hint_usage",
+            },
+          },
+          {
+            text: "Identifiants de test",
+            linkProps: { href: "/docs/fournisseur-service/identifiants-fi-test" },
+          },
+          {
+            text: "Migration AgentConnect",
+            linkProps: {
+              href: "/docs/fournisseur-service/changement-agentconnect-proconnect-fs",
+            },
+          },
+          {
+            text: "Single Sign-On",
+            linkProps: {
+              href: "/docs/fournisseur-service/sso",
+            },
+          },
+          {
+            text: "Certification dirigeant",
+            linkProps: {
+              href: "/docs/fournisseur-service/certification-dirigeant",
+            },
+          },
+          {
+            text: "Erreurs récurrentes",
+            linkProps: {
+              href: "/docs/fournisseur-service/troubleshooting-fs",
+            },
+          },
+        ],
       },
     ],
   },
@@ -118,38 +122,43 @@ export const docTree: SideMenuProps.Item[] = [
         linkProps: { href: "/docs/fournisseur-identite/configuration" },
       },
       {
-        text: "Test de configuration",
-        linkProps: { href: "/docs/fournisseur-identite/test-configuration-fi" },
-      },
-      {
-        text: "Plateformes et Hybridge",
-        linkProps: { href: "/docs/fournisseur-identite/plateformes_fi" },
-      },
-      {
-        text: "Certificats",
-        linkProps: { href: "/docs/fournisseur-identite/certificats_fi" },
-      },
-      {
-        text: "LemonLDAP",
-        linkProps: {
-          href: "/docs/fournisseur-identite/idp-configs/lemon-ldap",
-        },
-      },
-      {
-        text: "Keycloak",
-        linkProps: {
-          href: "/docs/fournisseur-identite/idp-configs/keycloak",
-        },
-      },
-      {
-        text: "Migration AgentConnect",
-        linkProps: {
-          href: "/docs/fournisseur-identite/changement-agentconnect-proconnect-fi",
-        },
-      },
-      {
-        text: "Erreurs récurrentes",
-        linkProps: { href: "/docs/fournisseur-identite/troubleshooting-fi" },
+        text: "Ressources",
+        items: [
+          {
+            text: "Test de configuration",
+            linkProps: { href: "/docs/fournisseur-identite/test-configuration-fi" },
+          },
+          {
+            text: "Plateformes et Hybridge",
+            linkProps: { href: "/docs/fournisseur-identite/plateformes_fi" },
+          },
+          {
+            text: "Certificats",
+            linkProps: { href: "/docs/fournisseur-identite/certificats_fi" },
+          },
+          {
+            text: "LemonLDAP",
+            linkProps: {
+              href: "/docs/fournisseur-identite/idp-configs/lemon-ldap",
+            },
+          },
+          {
+            text: "Keycloak",
+            linkProps: {
+              href: "/docs/fournisseur-identite/idp-configs/keycloak",
+            },
+          },
+          {
+            text: "Migration AgentConnect",
+            linkProps: {
+              href: "/docs/fournisseur-identite/changement-agentconnect-proconnect-fi",
+            },
+          },
+          {
+            text: "Erreurs récurrentes",
+            linkProps: { href: "/docs/fournisseur-identite/troubleshooting-fi" },
+          },
+        ],
       },
     ],
   },

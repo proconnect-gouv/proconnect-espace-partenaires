@@ -1,15 +1,13 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { NextPage } from "next";
-import Head from "next/head";
+import { NextSeo } from "next-seo";
 import Image from "next/image";
 
 const Home: NextPage = () => {
   return (
     <>
-      <Head>
-        <title>ProConnect | Identifiez les professionnels sur les sites de l’administration</title>
-      </Head>
+      <NextSeo title="Accueil" />
 
       <section
         className={fr.cx("fr-py-6w")}
