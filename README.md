@@ -13,6 +13,13 @@ Ce dépôt a été initié à partir du [template Next.js de betagouv](https://g
 
 ## Lancer le code
 
+### Prérequis
+
+- Node installé
+- Docker installé
+
+### Git clone
+
 Après avoir cloné le projet :
 
 ### Développement

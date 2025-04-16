@@ -20,12 +20,11 @@ Il vous est possible d'obtenir des données complémentaires à celles-ci. Cepen
 
 ProConnect renvoie les données suivantes quand elles sont données par le fournisseur d'identité :
 
-| Champs               | Obligatoire | Description                               | Format                                                     |
-| -------------------- | ----------- | ----------------------------------------- | ---------------------------------------------------------- |
-| phone                | non         | Téléphone de contact                      | Format non normé                                           |
-| idp_id               | oui         | Fournisseur d'Identité utilisé par l'utilisateur pour s'authentifier (plus de détails [ici](./connaitre-le-fi-utilise.md))                      | String  |
-| custom               | non         | Champ avec données spécifiques au Fournisseur d'Identité (plus de détails [ici](./custom-scope.md))| JSON|
-
+| Champs | Obligatoire | Description                                                                                                                | Format           |
+| ------ | ----------- | -------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| phone  | non         | Téléphone de contact                                                                                                       | Format non normé |
+| idp_id | oui         | Fournisseur d'Identité utilisé par l'utilisateur pour s'authentifier (plus de détails [ici](./connaitre-le-fi-utilise.md)) | String           |
+| custom | non         | Champ avec données spécifiques au Fournisseur d'Identité (plus de détails [ici](./custom-scope.md))                        | JSON             |
 
 ## Les données complémentaires
 
