@@ -13,7 +13,7 @@ Pour savoir quelles URL appeler au cours de l'authentification, vous aurez besoi
 
 ### 1.3. Modification des redirect_uri
 
-Si au cours de l'intégration, vous souhaitez changer les redirect_uri de connexion ou de déconnexion configurées par ProConnect, vous pouvez faire la demande en 2 minutes ici : https://www.demarches-simplifiees.fr/commencer/demande-de-modification-d-un-fournisseur-de-service
+Si au cours de l'intégration, vous souhaitez changer les redirect_uri de connexion ou de déconnexion configurées par ProConnect, vous pouvez le faire directement sur [votre espace](../../apps). Pour un changement en production, vous pourrez faire la demande en 2 minutes sur [ce lien](https://www.demarches-simplifiees.fr/commencer/demande-de-modification-d-un-fournisseur-de-service).
 
 ### 1.4. Exemple d'intégration de test
 
@@ -282,8 +282,8 @@ ProConnect renvoie le state communiqué par le FS lors de la demande de déconne
 ##### 2.4.2.2. Paramètres
 
 | nom     | requis/optionnel | type de données                | description                                                                                                                                                      |
-| ------- | ---------------- | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
-| `state` | requis           | string (minimum 32 caractères) | `<state>` communiqué par par le FS dans l'appel au `Logout Endpoint`. Cette information est à vérifier par le FS, afin d'empêcher l'exploitation de failles CSRF |     |
+| ------- | ---------------- | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `state` | requis           | string (minimum 32 caractères) | `<state>` communiqué par par le FS dans l'appel au `Logout Endpoint`. Cette information est à vérifier par le FS, afin d'empêcher l'exploitation de failles CSRF |
 
 ##### 2.4.2.3. Exemple d'appel
 
