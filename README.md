@@ -13,14 +13,21 @@ Ce dépôt a été initié à partir du [template Next.js de betagouv](https://g
 
 ## Lancer le code
 
+### Prérequis
+
+- Node installé
+- Docker installé
+
+### Git clone
+
 Après avoir cloné le projet :
 
 ### Développement
 
 ```bash
 docker-compose up -d # pour lancer les conteneurs de base de données
-npm run db_espace:reset # pour créer le schéma de la base de donnée
 npm install # pour installer les dépendances
+npm run db_espace:reset # pour créer le schéma de la base de donnée
 npm run dev # pour lancer en mode développement
 ```
 
