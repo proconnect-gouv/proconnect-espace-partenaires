@@ -17,6 +17,7 @@ En plus de l'openid, qui est obligatoire, des données sont **systématiquement*
 Il vous est possible d'obtenir des données complémentaires à celles-ci. Cependant ces données ne sont pas obligatoirement fournies par tous les Fournisseurs d'Identité, et leur format est plus sujet à fluctuation selon la qualité de l'annuaire du Fournisseur d'Identité.
 
 ## Les données additionnelles
+<<<<<<< HEAD
 
 ProConnect renvoie les données suivantes quand elles sont données par le fournisseur d'identité :
 
@@ -25,8 +26,21 @@ ProConnect renvoie les données suivantes quand elles sont données par le fourn
 | phone  | non         | Téléphone de contact                                                                                                       | Format non normé |
 | idp_id | oui         | Fournisseur d'Identité utilisé par l'utilisateur pour s'authentifier (plus de détails [ici](./connaitre-le-fi-utilise.md)) | String           |
 | custom | non         | Champ avec données spécifiques au Fournisseur d'Identité (plus de détails [ici](./custom-scope.md))                        | JSON             |
+=======
+>>>>>>> main
+
+ProConnect renvoie les données suivantes quand elles sont données par le fournisseur d'identité :
+
+| Champs               | Obligatoire | Description                               | Format                                                     |
+| -------------------- | ----------- | ----------------------------------------- | ---------------------------------------------------------- |
+| phone                | non         | Téléphone de contact                      | Format non normé                                           |
+| idp_id               | oui         | Fournisseur d'Identité utilisé par l'utilisateur pour s'authentifier (plus de détails [ici](./connaitre-le-fi-utilise.md))                      | String  |
+| custom               | non         | Champ avec données spécifiques au Fournisseur d'Identité (plus de détails [ici](./custom-scope.md))| JSON|
+
 
 ## Les données complémentaires
+
+Ces données dépendent des Fournisseurs d'Identité et peuvent varier fortement d'un Fournisseur d'Identité à l'autre. Pour plus de détails, n'hésitez pas à contacter le Fournisseur d'Identité sur ces données.
 
 Ces données dépendent des Fournisseurs d'Identité et peuvent varier fortement d'un Fournisseur d'Identité à l'autre. Pour plus de détails, n'hésitez pas à contacter le Fournisseur d'Identité sur ces données.
 
