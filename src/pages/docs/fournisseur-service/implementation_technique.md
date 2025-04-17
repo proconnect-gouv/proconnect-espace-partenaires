@@ -266,7 +266,7 @@ Host: fca.integ01.dev-agentconnect.fr
 
 #### 2.4.2. Implémentation de la route `post_logout_redirect_uri`
 
-Il s'agit de la route vers laquelle sera redirigée votre utilisateur dans le navigateur après authentification par le Fournisseur d'Identité.
+Il s'agit de la route vers laquelle sera redirigé votre utilisateur après déconnexion par le Fournisseur d'Identité.
 
 Le query parameter renvoyé dans l'URL est décrit ci-dessous.
 
