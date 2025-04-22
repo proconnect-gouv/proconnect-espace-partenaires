@@ -11,7 +11,6 @@ Vous trouverez [ici](./identifiants-fi-test.md) les identifiants pour vous conne
 
 Pour savoir quelles URL appeler au cours de l'authentification, vous aurez besoin de connaître la valeur de PROCONNECT_DOMAIN qui correspond à votre environnement et votre réseau. Vous la trouverez à [ce lien](../ressources/valeur_ac_domain.md).
 
-
 ### 1.3. Modification des redirect_uri
 
 Si au cours de l'intégration, vous souhaitez changer les redirect_uri de connexion ou de déconnexion configurées par ProConnect, vous pouvez le faire directement sur [votre espace](../../apps). Pour un changement en production, vous pourrez faire la demande en 2 minutes sur [ce lien](https://www.demarches-simplifiees.fr/commencer/demande-de-modification-d-un-fournisseur-de-service).
