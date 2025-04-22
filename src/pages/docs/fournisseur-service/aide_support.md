@@ -20,7 +20,7 @@ Vous pouvez utiliser notre chaine Tchap pour faire des pré-questions avant la d
 
 ### 2.2. Les éléments à nous envoyer
 
-ProConnect a plusieurs centaines d'applications autorisées sur 4 bases de données (Internet/RIE & Integ/Prod), il est parfois compliqué de s'y retrouver. Ainsi, pour avoir une aide rapide et efficace, nous vous demanderons de nous envoyer :
+ProConnect a plusieurs centaines d'applications autorisées sur 4 bases de données (Internet/RIE & Integ/Prod). Pour nous aider à retrouver rapidement votre erreur, vous pouvez nous envoyer :
 
 - une mise en contexte du problème
 - le `client_id` de l'application
