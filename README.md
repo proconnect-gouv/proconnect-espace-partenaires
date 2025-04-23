@@ -1,4 +1,4 @@
-# Espace Partenaire ProConnect
+# Espace Partenaires ProConnect
 
 https://partenaires.proconnect.gouv.fr/
 
