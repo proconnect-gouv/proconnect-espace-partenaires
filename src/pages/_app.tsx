@@ -10,6 +10,7 @@ import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesd
 import { createEmotionSsrAdvancedApproach } from "tss-react/next";
 
 import { init } from "@socialgouv/matomo-next";
+import { DefaultSeo } from "next-seo";
 
 import { DocsLayoutFactory } from "../layouts/docs";
 import { PageLayout } from "../layouts/page";
@@ -59,6 +60,23 @@ function App({ Component, pageProps: { session, ...pageProps }, router }: AppPro
 
   return (
     <SessionProvider session={session}>
+      <DefaultSeo
+        defaultTitle="Espace Partenaires ProConnect"
+        titleTemplate="%s - Espace Partenaires ProConnect"
+        description="Documentation technique et gestion des applications en développement"
+        openGraph={{
+          title: "Espace Partenaires ProConnect",
+          description: "Documentation technique et gestion des applications en développement",
+          images: [
+            {
+              url: process.env.NEXT_PUBLIC_SITE_URL + "/images/espace-partenaires-hero.png",
+              width: 1000,
+              height: 370,
+              alt: "Espace Partenaires ProConnect",
+            },
+          ],
+        }}
+      />
       <div
         style={{
           minHeight: "100vh",

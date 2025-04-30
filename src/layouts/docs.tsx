@@ -1,12 +1,12 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
 import { SideMenu, SideMenuProps } from "@codegouvfr/react-dsfr/SideMenu";
+import { NextSeo } from "next-seo";
 import Link from "next/link";
 import { ReactNode, useMemo } from "react";
 import styles from "./docs.module.css";
 import { docTree } from "./docsNav";
 import { PageLayout } from "./page";
-
 interface DocsLayoutProps {
   children: ReactNode;
   pathname: string;
@@ -109,6 +109,14 @@ function DocsLayout({ children, pathname }: DocsLayoutProps) {
 
   return (
     <PageLayout>
+      <NextSeo
+        title={breadcrumbSegments
+          .slice(2)
+          .reverse()
+          .map((d) => d.label)
+          .join(" - ")}
+        titleTemplate="%s - Documentation ProConnect"
+      />
       <div className={fr.cx("fr-grid-row", "fr-container")}>
         <div className={fr.cx("fr-col-12", "fr-col-md-4")}>
           <SideMenu
