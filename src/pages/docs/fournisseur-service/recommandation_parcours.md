@@ -10,7 +10,7 @@ Voici quelques recommandations pour un parcours simple et sans blocage pour les 
 
 ---
 
-#### Les grands principes à respecter pour guider vos utilisateur.ice.s
+#### Les grands principes à respecter pour guider vos utilisateur·ice·s
 
 1. Leur donner toutes les informations nécessaires
 
