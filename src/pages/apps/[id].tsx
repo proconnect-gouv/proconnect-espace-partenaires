@@ -185,7 +185,7 @@ export default function AppDetailPage({ app }: { app: OidcClient }) {
                 onUpdate={(redirect_uris) => handleUpdate({ redirect_uris })}
                 title="Configuration des URLs de redirection"
                 description="Saisissez l&rsquo;adresse des pages sur lesquelles vos utilisateurs seront redirigés après leur authentification sur ProConnect."
-                label="URL de la page de connexion :"
+                label="URL de la page de redirection :"
               />
             </div>
 
