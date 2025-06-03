@@ -40,6 +40,14 @@ Avec la librairie [react-dsfr](https://github.com/codegouvfr/react-dsfr/blob/mai
 
 La documentation détaillée ce trouve ici : [ProConnectButton](https://components.react-dsfr.codegouv.studio/?path=/docs/components-proconnectbutton--default).
 
+### Vous utilisez le Système de Design de l'État avec Ruby/Rails
+
+Avec la librairie [dsfr-view-components](https://betagouv.github.io/dsfr-view-components/), vous pouvez aussi implémentez le bouton simplement :
+
+```erb
+<%= dsfr_proconnect_button(target: "#") %>
+```
+
 ### Vous n’utilisez pas le Système de Design de l'État
 
 Vous pouvez utiliser l’intégration suivante :
