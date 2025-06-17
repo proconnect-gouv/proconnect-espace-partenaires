@@ -20,7 +20,7 @@ Si au cours de l'intégration, vous souhaitez changer les redirect_uri de connex
 
 ### 1.4. Exemple d'intégration de test
 
-[Dépôt Github d'un client ProConnect](https://github.com/numerique-gouv/proconnect-test-client)
+Voici un exemple d'application qui a implémenté ProConnect : [Docs, porté par la Dinum](https://github.com/suitenumerique/docs).
 
 ## 📘 2. Mode d'emploi technique
 
