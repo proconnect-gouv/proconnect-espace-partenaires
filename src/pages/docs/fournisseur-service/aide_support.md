@@ -14,7 +14,7 @@ Si cela n'est pas suffisant, voici la marche à suivre pour vous aider.
 
 ### 2.1. Canaux de communication
 
-Comme ces conversations peuvent envoyer de gros messages, nous vous recommandons de passer par notre email : support+partenaires@proconnect.gouv.fr
+Comme ces conversations peuvent envoyer de gros messages, nous vous recommandons de passer par notre email : support.partenaires@mail.proconnect.gouv.fr
 
 Vous pouvez utiliser notre chaine Tchap pour faire des pré-questions avant la demande d'aide.
 

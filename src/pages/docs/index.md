@@ -10,5 +10,5 @@ Vous intégrez ProConnect en tant que Fournisseur d’Identité et permettez à 
 
 Pour toute question technique, vous pouvez contacter l'équipe ProConnect par les deux canaux suivants :
 
-- par mail à support+partenaires@proconnect.gouv.fr
+- par mail à support.partenaires@mail.proconnect.gouv.fr
 - [sur notre chaîne Tchap](https://www.tchap.gouv.fr/#/room/!kBghcRpyMNThkFQjdW:agent.dinum.tchap.gouv.fr)
