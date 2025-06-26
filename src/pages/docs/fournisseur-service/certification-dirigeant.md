@@ -78,7 +78,18 @@ Il est **IMPÉRATIF** de vérifier la présence et la valeur du paramètre `acr`
 > [!CAUTION]
 > Ne jamais se fier uniquement à la présence d'autres attributs dans l'ID token. La vérification explicite de l'`acr` est le seul moyen de s'assurer que l'utilisateur possède le niveau de certification requis.
 
-## 5. Références
+## 5. Test de l'implémentation
+
+Pour tester votre implémentation :
+
+1. Créer un compte avec un email sur le domaine @yopmail.fr
+2. Définir un mot de passe pour le compte
+3. Choisir l'identité Angela Claire Louise DUBOIS
+4. Entrer le SIRET 83832482000011
+
+Plus de cas de tests sont disponibles sur https://github.com/numerique-gouv/proconnect-identite/blob/master/cypress/e2e/signin_with_certification_dirigeant/index.cy.ts
+
+## 6. Références
 
 - [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html)
 - [Utilisation du paramètre `claims`](https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter)
