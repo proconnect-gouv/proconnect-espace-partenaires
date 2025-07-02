@@ -13,7 +13,7 @@ En cas d'erreur, deux documents vous permettront d'analyser vos erreurs :
 Certains logiciels nécessitent des configurations particulières pour fonctionner avec ProConnect. Vous pouvez consulter ces spécificités si votre logiciel se trouve dans la liste ci-dessous :
 
 - [LemonLDAP](./idp-configs/lemon-ldap.md)
-- [Keycloak](./idp-configs/keycloak/configuration.md)
+- [Keycloak](./idp-configs/keycloak.md)
 
 ## Trouver la Discovery URL
 
