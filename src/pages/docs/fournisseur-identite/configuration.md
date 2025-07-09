@@ -53,7 +53,12 @@ Vous trouverez les valeurs possibles pour ce claim [ici](../ressources/claim_amr
 
 ## Configurer la signature des échanges entre ProConnect et le FI
 
-Les appels aux endpoints de création de jeton (`/token`) et de récupération des informations utilisateur (`/user-info`) par ProConnect doivent être signés.
+Les appels aux endpoints de création de jeton (`/token`) et de récupération des informations utilisateur (`/user-info`) par ProConnect peuvent être signés.
+
+L'appel à `/token` **doit** être signé par l'un des trois algorithmes ci-dessous.
+
+L'appel à `/user-info` **peut** ne pas être signé, c'est-à-dire renvoyer un JSON (et non un JWT).
+
 ProConnect gère trois algorithmes de signatures :
 
 - Asymétrique :
