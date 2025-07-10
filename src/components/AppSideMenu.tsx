@@ -30,11 +30,11 @@ export const SideMenu = () => {
           text: "URLs",
         },
         {
-          isActive: hash === "alg",
+          isActive: hash === "algs",
           linkProps: {
-            href: "#alg",
+            href: "#algs",
           },
-          text: "Algorithme",
+          text: "Algorithmes",
         },
         {
           isActive: hash === "production",

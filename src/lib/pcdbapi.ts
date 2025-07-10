@@ -10,7 +10,7 @@ export interface OidcClient {
   redirect_uris: string[];
   post_logout_redirect_uris: string[];
   id_token_signed_response_alg: string;
-  userinfo_signed_response_alg: string;
+  userinfo_signed_response_alg: string | null;
   active: boolean;
   client_secret?: string;
   key?: string;

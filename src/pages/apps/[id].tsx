@@ -49,7 +49,10 @@ export default function AppDetailPage({ app }: { app: OidcClient }) {
   const [data, setData] = useState(app);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [saveSuccess, setSaveSuccess] = useState(false);
-  const [signatureAlg, setSignatureAlg] = useState(data.id_token_signed_response_alg || "RS256");
+  const [idTokenSignatureAlg, setIdTokenSignatureAlg] = useState(data.id_token_signed_response_alg);
+  const [userInfoSignatureAlg, setUserInfoSignatureAlg] = useState(
+    data.userinfo_signed_response_alg || ""
+  );
 
   const handleSave = useCallback(
     async (updates: Partial<OidcClient>) => {
@@ -106,18 +109,31 @@ export default function AppDetailPage({ app }: { app: OidcClient }) {
     }
   };
 
-  const handleSignatureAlgChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleIdTokenSignatureAlgChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newAlg = e.target.value;
-    setSignatureAlg(newAlg);
+    setIdTokenSignatureAlg(newAlg);
 
     try {
       handleUpdate({
         id_token_signed_response_alg: newAlg,
-        userinfo_signed_response_alg: newAlg,
       });
     } catch (error) {
-      console.error("Error updating signature algorithm:", error);
-      setSaveError("Failed to update signature algorithm");
+      console.error("Error updating id token signature algorithm:", error);
+      setSaveError("Failed to update id token signature algorithm");
+    }
+  };
+
+  const handleUserInfoSignatureAlgChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newAlg = e.target.value;
+    setUserInfoSignatureAlg(newAlg);
+
+    try {
+      handleUpdate({
+        userinfo_signed_response_alg: newAlg || null,
+      });
+    } catch (error) {
+      console.error("Error updating user-info signature algorithm:", error);
+      setSaveError("Failed to update user-info signature algorithm");
     }
   };
 
@@ -135,7 +151,7 @@ export default function AppDetailPage({ app }: { app: OidcClient }) {
 
             <div className={fr.cx("fr-mb-4w")}>
               <div className={fr.cx("fr-col")}>
-                <h2>Gestion de votre Fournisseur de Service</h2>
+                <h1>Gestion de votre Fournisseur de Service</h1>
               </div>
               <div>
                 <ul className={fr.cx("fr-badges-group")}>
@@ -168,7 +184,7 @@ export default function AppDetailPage({ app }: { app: OidcClient }) {
             </div>
 
             <div id="cles" className={fr.cx("fr-mb-10v")}>
-              <h3>Clés d&rsquo;API</h3>
+              <h2>Clés d&rsquo;API</h2>
               <div className={fr.cx("fr-grid-row", "fr-grid-row--gutters")}>
                 <div className={fr.cx("fr-col-12")}>
                   <CopyableField label="Client ID" value={data.key || ""} />
@@ -201,18 +217,18 @@ export default function AppDetailPage({ app }: { app: OidcClient }) {
               />
             </div>
 
-            <div id="alg" className={fr.cx("fr-mb-10v")}>
-              <h3>Algorithme de signature</h3>
+            <div id="alg-id-token" className={fr.cx("fr-mb-10v")}>
+              <h1 id="algs">Algorithmes</h1>
+              <h2>Algorithme de signature ID Token</h2>
               <p>
-                L&rsquo;algorithme de signature est utilisé pour signer les jetons d&rsquo;identité
-                et les informations utilisateur.
+                L&rsquo;algorithme de signature est utilisé pour signer les jetons d&rsquo;identité.
               </p>
               <Select
                 label="Algorithme de signature"
-                hint="Algorithme utilisé pour signer les jetons d&rsquo;identité et les informations utilisateur"
+                hint="Algorithme utilisé pour signer les jetons d&rsquo;identité"
                 nativeSelectProps={{
-                  value: signatureAlg,
-                  onChange: handleSignatureAlgChange,
+                  value: idTokenSignatureAlg,
+                  onChange: handleIdTokenSignatureAlgChange,
                 }}
               >
                 {SIGNATURE_ALGORITHMS.map((alg) => (
@@ -222,9 +238,33 @@ export default function AppDetailPage({ app }: { app: OidcClient }) {
                 ))}
               </Select>
             </div>
+            <div id="alg-user-info" className={fr.cx("fr-mb-10v")}>
+              <h2>Algorithme de signature user-info</h2>
+              <p>
+                L&rsquo;algorithme de signature est utilisé pour signer les informations
+                utilisateur.
+              </p>
+              <Select
+                label="Algorithme de signature user-info"
+                hint="Algorithme utilisé pour signer les informations utilisateur"
+                nativeSelectProps={{
+                  value: userInfoSignatureAlg,
+                  onChange: handleUserInfoSignatureAlgChange,
+                }}
+              >
+                {SIGNATURE_ALGORITHMS.map((alg) => (
+                  <option key={alg.value} value={alg.value}>
+                    {alg.label}
+                  </option>
+                ))}
+                <option value="" key="no-signature">
+                  Aucun - Non recommandé
+                </option>
+              </Select>
+            </div>
 
             <div id="production" className={fr.cx("fr-mb-10v")}>
-              <h3>Passage en production</h3>
+              <h2>Passage en production</h2>
               <p>Cette application est encore en test.</p>
               <p>
                 Pour connaître les étapes à suivre pour passer en production, veuillez{" "}
