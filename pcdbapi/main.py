@@ -3,12 +3,12 @@ import os
 import secrets
 from contextlib import asynccontextmanager
 from datetime import datetime
-from typing import List, Literal, Optional
+from typing import List, Literal
 
 from bson import ObjectId
 from fastapi import FastAPI, HTTPException, Request
 from motor.motor_asyncio import AsyncIOMotorClient
-from pydantic import BaseModel, ConfigDict, HttpUrl, constr
+from pydantic import BaseModel, ConfigDict, constr
 
 from crypt import decrypt_symetric, encrypt_symetric
 from middleware import encode_response, verify_signature
