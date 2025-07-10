@@ -192,16 +192,20 @@ Aucun
 
 ##### 2.3.6.4. Réponses
 
-| code http | content-type                     | réponse                                                                                              |
-| --------- | -------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `200`     | `application/jwt`                | JSON Web Token signé par l'algorithme spécifié à ProConnect, contenant les claims transmis par le FI |
-| `400`     | `application/json;charset=utf-8` | JSON document décrivant l'origine de l'erreur de format                                              |
+| code http | content-type                     | réponse                                                                                                                          |
+| --------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `200`     | `application/jwt`                | JSON Web Token signé par l'algorithme spécifié à ProConnect lorsque cela a été spécifié, contenant les claims transmis par le FI |
+| `200`     | `application/json`               | JSON contenant les claims transmis par le FI si absence de signature spécifiée                                                   |
+| `400`     | `application/json;charset=utf-8` | JSON document décrivant l'origine de l'erreur de format                                                                          |
 
 </details>
 
 #### 2.3.7. Authentification de l'utilisateur
 
-Le endpoint `user_info_endpoint` renvoie un JWT, signé avec l'algorithme spécifié à ProConnect lors de l'enregistrement du FS (RS256, ES256 ou HS256).
+Le endpoint `user_info_endpoint` renvoie :
+
+- soit un JSON, si aucun algorithme de signature n'a été spécifié à ProConnect lors de l'enregistrement du Fournisseur de Service
+- soit un JWT, signé avec l'algorithme spécifié à ProConnect lors de l'enregistrement du FS (RS256, ES256 ou HS256).
 
 Vérifier que le JWT est bien signé avec cet algorithme.
 
