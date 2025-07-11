@@ -170,6 +170,12 @@ export const docTree: SideMenuProps.Item[] = [
               href: "/docs/fournisseur-identite/troubleshooting-fi",
             },
           },
+          {
+            text: "Format de l'userinfo",
+            linkProps: {
+              href: "/docs/fournisseur-identite/format-user-info",
+            },
+          },
         ],
       },
     ],
