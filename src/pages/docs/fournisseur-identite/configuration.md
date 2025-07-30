@@ -41,6 +41,16 @@ https://PROCONNECT_DOMAIN/api/v2/client/logout-callback
 À l'appel au `authorization_endpoint`, ProConnect envoie en query param `login_hint`, qui contient l'email renseigné par l'utilisateur sur la mire ProConnect.
 Pour simplifier le parcours de l'utilisateur, il est demandé au FI d'utiliser la valeur fournie pour pré-remplir le champ email de sa mire d'authentification lorsque cela est pertinent.
 
+## Utiliser le paramètre `sp_name`
+
+Pour ajouter du contexte dans la mire de connexion des FI, ProConnect envoie un query param `sp_name`, qui contient une chaine de caractères qui a la valeur du nom du FS qui a initialisé la connexion.
+
+Exemple : `sp_name=Bases%20Adresses%20Locales`.
+
+Pour clarifier le parcours de l'utilisateur, un FI peut utiliser ce paramètre pour afficher une mire de connexion contextualisé.
+
+Exemple de titre de page : `Se connecter au service « Bases Adresses Locales »`.
+
 ## Spécifier la client authentication method
 
 ProConnect se connecte au Fournisseur d'Identité avec la client_authentication_method `client_secret_post`. Celle-ci doit être autorisée par le Fournisseur d'Identité.
