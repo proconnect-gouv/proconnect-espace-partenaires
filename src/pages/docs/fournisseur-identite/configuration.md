@@ -47,7 +47,7 @@ Pour ajouter du contexte dans la mire de connexion des FI, ProConnect envoie un 
 
 Exemple : `sp_name=Bases%20Adresses%20Locales`.
 
-Pour clarifier le parcours de l'utilisateur, un FI peut utiliser ce paramètre pour afficher une mire de connexion contextualisé.
+Pour clarifier le parcours de l'utilisateur, un FI peut utiliser ce paramètre pour afficher une mire de connexion contextualisée.
 
 Exemple de titre de page : `Se connecter au service « Bases Adresses Locales »`.
 
