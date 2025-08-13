@@ -54,6 +54,12 @@ export const docTree: SideMenuProps.Item[] = [
             linkProps: { href: "/docs/fournisseur-service/scope-claims" },
           },
           {
+            text: "Forcer la double authentification",
+            linkProps: {
+              href: "/docs/fournisseur-service/double_authentification",
+            },
+          },
+          {
             text: "Scope custom",
             linkProps: { href: "/docs/fournisseur-service/custom-scope" },
           },
@@ -75,7 +81,9 @@ export const docTree: SideMenuProps.Item[] = [
           },
           {
             text: "Identifiants de test",
-            linkProps: { href: "/docs/fournisseur-service/identifiants-fi-test" },
+            linkProps: {
+              href: "/docs/fournisseur-service/identifiants-fi-test",
+            },
           },
           {
             text: "Migration AgentConnect",
@@ -126,7 +134,9 @@ export const docTree: SideMenuProps.Item[] = [
         items: [
           {
             text: "Test de configuration",
-            linkProps: { href: "/docs/fournisseur-identite/test-configuration-fi" },
+            linkProps: {
+              href: "/docs/fournisseur-identite/test-configuration-fi",
+            },
           },
           {
             text: "Plateformes et Hybridge",
@@ -156,7 +166,9 @@ export const docTree: SideMenuProps.Item[] = [
           },
           {
             text: "Erreurs récurrentes",
-            linkProps: { href: "/docs/fournisseur-identite/troubleshooting-fi" },
+            linkProps: {
+              href: "/docs/fournisseur-identite/troubleshooting-fi",
+            },
           },
         ],
       },
