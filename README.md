@@ -22,6 +22,15 @@ Ce dépôt a été initié à partir du [template Next.js de betagouv](https://g
 
 Après avoir cloné le projet :
 
+### Copy the partner api
+
+```
+git clone fedration
+
+```
+
+Add a symlink `ln -s /path/to/actual/pcdbapi /path/to/federation/pcdbapi`
+
 ### Développement
 
 ```bash
