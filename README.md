@@ -17,15 +17,16 @@ Ce dépôt a été initié à partir du [template Next.js de betagouv](https://g
 
 - Node installé
 - Docker installé
+- Avoir cloné (federation](https://github.com/proconnect-gouv/federation)
 
 ### Git clone
 
-Après avoir cloné le projet :
+Après avoir cloné le projet, ajouter un symlink vers le code de l'api de l'espace partenaires présent sur le repo (federation](https://github.com/proconnect-gouv/federation) `ln -s /path/to/actual/pcdbapi /path/to/federation/pcdbapi`
 
 ### Développement
 
 ```bash
-docker-compose up -d # pour lancer les conteneurs de base de données
+docker compose up -d # pour lancer les conteneurs de base de données
 npm install # pour installer les dépendances
 npm run db_espace:reset # pour créer le schéma de la base de donnée
 npm run dev # pour lancer en mode développement
@@ -46,10 +47,7 @@ npm run e2e --ui
 ### PCDB API
 
 Le module `pcdbapi` est un serveur Python FastAPI qui communique avec la base de données
-MongoDB ProConnect. Il fournit l'API unique utilisée par l'espace partenaires pour y lire
-et y écrire des données de façon sécurisée.
-
-Il est synchronisé vers (et deployé depuis) GitLab.
+MongoDB ProConnect. Il fournit l'API unique utilisée par l'espace partenaires pour y lire et y écrire des données de façon sécurisée.
 
 #### Commandes
 
