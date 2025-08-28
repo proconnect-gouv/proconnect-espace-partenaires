@@ -21,16 +21,12 @@ Ce dépôt a été initié à partir du [template Next.js de betagouv](https://g
 
 ### Git clone
 
-Après avoir cloné le projet, ajouter un symlink vers le code de l'api de l'espace partenaires présent sur le repo (federation](https://github.com/proconnect-gouv/federation) `ln -s /path/to/actual/pcdbapi /path/to/federation/pcdbapi`
-
-### Copy the partner api
+Après avoir cloné le projet, ajouter un symlink vers le code de l'api de l'espace partenaires présent sur le repo (federation](https://github.com/proconnect-gouv/federation) `ln -s /path/to/proconnect-gouv/federation/pcdbapi /path/to/numerique-gouv/proconnect-espace-partenaires/pcdbapi`
 
 ```
-git clone fedration
+git clone https://github.com/proconnect-gouv/federation
 
 ```
-
-Add a symlink `ln -s /path/to/actual/pcdbapi /path/to/federation/pcdbapi`
 
 ### Développement
 
