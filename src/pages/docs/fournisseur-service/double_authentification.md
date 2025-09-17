@@ -6,7 +6,7 @@ Cette documentation explique comment configurer votre service pour exiger obliga
 
 ## Configuration côté client
 
-Pour forcer la 2FA, remplacez le paramètre `acr_values: "eidas1"` par le paramètre `claims` dans votre URL d'autorisation :
+Pour forcer la 2FA, le champ `acr` présent dans le paramètre `claims` envoyé lors de l'appel au `authorization_endpoint` doit contenir les valeurs présentes dans l'exemple ci-dessous :
 
 ```json
 {
@@ -26,9 +26,7 @@ Pour forcer la 2FA, remplacez le paramètre `acr_values: "eidas1"` par le param�
 }
 ```
 
-Voici un exemple d'URL contenant les bons paramètres :
-
-https://identite-sandbox.proconnect.gouv.fr/oauth/authorize?client_id=client_id&scope=openid email profile organization&response_type=code&redirect_uri=https%3A%2F%2Ftest.identite.proconnect.gouv.fr%2Flogin-callback&claims={"id_token"%3A{"acr"%3A{"essential"%3Atrue%2C"value"%3A"https%3A%2F%2Frefeds.org%2Fprofile%2Fmfa"}}}
+NB: le champ `claims` doit être présent dans l'URL en version URI-encoded (cf [Implémentation technique](./implementation_technique.md))
 
 ## Explication des valeurs ACR
 
@@ -42,7 +40,7 @@ https://identite-sandbox.proconnect.gouv.fr/oauth/authorize?client_id=client_id&
 
 ## Validation côté serveur (obligatoire)
 
-Dans votre fonction de callback vous devez vérifier les acr qui sont renvoyés dans l'id_token et déclencher une erreur si la valeur des acr ne correspond pas aux valeurs exigées.
+Dans votre fonction de callback vous devez impérativement vérifier les valeurs contenues dans le champ `acr` présentes dans l'id_token renvoyé lors de l'appel au `token_endpoint`. Si la valeur des acr ne correspond pas aux valeurs exigées, il vous faut déclencher une erreur comme suit :
 
 ```js
 throw new HTTPException(403, {
