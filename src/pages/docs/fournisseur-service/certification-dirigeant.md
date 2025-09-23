@@ -83,3 +83,41 @@ Il est **IMPÉRATIF** de vérifier la présence et la valeur du paramètre `acr`
 - [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html)
 - [Utilisation du paramètre `claims`](https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter)
 - [Semantics of the `acr` Claim](https://openid.net/specs/openid-connect-core-1_0.html#acrSemantics)
+
+## 6. Annexe
+
+### 6.1 Tester la certification dirigeant
+
+Pour tester la certification dirigeant, vous pouvez utiliser le [fournisseur de service de test](https://test.proconnect.gouv.fr) de ProConnect.
+
+> [!WARNING]
+> Seul la citoyenne fictive "Angela Claire Louise" peut se connecter à cette fonctionnalité pour tester la certification dirigeant aujourd'hui.
+
+- cliquez sur "Forcer une connexion par certification dirigeant"
+- indiquez une adresse e-mail temporaire comme "angela.g20@yopmail.com"
+- cliquez sur "Recevoir un lien d’identification" pour faciliter la connexion
+- consulter la boite e-mail temporaire pour recevoir le lien d’identification https://yopmail.com/?login=angela.g20@yopmail.com
+- cliquez sur le lien d’identification pour vous connecter
+- on vous demande alors de certifier votre statut de dirigeant
+- cliquez sur "S'identifier avec FranceConnect"
+
+- vous êtes alors redirigé vers le bac à sable FranceConnect
+- cliquez sur "Démonstration eIDAS faible"
+  ce démonstrateur utilise un [jeux de données fictifs](https://docs.partenaires.franceconnect.gouv.fr/fs/fs-integration/env-sandbox-fc-plus/#jeux-de-donnees).
+- indiquez l'identifiant "test" et le mot de passe "123" pour vous authentifier en tant que "Angela Claire Louise"
+- cliquez sur "Continuer sur ProConnect Sandbox - DIRECTION INTERMINISTERIELLE DU NUMERIQUE"
+
+- vous êtes alors redirigé vers le bac à sable ProConnect
+- cliquez sur "Je veux rejoindre une autre organisation" en bas de page
+- on vous demande d'entrer le siret de l'organisation de rattachement
+  nous avons choisi de rapprocher l'entreprise individuelle [Angela GNESOTTO](https://annuaire-entreprises.data.gouv.fr/etablissement/83832482000011) et la citoyenne fictive "Angela Claire Louise" sur notre bac à sable.
+- indiquez le siret de l'organisation de rattachement "83832482000011"
+- cliquez sur "Enregistrer"
+
+- vous êtes alors certifié pour cette organisation.
+- cliquez sur "Continuer"
+
+- vous êtes redirigé vers le fournisseur de service de test et vous remarquez
+  ```
+    "acr": "https://proconnect.gouv.fr/assurance/certification-dirigeant",
+  ```
