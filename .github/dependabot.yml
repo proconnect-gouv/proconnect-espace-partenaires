@@ -4,6 +4,9 @@ updates:
     directory: "/"
     labels:
       - dependencies
+    commit-message:
+      prefix: ":arrow_upper_right: [patch]"
+      include: "scope"
     schedule:
       interval: "weekly"
     versioning-strategy: increase
@@ -12,6 +15,9 @@ updates:
     directory: "/"
     labels:
       - dependencies
+    commit-message:
+      prefix: ":arrow_upper_right: [patch]"
+      include: "scope"
     schedule:
       interval: "weekly"
     ignore:
@@ -30,5 +36,8 @@ updates:
     directory: "/"
     labels:
       - dependencies
+    commit-message:
+      prefix: ":arrow_upper_right: [patch]"
+      include: "scope"
     schedule:
       interval: "weekly"
