@@ -10,6 +10,9 @@ concurrency:
   cancel-in-progress: true
   group: testing-${{ github.ref }}
 
+env:
+  HUSKY: 0
+
 jobs:
   test:
     name: Test
