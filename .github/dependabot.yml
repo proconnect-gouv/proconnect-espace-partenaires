@@ -2,11 +2,16 @@ version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/"
+    labels:
+      - dependencies
     schedule:
       interval: "weekly"
+    versioning-strategy: increase
 
   - package-ecosystem: "docker"
     directory: "/"
+    labels:
+      - dependencies
     schedule:
       interval: "weekly"
     ignore:
@@ -20,8 +25,12 @@ updates:
         update-types:
           - "version-update:semver-major"
           - "version-update:semver-minor"
+    versioning-strategy: increase
 
   - package-ecosystem: "github-actions"
     directory: "/"
+    labels:
+      - dependencies
     schedule:
       interval: "weekly"
+    versioning-strategy: increase
