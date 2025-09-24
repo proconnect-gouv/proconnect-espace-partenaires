@@ -40,6 +40,7 @@ const moduleExports = {
   bundlePagesRouterDependencies: true,
   productionBrowserSourceMaps: false,
   reactStrictMode: true,
+  serverExternalPackages: ["@prisma/client", "prisma"],
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(woff2|webmanifest)$/,
