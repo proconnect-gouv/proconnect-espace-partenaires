@@ -11,7 +11,7 @@ services:
 
   # This MongoDB will be seeded with mock data at each restart
   mongo:
-    image: mongo:5.0.23
+    image: mongo:5.0.31
     environment:
       - MONGO_INITDB_ROOT_USERNAME=fc_admin
       - MONGO_INITDB_ROOT_PASSWORD=pass
