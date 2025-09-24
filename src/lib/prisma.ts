@@ -5,15 +5,7 @@ const globalForPrisma = global as unknown as {
   prisma_espace?: PrismaClientEspace;
 };
 
-export const prisma_espace =
-  globalForPrisma.prisma_espace ||
-  new PrismaClientEspace({
-    datasources: {
-      db: {
-        url: process.env.DATABASE_URL,
-      },
-    },
-  });
+export const prisma_espace = globalForPrisma.prisma_espace || new PrismaClientEspace();
 
 if (process.env.NODE_ENV !== "production") {
   globalForPrisma.prisma_espace = prisma_espace;
