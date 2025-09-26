@@ -10,6 +10,9 @@ concurrency:
   cancel-in-progress: true
   group: lint-${{ github.ref }}
 
+env:
+  HUSKY: 0
+
 jobs:
   code:
     name: Lint

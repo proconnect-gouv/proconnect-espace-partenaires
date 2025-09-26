@@ -1,0 +1,12 @@
+# Dependencies
+node_modules/
+
+# UUV reports and generated files
+/uuv/reports
+/uuv/.uuv-features-gen
+
+# Playwright test results and artifacts
+/test-results/
+/playwright-report/
+*.webm
+*.mp4
