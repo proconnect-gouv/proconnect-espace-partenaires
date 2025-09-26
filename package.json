@@ -69,7 +69,7 @@
     "remark-gfm": "^4.0.0",
     "sharp": "^0.33.5",
     "shiki": "2.1.0",
-    "tss-react": "^4.9.14",
+    "tss-react": "^4.9.19",
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
