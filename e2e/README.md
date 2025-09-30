@@ -69,6 +69,7 @@ npx playwright show-report
 ```
 
 Reports are generated in:
+
 - HTML report: `playwright-report/`
 - UUV reports: `uuv/reports/`
 - Test artifacts: `test-results/`

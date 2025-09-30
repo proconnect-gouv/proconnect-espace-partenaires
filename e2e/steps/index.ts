@@ -6,9 +6,7 @@ let page: Page;
 
 Before(async function () {
   const headless = process.env.PW_HEADED !== "1";
-  const slowMo = process.env.PW_SLOW_MO
-    ? parseInt(process.env.PW_SLOW_MO)
-    : undefined;
+  const slowMo = process.env.PW_SLOW_MO ? parseInt(process.env.PW_SLOW_MO) : undefined;
 
   browser = await chromium.launch({
     headless,
