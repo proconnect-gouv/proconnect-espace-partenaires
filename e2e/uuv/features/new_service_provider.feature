@@ -31,6 +31,8 @@ Fonctionnalité: Créer un nouveau fournisseur de service
 
     Et je vois "Cette application est encore en test."
 
+    Et je vois "Les modifications ont été enregistrées"
+
     Quand je clique sur le lien nommé "Vos applications"
     Alors je dois voir un titre nommé "Fournisseurs de Service" avec le niveau 2
     Alors je dois voir un titre nommé "Ma Retraite" avec le niveau 2
