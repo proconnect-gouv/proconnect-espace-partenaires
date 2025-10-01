@@ -40,6 +40,9 @@
     ]
   },
   "dependencies": {
+    "next": "15.5.4"
+  },
+  "devDependencies": {
     "@codegouvfr/react-dsfr": "1.18.0",
     "@emotion/react": "^11.14.0",
     "@emotion/server": "^11.11.0",
@@ -58,7 +61,6 @@
     "debounce": "^2.0.0",
     "html-to-text": "^9.0.5",
     "is-ci": "^3.0.1",
-    "next": "15.5.4",
     "next-auth": "^4.24.11",
     "next-seo": "^6.6.0",
     "nodemailer": "^6.9.16",
@@ -70,9 +72,7 @@
     "sharp": "^0.33.5",
     "shiki": "2.1.0",
     "tss-react": "^4.9.14",
-    "unist-util-visit": "^5.0.0"
-  },
-  "devDependencies": {
+    "unist-util-visit": "^5.0.0",
     "@babel/core": "^7.26.0",
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.20.0",
