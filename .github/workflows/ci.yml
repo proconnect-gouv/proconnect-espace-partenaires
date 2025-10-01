@@ -25,8 +25,8 @@ jobs:
           cache: "npm"
           node-version-file: package.json
 
-      - name: 💾 Cache app dependencies
-        uses: actions/cache@v4
+      - name: 💾 Restore app dependencies cache
+        uses: actions/cache/restore@v4
         id: cache-deps
         with:
           path: node_modules
@@ -35,6 +35,13 @@ jobs:
       - name: 📦 Install app dependencies
         if: steps.cache-deps.outputs.cache-hit != 'true'
         run: npm ci
+
+      - name: 💾 Save app dependencies cache
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: node_modules
+          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-${{ hashFiles('package-lock.json') }}
 
       - name: 🏗️ Build packages
         run: npm run build
@@ -64,8 +71,8 @@ jobs:
           cache: "npm"
           node-version-file: package.json
 
-      - name: 💾 Cache E2E dependencies
-        uses: actions/cache@v4
+      - name: 💾 Restore E2E dependencies cache
+        uses: actions/cache/restore@v4
         id: cache-e2e
         with:
           path: e2e/node_modules
@@ -76,8 +83,15 @@ jobs:
         run: npm ci
         working-directory: ./e2e
 
-      - name: 💾 Cache Playwright browsers
-        uses: actions/cache@v4
+      - name: 💾 Save E2E dependencies cache
+        if: steps.cache-e2e.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: e2e/node_modules
+          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-e2e-${{ hashFiles('e2e/package-lock.json') }}
+
+      - name: 💾 Restore Playwright browsers cache
+        uses: actions/cache/restore@v4
         id: cache-playwright
         with:
           path: ~/.cache/ms-playwright
@@ -87,6 +101,13 @@ jobs:
         if: steps.cache-playwright.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps chrome
         working-directory: ./e2e
+
+      - name: 💾 Save Playwright browsers cache
+        if: steps.cache-playwright.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('e2e/package-lock.json') }}
 
   lint:
     name: ⛑️ Lint
@@ -101,8 +122,8 @@ jobs:
           cache: "npm"
           node-version-file: package.json
 
-      - name: 💾 Cache dependencies
-        uses: actions/cache@v4
+      - name: 💾 Restore dependencies cache
+        uses: actions/cache/restore@v4
         id: cache-deps
         with:
           path: node_modules
@@ -131,8 +152,8 @@ jobs:
           cache: "npm"
           node-version-file: package.json
 
-      - name: 💾 Cache dependencies
-        uses: actions/cache@v4
+      - name: 💾 Restore dependencies cache
+        uses: actions/cache/restore@v4
         id: cache-deps
         with:
           path: node_modules
@@ -164,19 +185,19 @@ jobs:
           node-version-file: package.json
 
       - name: 💾 Restore app dependencies cache
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: node_modules
           key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-${{ hashFiles('package-lock.json') }}
 
       - name: 💾 Restore E2E dependencies cache
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: e2e/node_modules
           key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-e2e-${{ hashFiles('e2e/package-lock.json') }}
 
       - name: 💾 Restore Playwright browsers cache
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('e2e/package-lock.json') }}
