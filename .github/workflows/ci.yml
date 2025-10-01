@@ -90,7 +90,6 @@ jobs:
 
   lint:
     name: ⛑️ Lint
-    needs: build
     runs-on: ubuntu-22.04
     steps:
       - name: 📥 Checkout repository
@@ -102,24 +101,25 @@ jobs:
           cache: "npm"
           node-version-file: package.json
 
-      - name: 💾 Restore dependencies cache
+      - name: 💾 Cache dependencies
         uses: actions/cache@v4
+        id: cache-deps
         with:
           path: node_modules
           key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-${{ hashFiles('package-lock.json') }}
 
-      - name: 📥 Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: build-artifacts
-          path: ./
+      - name: 📦 Install dependencies
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: 🏗️ Build packages (for lint)
+        run: npm run predev
 
       - name: ⛑️ Lint
         run: npm run test:lint
 
   test:
     name: 💪 Test
-    needs: build
     runs-on: ubuntu-22.04
     steps:
       - name: 📥 Checkout repository
@@ -131,17 +131,19 @@ jobs:
           cache: "npm"
           node-version-file: package.json
 
-      - name: 💾 Restore dependencies cache
+      - name: 💾 Cache dependencies
         uses: actions/cache@v4
+        id: cache-deps
         with:
           path: node_modules
           key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-${{ hashFiles('package-lock.json') }}
 
-      - name: 📥 Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: build-artifacts
-          path: ./
+      - name: 📦 Install dependencies
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: 🏗️ Build packages (for tests)
+        run: npm run predev
 
       - name: 💪 Run tests
         run: npm run test
