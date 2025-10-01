@@ -51,8 +51,14 @@ jobs:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('e2e/package-lock.json') }}
 
-      - name: 📦 Install Playwright browsers
-        run: npx playwright install --with-deps
+      - name: 📦 Install Playwright browsers (with deps)
+        if: steps.cache-playwright.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps chrome
+        working-directory: ./e2e
+
+      - name: 📦 Verify Playwright browsers
+        if: steps.cache-playwright.outputs.cache-hit == 'true'
+        run: npx playwright install chrome
         working-directory: ./e2e
 
       - name: 🏗️ Build application
