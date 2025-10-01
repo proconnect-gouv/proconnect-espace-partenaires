@@ -2,33 +2,78 @@ name: 🤖 Playwright Tests
 
 on:
   push:
-    branches: ["main"]
   pull_request:
-    branches: ["main"]
+
+concurrency:
+  cancel-in-progress: true
+  group: playwright-${{ github.ref }}
+
+env:
+  HUSKY: 0
 
 jobs:
-  test:
-    timeout-minutes: 20
+  e2e-tests:
+    defaults:
+      run:
+        working-directory: ./e2e
+    name: 🎭 E2E Tests with UUV
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v4
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v5
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 22
-      - name: Install dependencies
-        run: npm install -g yarn && yarn
-      - name: Install Playwright Browsers
-        run: yarn playwright install --with-deps
-      - name: Build app
-        run: yarn build
+          cache: "npm"
+          node-version-file: package.json
+
+      - name: 📦 Install app dependencies
+        if: steps.cache-app.outputs.cache-hit != 'true'
+        run: npm ci
+        working-directory: ./
+
+      - name: 💾 Cache E2E node_modules
+        uses: actions/cache@v4
+        id: cache-e2e
+        with:
+          path: e2e/node_modules
+          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-e2e-${{ hashFiles('e2e/package-lock.json') }}
+
+      - name: 📦 Install E2E dependencies
+        if: steps.cache-e2e.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: 💾 Cache Playwright browsers
+        uses: actions/cache@v4
+        id: cache-playwright
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('e2e/package-lock.json') }}
+
+      - name: 📦 Install Playwright browsers (with deps)
+        if: steps.cache-playwright.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps chrome
+        working-directory: ./e2e
+
+      - name: 🏗️ Build application
+        run: npm run build
         env:
           NEXT_PUBLIC_BASE_PATH: ""
           NODE_ENV: production
-      - name: Run Playwright tests
-        run: yarn playwright test
-      - uses: actions/upload-artifact@v4
+        working-directory: ./
+
+      - name: 🐋 Launch services
+        run: docker compose up --build --wait
+        working-directory: ./
+
+      - name: 🎬 Run Playwright tests
+        run: npm run test:video
+
+      - name: 📊 Upload test results
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: playwright-report
-          path: playwright-report/
+          path: e2e/playwright-report/
           retention-days: 30

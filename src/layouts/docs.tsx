@@ -26,7 +26,7 @@ interface TraversalResult {
 function traverseTree(
   items: SideMenuProps.Item[],
   targetPath: string,
-  parentSections: SideMenuProps.Item[] = []
+  parentSections: SideMenuProps.Item[] = [],
 ): TraversalResult {
   let result: TraversalResult = {
     flatPages: [],

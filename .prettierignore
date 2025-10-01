@@ -1,6 +1,7 @@
-build
-dist
-public
 .next
 .source
+build
+dist
+playwright-report
 prisma/generated_clients
+public
