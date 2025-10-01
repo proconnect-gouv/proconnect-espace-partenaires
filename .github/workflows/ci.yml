@@ -151,9 +151,6 @@ jobs:
   e2e-tests:
     name: 🎭 E2E Tests with UUV
     needs: [build, e2e-setup]
-    defaults:
-      run:
-        working-directory: ./e2e
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -188,13 +185,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-artifacts
-          path: ./
+          path: .
 
       - name: 🐋 Launch services
         run: docker compose up --build --wait
-        working-directory: ./
 
       - name: 🎬 Run Playwright tests
+        working-directory: ./e2e
         run: npm run test:video
 
       - name: 📊 Upload test results
