@@ -188,13 +188,6 @@ jobs:
         with:
           name: build-artifacts
 
-      - name: 🔧 Setup standalone structure
-        run: |
-          cp -r .next/standalone/. .
-          cp -r .next/static .next/standalone/.next/static
-          mkdir -p .next/standalone/public
-          cp -r public/. .next/standalone/public
-
       - name: 💾 Restore E2E dependencies cache
         uses: actions/cache/restore@v4
         with:
