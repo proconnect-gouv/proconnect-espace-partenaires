@@ -44,6 +44,17 @@ jobs:
         if: steps.cache-e2e.outputs.cache-hit != 'true'
         run: npm ci
 
+      - name: 💾 Cache Playwright browsers
+        uses: actions/cache@v4
+        id: cache-playwright
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('e2e/package-lock.json') }}
+
+      - name: 📦 Install Playwright browsers
+        run: npx playwright install --with-deps
+        working-directory: ./e2e
+
       - name: 🏗️ Build application
         run: npm run build
         env:
