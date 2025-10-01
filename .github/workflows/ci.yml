@@ -14,7 +14,7 @@ env:
 jobs:
   build:
     name: 🏗️ Build & Cache
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v5
@@ -63,7 +63,7 @@ jobs:
 
   e2e-setup:
     name: 🎭 E2E Setup & Cache
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v5
@@ -114,7 +114,7 @@ jobs:
 
   lint:
     name: ⛑️ Lint
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v5
@@ -144,7 +144,7 @@ jobs:
 
   test:
     name: 💪 Test
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v5
