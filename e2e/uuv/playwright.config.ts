@@ -55,7 +55,10 @@ export default defineConfig({
       cwd: "../..",
     },
     {
-      command: ["docker compose up postgresql --wait", "npm run db_espace:reset"].join(" && "),
+      command: [
+        "docker compose up postgresql --wait",
+        "npx prisma db push --schema=./prisma/db_espace.prisma",
+      ].join(" && "),
       cwd: "../..",
       env: {
         DATABASE_URL: "postgresql://usr:pwd@localhost:5432/proconnect_ep",
@@ -75,7 +78,7 @@ export default defineConfig({
           "core-fca-low",
           `--eval "db.dropDatabase()"`,
         ].join(" "),
-        "npm run db_proconnect:reset",
+        "npx prisma db push --schema=./prisma/db_proconnect.prisma",
       ].join(" && "),
       cwd: "../..",
       env: {
