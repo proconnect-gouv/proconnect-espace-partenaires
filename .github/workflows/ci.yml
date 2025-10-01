@@ -1,0 +1,204 @@
+name: 🔄 CI
+
+on:
+  push:
+  pull_request:
+
+concurrency:
+  cancel-in-progress: true
+  group: ci-${{ github.ref }}
+
+env:
+  HUSKY: 0
+
+jobs:
+  build:
+    name: 🏗️ Build & Cache
+    runs-on: ubuntu-22.04
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v5
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          cache: "npm"
+          node-version-file: package.json
+
+      - name: 💾 Cache app dependencies
+        uses: actions/cache@v4
+        id: cache-deps
+        with:
+          path: node_modules
+          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-${{ hashFiles('package-lock.json') }}
+
+      - name: 📦 Install app dependencies
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: 🏗️ Build packages
+        run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: ""
+          NODE_ENV: production
+
+      - name: 📤 Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: |
+            .next
+            packages/*/dist
+          retention-days: 1
+
+  e2e-setup:
+    name: 🎭 E2E Setup & Cache
+    runs-on: ubuntu-22.04
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v5
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          cache: "npm"
+          node-version-file: package.json
+
+      - name: 💾 Cache E2E dependencies
+        uses: actions/cache@v4
+        id: cache-e2e
+        with:
+          path: e2e/node_modules
+          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-e2e-${{ hashFiles('e2e/package-lock.json') }}
+
+      - name: 📦 Install E2E dependencies
+        if: steps.cache-e2e.outputs.cache-hit != 'true'
+        run: npm ci
+        working-directory: ./e2e
+
+      - name: 💾 Cache Playwright browsers
+        uses: actions/cache@v4
+        id: cache-playwright
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('e2e/package-lock.json') }}
+
+      - name: 📦 Install Playwright browsers
+        if: steps.cache-playwright.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps chrome
+        working-directory: ./e2e
+
+  lint:
+    name: ⛑️ Lint
+    needs: build
+    runs-on: ubuntu-22.04
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v5
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          cache: "npm"
+          node-version-file: package.json
+
+      - name: 💾 Restore dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-${{ hashFiles('package-lock.json') }}
+
+      - name: 📥 Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+          path: ./
+
+      - name: ⛑️ Lint
+        run: npm run test:lint
+
+  test:
+    name: 💪 Test
+    needs: build
+    runs-on: ubuntu-22.04
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v5
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          cache: "npm"
+          node-version-file: package.json
+
+      - name: 💾 Restore dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-${{ hashFiles('package-lock.json') }}
+
+      - name: 📥 Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+          path: ./
+
+      - name: 💪 Run tests
+        run: npm run test
+
+  e2e-tests:
+    name: 🎭 E2E Tests with UUV
+    needs: [build, e2e-setup]
+    defaults:
+      run:
+        working-directory: ./e2e
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v5
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          cache: "npm"
+          node-version-file: package.json
+
+      - name: 💾 Restore app dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-${{ hashFiles('package-lock.json') }}
+
+      - name: 💾 Restore E2E dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: e2e/node_modules
+          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-e2e-${{ hashFiles('e2e/package-lock.json') }}
+
+      - name: 💾 Restore Playwright browsers cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('e2e/package-lock.json') }}
+
+      - name: 📥 Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+          path: ./
+
+      - name: 🐋 Launch services
+        run: docker compose up --build --wait
+        working-directory: ./
+
+      - name: 🎬 Run Playwright tests
+        run: npm run test:video
+
+      - name: 📊 Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: e2e/playwright-report/
+          retention-days: 30
