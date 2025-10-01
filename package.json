@@ -91,8 +91,9 @@
     "eslint-plugin-jsx-a11y": "6.10.2",
     "husky": "^9.1.7",
     "linkinator": "^6.1.2",
+    "prettier": "^3.6.2",
     "prettier-plugin-gherkin": "^3.1.2",
-    "prettier-plugin-organize-imports": "^4.1.0",
+    "prettier-plugin-organize-imports": "^4.3.0",
     "prisma": "^6.3.1",
     "start-server-and-test": "2.0.9",
     "typescript": "5.7.3"
