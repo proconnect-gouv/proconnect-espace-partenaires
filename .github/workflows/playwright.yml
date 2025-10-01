@@ -56,11 +56,6 @@ jobs:
         run: npx playwright install --with-deps chrome
         working-directory: ./e2e
 
-      - name: 📦 Verify Playwright browsers
-        if: steps.cache-playwright.outputs.cache-hit == 'true'
-        run: npx playwright install chrome
-        working-directory: ./e2e
-
       - name: 🏗️ Build application
         run: npm run build
         env:
