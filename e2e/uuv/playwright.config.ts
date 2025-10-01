@@ -55,10 +55,7 @@ export default defineConfig({
       cwd: "../..",
     },
     {
-      command: [
-        "docker compose up postgresql --wait",
-        "npm run db_espace:reset",
-      ].join(" && "),
+      command: ["docker compose up postgresql --wait", "npm run db_espace:reset"].join(" && "),
       cwd: "../..",
       env: {
         DATABASE_URL: "postgresql://usr:pwd@localhost:5432/proconnect_ep",
