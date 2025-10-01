@@ -203,6 +203,8 @@ jobs:
       - name: 🐋 Launch services
         run: docker compose up --build --wait
 
+      - run: npx prisma db push --schema=./prisma/db_espace.prisma
+      - run: npx prisma db push --schema=./prisma/db_proconnect.prisma
       - name: 🎬 Run Playwright tests
         working-directory: ./e2e
         run: npm run test:video
