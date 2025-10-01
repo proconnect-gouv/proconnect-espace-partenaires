@@ -44,6 +44,17 @@ e2e/
 2. Use Gherkin syntax for BDD scenarios
 3. UUV provides built-in step definitions for common UI interactions
 
+### Step Definitions Documentation
+
+For complete documentation of available UUV step definitions in French, refer to:
+https://e2e-test-quest.github.io/uuv/fr/docs/wordings/generated-wording-description/fr-generated-wording-description/
+
+Common step definitions:
+
+- `Etant donné que je visite l'Url "{string}"` - Navigate to a URL
+- `Alors je dois voir le titre de page "{string}"` - Verify page title
+- `Et je dois voir un titre nommé "{string}" avec le niveau {int}` - Verify heading with level
+
 ## Configuration
 
 The UUV configuration is located in `uuv/playwright.config.ts` and includes:

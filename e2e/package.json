@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "test": "uuv run",
-    "test:open": "uuv open",
+    "studio": "uuv open",
     "test:video": "PW_VIDEO=1 uuv run"
   },
   "devDependencies": {
-    "@uuv/playwright": "^3.49.0",
+    "@playwright/test": "1.55.1",
+    "@uuv/playwright": "3.49.0",
     "tsx": "4.20.6",
     "typescript": "5.9.2"
   },

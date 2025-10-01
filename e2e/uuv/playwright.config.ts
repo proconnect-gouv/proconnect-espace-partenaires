@@ -17,7 +17,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
 
   // Reporter to use
-  reporter: "html",
+  reporter: [["html", { open: "never" }]],
 
   use: {
     // Base URL to use in actions like `await page.goto('/')`.
@@ -37,13 +37,36 @@ export default defineConfig({
     },
   ],
   // Run your local dev server before starting the tests.
-  webServer: {
-    command: "npm run start",
-    cwd: "../..",
-    url: "http://localhost:3000",
-    env: {
-      NEXTAUTH_SECRET: "NEuXWL7esTRTr+I3mZRYM8wvywZ6jiyUvKxqlYReras=",
+  webServer: [
+    {
+      command: "npm run start",
+      cwd: "../..",
+      url: "http://localhost:3000",
+      env: {
+        NEXTAUTH_SECRET: "NEuXWL7esTRTr+I3mZRYM8wvywZ6jiyUvKxqlYReras=",
+        DATABASE_URL: "postgresql://usr:pwd@localhost:5432/proconnect_ep",
+        PCDB_API_URL: "http://localhost:8000",
+        PCDB_API_SECRET: "pcdb-api-secret-key",
+      },
+      reuseExistingServer: !process.env.CI,
     },
-    reuseExistingServer: !process.env.CI,
-  },
+    {
+      command: "docker compose up --wait",
+    },
+    {
+      command: "npm run db_espace:reset",
+      cwd: "../..",
+      env: {
+        DATABASE_URL: "postgresql://usr:pwd@localhost:5432/proconnect_ep",
+      },
+    },
+    {
+      command: "npm run db_proconnect:reset",
+      cwd: "../..",
+      env: {
+        MONGODB_CONNECTION_STRING:
+          "mongodb://fc:pass@localhost:27017/core-fca-low?authSource=admin&replicaSet=rs0&directConnection=true",
+      },
+    },
+  ],
 });
