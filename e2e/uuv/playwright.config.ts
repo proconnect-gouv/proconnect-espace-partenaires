@@ -62,8 +62,18 @@ export default defineConfig({
     },
     {
       command: [
+        [
+          "docker compose exec -T mongo",
+          "mongosh",
+          "--authenticationDatabase admin",
+          "--password pass",
+          "--tls",
+          "--tlsAllowInvalidCertificates",
+          "--username fc_admin",
+          "core-fca-low",
+          `--eval "db.dropDatabase()"`,
+        ].join(" "),
         "npm run db_proconnect:reset",
-        `docker-compose exec mongo mongosh --eval "db.dropDatabase()"`,
       ].join(" && "),
       cwd: "../..",
       env: {
