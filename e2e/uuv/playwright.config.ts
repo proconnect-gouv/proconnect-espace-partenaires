@@ -61,7 +61,10 @@ export default defineConfig({
       },
     },
     {
-      command: "npm run db_proconnect:reset",
+      command: [
+        "npm run db_proconnect:reset",
+        `docker-compose exec mongo mongosh --eval "db.dropDatabase()"`,
+      ].join(" && "),
       cwd: "../..",
       env: {
         MONGODB_CONNECTION_STRING:
