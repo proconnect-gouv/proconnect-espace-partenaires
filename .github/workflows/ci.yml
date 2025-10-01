@@ -51,49 +51,10 @@ jobs:
         with:
           name: build-artifacts
           path: |
-            .next/
+            .next/standalone/
+            .next/static/
             packages/*/dist/
-            node_modules/.prisma/
-            prisma/generated_clients/
-          retention-days: 1
-          include-hidden-files: true
-
-  prod-build:
-    name: 📦 Production Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: 📥 Checkout repository
-        uses: actions/checkout@v5
-
-      - name: 🔧 Setup Node.js
-        uses: actions/setup-node@v5
-        with:
-          cache: "npm"
-          node-version-file: package.json
-
-      - name: 💾 Restore production dependencies cache
-        uses: actions/cache/restore@v4
-        id: cache-prod-deps
-        with:
-          path: node_modules
-          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-prod-${{ hashFiles('package-lock.json') }}
-
-      - name: 📦 Install production dependencies
-        if: steps.cache-prod-deps.outputs.cache-hit != 'true'
-        run: npm ci --production
-
-      - name: �� Save production dependencies cache
-        if: steps.cache-prod-deps.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
-        with:
-          path: node_modules
-          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-prod-${{ hashFiles('package-lock.json') }}
-
-      - name: 📤 Upload production artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: prod-artifacts
-          path: node_modules
+            public/
           retention-days: 1
           include-hidden-files: true
 
@@ -210,10 +171,7 @@ jobs:
 
   e2e-tests:
     name: 🎭 E2E Tests with UUV
-    needs:
-      - build
-      - prod-build
-      - e2e-setup
+    needs: [build, e2e-setup]
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -225,11 +183,17 @@ jobs:
         with:
           node-version-file: package.json
 
-      - name: 📥 Download production artifacts
+      - name: 📥 Download build artifacts
         uses: actions/download-artifact@v4
         with:
-          name: prod-artifacts
-          path: node_modules
+          name: build-artifacts
+
+      - name: 🔧 Setup standalone structure
+        run: |
+          cp -r .next/standalone/. .
+          cp -r .next/static .next/standalone/.next/static
+          mkdir -p .next/standalone/public
+          cp -r public/. .next/standalone/public
 
       - name: 💾 Restore E2E dependencies cache
         uses: actions/cache/restore@v4
@@ -242,11 +206,6 @@ jobs:
         with:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('e2e/package-lock.json') }}
-
-      - name: 📥 Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: build-artifacts
 
       - name: 🐋 Launch services
         run: docker compose up --build --wait
