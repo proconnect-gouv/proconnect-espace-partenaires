@@ -54,9 +54,10 @@ jobs:
         with:
           name: build-artifacts
           path: |
-            .next
-            packages/*/dist
+            .next/
+            packages/*/dist/
           retention-days: 1
+          include-hidden-files: true
 
   e2e-setup:
     name: 🎭 E2E Setup & Cache
@@ -206,7 +207,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-artifacts
-          path: ${{ github.workspace }}
 
       - name: 🐋 Launch services
         run: docker compose up --build --wait
