@@ -52,9 +52,13 @@ export default defineConfig({
     },
     {
       command: "docker compose up --wait",
+      cwd: "../..",
     },
     {
-      command: "npm run db_espace:reset",
+      command: [
+        "docker compose up postgresql --wait",
+        "npm run db_espace:reset",
+      ].join(" && "),
       cwd: "../..",
       env: {
         DATABASE_URL: "postgresql://usr:pwd@localhost:5432/proconnect_ep",
@@ -62,6 +66,7 @@ export default defineConfig({
     },
     {
       command: [
+        "docker compose up mongo --wait",
         [
           "docker compose exec -T mongo",
           "mongosh",
