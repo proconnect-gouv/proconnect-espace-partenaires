@@ -187,11 +187,8 @@ jobs:
           cache: "npm"
           node-version-file: package.json
 
-      - name: 💾 Restore app dependencies cache
-        uses: actions/cache/restore@v4
-        with:
-          path: node_modules
-          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-${{ hashFiles('package-lock.json') }}
+      - name: 📦 Install production dependencies
+        run: npm ci --production
 
       - name: 💾 Restore E2E dependencies cache
         uses: actions/cache/restore@v4
