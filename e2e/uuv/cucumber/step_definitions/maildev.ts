@@ -6,10 +6,7 @@ import { Given, When, type World } from "@uuv/playwright";
 //
 
 const maildevApi = () => {
-  const {
-    MAILDEV_API_HOST: host = "localhost",
-    MAILDEV_API_PORT: port = 1080,
-  } = process.env;
+  const { MAILDEV_API_HOST: host = "localhost", MAILDEV_API_PORT: port = 1080 } = process.env;
   return `http://${host}:${port}`;
 };
 
@@ -54,9 +51,7 @@ When(
 );
 
 Given("je supprime l'email", async function (this: World) {
-  const id = this.testInfo.annotations.find(
-    (a) => a.type === "email_id",
-  )?.description;
+  const id = this.testInfo.annotations.find((a) => a.type === "email_id")?.description;
   if (!id) {
     throw new Error("No email id found");
   }
