@@ -15,7 +15,7 @@ Sentry.init({
   tracesSampleRate: 0.1,
 
   // remove healthz probes
-  beforeSendTransaction: (event, hint) => {
+  beforeSendTransaction: (event) => {
     if (event?.request?.url?.endsWith("/healthz")) {
       return null;
     }
