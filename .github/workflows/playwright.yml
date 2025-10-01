@@ -25,14 +25,8 @@ jobs:
       - name: 🔧 Setup Node.js
         uses: actions/setup-node@v4
         with:
+          cache: "npm"
           node-version-file: package.json
-
-      - name: 💾 Cache app node_modules
-        uses: actions/cache@v4
-        id: cache-app
-        with:
-          path: node_modules
-          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-${{ hashFiles('package-lock.json') }}
 
       - name: 📦 Install app dependencies
         if: steps.cache-app.outputs.cache-hit != 'true'
@@ -49,7 +43,6 @@ jobs:
       - name: 📦 Install E2E dependencies
         if: steps.cache-e2e.outputs.cache-hit != 'true'
         run: npm ci
-        working-directory: ./e2e
 
       - name: 🏗️ Build application
         run: npm run build
