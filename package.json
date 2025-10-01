@@ -30,8 +30,7 @@
     "db_proconnect:reset": "dotenv -e .env.local -- prisma db push --schema=./prisma/db_proconnect.prisma",
     "migrate": "prisma migrate",
     "prisma:generate": "prisma generate --schema=./prisma/db_espace.prisma && prisma generate --schema=./prisma/db_proconnect.prisma",
-    "db:reset": "bash scripts/generate-mongodb-keyfile.sh && docker compose down -v && docker compose up -d && sleep 5 && docker compose exec mongodb mongosh -u fc -p pass --eval 'rs.initiate({_id:\"rs0\",members:[{_id:0,host:\"localhost:27017\"}]})' && sleep 2 && npm run db_espace:reset && npm run db_proconnect:reset",
-    "prepare": "husky"
+    "db:reset": "bash scripts/generate-mongodb-keyfile.sh && docker compose down -v && docker compose up -d && sleep 5 && docker compose exec mongodb mongosh -u fc -p pass --eval 'rs.initiate({_id:\"rs0\",members:[{_id:0,host:\"localhost:27017\"}]})' && sleep 2 && npm run db_espace:reset && npm run db_proconnect:reset"
   },
   "prettier": {
     "plugins": [
@@ -89,7 +88,6 @@
     "eslint": "9.20.0",
     "eslint-config-next": "15.1.6",
     "eslint-plugin-jsx-a11y": "6.10.2",
-    "husky": "^9.1.7",
     "linkinator": "^6.1.2",
     "prettier": "^3.6.2",
     "prettier-plugin-gherkin": "^3.1.2",
