@@ -1,8 +1,10 @@
 name: 🤖 Playwright Tests
 
 on:
-  push:
-  pull_request:
+  workflow_run:
+    workflows: ["🏗️ Build"]
+    types:
+      - completed
 
 concurrency:
   cancel-in-progress: true
@@ -13,6 +15,7 @@ env:
 
 jobs:
   e2e-tests:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     defaults:
       run:
         working-directory: ./e2e
@@ -22,46 +25,32 @@ jobs:
     steps:
       - name: 📥 Checkout repository
         uses: actions/checkout@v5
+
       - name: 🔧 Setup Node.js
         uses: actions/setup-node@v5
         with:
           cache: "npm"
           node-version-file: package.json
 
-      - name: 📦 Install app dependencies
-        if: steps.cache-app.outputs.cache-hit != 'true'
-        run: npm ci
-        working-directory: ./
-
-      - name: 💾 Cache E2E node_modules
+      - name: 💾 Restore dependencies cache
         uses: actions/cache@v4
-        id: cache-e2e
         with:
-          path: e2e/node_modules
-          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-e2e-${{ hashFiles('e2e/package-lock.json') }}
+          path: |
+            node_modules
+            e2e/node_modules
+          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-${{ hashFiles('package-lock.json', 'e2e/package-lock.json') }}
 
-      - name: 📦 Install E2E dependencies
-        if: steps.cache-e2e.outputs.cache-hit != 'true'
-        run: npm ci
-
-      - name: 💾 Cache Playwright browsers
+      - name: 💾 Restore Playwright browsers cache
         uses: actions/cache@v4
-        id: cache-playwright
         with:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('e2e/package-lock.json') }}
 
-      - name: 📦 Install Playwright browsers (with deps)
-        if: steps.cache-playwright.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps chrome
-        working-directory: ./e2e
-
-      - name: 🏗️ Build application
-        run: npm run build
-        env:
-          NEXT_PUBLIC_BASE_PATH: ""
-          NODE_ENV: production
-        working-directory: ./
+      - name: 📥 Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+          path: ./
 
       - name: 🐋 Launch services
         run: docker compose up --build --wait
