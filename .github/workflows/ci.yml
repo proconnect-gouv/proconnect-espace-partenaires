@@ -8,9 +8,6 @@ concurrency:
   cancel-in-progress: true
   group: ci-${{ github.ref }}
 
-env:
-  HUSKY: 0
-
 jobs:
   build:
     name: 🏗️ Build & Cache
@@ -54,10 +51,10 @@ jobs:
         with:
           name: build-artifacts
           path: |
-            .next/
+            .next/standalone/
+            .next/static/
             packages/*/dist/
-            node_modules/.prisma/
-            prisma/generated_clients/
+            public/
           retention-days: 1
           include-hidden-files: true
 
@@ -184,14 +181,12 @@ jobs:
       - name: 🔧 Setup Node.js
         uses: actions/setup-node@v5
         with:
-          cache: "npm"
           node-version-file: package.json
 
-      - name: 💾 Restore app dependencies cache
-        uses: actions/cache/restore@v4
+      - name: 📥 Download build artifacts
+        uses: actions/download-artifact@v4
         with:
-          path: node_modules
-          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-${{ hashFiles('package-lock.json') }}
+          name: build-artifacts
 
       - name: 💾 Restore E2E dependencies cache
         uses: actions/cache/restore@v4
@@ -205,13 +200,15 @@ jobs:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('e2e/package-lock.json') }}
 
-      - name: 📥 Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: build-artifacts
-
       - name: 🐋 Launch services
         run: docker compose up --build --wait
+
+      - run: npx prisma db push --schema=./prisma/db_espace.prisma
+        env:
+          DATABASE_URL: postgresql://usr:pwd@localhost:5432/proconnect_ep
+      - run: npx prisma db push --schema=./prisma/db_proconnect.prisma
+        env:
+          MONGODB_CONNECTION_STRING: mongodb://fc_admin:pass@localhost:27017/core-fca-low?authSource=admin&replicaSet=rs0&directConnection=true&tls=true&tlsAllowInvalidCertificates=true
 
       - name: 🎬 Run Playwright tests
         working-directory: ./e2e
