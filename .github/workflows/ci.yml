@@ -185,7 +185,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-artifacts
-          path: .
+          path: ${{ github.workspace }}
 
       - name: 🐋 Launch services
         run: docker compose up --build --wait
