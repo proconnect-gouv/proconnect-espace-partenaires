@@ -36,18 +36,18 @@ jobs:
         if: steps.cache-deps.outputs.cache-hit != 'true'
         run: npm ci
 
+      - name: 🏗️ Build packages
+        run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: ""
+          NODE_ENV: production
+
       - name: 💾 Save app dependencies cache
         if: steps.cache-deps.outputs.cache-hit != 'true'
         uses: actions/cache/save@v4
         with:
           path: node_modules
           key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-${{ hashFiles('package-lock.json') }}
-
-      - name: 🏗️ Build packages
-        run: npm run build
-        env:
-          NEXT_PUBLIC_BASE_PATH: ""
-          NODE_ENV: production
 
       - name: 📤 Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -56,6 +56,8 @@ jobs:
           path: |
             .next/
             packages/*/dist/
+            node_modules/.prisma/
+            prisma/generated_clients/
           retention-days: 1
           include-hidden-files: true
 
