@@ -8,6 +8,6 @@ Si un siret est fourni avec des espaces, nous supprimons les espaces. Si ce sire
 
 ## Numéro de téléphone
 
-Les numéros de téléphone sont optionnels. Cependant si un FI retourne un champ `phone_number` avec une chaîne de caractères vide ou qui contient plus de 256 caractères, l'identité sera considérée comme invalide et ProConnect retournera une erreur.
+Les numéros de téléphone sont optionnels. Cependant si un FI retourne un champ `phone_number` qui contient plus de 256 caractères, l'identité sera considérée comme invalide et ProConnect retournera une erreur.
 
 Si l'identité contient un `phone_number` qui respecte la contrainte définie ci-dessus mais est reconnu comme incorrect par ProConnect, ProConnect retournera une identité sans numéro de téléphone mais sans erreur.
