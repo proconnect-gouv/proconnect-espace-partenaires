@@ -17,7 +17,7 @@ export const remarkRelativeLinks = () => (tree, file) => {
 
     const pagesPath = path.join(
       path.dirname(import.meta.url).replace(/^file\:/, ""),
-      "../../src/pages"
+      "../../src/pages",
     );
 
     // Handle relative links

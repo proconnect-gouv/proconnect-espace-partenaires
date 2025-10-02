@@ -41,7 +41,7 @@ export class PCDBClient {
   private async request<T>(
     method: string,
     path: string,
-    requestData?: Partial<OidcClient>
+    requestData?: Partial<OidcClient>,
   ): Promise<T> {
     const timestamp = Math.floor(Date.now() / 1000).toString();
     const body = requestData ? JSON.stringify(requestData) : undefined;
@@ -85,7 +85,7 @@ export class PCDBClient {
   async updateOidcClient(
     id: string,
     email: string,
-    data: Partial<OidcClient>
+    data: Partial<OidcClient>,
   ): Promise<OidcClient> {
     return this.request("PATCH", `/api/oidc_clients/${id}?email=${email}`, data);
   }
