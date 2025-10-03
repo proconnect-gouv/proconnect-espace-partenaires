@@ -13,7 +13,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getServerSession(
     context.req as NextApiRequest,
     context.res as NextApiResponse,
-    authOptions
+    authOptions,
   );
 
   // Redirect to apps if already authenticated

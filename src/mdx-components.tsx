@@ -24,7 +24,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
       const { src, alt, width, height, ...rest } = props;
 
-      if (!src) return null;
+      if (!src || typeof src !== "string") return null;
 
       return (
         <Image

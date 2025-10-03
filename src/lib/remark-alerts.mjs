@@ -30,7 +30,7 @@ export default function remarkAlerts() {
       // Clean the text
       firstParagraph.children[0].value = text.replace(
         /^\[\!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*/,
-        ""
+        "",
       );
 
       // Transform the node into a DSFR <CallOut />

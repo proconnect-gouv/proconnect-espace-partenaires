@@ -14,7 +14,7 @@ export const fetchMatomoData = async (): Promise<MatomoResult> => {
       .then((data) => data.json())
       .catch(() => {
         return null;
-      })
+      }),
   );
   const [nbVisitData, infoData] = await Promise.all(promises);
   return {

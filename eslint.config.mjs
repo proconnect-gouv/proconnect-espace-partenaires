@@ -9,6 +9,24 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
-const eslintConfig = [...compat.extends("next/core-web-vitals", "next/typescript")];
+const eslintConfig = [
+  {
+    ignores: [
+      ".next/**",
+      "build/**",
+      "e2e/**",
+      "next-env.d.ts",
+      "node_modules/**",
+      "out/**",
+      "prisma/generated_clients/**",
+    ],
+  },
+  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    rules: {
+      "react/no-unescaped-entities": "off",
+    },
+  },
+];
 
 export default eslintConfig;

@@ -25,7 +25,7 @@ export default function attacher() {
       // so we can copy the code to clipboard later
       const htmlWithData = highlighted.replace(
         /^<pre /,
-        `<pre data-code="${encodeURIComponent(originalCode)}" `
+        `<pre data-code="${encodeURIComponent(originalCode)}" `,
       );
 
       node.type = "html";
