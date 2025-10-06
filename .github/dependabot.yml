@@ -11,6 +11,17 @@ updates:
       interval: "weekly"
     versioning-strategy: increase
 
+  - package-ecosystem: "npm"
+    directory: "/e2e"
+    labels:
+      - dependencies
+    commit-message:
+      prefix: ":arrow_upper_right: [patch]"
+      include: "scope"
+    schedule:
+      interval: "weekly"
+    versioning-strategy: increase
+
   - package-ecosystem: "docker-compose"
     directory: "/"
     labels:
