@@ -26,7 +26,6 @@
     "prod:prune": "find node_modules -type f -name '*.map' -delete && rm -rf .next/cache",
     "start": "node .next/standalone/server.js",
     "test": "npm run test:lint",
-    "test:links": "start-server-and-test 'npm run dev' 3000 'linkinator 'http://localhost:3000' --recurse --skip \"^(?!http://localhost:3000)\"'",
     "test:lint": "prettier '**/*.{feature,ts,tsx,css,md,mdx,mjs,js}' --list-different --print-width 100 && eslint --no-cache . && npm run type-check",
     "type-check": "tsc --noEmit"
   },
