@@ -5,11 +5,13 @@
   "scripts": {
     "test": "uuv run",
     "studio": "uuv open",
+    "test:links": "linkinator 'http://localhost:3000' --recurse --skip \"^(?!http://localhost:3000)\"",
     "test:video": "PW_VIDEO=1 uuv run"
   },
   "devDependencies": {
     "@playwright/test": "1.55.1",
     "@uuv/playwright": "3.49.0",
+    "linkinator": "6.1.2",
     "tsx": "4.20.6",
     "typescript": "5.9.3"
   },

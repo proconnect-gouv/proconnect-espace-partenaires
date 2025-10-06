@@ -169,9 +169,48 @@ jobs:
       - name: 💪 Run tests
         run: npm run test
 
+  e2e-tests-links:
+    name: 🐿 Linkinator test
+    needs:
+      - build
+      - e2e-setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v5
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version-file: package.json
+
+      - name: 📥 Download build artifacts
+        uses: actions/download-artifact@v5
+        with:
+          name: build-artifacts
+
+      - name: 🚀 Launch
+        run: npm run start &
+        env:
+          NEXT_PUBLIC_APP_REPOSITORY_URL: "https://github.com/proconnect-gouv/proconnect-espace-partenaires"
+          NEXTAUTH_SECRET: "NEuXWL7esTRTr+I3mZRYM8wvywZ6jiyUvKxqlYReras="
+
+      - name: 💾 Restore E2E dependencies cache
+        uses: actions/cache/restore@v4
+        with:
+          path: e2e/node_modules
+          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-e2e-${{ hashFiles('e2e/package-lock.json') }}
+
+      - name: 🎬 Run Playwright tests
+        working-directory: ./e2e
+        run: npm run test:links
+
   e2e-tests:
     name: 🎭 E2E Tests with UUV
-    needs: [build, e2e-setup]
+    needs:
+      - build
+      - e2e-setup
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
