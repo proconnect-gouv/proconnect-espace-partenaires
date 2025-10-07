@@ -1,6 +1,6 @@
 # Recommandations de parcours utilisateur
 
-#### Généralités
+## Généralités
 
 ProConnect est un outil d’authentification.
 **Il s'agit d'un pont entre un bouton de connexion et la partie authentifiée de votre service**.
@@ -10,31 +10,58 @@ Voici quelques recommandations pour un parcours simple et sans blocage pour les 
 
 ---
 
-#### Les grands principes à respecter pour guider vos utilisateur·ice·s
+## Principes à respecter pour guider vos utilisatrices et utilisateurs
 
-1. Leur donner toutes les informations nécessaires
+* Fournir les informations nécessaires en amont de la connexion
 
-2. Faciliter leur choix
+* Orienter les utilisateurs selon leur profil (professionnel, particulier, agent habilité)
 
-3. Leur éviter les erreurs
+* Prévenir et gérer les erreurs avec des messages explicites
+
 
 ---
 
-#### Dans quel cas êtes-vous ?
-
+## Cas d’usage et scénarios
 Chaque service a ses particularités. Quelles sont les vôtres ?
 
 | Votre cas                                        | Comment faire ?                                                                                                                                                                                                                               | Exemple                                                                                                                                                            |
 | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Mon service s'adresse aussi aux particuliers     | Vous pouvez proposer un parcours de connexion différencié pour les particuliers et les professionnels.                                                                                                                                        | ![RDV Service public](/images/docs/screenshot-rdv.png)[RDV Service Public](https://rdv.anct.gouv.fr/)                                                              |
-| Mon service a des restrictions d’accès           | Vous pouvez ajouter un encadré qui explique qui est autorisé à utiliser ce service et ajoutez une page d’erreur qui explique clairement aux utilisateurs non autorisés pourquoi ils sont bloqués, s’ils essaient malgré tout de se connecter. | ![Annuaire des Entreprises](/images/docs/screenshot-annuaire-entreprises.png)[Annuaire des Entreprises](https://annuaire-entreprises.data.gouv.fr/lp/agent-public) |
-| Mon service propose plusieurs modes de connexion | Il est important de hiérarchiser les options de connexion : 1. ProConnect / 2. Autre mode de connexion ou compte local                                                                                                                        | ![FranceTransfert](/images/docs/screenshot-francetransfert.png) [FranceTransfert](https://francetransfert.numerique.gouv.fr/connect)                               |
+| Votre service accueille des particuliers et professionnels    | Proposez un parcours de connexion différencié pour les particuliers et les professionnels ou créez deux embranchements après un tronc commun.                                                                                                                                      | ![RDV Service public](/images/docs/screenshot-rdv.png)[RDV Service Public](https://rdv.anct.gouv.fr/)                                                              |
+| Votre service est réservé à un public spécifique           | Affichez un encadré explicatif avec les conditions d'accès | ![Annuaire des Entreprises](/images/docs/screenshot-annuaire-entreprises.png)[Annuaire des Entreprises](https://annuaire-entreprises.data.gouv.fr/lp/agent-public) |
+| Votre service propose plusieurs modes de connexion | Hiérarchisez vos options : ProConnect en priorité, alternatives ensuite.                                                                                                                        | ![FranceTransfert](/images/docs/screenshot-francetransfert.png) [FranceTransfert](https://francetransfert.numerique.gouv.fr/connect)                               |
 
----
+___
 
-#### Où placer le bouton ProConnect ?
 
-| Votre cas                                                                                           | Où placer le bouton ?                                                                                                                                                                     | Exemple                                                                                                                                                                                |
-| --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Vous avez des utilisateurs particuliers et professionnels ou vous avez plusieurs modes de connexion | Pour que l’utilisateur comprenne facilement quel est le meilleur choix pour lui, faites une page de connexion dédiée. Les informations contextuelles seront vues et lues plus facilement. | ![](/images/docs/screenshot-plus-fraiche-ma-ville.png)[Plus Fraîche ma ville](https://plusfraichemaville.fr/connexion?callbackUrl=https%3A%2F%2Fplusfraichemaville.fr%2Fespace-projet) |
-| Vous utilisez exclusivement ProConnect                                                              | Placez le bouton ProConnect directement sur votre page d’accueil.                                                                                                                         | ![Datapass](/images/docs/screenshot-datapass.png)[Datapass](https://datapass.api.gouv.fr/)                                                                                             |
+## Gestion des erreurs & pages d’erreur
+
+### ✅ Ce que nous conseillons
+
+**A la connexion**
+* Expliquer clairement les conditions d’accès.
+
+* Hiérarchiser les boutons selon l’usage principal.
+
+**En cas d'erreur**
+* Afficher des messages d’erreur simples et actionnables.
+
+* Guider l’utilisateur dans le choix de son parcours (particulier / pro).
+
+* Donner une solution aux personnes qui se retrouvent bloquées (ex. adresse de support ou page d'aide).
+
+
+### ❌ Ce que nous déconseillons
+**A la connexion**
+* Laisser plusieurs boutons sans contexte ni hiérarchie.
+
+* Donner accès sans expliquer l’éligibilité.
+
+* Mélanger les parcours particuliers et professionnels sans distinction claire.
+
+
+**En cas d'erreur**
+* Afficher des erreurs techniques incompréhensibles.
+
+* Laisser les utilisateurs bloqués sans leur fournir d'aide 
+**(cela crée une forte surcharge pour notre propre support)**
+ 
