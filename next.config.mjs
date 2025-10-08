@@ -34,12 +34,14 @@ const version = pkg.default.version;
 /** @type {import('next').NextConfig} */
 const moduleExports = {
   basePath: process.env.NEXT_PUBLIC_BASE_PATH,
+  bundlePagesRouterDependencies: true,
   crossOrigin: "anonymous",
+  output: "standalone",
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx", "md"],
   poweredByHeader: false,
-  bundlePagesRouterDependencies: true,
   productionBrowserSourceMaps: false,
   reactStrictMode: true,
+  serverExternalPackages: ["@prisma/client", "prisma"],
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(woff2|webmanifest)$/,

@@ -51,7 +51,7 @@ export default function AppDetailPage({ app }: { app: OidcClient }) {
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [idTokenSignatureAlg, setIdTokenSignatureAlg] = useState(data.id_token_signed_response_alg);
   const [userInfoSignatureAlg, setUserInfoSignatureAlg] = useState(
-    data.userinfo_signed_response_alg || ""
+    data.userinfo_signed_response_alg || "",
   );
 
   const handleSave = useCallback(
@@ -85,13 +85,13 @@ export default function AppDetailPage({ app }: { app: OidcClient }) {
         setSaveSuccess(false);
       }
     },
-    [data._id]
+    [data._id],
   );
 
   // Create a memoized debounced save function
   const debouncedSave = useMemo(
     () => debounce((updates: Partial<OidcClient>) => handleSave(updates), 2000),
-    [handleSave]
+    [handleSave],
   );
 
   const handleUpdate = (updates: Partial<OidcClient>) => {

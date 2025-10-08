@@ -79,6 +79,3 @@ __pycache__/
 *.pyc
 .ruff_cache/
 .coverage
-
-# Symlink
-pcdbapi

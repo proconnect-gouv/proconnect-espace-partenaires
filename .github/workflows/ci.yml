@@ -1,0 +1,223 @@
+name: 🔄 CI
+
+on:
+  push:
+  pull_request:
+
+concurrency:
+  cancel-in-progress: true
+  group: ci-${{ github.ref }}
+
+jobs:
+  build:
+    name: 🏗️ Build & Cache
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v5
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          cache: "npm"
+          node-version-file: package.json
+
+      - name: 💾 Restore app dependencies cache
+        uses: actions/cache/restore@v4
+        id: cache-deps
+        with:
+          path: node_modules
+          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-${{ hashFiles('package-lock.json') }}
+
+      - name: 📦 Install app dependencies
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: 🏗️ Build packages
+        run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: ""
+          NODE_ENV: production
+
+      - name: 💾 Save app dependencies cache
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: node_modules
+          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-${{ hashFiles('package-lock.json') }}
+
+      - name: 📤 Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: |
+            .next/standalone/
+            .next/static/
+            packages/*/dist/
+            public/
+          retention-days: 1
+          include-hidden-files: true
+
+  e2e-setup:
+    name: 🎭 E2E Setup & Cache
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v5
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          cache: "npm"
+          node-version-file: package.json
+
+      - name: 💾 Restore E2E dependencies cache
+        uses: actions/cache/restore@v4
+        id: cache-e2e
+        with:
+          path: e2e/node_modules
+          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-e2e-${{ hashFiles('e2e/package-lock.json') }}
+
+      - name: 📦 Install E2E dependencies
+        if: steps.cache-e2e.outputs.cache-hit != 'true'
+        run: npm ci
+        working-directory: ./e2e
+
+      - name: 💾 Save E2E dependencies cache
+        if: steps.cache-e2e.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: e2e/node_modules
+          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-e2e-${{ hashFiles('e2e/package-lock.json') }}
+
+      - name: 💾 Restore Playwright browsers cache
+        uses: actions/cache/restore@v4
+        id: cache-playwright
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('e2e/package-lock.json') }}
+
+      - name: 📦 Install Playwright browsers
+        if: steps.cache-playwright.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps chrome
+        working-directory: ./e2e
+
+      - name: 💾 Save Playwright browsers cache
+        if: steps.cache-playwright.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('e2e/package-lock.json') }}
+
+  lint:
+    name: ⛑️ Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v5
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          cache: "npm"
+          node-version-file: package.json
+
+      - name: 💾 Restore dependencies cache
+        uses: actions/cache/restore@v4
+        id: cache-deps
+        with:
+          path: node_modules
+          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-${{ hashFiles('package-lock.json') }}
+
+      - name: 📦 Install dependencies
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: 🏗️ Build packages (for lint)
+        run: npm run predev
+
+      - name: ⛑️ Lint
+        run: npm run test:lint
+
+  test:
+    name: 💪 Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v5
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          cache: "npm"
+          node-version-file: package.json
+
+      - name: 💾 Restore dependencies cache
+        uses: actions/cache/restore@v4
+        id: cache-deps
+        with:
+          path: node_modules
+          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-${{ hashFiles('package-lock.json') }}
+
+      - name: 📦 Install dependencies
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: 🏗️ Build packages (for tests)
+        run: npm run predev
+
+      - name: 💪 Run tests
+        run: npm run test
+
+  e2e-tests:
+    name: 🎭 E2E Tests with UUV
+    needs: [build, e2e-setup]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v5
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version-file: package.json
+
+      - name: 📥 Download build artifacts
+        uses: actions/download-artifact@v5
+        with:
+          name: build-artifacts
+
+      - name: 💾 Restore E2E dependencies cache
+        uses: actions/cache/restore@v4
+        with:
+          path: e2e/node_modules
+          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-e2e-${{ hashFiles('e2e/package-lock.json') }}
+
+      - name: 💾 Restore Playwright browsers cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('e2e/package-lock.json') }}
+
+      - name: 🐋 Launch services
+        run: docker compose up --build --wait
+
+      - run: npx prisma db push --schema=./prisma/db_espace.prisma
+        env:
+          DATABASE_URL: postgresql://usr:pwd@localhost:5432/proconnect_ep
+      - run: npx prisma db push --schema=./prisma/db_proconnect.prisma
+        env:
+          MONGODB_CONNECTION_STRING: mongodb://fc_admin:pass@localhost:27017/core-fca-low?authSource=admin&replicaSet=rs0&directConnection=true&tls=true&tlsAllowInvalidCertificates=true
+
+      - name: 🎬 Run Playwright tests
+        working-directory: ./e2e
+        run: npm run test:video
+
+      - name: 📊 Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: e2e/playwright-report/
+          retention-days: 30

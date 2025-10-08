@@ -1,0 +1,54 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    labels:
+      - dependencies
+    commit-message:
+      prefix: ":arrow_upper_right: [patch]"
+      include: "scope"
+    schedule:
+      interval: "weekly"
+    versioning-strategy: increase
+
+  - package-ecosystem: "npm"
+    directory: "/e2e"
+    labels:
+      - dependencies
+    commit-message:
+      prefix: ":arrow_upper_right: [patch]"
+      include: "scope"
+    schedule:
+      interval: "weekly"
+    versioning-strategy: increase
+
+  - package-ecosystem: "docker-compose"
+    directory: "/"
+    labels:
+      - dependencies
+    commit-message:
+      prefix: ":arrow_upper_right: [patch]"
+      include: "scope"
+    schedule:
+      interval: "weekly"
+    ignore:
+      # Lock MongoDB to current major.minor version (5.0.x)
+      - dependency-name: "mongo"
+        update-types:
+          - "version-update:semver-major"
+          - "version-update:semver-minor"
+      # Lock PostgreSQL to current major.minor version (16.6.x)
+      - dependency-name: "postgres"
+        update-types:
+          - "version-update:semver-major"
+          - "version-update:semver-minor"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    labels:
+      - dependencies
+    commit-message:
+      prefix: ":arrow_upper_right: [patch]"
+      include: "scope"
+    schedule:
+      interval: "weekly"

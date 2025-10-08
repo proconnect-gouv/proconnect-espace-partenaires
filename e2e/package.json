@@ -1,0 +1,19 @@
+{
+  "name": "e2e",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "test": "uuv run",
+    "studio": "uuv open",
+    "test:video": "PW_VIDEO=1 uuv run"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.55.1",
+    "@uuv/playwright": "3.50.0",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

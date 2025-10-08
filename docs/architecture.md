@@ -6,23 +6,18 @@ The project consists of three main components:
 
 1. Next.js Frontend - User interface and client-side logic
 2. Next.js API - Backend proxy and session management
-3. FastAPI Service (PCDBAPI) - MongoDB access and data validation
 
 ## Component Architecture
 
 ```
-├── src/                    # Next.js Frontend & API
-│   ├── pages/
-│   │   ├── api/           # Next.js API Routes
-│   │   │   ├── apps/      # OIDC Client management
-│   │   │   └── auth/      # Authentication
-│   │   └── apps/          # Frontend pages
-│   ├── components/        # React components
-│   └── lib/              # Shared utilities
-│
-└── pcdbapi/              # FastAPI Service
-    ├── main.py           # API endpoints
-    └── middleware.py     # Authentication
+└── src/                    # Next.js Frontend & API
+    ├── pages/
+    │   ├── api/           # Next.js API Routes
+    │   │   ├── apps/      # OIDC Client management
+    │   │   └── auth/      # Authentication
+    │   └── apps/          # Frontend pages
+    ├── components/        # React components
+    └── lib/              # Shared utilities
 ```
 
 ## Next.js Frontend
@@ -89,13 +84,11 @@ The data model is strictly enforced by Pydantic models, see `pcdbapi/main.py`.
 ## Authentication Flow
 
 1. User -> Next.js Frontend
-
    - Magic link authentication via email
    - No password required
    - Secure token in email link
 
 2. Next.js Frontend -> Next.js API
-
    - NextAuth.js session management
    - HTTP-only session cookie
    - Protected routes

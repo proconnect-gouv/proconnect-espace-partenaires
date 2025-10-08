@@ -5,7 +5,7 @@
 Selon votre environnement et le réseau sur lequel votre Fournisseur d'Identité est, le Fournisseur de Service (FS) de test sera :
 | | Internet | RIE |
 |-|-|-|
-| Intégration | https://test.agentconnect.gouv.fr | https://fsa1v2.integ02.agentconnect.rie.gouv.fr |
+| Intégration | https://test.proconnect.gouv.fr | https://fsa1v2.integ02.agentconnect.rie.gouv.fr |
 | Production | n'importe quel [FS de production](https://www.proconnect.gouv.fr/services) | [CisirRH](https://portail.cisirh.rie.gouv.fr) |
 
 ## Protocole de test
