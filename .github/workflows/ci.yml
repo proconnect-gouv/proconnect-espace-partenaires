@@ -142,10 +142,9 @@ jobs:
         run: npx prettier --write '**/*.{md,mdx}' --print-width 100
 
       - name: 📤 Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: "💅 style(docs): auto-format markdown files"
-          file_pattern: "*.md *.mdx"
 
   lint:
     name: ⛑️ Lint
