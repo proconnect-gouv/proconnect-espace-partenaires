@@ -109,6 +109,43 @@ jobs:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('e2e/package-lock.json') }}
 
+  format:
+    name: 💅 Format Markdown
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          cache: "npm"
+          node-version-file: package.json
+
+      - name: 💾 Restore dependencies cache
+        uses: actions/cache/restore@v4
+        id: cache-deps
+        with:
+          path: node_modules
+          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-${{ hashFiles('package-lock.json') }}
+
+      - name: 📦 Install dependencies
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: 💅 Format Markdown files
+        run: npx prettier --write '**/*.{md,mdx}' --print-width 100
+
+      - name: 📤 Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v6
+        with:
+          commit_message: "💅 style(docs): auto-format markdown files"
+
   lint:
     name: ⛑️ Lint
     runs-on: ubuntu-latest
