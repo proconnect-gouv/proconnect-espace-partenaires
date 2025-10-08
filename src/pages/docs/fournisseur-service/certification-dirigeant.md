@@ -102,9 +102,8 @@ Pour tester la certification dirigeant, vous pouvez utiliser le [fournisseur de 
 - De retour sur ProConnect, rejoignez l'organisation [au SIRET 83832482000011](https://annuaire-entreprises.data.gouv.fr/etablissement/83832482000011) (en cliquant si besoin sur `Rejoindre une autre organisation`)
 - Validez, la redirection vers le fournisseur de service est établie
 
-Dans le token, vous remarquerez que ProConnect renvoie : 
+Dans le token, vous remarquerez que ProConnect renvoie :
 
 ```json
     "acr": "https://proconnect.gouv.fr/assurance/certification-dirigeant",
 ```
-
