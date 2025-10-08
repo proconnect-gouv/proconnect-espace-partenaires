@@ -86,38 +86,25 @@ Il est **IMPÉRATIF** de vérifier la présence et la valeur du paramètre `acr`
 
 ## 6. Annexe
 
-### 6.1 Tester la certification dirigeant
+### 6.1 Tester la certification dirigeant en intégration
 
-Pour tester la certification dirigeant, vous pouvez utiliser le [fournisseur de service de test](https://test.proconnect.gouv.fr) de ProConnect.
+Pour tester la certification dirigeant, vous pouvez utiliser le [fournisseur de service de test](https://test.proconnect.gouv.fr) de ProConnect en cliquant sur `Forcer une connexion par Certification Dirigeant`.
 
-> [!WARNING]
-> Seul la citoyenne fictive "Angela Claire Louise" peut se connecter à cette fonctionnalité pour tester la certification dirigeant aujourd'hui.
+> [!IMPORTANT]
+> Si vous n'avez pas de données en intégration d'une personne dirigeante d'entreprise, sachez que nous avons rempli notre [seed d'intégration](https://github.com/proconnect-gouv/proconnect-identite/blob/4ce6c5fcfb8b548cf24fea7dc168c04d88317fca/packages/testing/src/api/routes/api.insee.fr/etablissements/83832482000011.json#L29) pour que [cette utilisatrice fictive](https://github.com/france-connect/sources/blob/96ad0d3d379cd3b0c55f7c8d71a77a7e228717ee/docker/volumes/fcp-high/mocks/idp/databases/citizen/base.csv#L2) peut être dirigeante de [cette entreprise](https://annuaire-entreprises.data.gouv.fr/etablissement/83832482000011).
 
-- cliquez sur "Forcer une connexion par certification dirigeant"
-- indiquez une adresse e-mail temporaire comme "angela.g20@yopmail.com"
-- cliquez sur "Recevoir un lien d’identification" pour faciliter la connexion
-- consulter la boite e-mail temporaire pour recevoir le lien d’identification https://yopmail.com/?login=angela.g20@yopmail.com
-- cliquez sur le lien d’identification pour vous connecter
-- on vous demande alors de certifier votre statut de dirigeant
-- cliquez sur "S'identifier avec FranceConnect"
+#### 6.1.1. Tester la certification dirigeant avec notre seed
 
-- vous êtes alors redirigé vers le bac à sable FranceConnect
-- cliquez sur "Démonstration eIDAS faible"
-  ce démonstrateur utilise un [jeux de données fictifs](https://docs.partenaires.franceconnect.gouv.fr/fs/fs-integration/env-sandbox-fc-plus/#jeux-de-donnees).
-- indiquez l'identifiant "test" et le mot de passe "123" pour vous authentifier en tant que "Angela Claire Louise"
-- cliquez sur "Continuer sur ProConnect Sandbox - DIRECTION INTERMINISTERIELLE DU NUMERIQUE"
+- Forcez une certification dirigeant (par exemple sur notre [fournisseur de service de test](https://test.proconnect.gouv.fr) en cliquant sur `Forcer une connexion par Certification Dirigeant`)
+- Créez un nouveau compte avec un email de votre choix
+- On vous demande de certifier votre statut de dirigeant
+- Pour FranceConnect et [l'utilisatrice fictive choisie](https://github.com/france-connect/sources/blob/96ad0d3d379cd3b0c55f7c8d71a77a7e228717ee/docker/volumes/fcp-high/mocks/idp/databases/citizen/base.csv#L2), cliquez sur `Démonstration eIDAS faible` depuis le bac à sable FranceConnect, puis identifiant `test` mot de passe `123` pour vous authentifier en tant que "Angela Claire Louise" qui en intégration a les droits de dirigeante sur la société [83832482000011](https://annuaire-entreprises.data.gouv.fr/etablissement/83832482000011)
+- De retour sur ProConnect, rejoignez l'organisation [au SIRET 83832482000011](https://annuaire-entreprises.data.gouv.fr/etablissement/83832482000011) (en cliquant si besoin sur `Rejoindre une autre organisation`)
+- Validez, la redirection vers le fournisseur de service est établie
 
-- vous êtes alors redirigé vers le bac à sable ProConnect
-- cliquez sur "Je veux rejoindre une autre organisation" en bas de page
-- on vous demande d'entrer le siret de l'organisation de rattachement
-  nous avons choisi de rapprocher l'entreprise individuelle [Angela GNESOTTO](https://annuaire-entreprises.data.gouv.fr/etablissement/83832482000011) et la citoyenne fictive "Angela Claire Louise" sur notre bac à sable.
-- indiquez le siret de l'organisation de rattachement "83832482000011"
-- cliquez sur "Enregistrer"
+Dans le token, vous remarquerez que ProConnect renvoie : 
 
-- vous êtes alors certifié pour cette organisation.
-- cliquez sur "Continuer"
-
-- vous êtes redirigé vers le fournisseur de service de test et vous remarquez
-  ```
+```json
     "acr": "https://proconnect.gouv.fr/assurance/certification-dirigeant",
-  ```
+```
+
