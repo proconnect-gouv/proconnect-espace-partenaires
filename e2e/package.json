@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@playwright/test": "1.55.1",
-    "@uuv/playwright": "3.50.0",
+    "@uuv/playwright": "3.51.0",
     "tsx": "4.20.6",
     "typescript": "5.9.3"
   },
