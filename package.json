@@ -75,7 +75,7 @@
     "next": "15.5.4",
     "next-auth": "^4.24.11",
     "next-seo": "^6.8.0",
-    "nodemailer": "^6.9.16",
+    "nodemailer": "^7.0.7",
     "prettier": "^3.6.2",
     "prettier-plugin-gherkin": "^3.1.2",
     "prettier-plugin-organize-imports": "^4.3.0",
