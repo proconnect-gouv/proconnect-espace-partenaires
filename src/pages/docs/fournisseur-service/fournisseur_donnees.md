@@ -43,4 +43,4 @@ Indique comment ProConnect **chiffre** (JWE) la réponse **pour le FD**. À tout
 
 ### `jwks_uri`
 
-Le endpoint **de ton FD** qui expose la clef publique que ProConnect utilise pour **chiffrer** la réponse pour le FD. L'URI `/.well-known/jwks.json` est standard, mais n'est pas obligatoire.
+Le endpoint **de votre FD** qui expose la clef publique que ProConnect utilise pour **chiffrer** la réponse pour le FD. L'URI `/.well-known/jwks.json` est standard, mais n'est pas obligatoire.
