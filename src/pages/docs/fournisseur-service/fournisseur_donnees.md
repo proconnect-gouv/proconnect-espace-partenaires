@@ -39,7 +39,7 @@ Le FD vérifie l’intégrité et l'authenticité de la réponse avec le JWKS pu
 
 ### `introspection_encrypted_response_alg`
 
-Indique comment ProConnect **chiffre** (JWE) la réponse **pour le FD**. À toutes fins utiles, l'algorithme de chiffrement du contenu est A256GCM.
+Indique comment ProConnect **chiffre** (JWE) la réponse **pour le FD**. L'algorithme de chiffrement du contenu est A256GCM.
 
 ### `jwks_uri`
 
