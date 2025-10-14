@@ -25,7 +25,7 @@ Il doit ensuite écrire à support.partenaires@mail.proconnect.gouv.fr en spéci
 
 - le `client_id` de son FS qui lui aura été transmis après inscription
 - `introspection_signed_response_alg` : HS256, ES256 ou RS256
-- `introspection_encrypted_response_alg` : ECDH-ES ou RSA-OAEP
+- l'`introspection_encrypted_response_alg` : ECDH-ES ou RSA-OAEP
 - `jwks_uri` : cf. "Signatures et chiffrements" ci-après
 
 Une fois la réponse du Support reçue, votre FD est capable d'effectuer les appels à ProConnect !
