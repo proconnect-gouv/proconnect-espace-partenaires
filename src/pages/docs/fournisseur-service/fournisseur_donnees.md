@@ -2,7 +2,7 @@
 
 ## Utilisation
 
-Un FD (ou Resource Server dans la terminologie OIDC) permet éventuellement d'effectuer des actions au nom d'un utilisateur ProConnecté, et de renvoyer à un Fournisseur de Service des informations concernant l'utilisateur.
+Un FD (ou Resource Server dans la terminologie OIDC) permet d'effectuer des actions au nom d'un utilisateur proConnecté et de renvoyer à un Fournisseur de Service des informations concernant l'utilisateur.
 
 ## Fonctionnement
 
