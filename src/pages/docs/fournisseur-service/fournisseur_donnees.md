@@ -28,7 +28,7 @@ Il doit ensuite écrire à support.partenaires@mail.proconnect.gouv.fr en spéci
 - l'`introspection_encrypted_response_alg` : ECDH-ES ou RSA-OAEP
 - `la jwks_uri` : cf. "Signatures et chiffrements" ci-après
 
-Une fois la réponse du Support reçue, votre FD est capable d'effectuer les appels à ProConnect !
+Une fois la réponse du support reçue, votre FD est capable d'effectuer les appels à ProConnect !
 
 ## Signatures et chiffrements
 
