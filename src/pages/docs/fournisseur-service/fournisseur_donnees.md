@@ -8,7 +8,7 @@ Un FD (ou Resource Server dans la terminologie OIDC) permet d'effectuer des acti
 
 1. L'utilisateur s'authentifie sur le FS via ProConnect selon le parcours classique .
 2. Un `access_token` est renvoyé au FS. Cet `access_token` permet notamment d'authentifier l'appel au `userinfo_endpoint`.
-3. Le FS appelle une route du FD pour effectuer une action. Par exemple, si le FD contient des informations sur les utilisateurs, il peut s'agir de la route `https://resource-server.fr/api/data`. Cet appel doit contenir l'`access_token` renvoyé par ProConnect lors de l'appel du FS au `token_endpoint`. L'usage est d'envoyer l'`access_token` en Bearer token dans le header `Authorization`.
+3. Le FS appelle une route du FD pour effectuer une action. Par exemple, si le FD contient des informations sur les utilisateurs, il peut s'agir de la route `https://resource-server.fr/api/users`. Cet appel doit contenir l'`access_token` renvoyé par ProConnect lors de l'appel du FS au `token_endpoint`. L'usage est d'envoyer l'`access_token` en `Bearer` dans le header `Authorization`.
 4. Le FD appelle le `introspection_endpoint` de ProConnect avec l'`access_token` selon les modalités indiquées dans [la RFC](https://www.rfc-editor.org/rfc/rfc7662.html#section-2). Le FD étant en réalité un cas spécifique d'un FS, **il faut que le FD soit enregistré auprès de ProConnect**.
 5. Le FD reçoit un JSON en réponse, qui contient notamment deux champs utiles :
 
