@@ -24,23 +24,9 @@ Le FD doit d'abord suivre le processus d'inscription auprès de ProConnect **en 
 Il doit ensuite écrire à support.partenaires@mail.proconnect.gouv.fr en spécifiant :
 
 - le `client_id` de son FS qui lui aura été transmis après inscription
-- `introspection_signed_response_alg` : HS256, ES256 ou RS256
-- l'`introspection_encrypted_response_alg` : ECDH-ES ou RSA-OAEP
-- `la jwks_uri` : cf. "Signatures et chiffrements" ci-après
+- l'`introspection_signed_response_alg` : RS256, HS256 ou ES256. Si vous ne savez pas quoi choisir, nous recommandons RS256.
 
 Une fois la réponse du support reçue, votre FD est capable d'effectuer les appels à ProConnect !
 
-## Signatures et chiffrements
-
-### `introspection_signed_response_alg`
-
-Indique comment ProConnect **signe** (JWS) le contenu de la réponse d’introspection.
-Le FD vérifie l’intégrité et l'authenticité de la réponse avec le JWKS public de l'AS.
-
-### `introspection_encrypted_response_alg`
-
-Indique comment ProConnect **chiffre** (JWE) la réponse **pour le FD**. L'algorithme de chiffrement du contenu est A256GCM.
-
-### `jwks_uri`
-
-Le endpoint **de votre FD** qui expose la clef publique que ProConnect utilise pour **chiffrer** la réponse pour le FD. L'URI `/.well-known/jwks.json` est standard, mais n'est pas obligatoire.
+> NB: l'`introspection_signed_response_alg` indique comment ProConnect **signe** (JWS) le contenu de la réponse d’introspection.
+> Votre bibliothèque OIDC cliente vérifie l’intégrité et l'authenticité de la réponse avec le JWKS public de ProConnect.
