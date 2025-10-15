@@ -30,3 +30,7 @@ Une fois la réponse du support reçue, votre FD est capable d'effectuer les app
 
 > NB: l'`introspection_signed_response_alg` indique comment ProConnect **signe** (JWS) le contenu de la réponse d’introspection.
 > Votre bibliothèque OIDC cliente vérifie l’intégrité et l'authenticité de la réponse avec le JWKS public de ProConnect.
+
+## Exemple d'implémentation
+
+github.com/proconnect-gouv/proconnect-test-data-provider
