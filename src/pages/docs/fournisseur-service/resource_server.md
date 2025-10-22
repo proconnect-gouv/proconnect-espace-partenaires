@@ -7,7 +7,7 @@ Un SR (ou Resource Server dans la terminologie OIDC) permet d'effectuer des acti
 ## Fonctionnement
 
 1. L'utilisateur s'authentifie sur le FS via ProConnect selon le parcours classique. Dans le cadre de cette connexion, un `access_token` est renvoyé au FS.
-2. Le FS requête une route du SR pour effectuer une action. Par exemple, si le SR contient des informations de géolocalisation sur les utilisateurs, il peut s'agir de la route `https://resource-server.fr/api/users/locations`. Cet appel doit contenir l'`access_token` renvoyé par ProConnect lors de l'appel du FS au `token_endpoint`. L'usage est d'envoyer l'`access_token` en `Bearer` dans le header `Authorization`.
+2. Le FS requête une route du SR pour effectuer une action. Par exemple, si le SR contient des informations de géolocalisation sur les utilisateurs, il peut s'agir de la route `https://example.com/api/users/locations`. Cet appel doit contenir l'`access_token` renvoyé par ProConnect lors de l'appel du FS au `token_endpoint`. L'usage est d'envoyer l'`access_token` en `Bearer` dans le header `Authorization`.
 3. Le SR requête l'`introspection_endpoint` de ProConnect avec l'`access_token` selon les modalités indiquées dans [la RFC](https://www.rfc-editor.org/rfc/rfc7662.html#section-2).
 4. Le SR reçoit en réponse de l'`introspection_endpoint` un JSON qui contient notamment deux champs utiles :
 
@@ -18,7 +18,7 @@ Un SR (ou Resource Server dans la terminologie OIDC) permet d'effectuer des acti
 
 ## Enregistrement auprès de ProConnect
 
-Le SR doit d'abord suivre le processus d'inscription auprès de ProConnect **en tant que FS**. En effet, inscrire un Resource Server auprès de ProConnect doit se faire lors de l'enregistrement d'un FS.
+Le SR doit d'abord suivre le processus d'inscription auprès de ProConnect **en tant que FS** via le [Démarches Simplifiées](https://www.demarches-simplifiees.fr/commencer/demande-creation-fs-fca). En effet, inscrire un Resource Server auprès de ProConnect doit se faire lors de l'enregistrement d'un FS.
 
 Il doit ensuite écrire à support.partenaires@mail.proconnect.gouv.fr en spécifiant :
 
@@ -33,3 +33,9 @@ Une fois la réponse du support reçue, votre SR est capable d'effectuer les app
 ## Exemple d'implémentation
 
 Voici un exemple de Resource Server implémenté en ExpressJS : https://github.com/proconnect-gouv/proconnect-test-resource-server
+
+## FAQ
+
+### Ai-je besoin d'un nouveau client ID pour le SR que je souhaite implémenter ?
+
+> Oui, il vous faut faire une demande de couple client ID / client secret pour votre SR
