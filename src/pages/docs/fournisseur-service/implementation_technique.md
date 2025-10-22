@@ -220,6 +220,10 @@ NB: la session ProConnect a une durée de 12 heures.
 
 Il est possible, et plus agréable pour l'utilisateur, de faire en sorte que lorsque l'utilisateur arrive sur votre FS, il se connecte immédiatement et automatiquement à votre FS dans le cas où il dispose d'une session ProConnect en cours (par exemple s'il s'est déjà connecté dans la journée via ProConnect à une autre application). Ce parcours et son implémentation sont décrits [à cette page](./sso.md).
 
+### 2.3.9 Le refresh token
+
+Il est possible d'utiliser un `refresh_token` pour récupérer des informations utilisateurs auprès de ProConnect (PC) **après** l'expiration de l'`access_token` initialement émis lors de la connexion de l'utilisateur. Son implémentation est décrite [à cette page](./refresh-token.md)
+
 ### 2.4. Déconnexion de l'utilisateur
 
 Au clic sur votre bouton de déconnexion, effectuer les actions suivantes :
