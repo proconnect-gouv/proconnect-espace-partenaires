@@ -16,7 +16,7 @@ Pour savoir quelles URL appeler au cours de l'authentification, vous aurez besoi
 
 ### 1.3. Modification des redirect_uri
 
-Si au cours de l'intégration, vous souhaitez changer les redirect_uri de connexion ou de déconnexion configurées par ProConnect, vous pouvez le faire directement sur [votre espace](../../apps). Pour un changement en production, vous pourrez faire la demande en 2 minutes sur [ce lien](https://www.demarches-simplifiees.fr/commencer/demande-de-modification-d-un-fournisseur-de-service).
+Si au cours de l'intégration, vous souhaitez changer les redirect_uri de connexion ou de déconnexion configurées par ProConnect, vous pouvez le faire directement sur [votre espace](../../apps). Pour un changement en production, vous pourrez faire la demande en deux minutes sur [ce lien](https://www.demarches-simplifiees.fr/commencer/demande-de-modification-d-un-fournisseur-de-service).
 
 ### 1.4. Exemple d'intégration de test
 
@@ -91,7 +91,7 @@ Les query parameters renvoyés dans l'URL sont décrits ci-dessous.
 
 </details>
 
-NB : le `code` a une durée d'expiration de 30 secondes.
+NB : le `code` a une durée d'expiration de 60 secondes.
 
 Votre serveur doit alors effectuer plusieurs actions en "back-channel".
 
@@ -153,7 +153,7 @@ Vous récupérez alors un JSON, qui contient notamment :
 - `access_token`
 - `id_token`.
 
-L'`access_token` est un Bearer token. Sa durée de validité est de 60 secondes.
+L'`access_token` est un Bearer token. Sa durée de validité est d'une heure.
 
 #### 2.3.4. Vérification de l'id_token et du nonce
 
