@@ -96,6 +96,6 @@
     "@swc/core-linux-x64-gnu": "^1.10.12"
   },
   "engines": {
-    "node": ">=22"
+    "node": "^24.10"
   }
 }
