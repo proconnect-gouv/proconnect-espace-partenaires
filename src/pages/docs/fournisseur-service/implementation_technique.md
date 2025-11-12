@@ -5,7 +5,7 @@
 ### 1.1. Identifiants de tests
 
 Pour tester la configuration de votre Fournisseur de Service tout au long de l'intégration, vous aurez besoin de vous connecter via un Fournisseur d'Identité.
-Vous trouverez [ici](./identifiants-fi-test.md) les identifiants pour vous connecter au Fournisseur d'Identité de test.
+[Vous trouverez ici les identifiants pour vous connecter au Fournisseur d'Identité de test](./identifiants-fi-test.md).
 
 ### 1.2. Valeur de PROCONNECT_DOMAIN
 
