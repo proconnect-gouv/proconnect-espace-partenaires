@@ -21,7 +21,6 @@ Vous pouvez utiliser notre chaine Tchap pour faire des pré-questions avant la d
 > [!IMPORTANT]
 > Ces liens concernent le support partenaires de ProConnect, pour nos partenaires qui essaient de coder le bouton ProConnect sur leur application. Si vous voulez contacter le support usager de ProConnect car vous n'arrivez pas à vous connecter à une application, suite à une erreur, [nous vous donnons ici le lien vers le centre d'aide de ProConnect](https://proconnect.crisp.help/fr/) qui vous aiguillera vers des pistes de solution.
 
-
 ### 2.2. Les éléments à nous envoyer
 
 Voici les éléments à nous envoyer pour nous aider à identifier le problème le plus rapidement possible :
