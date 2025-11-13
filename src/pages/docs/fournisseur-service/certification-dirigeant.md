@@ -91,15 +91,31 @@ Il est **IMPÉRATIF** de vérifier la présence et la valeur du paramètre `acr`
 Pour tester la certification dirigeant, vous pouvez utiliser le [fournisseur de service de test](https://test.proconnect.gouv.fr) de ProConnect en cliquant sur `Forcer une connexion par Certification Dirigeant`.
 
 > [!IMPORTANT]
-> Si vous n'avez pas de données en intégration d'une personne dirigeante d'entreprise, sachez que nous avons rempli notre [seed d'intégration](https://github.com/proconnect-gouv/proconnect-identite/blob/4ce6c5fcfb8b548cf24fea7dc168c04d88317fca/packages/testing/src/api/routes/api.insee.fr/etablissements/83832482000011.json#L29) pour que [cette utilisatrice fictive](https://github.com/france-connect/sources/blob/96ad0d3d379cd3b0c55f7c8d71a77a7e228717ee/docker/volumes/fcp-high/mocks/idp/databases/citizen/base.csv#L2) peut être dirigeante de [cette entreprise](https://annuaire-entreprises.data.gouv.fr/etablissement/83832482000011).
+> Si vous n'avez pas de données en intégration d'une personne dirigeante d'entreprise, sachez que nous avons rempli notre [seed d'intégration](https://github.com/proconnect-gouv/proconnect-identite/blob/4ce6c5fcfb8b548cf24fea7dc168c04d88317fca/packages/testing/src/api/routes/api.insee.fr/etablissements/83832482000011.json#L29) pour que [cette utilisatrice fictive](https://github.com/france-connect/sources/blob/96ad0d3d379cd3b0c55f7 c8d71a77a7e228717ee/docker/volumes/fcp-high/mocks/idp/databases/citizen/base.csv#L2) peut être dirigeante de [cette entreprise](https://annuaire-entreprises.data.gouv.fr/etablissement/83832482000011). Cette même utilisatrice pourra être dirigeante de n'importe quelle établissement [de cette Unité Légale](https://annuaire-entreprises.data.gouv.fr/entreprise/thunnus-thynnus-iii-807612296).
 
-#### 6.1.1. Tester la certification dirigeant avec notre seed
+#### 6.1.1. Tester la certification dirigeant avec notre seed - 83832482000011
 
 - Forcez une certification dirigeant (par exemple sur notre [fournisseur de service de test](https://test.proconnect.gouv.fr) en cliquant sur `Forcer une connexion par Certification Dirigeant`)
 - Créez un nouveau compte avec un email de votre choix
 - On vous demande de certifier votre statut de dirigeant
-- Pour FranceConnect et [l'utilisatrice fictive choisie](https://github.com/france-connect/sources/blob/96ad0d3d379cd3b0c55f7c8d71a77a7e228717ee/docker/volumes/fcp-high/mocks/idp/databases/citizen/base.csv#L2), cliquez sur `Démonstration eIDAS faible` depuis le bac à sable FranceConnect, puis identifiant `test` mot de passe `123` pour vous authentifier en tant que "Angela Claire Louise" qui en intégration a les droits de dirigeante sur la société [83832482000011](https://annuaire-entreprises.data.gouv.fr/etablissement/83832482000011)
+- Pour FranceConnect et [l'utilisatrice fictive choisie](https://github.com/france-connect/sources/blob/96ad0d3d379cd3b0c55f7c8d71a77a7e228717ee/docker/volumes/fcp-high/mocks/idp/databases/citizen/base.csv#L2), cliquez sur `Démonstration eIDAS faible` depuis le bac à sable FranceConnect, puis identifiant `test` mot de passe `123` pour vous authentifier en tant que "Angela Claire Louise"
 - De retour sur ProConnect, rejoignez l'organisation [au SIRET 83832482000011](https://annuaire-entreprises.data.gouv.fr/etablissement/83832482000011) (en cliquant si besoin sur `Rejoindre une autre organisation`)
+- Validez, la redirection vers le fournisseur de service est établie
+
+Dans le token, vous remarquerez que ProConnect renvoie :
+
+```json
+    "acr": "https://proconnect.gouv.fr/assurance/certification-dirigeant",
+```
+
+#### 6.1.2. Tester la certification dirigeant avec notre seed - 807612296
+
+
+- Forcez une certification dirigeant (par exemple sur notre [fournisseur de service de test](https://test.proconnect.gouv.fr) en cliquant sur `Forcer une connexion par Certification Dirigeant`)
+- Créez un nouveau compte avec un email de votre choix
+- On vous demande de certifier votre statut de dirigeant
+- Pour FranceConnect et [l'utilisatrice fictive choisie](https://github.com/france-connect/sources/blob/96ad0d3d379cd3b0c55f7c8d71a77a7e228717ee/docker/volumes/fcp-high/mocks/idp/databases/citizen/base.csv#L2), cliquez sur `Démonstration eIDAS faible` depuis le bac à sable FranceConnect, puis identifiant `test` mot de passe `123` pour vous authentifier en tant que "Angela Claire Louise"
+- De retour sur ProConnect, rejoignez n'importe quel établissement [de cette Unité Légale](https://annuaire-entreprises.data.gouv.fr/entreprise/thunnus-thynnus-iii-807612296), par exemple [l'établissement rue Martin à Sète](https://annuaire-entreprises.data.gouv.fr/etablissement/80761229600044)
 - Validez, la redirection vers le fournisseur de service est établie
 
 Dans le token, vous remarquerez que ProConnect renvoie :
