@@ -23,7 +23,7 @@ Le SR doit d'abord suivre le processus d'inscription auprès de ProConnect **en 
 Il doit ensuite écrire à support.partenaires@mail.proconnect.gouv.fr en spécifiant :
 
 - le `client_id` de son FS qui lui aura été transmis après inscription
-- l'`introspection_signed_response_alg` : RS256, HS256 ou ES256. Si vous ne savez pas quoi choisir, nous recommandons RS256.
+- l'`introspection_signed_response_alg` : aucun, RS256, HS256 ou ES256. Par défaut, le retour ne sera pas signé. Si vous souhaitez néanmoins que la réponse de l'introspection soit signé, nous recommandons l'algorithme RS256.
 
 Une fois la réponse du support reçue, votre SR est capable d'effectuer les appels à ProConnect !
 
@@ -38,4 +38,4 @@ Voici un exemple de Resource Server implémenté en ExpressJS : https://github.c
 
 ### Ai-je besoin d'un nouveau client ID pour le SR que je souhaite implémenter ?
 
-> Oui, il vous faut faire une demande de couple client ID / client secret pour votre SR
+> Oui, nous recommandons de faire une demande de couple client ID / client secret spécifique pour votre SR
