@@ -5,7 +5,7 @@
 ### 1.1. Identifiants de tests
 
 Pour tester la configuration de votre Fournisseur de Service tout au long de l'intégration, vous aurez besoin de vous connecter via un Fournisseur d'Identité.
-Vous trouverez [ici](./identifiants-fi-test.md) les identifiants pour vous connecter au Fournisseur d'Identité de test.
+[Vous trouverez ici les identifiants pour vous connecter au Fournisseur d'Identité de test](./identifiants-fi-test.md).
 
 ### 1.2. Valeur de PROCONNECT_DOMAIN
 
@@ -16,7 +16,7 @@ Pour savoir quelles URL appeler au cours de l'authentification, vous aurez besoi
 
 ### 1.3. Modification des redirect_uri
 
-Si au cours de l'intégration, vous souhaitez changer les redirect_uri de connexion ou de déconnexion configurées par ProConnect, vous pouvez le faire directement sur [votre espace](../../apps). Pour un changement en production, vous pourrez faire la demande en deux minutes sur [ce lien](https://www.demarches-simplifiees.fr/commencer/demande-de-modification-d-un-fournisseur-de-service).
+Si vous souhaitez modifier les redirect_uri de connexion ou de déconnexion configurées par ProConnect, [la procédure est détaillée ici](./modification_redirect_uris.md).
 
 ### 1.4. Exemple d'intégration de test
 
