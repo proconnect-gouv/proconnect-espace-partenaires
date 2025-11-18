@@ -108,7 +108,7 @@ Dans le token, vous remarquerez que ProConnect renvoie :
     "acr": "https://proconnect.gouv.fr/assurance/certification-dirigeant",
 ```
 
-#### 6.1.2. Tester la certification dirigeant avec notre seed - 807612296
+#### 6.1.2. Tester la certification dirigeant avec les données de l'organisation 807612296
 
 - Forcez une certification dirigeant (par exemple sur notre [fournisseur de service de test](https://test.proconnect.gouv.fr) en cliquant sur `Forcer une connexion par Certification Dirigeant`)
 - Créez un nouveau compte avec un email de votre choix
