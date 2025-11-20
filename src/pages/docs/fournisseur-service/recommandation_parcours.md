@@ -60,7 +60,6 @@ Chaque service a ses particularités. Quelles sont les vôtres ?
 - Afficher des erreurs techniques incompréhensibles.
 - Laisser les utilisateurs bloqués sans leur fournir d'aide **(cela crée une forte surcharge pour notre propre support)**
 
-
 ## 𖦏 Les cas non couverts par ProConnect
 
 Pour des raisons techniques, [certaines personnes professionnelles ne peuvent pas utiliser ProConnect](./couverture-proconnect.md). Si vous devez connecter ces personnes, nous vous conseillons de proposer un login alternatif email - mot de passe locaux.
