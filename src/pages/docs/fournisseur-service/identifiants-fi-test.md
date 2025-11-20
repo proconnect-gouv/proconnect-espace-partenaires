@@ -2,7 +2,15 @@
 
 Lorsque vous implémentez la connexion OIDC via ProConnect sur votre Fournisseur de Service, vous voudrez sans doute tester la connexion à votre Fournisseur de Service.
 
+## 📋 Liste des fournisseurs d'identité en intégration
+
+[Voici la liste des Fournisseurs d'Identité](https://grist.numerique.gouv.fr/o/docs/3kQ829mp7bTy/ProConnect-Configuration-des-FI-et-FS/p/2) sur notre plateforme d'intégration. Si vous avez accès à des comptes de test, vous pouvez les utiliser.
+
 ## 🔐 Fournisseur d'Identité de test
+
+Nous avons mis à disposition des identifiants de test sur différents Fournisseurs d'Identité.
+
+### 🔧 FIA1
 
 **En intégration** sur **Internet** et le **RIE**, ProConnect possède un Fournisseur d'Identité de test.
 
@@ -12,7 +20,7 @@ Pour tester la connexion sur votre Fournisseur de service :
 - à l'arrivée sur la mire ProConnect, entrez `test@fia1.fr`. Vous serez redirigés vers le FI de démonstration de ProConnect, avec cette adresse e-mail de renseignée.
 - cliquez sur "Se connecter". Vous devriez être redirigé vers votre Fournisseur de Service.
 
-## 🔧 ProConnect Identité
+### 🔧 ProConnect Identité
 
 **En intégration** sur **Internet** seulement, il vous est possible d'utiliser ProConnect Identité.
 
@@ -21,7 +29,7 @@ Pour tester la connexion sur votre Fournisseur de service :
 - cliquez sur le bouton "S'identifier avec ProConnect" depuis votre Fournisseur de Service **en intégration**
 - à l'arrivée sur la mire ProConnect, entrez `user@yopmail.com`. Vous serez redirigés vers la sandbox de ProConnect Identité (dont le design est identique à celui de ProConnect Fédération).
 - indiquez `user@yopmail.com` également en mot de passe.
-- sélectionnez l'organisation de rattachement "Direction Interministérielle du Numérique (DINUM)" Vous devriez être redirigé vers votre Fournisseur de Service.
+- sélectionnez l'organisation de rattachement "Direction Interministérielle du Numérique (DINUM)" (ou toute autre organisation de votre choix). Vous devriez être redirigé vers votre Fournisseur de Service.
 
 Cette plateforme utilise de vraies données ouvertes de l'INSEE pour les données des organisations. Elle n’est cependant connectée à aucun environnement de production.
 
