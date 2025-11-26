@@ -237,13 +237,22 @@ jobs:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('e2e/package-lock.json') }}
 
+      - name: 💾 Restore dependencies cache
+        uses: actions/cache/restore@v4
+        with:
+          path: node_modules
+          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-${{ hashFiles('package-lock.json') }}
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
       - name: 🐋 Launch services
         run: docker compose up --build --wait
 
-      - run: npx prisma db push --schema=./prisma/db_espace.prisma
+      - run: npx --no prisma db push --schema=./prisma/db_espace.prisma
         env:
           DATABASE_URL: postgresql://usr:pwd@localhost:5432/proconnect_ep
-      - run: npx prisma db push --schema=./prisma/db_proconnect.prisma
+      - run: npx --no prisma db push --schema=./prisma/db_proconnect.prisma
         env:
           MONGODB_CONNECTION_STRING: mongodb://fc_admin:pass@localhost:27017/core-fca-low?authSource=admin&replicaSet=rs0&directConnection=true&tls=true&tlsAllowInvalidCertificates=true
 
