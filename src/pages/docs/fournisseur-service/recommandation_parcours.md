@@ -39,15 +39,12 @@ Chaque service a ses particularités. Quelles sont les vôtres ?
 **A la connexion**
 
 - Expliquer clairement les conditions d’accès.
-
 - Hiérarchiser les boutons selon l’usage principal.
 
 **En cas d'erreur**
 
 - Afficher des messages d’erreur simples et actionnables.
-
 - Guider l’utilisateur dans le choix de son parcours (particulier / pro).
-
 - Donner une solution aux personnes qui se retrouvent bloquées (ex. adresse de support ou page d'aide).
 
 ### ❌ Ce que nous déconseillons
@@ -55,14 +52,14 @@ Chaque service a ses particularités. Quelles sont les vôtres ?
 **A la connexion**
 
 - Laisser plusieurs boutons sans contexte ni hiérarchie.
-
 - Donner accès sans expliquer l’éligibilité.
-
 - Mélanger les parcours particuliers et professionnels sans distinction claire.
 
 **En cas d'erreur**
 
 - Afficher des erreurs techniques incompréhensibles.
+- Laisser les utilisateurs bloqués sans leur fournir d'aide **(cela crée une forte surcharge pour notre propre support)**
 
-- Laisser les utilisateurs bloqués sans leur fournir d'aide
-  **(cela crée une forte surcharge pour notre propre support)**
+## 𖦏 Les cas non couverts par ProConnect
+
+Pour des raisons techniques, [certaines personnes professionnelles ne peuvent pas utiliser ProConnect](./couverture-proconnect.md). Si vous devez connecter ces personnes, nous vous conseillons de proposer un login alternatif email - mot de passe locaux.
