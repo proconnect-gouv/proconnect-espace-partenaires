@@ -38,6 +38,8 @@ L'attribut `essential: true` indique que la valeur spécifiée pour `acr` est **
 "https://proconnect.gouv.fr/assurance/certification-dirigeant"
 ```
 
+[Plus d’information sur les niveaux ACR utilisés dans la fédération.](./niveaux-acr.md)
+
 ## 3. Envoi de la requête d'autorisation
 
 Selon votre bibliothèque OpenID Connect (client OpenID) ou votre framework, vous devrez :
