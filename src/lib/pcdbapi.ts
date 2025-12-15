@@ -17,7 +17,6 @@ export interface OidcClient {
 
   // Not sure we need to expose the following fields:
   site?: string[];
-  title?: string;
   entityId?: string;
   scopes?: string[];
   claims?: string[];
