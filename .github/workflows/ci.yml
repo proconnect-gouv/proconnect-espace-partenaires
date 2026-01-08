@@ -267,3 +267,18 @@ jobs:
           name: playwright-report
           path: e2e/playwright-report/
           retention-days: 30
+
+  ci-status:
+    name: ✅ CI Status
+    needs: [build, e2e-setup, format, lint, test, e2e-tests]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check CI status
+        run: |
+          if [[ "${{ contains(needs.*.result, 'failure') }}" == "true" ]] || \
+             [[ "${{ contains(needs.*.result, 'cancelled') }}" == "true" ]]; then
+            echo "❌ CI failed"
+            exit 1
+          fi
+          echo "✅ All CI jobs passed"
