@@ -268,6 +268,8 @@ jobs:
           path: e2e/playwright-report/
           retention-days: 30
 
+  # Gate job for branch protection - ensures skipped jobs don't block merging
+  # @see https://www.pantsbuild.org/blog/2022/10/10/skipping-github-actions-jobs-without-breaking-branch-protection
   ci-status:
     name: ✅ CI Status
     needs: [build, e2e-setup, format, lint, test, e2e-tests]
