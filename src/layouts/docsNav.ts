@@ -200,6 +200,12 @@ export const docTree: SideMenuProps.Item[] = [
               href: "/docs/fournisseur-identite/format-user-info",
             },
           },
+          {
+            text: "Référentiel IP",
+            linkProps: {
+              href: "/docs/fournisseur-identite/referentiel-IP",
+            },
+          },
         ],
       },
     ],
