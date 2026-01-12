@@ -2,7 +2,6 @@
   {
     "_id": {"$oid": "5fd88d12dde8202da94af1a1"},
     "name": "FSA - FSA1v2 - HS256",
-    "title": "FSA - FSA1v2 Title",
     "site": ["https://site.com"],
     "redirect_uris": ["https://fsa1v2.integ01.dev-agentconnect.fr/oidc-callback"],
     "post_logout_redirect_uris": ["https://fsa1v2.integ01.dev-agentconnect.fr/client/logout-callback"],

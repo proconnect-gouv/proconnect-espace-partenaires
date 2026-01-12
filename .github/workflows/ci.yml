@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: 🔧 Setup Node.js
         uses: actions/setup-node@v6
@@ -23,7 +23,7 @@ jobs:
           node-version-file: package.json
 
       - name: 💾 Restore app dependencies cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         id: cache-deps
         with:
           path: node_modules
@@ -41,13 +41,13 @@ jobs:
 
       - name: 💾 Save app dependencies cache
         if: steps.cache-deps.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v5
         with:
           path: node_modules
           key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-${{ hashFiles('package-lock.json') }}
 
       - name: 📤 Upload build artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: build-artifacts
           path: |
@@ -63,7 +63,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: 🔧 Setup Node.js
         uses: actions/setup-node@v6
@@ -72,7 +72,7 @@ jobs:
           node-version-file: package.json
 
       - name: 💾 Restore E2E dependencies cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         id: cache-e2e
         with:
           path: e2e/node_modules
@@ -85,13 +85,13 @@ jobs:
 
       - name: 💾 Save E2E dependencies cache
         if: steps.cache-e2e.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v5
         with:
           path: e2e/node_modules
           key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-e2e-${{ hashFiles('e2e/package-lock.json') }}
 
       - name: 💾 Restore Playwright browsers cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         id: cache-playwright
         with:
           path: ~/.cache/ms-playwright
@@ -104,7 +104,7 @@ jobs:
 
       - name: 💾 Save Playwright browsers cache
         if: steps.cache-playwright.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v5
         with:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('e2e/package-lock.json') }}
@@ -117,7 +117,7 @@ jobs:
       contents: write
     steps:
       - name: 📥 Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: ${{ github.head_ref }}
 
@@ -128,7 +128,7 @@ jobs:
           node-version-file: package.json
 
       - name: 💾 Restore dependencies cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         id: cache-deps
         with:
           path: node_modules
@@ -151,7 +151,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: 🔧 Setup Node.js
         uses: actions/setup-node@v6
@@ -160,7 +160,7 @@ jobs:
           node-version-file: package.json
 
       - name: 💾 Restore dependencies cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         id: cache-deps
         with:
           path: node_modules
@@ -181,7 +181,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: 🔧 Setup Node.js
         uses: actions/setup-node@v6
@@ -190,7 +190,7 @@ jobs:
           node-version-file: package.json
 
       - name: 💾 Restore dependencies cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         id: cache-deps
         with:
           path: node_modules
@@ -213,7 +213,7 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: 📥 Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: 🔧 Setup Node.js
         uses: actions/setup-node@v6
@@ -221,29 +221,38 @@ jobs:
           node-version-file: package.json
 
       - name: 📥 Download build artifacts
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: build-artifacts
 
       - name: 💾 Restore E2E dependencies cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           path: e2e/node_modules
           key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-e2e-${{ hashFiles('e2e/package-lock.json') }}
 
       - name: 💾 Restore Playwright browsers cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('e2e/package-lock.json') }}
 
+      - name: 💾 Restore dependencies cache
+        uses: actions/cache/restore@v5
+        with:
+          path: node_modules
+          key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-${{ hashFiles('package-lock.json') }}
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
       - name: 🐋 Launch services
         run: docker compose up --build --wait
 
-      - run: npx prisma db push --schema=./prisma/db_espace.prisma
+      - run: npx --no prisma db push --schema=./prisma/db_espace.prisma
         env:
           DATABASE_URL: postgresql://usr:pwd@localhost:5432/proconnect_ep
-      - run: npx prisma db push --schema=./prisma/db_proconnect.prisma
+      - run: npx --no prisma db push --schema=./prisma/db_proconnect.prisma
         env:
           MONGODB_CONNECTION_STRING: mongodb://fc_admin:pass@localhost:27017/core-fca-low?authSource=admin&replicaSet=rs0&directConnection=true&tls=true&tlsAllowInvalidCertificates=true
 
@@ -252,9 +261,26 @@ jobs:
         run: npm run test:video
 
       - name: 📊 Upload test results
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         if: always()
         with:
           name: playwright-report
           path: e2e/playwright-report/
           retention-days: 30
+
+  # Gate job for branch protection - ensures skipped jobs don't block merging
+  # @see https://www.pantsbuild.org/blog/2022/10/10/skipping-github-actions-jobs-without-breaking-branch-protection
+  ci-status:
+    name: ✅ CI Status
+    needs: [build, e2e-setup, format, lint, test, e2e-tests]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check CI status
+        run: |
+          if [[ "${{ contains(needs.*.result, 'failure') }}" == "true" ]] || \
+             [[ "${{ contains(needs.*.result, 'cancelled') }}" == "true" ]]; then
+            echo "❌ CI failed"
+            exit 1
+          fi
+          echo "✅ All CI jobs passed"

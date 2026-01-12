@@ -9,6 +9,8 @@ updates:
       include: "scope"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
     versioning-strategy: increase
 
   - package-ecosystem: "npm"
@@ -20,6 +22,8 @@ updates:
       include: "scope"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
     versioning-strategy: increase
 
   - package-ecosystem: "docker-compose"
@@ -31,6 +35,8 @@ updates:
       include: "scope"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7
     ignore:
       # Lock MongoDB to current major.minor version (5.0.x)
       - dependency-name: "mongo"
@@ -52,3 +58,5 @@ updates:
       include: "scope"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 7

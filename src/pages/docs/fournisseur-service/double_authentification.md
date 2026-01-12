@@ -6,7 +6,7 @@ Cette documentation explique comment configurer votre service pour exiger obliga
 
 ## Configuration côté client
 
-Pour forcer la 2FA, le champ `acr` présent dans le paramètre `claims` envoyé lors de l'appel au `authorization_endpoint` doit contenir les valeurs présentes dans l'exemple ci-dessous :
+Pour forcer la 2FA, le champ `acr` présent dans le paramètre `claims` envoyé lors de l'appel au `authorization_endpoint` doit contenir les valeurs présentes dans l'exemple ci-dessous :
 
 ```json
 {
@@ -27,6 +27,8 @@ Pour forcer la 2FA, le champ `acr` présent dans le paramètre `claims` envoyé 
 ```
 
 NB: le champ `claims` doit être présent dans l'URL en version URI-encoded (cf [Implémentation technique](./implementation_technique.md))
+
+[Plus d’information sur les niveaux ACR utilisés dans la fédération.](./niveaux-acr.md)
 
 ## Explication des valeurs ACR
 

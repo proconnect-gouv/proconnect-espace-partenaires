@@ -108,6 +108,24 @@ export const docTree: SideMenuProps.Item[] = [
             linkProps: {
               href: "/docs/fournisseur-service/fs_RIE",
             },
+          },  
+          {          
+            text: "Niveaux d’assurance (ACR)",
+            linkProps: {
+              href: "/docs/fournisseur-service/niveaux-acr",
+            },
+          },
+          {
+            text: "Serveur de Ressources",
+            linkProps: {
+              href: "/docs/fournisseur-service/resource_server",
+            },
+          },
+          {
+            text: "Refresh token",
+            linkProps: {
+              href: "/docs/fournisseur-service/refresh-token",
+            },
           },
           {
             text: "Erreurs récurrentes",
