@@ -18,10 +18,10 @@ En cas de doute, n'hésitez pas à nous contacter à [support.partenaires@mail.p
 
 ## Liste des adresses IP à autoriser
 
-|   |   |   |
-|---|---|---|
-|**Exposition**|**Environnement**|**IP à autoriser par les Fournisseurs d'Identité**|
-|Internet|Production|145.242.17.7  <br>145.242.17.171  <br>145.242.17.181  <br>185.24.185.32|
-|Intégration|145.242.17.6  <br>145.242.17.166  <br>185.24.185.245|
-|RIE  <br>(Réseau interministériel de l'Etat)|Production|100.67.22.9  <br>100.67.23.75  <br>100.67.22.95  <br>100.67.23.13|
-|Intégration|100.67.22.12  <br>100.67.22.47  <br>100.67.23.109|
+|                                             |                                                    |                                                                      |
+| ------------------------------------------- | -------------------------------------------------- | -------------------------------------------------------------------- |
+| **Exposition**                              | **Environnement**                                  | **IP à autoriser par les Fournisseurs d'Identité**                   |
+| Internet                                    | Production                                         | 145.242.17.7 <br>145.242.17.171 <br>145.242.17.181 <br>185.24.185.32 |
+| Intégration                                 | 145.242.17.6 <br>145.242.17.166 <br>185.24.185.245 |
+| RIE <br>(Réseau interministériel de l'Etat) | Production                                         | 100.67.22.9 <br>100.67.23.75 <br>100.67.22.95 <br>100.67.23.13       |
+| Intégration                                 | 100.67.22.12 <br>100.67.22.47 <br>100.67.23.109    |
