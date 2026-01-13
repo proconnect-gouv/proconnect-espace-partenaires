@@ -104,6 +104,12 @@ export const docTree: SideMenuProps.Item[] = [
             },
           },
           {
+            text: "Obtenir des tokens pour le RIE",
+            linkProps: {
+              href: "/docs/fournisseur-service/fs_RIE",
+            },
+          },
+          {
             text: "Niveaux d’assurance (ACR)",
             linkProps: {
               href: "/docs/fournisseur-service/niveaux-acr",
