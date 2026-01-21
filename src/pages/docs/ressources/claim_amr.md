@@ -4,9 +4,9 @@ Pour éviter à un usager d'avoir à s'authentifier auprès de votre Fournisseur
 
 Par défaut ce claim `amr` n'est pas retourné dans l'idToken, il doit être demandé explicitement par le Fournisseur de Service. En plus des autres paramètres envoyés lors de l'appel au `authorization_endpoint`, il est nécessaire pour le Fournisseur de Service de passer la valeur suivante :
 
-| clé        | valeur                      |
-| ---------- | --------------------------- |
-| `id_token` | `{"id_token":{"amr":null}}` |
+| clé      | valeur                      |
+| -------- | --------------------------- |
+| `claims` | `{"id_token":{"amr":null}}` |
 
 Les valeurs possibles pour `amr` sont les suivantes :
 
