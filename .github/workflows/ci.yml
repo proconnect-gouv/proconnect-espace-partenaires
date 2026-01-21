@@ -2,7 +2,6 @@ name: 🔄 CI
 
 on:
   push:
-  pull_request:
 
 concurrency:
   cancel-in-progress: true
