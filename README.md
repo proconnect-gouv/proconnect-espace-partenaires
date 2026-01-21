@@ -22,7 +22,7 @@ Ce dépôt a été initié à partir du [template Next.js de betagouv](https://g
 
 ```bash
 docker compose up --build --wait # pour lancer les conteneurs de base de données
-npm install # pour installer les dépendances
+npm ci # pour installer les dépendances
 npm run db_espace:reset # pour créer le schéma de la base de donnée
 npm run dev # pour lancer en mode développement
 ```

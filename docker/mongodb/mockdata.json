@@ -35,7 +35,6 @@
     ],
     "id_token_signed_response_alg": "HS256",
     "userinfo_signed_response_alg": "HS256",
-    "jwks_uri": "https://fsa1v2.integ01.dev-agentconnect.fr/client/.well-known/keys"
   },
   {
     "_id": {"$oid": "5fd88d12dde8202da94af1a3"},
@@ -78,7 +77,6 @@
     "userinfo_signed_response_alg": "ES256",
     "userinfo_encrypted_response_alg": "",
     "userinfo_encrypted_response_enc": "",
-    "jwks_uri": "https://fsa2v2.integ01.dev-agentconnect.fr/client/.well-known/keys",
     "idpFilterExclude": false,
     "idpFilterList": ["fia1v2", "fia2v2", "fia4-desactive-visible", "fia5-active-invisible", "fia6-desactive-invisible"],
     "identityConsent": false,
@@ -123,7 +121,6 @@
     "userinfo_signed_response_alg": "RS256",
     "userinfo_encrypted_response_alg": "",
     "userinfo_encrypted_response_enc": "",
-    "jwks_uri": "https://fsa3v2.integ01.dev-agentconnect.fr/client/.well-known/keys",
     "idpFilterExclude": true,
     "idpFilterList": ["fia3v2"],
     "identityConsent": false,
