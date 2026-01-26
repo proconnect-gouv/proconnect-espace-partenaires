@@ -25,15 +25,18 @@ Nous vous recommandons de lire [notre page généraliste sur l'implémentation t
 - [J'aimerais contacter le service partenaires de ProConnect pour de l'aide ou pour une question](./aide_support.md)
 - [](./sso.md)
 - [](./refresh-token.md)
-- [](./certification-dirigeant.md)
-- [](./double_authentification.md)
-- [](./idp_hint_usage.md)
-- [](./login_hint_usage.md)
+- [Qu'est-ce que la certification dirigeant et comment l'implémenter ?](./certification-dirigeant.md)
+- [Comment forcer la double authentification ?](./double_authentification.md)
+- [Comment spécifier à ProConnect que les usagers de mon FS doivent être redirigés directement vers un Fournisseur d'Identité (FI) spécifique ?](./idp_hint_usage.md)
+- [Comment préremplir l'adresse email dans la mire de connexion ProConnect ?](./login_hint_usage.md)
+- [Comment spécifier à ProConnect que les usagers de mon FS doivent se voir suggérer une organisation spécifique à sélectionner ?](./siret_hint_usage.md)
 - [](./resource_server.md)
-- [](./siret_hint_usage.md)
 - [](./niveaux-acr.md)
+- [Comment savoir avec quel Fournisseur d'Identité s'est authentifié mon utilisateur ?](./connaitre-le-fi-utilise.md)
 - [](./donnees_fournies.md)
-- [](./connaitre-le-fi-utilise.md)
 - [](./scope-claims.md)
+- [Comment récupérer les données non canoniques qui seraient renvoyées par un FI via le scope custom ?](./custom-scope.md)
+
+
 
 
