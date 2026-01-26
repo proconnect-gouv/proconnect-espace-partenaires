@@ -1,5 +1,10 @@
 # Forcer la double authentification (2FA) sur votre service
 
+> [!CAUTION]
+> La double authentification n’est pas supportée par tous les fournisseurs d’identité de la fédération ProConnect. Avant de forcer la 2FA sur votre service, vérifiez que les fournisseurs d’identité de vos utilisateurs supportent bien le niveau d’assurance requis.<br><br>
+> La liste des fournisseurs d’identité compatibles est disponible sur [cette page](https://grist.numerique.gouv.fr/o/docs/3kQ829mp7bTy/ProConnect-Configuration-des-FI-et-FS/p/5).<br><br>
+> Pour toute question ou si vous souhaitez en savoir plus sur la compatibilité 2FA ou son implémentation, contactez l’équipe support à : support.partenaires@mail.proconnect.gouv.fr.
+
 ## Vue d'ensemble
 
 Cette documentation explique comment configurer votre service pour exiger obligatoirement la double authentification (2FA) lors de la connexion via ProConnect. Cette mesure renforce la sécurité en s'assurant que tous les utilisateurs disposent d'un second facteur d'authentification.

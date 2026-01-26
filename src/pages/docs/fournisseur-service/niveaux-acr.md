@@ -34,7 +34,7 @@ claims={
 ## Niveaux d’assurance pour les identités
 
 > [!CAUTION]
-> Les niveaux ACR renvoyés par ProConnect sont actuellement en cours de définition en collaboration avec nos partenaires et l’ANSSI.
+> Les niveaux ACR renvoyés par ProConnect sont actuellement en cours de définition en collaboration avec nos partenaires et l’ANSSI.<br><br>
 > Ils sont donc appelés à évoluer au fil des travaux et pourront être ajustés dans le futur.
 
 ### Identités issues d’un processus RH
