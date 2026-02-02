@@ -46,6 +46,10 @@ export const docTree: SideMenuProps.Item[] = [
             linkProps: { href: "/docs/fournisseur-service/bouton_proconnect" },
           },
           {
+            text: "Tuto: ProConnect sans une ligne de code",
+            linkProps: { href: "/docs/fournisseur-service/tuto" },
+          },
+          {
             text: "Données fournies",
             linkProps: { href: "/docs/fournisseur-service/donnees_fournies" },
           },
