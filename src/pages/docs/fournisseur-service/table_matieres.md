@@ -2,7 +2,7 @@
 
 Voici la table des matières de la documentation des Fournisseurs de Service Proconnect. 
 
-## ⚖️ 1. Processus, contractualisation, obtenir des clés, éligibilité
+## ⚖️ 1. Contractualisation, obtenir des clés, éligibilité
 
 Avant toute chose, nous vous recommandons fortement de lire [notre page de processus pour intégrer ProConnect](./index.mdx).
 
@@ -12,6 +12,7 @@ Avant toute chose, nous vous recommandons fortement de lire [notre page de proce
 - [Comment obtenir un client_id et client_secret pour une application sur le RIE ?](./fs_RIE.md)
 - [Comment modifier des redirect_uri de ma configuration — intégration ou production — ?](./modification_redirect_uris.md)
 - [Quelles règles de design de parcours dois-je respecter impérativement ?](./recommandation_parcours.md)
+- [Quelle est la différence entre les serveurs Internet et les serveurs RIE ?](./serveurs_internet_rie.md)
 
 
 ## 💻 2. Implémentation technique, fonctionnalités, données récupérables de ProConnect

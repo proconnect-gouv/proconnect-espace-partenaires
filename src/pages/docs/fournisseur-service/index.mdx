@@ -4,7 +4,7 @@ Vous souhaitez implémenter ProConnect sur votre site ? Vous êtes au bon endroi
 
 ## 1. 👩‍🏫 Préambule
 
-Cette documentation est à destination des Fournisseurs de Services souhaitant intégrer ProConnect. ProConnect est implémenté sur deux plateformes, une dite "RIE" (l’agent se connecte depuis le RIE, à un FS RIE via un FI RIE) et une autre dite "Internet" (l'agent se connecte depuis Internet, à un FS Internet via un FI Internet). Toutefois il est possible d'utiliser "l'hybridge Internet/RIE", qui permet aux agents, depuis un Fournisseur de Service **sur Internet**, de s'identifier via un Fournisseur d'Identité **sur le RIE**.
+Cette documentation est à destination des Fournisseurs de Services souhaitant intégrer ProConnect. ProConnect est implémenté sur deux plateformes, une dite "RIE" et une autre dite "Internet". [Vous pourrez trouver plus d'information à ce sujet ici](./serveurs_internet_rie.md).
 
 Avant toute chose, vérifiez votre [éligibilité à intégrer le bouton ProConnect sur vos services](./eligibilite_installation.md).
 
@@ -56,19 +56,6 @@ Pour les blocages nécessitant notre aide, nous avons [une procédure d'aide et 
 
 ---
 
-## 4. 📚 Questions et ressources
+## 4. 📚 Questions, documentation et ressources
 
-- [Quels sont les professionnels non couverts par ProConnect ?](./couverture-proconnect.md)
-- [Comment obtenir un client_id et client_secret pour une application sur le RIE ?](./fs_RIE.md)
-- [Comment modifier des redirect_uri de ma configuration — intégration ou production — ?](./modification_redirect_uris.md)
-- [Comment implémenter le refresh token ?](./refresh-token.md)
-- [Quelles sont les données que je peux récupérer par ProConnect sur les professionnels ?](./donnees_fournies.md)
-- [Quels comptes de test puis-je utiliser sur la plateforme d'intégration ?](./identifiants-fi-test.md)
-- [Comment utiliser les scopes OpenID Connect pour accéder aux données des utilisateurs ?](./scope-claims.md)
-- [Comment savoir avec quel Fournisseur d'Identité s'est authentifié mon utilisateur ?](./connaitre-le-fi-utilise.md)
-- [Comment spécifier à ProConnect que les usagers de mon FS doivent être redirigés directement vers un Fournisseur d'Identité spécifique ?](./idp_hint_usage.md)
-- [Comment spécifier à ProConnect que les usagers de mon FS doivent se voir suggérer une organisation spécifique à sélectionner ?](./siret_hint_usage.md)
-- [Comment récupérer des propriétés "custom" d'un Fournisseur d'Identité?](./custom-scope.md)
-- [Comment implémenter un Serveur de Ressources pour ProConnect ?](./resource_server.md)
-- [Erreurs récurrentes](./troubleshooting-fs.md)
-- [Glossaire](../ressources/glossaire.md)
+La documentation complète des fournisseurs de service est disponible dans [notre index de la documentation](./table_matieres.md).
