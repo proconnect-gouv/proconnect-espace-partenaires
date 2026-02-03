@@ -1,6 +1,6 @@
-# 🆘 Aide et support partenaires de ProConnect
+# 🆘 Aide à l'implémentation technique de ProConnect
 
-Votre implémentation vous renvoie une erreur ? Cette rubrique vous donne la marche à suivre pour vous débloquer dans les meilleures conditions.
+Votre implémentation technique vous renvoie une erreur ? Cette rubrique vous donne la marche à suivre pour vous débloquer dans les meilleures conditions.
 
 ![](/images/docs/erreur.png)
 
