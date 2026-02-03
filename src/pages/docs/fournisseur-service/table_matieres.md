@@ -1,6 +1,6 @@
 # Table des matières de la documentation Fournisseurs de Service
 
-Voici la table des matières de la documentation des Fournisseurs de Service Proconnect. 
+Voici la table des matières de la documentation des Fournisseurs de Service Proconnect.
 
 ## ⚖️ 1. Contractualisation, obtenir des clés, éligibilité
 
@@ -13,7 +13,6 @@ Avant toute chose, nous vous recommandons fortement de lire [notre page de proce
 - [Comment modifier des redirect_uri de ma configuration — intégration ou production — ?](./modification_redirect_uris.md)
 - [Quelles règles de design de parcours dois-je respecter impérativement ?](./recommandation_parcours.md)
 - [Quelle est la différence entre les serveurs Internet et les serveurs RIE ?](./serveurs_internet_rie.md)
-
 
 ## 💻 2. Implémentation technique, fonctionnalités, données récupérables de ProConnect
 
@@ -37,7 +36,3 @@ Nous vous recommandons de lire [notre page généraliste sur l'implémentation t
 - [Quelles sont les données fournies par ProConnect sur l'utilisateur ?](./donnees_fournies.md)
 - [Quels scopes et claims utiliser ?](./scope-claims.md)
 - [Comment récupérer les données non canoniques qui seraient renvoyées par un FI via le scope custom ?](./custom-scope.md)
-
-
-
-
