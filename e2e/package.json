@@ -8,7 +8,7 @@
     "test:video": "PW_VIDEO=1 uuv run"
   },
   "devDependencies": {
-    "@playwright/test": "1.58.0",
+    "@playwright/test": "1.58.1",
     "@uuv/playwright": "3.58.0",
     "tsx": "4.21.0",
     "typescript": "5.9.3"
