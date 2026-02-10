@@ -41,7 +41,7 @@ services:
       - /data/configdb
 
   pcdbapi:
-    image: ghcr.io/proconnect-gouv/federation/api-partner@sha256:eb7891b813477a8b6a48dd02fa0b059fa2879d6a9f08a02bb06c1d58f2e94346 # latest
+    image: ghcr.io/proconnect-gouv/federation/api-partner@sha256:750172ac3fb8df2ff8447cb106a056e9b558d23c27029b207b2ea11301410c1a # latest
     environment:
       - MONGODB_URL=mongodb://mongo:27017/core-fca-low?authSource=core-fca-low&directConnection=true
       - MONGODB_USERNAME=fc
