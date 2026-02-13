@@ -17,7 +17,7 @@ export const docTree: SideMenuProps.Item[] = [
         },
       },
       {
-        text: "Index",
+        text: "Table des matières",
         linkProps: {
           href: "/docs/fournisseur-service/table_matieres",
         },
