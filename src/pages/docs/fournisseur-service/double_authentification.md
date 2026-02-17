@@ -3,7 +3,7 @@
 > [!CAUTION]
 > La double authentification n’est pas supportée par tous les fournisseurs d’identité de la fédération ProConnect. Avant de forcer la 2FA sur votre service, vérifiez que les fournisseurs d’identité de vos utilisateurs supportent bien le niveau d’assurance requis.<br><br>
 > La liste des fournisseurs d’identité compatibles est disponible sur [cette page](https://grist.numerique.gouv.fr/o/docs/3kQ829mp7bTy/ProConnect-Configuration-des-FI-et-FS/p/5).<br><br>
-> Pour toute question ou si vous souhaitez en savoir plus sur la compatibilité 2FA ou son implémentation, contactez l’équipe support à : support.partenaires@mail.proconnect.gouv.fr.
+> Si vous souhaitez en savoir plus sur la compatibilité 2FA ou son implémentation technique, contactez l’équipe technique partenaires à : support.partenaires@mail.proconnect.gouv.fr.
 
 ## Vue d'ensemble
 
