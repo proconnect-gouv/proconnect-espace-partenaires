@@ -8,7 +8,7 @@ Vous intégrez ProConnect en tant que Fournisseur d’Identité et permettez à 
 
 ➡️ Consultez la [documentation Fournisseur d'Identité (FI)](./fournisseur-identite/index.mdx).
 
-Pour toute question technique, vous pouvez contacter l'équipe ProConnect par les deux canaux suivants :
+Pour toute question technique sur l'implémentation ProConnect, vous pouvez contacter l'équipe technique partenaires par les deux canaux suivants :
 
 - par mail à support.partenaires@mail.proconnect.gouv.fr
 - [sur notre chaîne Tchap](https://www.tchap.gouv.fr/#/room/!kBghcRpyMNThkFQjdW:agent.dinum.tchap.gouv.fr)
