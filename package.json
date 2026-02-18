@@ -64,7 +64,7 @@
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "bson": "^6.10.2",
-    "debounce": "^2.0.0",
+    "debounce": "^3.0.0",
     "dotenv-cli": "^8.0.0",
     "eslint": "9.37.0",
     "eslint-config-next": "15.1.6",
