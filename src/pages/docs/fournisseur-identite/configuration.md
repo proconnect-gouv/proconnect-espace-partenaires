@@ -14,6 +14,7 @@ Certains logiciels nécessitent des configurations particulières pour fonctionn
 
 - [LemonLDAP](./idp-configs/lemon-ldap.md)
 - [Keycloak](./idp-configs/keycloak.md)
+- [Entra ID](./idp-configs/entra-id.md)
 
 ## Trouver la Discovery URL
 
