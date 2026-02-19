@@ -2,9 +2,9 @@
 
 ## Prérequis
 
-* un compte Microsoft Azure
-* un compte Microsoft Entra ID
-* une licence Entra ID P1 ou P2
+- un compte Microsoft Azure
+- un compte Microsoft Entra ID
+- une licence Entra ID P1 ou P2
 
 Par ailleurs la configuration suivante suppose un tenant (locataire) de type « Workforce » (annuaire interne d'entreprise) mais est susceptible de s'adapter à d'autres types.
 
@@ -12,9 +12,9 @@ Par ailleurs la configuration suivante suppose un tenant (locataire) de type «�
 
 Pour la création les paramètres importants sont:
 
-* Nom: libre
-* Type de compte: Single Tenant
-* Redirect URI: l'adresse de redirection telle que décrite dans la [configuration](./../configuration.md) ProConnect (section « Créer un client »)
+- Nom: libre
+- Type de compte: Single Tenant
+- Redirect URI: l'adresse de redirection telle que décrite dans la [configuration](./../configuration.md) ProConnect (section « Créer un client »)
 
 ⚠️ Ces adresses doivent être enregistrées avec le type « Web » et non pas « Application à page unique » (Single Page Application): une erreur **AADSTS9002325** peut être affichée dans ce derniers cas
 
@@ -28,11 +28,11 @@ Cette paire client secret et client ID correspond aux informations transmises lo
 
 Dans la section Token Configuration de l'application, dans la partie « Optional Claims » nous conseillons de faire figurer:
 
-* `acrs`
-* `email`
-* `given_name`
-* `preferred_username`
-* `verified_primary_email`
+- `acrs`
+- `email`
+- `given_name`
+- `preferred_username`
+- `verified_primary_email`
 
 ## Manifeste d'application
 
@@ -44,9 +44,9 @@ Votre application apparaît également dans la section Entreprise Apps (Applicat
 
 Sélectionnez votre application, puis la section Single Sign-On. Configurez les correspondances suivantes:
 
-* `usual_name` -> `user.surname`
-* `uid` -> `user.objectid`
-* `siret` -> `user.department` (c'est une suggestion: vous pouvez configurer l'attribut qui vous convient, du moment que le SIRET approprié est renvoyé avec le nom `siret` pour chaque usager)
+- `usual_name` -> `user.surname`
+- `uid` -> `user.objectid`
+- `siret` -> `user.department` (c'est une suggestion: vous pouvez configurer l'attribut qui vous convient, du moment que le SIRET approprié est renvoyé avec le nom `siret` pour chaque usager)
 
 ## Renseigner l'adresse de messagerie des comptes
 
@@ -54,18 +54,18 @@ Certains champs sont considérés comme « réservés » et ne peuvent pas fair
 
 ## Adresses des endpoints (points de terminaison)
 
-* Discovery URL: [https://login.microsoftonline.com/<tenant-id>/.well-known/openid-configuration](https://login.microsoftonline.com/4d7c0522-66af-419d-b17d-ee19db95acae/.well-known/openid-configuration)
+- Discovery URL: [https://login.microsoftonline.com/<tenant-id>/.well-known/openid-configuration](https://login.microsoftonline.com/4d7c0522-66af-419d-b17d-ee19db95acae/.well-known/openid-configuration)
 
-* Logout URL: [https://login.microsoftonline.com/<tenant-id>/oauth2/logout](https://login.microsoftonline.com/4d7c0522-66af-419d-b17d-ee19db95acae/oauth2/logout)
+- Logout URL: [https://login.microsoftonline.com/<tenant-id>/oauth2/logout](https://login.microsoftonline.com/4d7c0522-66af-419d-b17d-ee19db95acae/oauth2/logout)
 
 ## Algorithmes de chiffrement
 
-* `id_token_signed_response_alg` : RS256
-* `userinfo_signed_response_alg` : Aucun
+- `id_token_signed_response_alg` : RS256
+- `userinfo_signed_response_alg` : Aucun
 
 ## Autres types de tenants (locataires)
 
 Pour les tenants externes les endpoints ont la forme suivante :
 
-  * `https://<tenant-id>.ciamlogin.com/<tenant-id>/v2.0`
-  * une erreur **AADSTS500208** sanctionne les tentatives de connexion avec une identité provenant du mauvais type de tenant
+- `https://<tenant-id>.ciamlogin.com/<tenant-id>/v2.0`
+- une erreur **AADSTS500208** sanctionne les tentatives de connexion avec une identité provenant du mauvais type de tenant
