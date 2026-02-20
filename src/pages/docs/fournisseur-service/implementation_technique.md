@@ -249,9 +249,10 @@ http://openid.net/specs/openid-connect-session-1_0.html#RPLogout
 
 | nom                        | requis/optionnel | type de données | description                                                                                                                                                                                                                                                                                               |
 | -------------------------- | ---------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id_token_hint`            | requis           | string          | `<id_token>` contenu dans la réponse du `Token Endpoint`                                                                                                                                                                                                                                                  |
+| `id_token_hint`            | recommandé       | string          | `<id_token>` contenu dans la réponse du `Token Endpoint`                                                                                                                                                                                                                                                  |
 | `state`                    | requis           | string          | `<state>` Champ obligatoire, généré aléatoirement par le FS, que ProConnect renvoie tel quel dans la redirection qui suit la déconnexion, pour être ensuite vérifié par le FS. Il est utilisé afin d'empêcher l'exploitation de failles CSRF                                                              |
 | `post_logout_redirect_uri` | requis           | string          | `<post_logout_redirect_uri>` URL de retour vers le FS, communiquée dans le formulaire Démarches Simplifiées. Attention, cette URL doit être encodée pour être passée en query parameter, doit correspondre exactement à celle communiquée à ProConnect, et est sensible à la présence ou non du `/` final |
+| `client_id`                | optionnel        | string          | `<CLIENT_ID>` Identifiant du FS, utilisé lorsque l'id_token_hint ne peut être fourni en raison de contraintes techniques.                                                                                                                                                                                 |
 
 ##### 2.4.1.3. Réponses
 
@@ -299,7 +300,7 @@ ProConnect renvoie le state communiqué par le FS lors de la demande de déconne
 
 ##### 2.4.2.3. Exemple d'appel
 
-Exemple de retour vers le FS de mock à déconnexion
+Exemple de retour vers le FS de test pour une déconnexion
 
 ```
 GET /logout-callback?state=3b7bd7fb38ccab89864563f17a89c4cb3bd400164ce828b4cfc2cb01ce8ed9da HTTP/1.1
