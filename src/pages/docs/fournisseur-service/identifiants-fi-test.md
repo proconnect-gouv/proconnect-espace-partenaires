@@ -17,7 +17,8 @@ Nous avons mis à disposition des identifiants de test sur différents Fournisse
 Pour tester la connexion sur votre Fournisseur de service :
 
 - cliquez sur le bouton "S'identifier avec ProConnect" depuis votre Fournisseur de Service **en intégration**
-- à l'arrivée sur la mire ProConnect, entrez `test@fia1.fr`. Vous serez redirigés vers le FI de démonstration de ProConnect, avec cette adresse e-mail de renseignée.
+- à l'arrivée sur la mire ProConnect, entrez `test@fia1.fr`. Vous serez redirigés vers le FI de démonstration de ProConnect, avec cette adresse e-mail de renseignée
+  - il est possible de renseigner n'importe quel email, SIRET, prénom, nom, ou même `acr`
 - cliquez sur "Se connecter". Vous devriez être redirigé vers votre Fournisseur de Service.
 
 ### 🔧 ProConnect Identité
