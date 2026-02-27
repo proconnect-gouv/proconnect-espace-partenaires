@@ -34,6 +34,8 @@ Dans la section Token Configuration de l'application, dans la partie « Optional
 - `preferred_username`
 - `verified_primary_email`
 
+Le claim doit être lié au token de type `ID`.
+
 ## Manifeste d'application
 
 Dans la section Manifest de la configuration de l'application, modifiez le texte du fichier de configuration, en recherchant la mention `"acceptMappedClaims": null` pour la modifier en `"acceptMappedClaims": true` . Cette modification autorise la configuration des correspondances d'attributs. (L'erreur **AADSTS50146** peut se produire tant que cette modification n'est pas effectuée.)
