@@ -55,12 +55,7 @@ function stripMarkdown(text: string): string {
 
 function filePathToUrl(filePath: string): string {
   const relative = path.relative(DOCS_DIR, filePath);
-  return (
-    "/docs/" +
-    relative
-      .replace(/\/index\.(md|mdx)$/, "")
-      .replace(/\.(md|mdx)$/, "")
-  );
+  return "/docs/" + relative.replace(/\/index\.(md|mdx)$/, "").replace(/\.(md|mdx)$/, "");
 }
 
 function collectMarkdownFiles(dir: string, isRoot = true): string[] {

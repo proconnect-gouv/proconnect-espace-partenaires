@@ -116,8 +116,8 @@ const SearchPage: NextPage = () => {
         {index !== null && query && results.length === 0 && (
           <div className={fr.cx("fr-callout")}>
             <p className={fr.cx("fr-callout__text")}>
-              Aucun résultat trouvé pour <strong>&laquo;&nbsp;{query}&nbsp;&raquo;</strong>.
-              Essayez avec d&rsquo;autres termes ou consultez la{" "}
+              Aucun résultat trouvé pour <strong>&laquo;&nbsp;{query}&nbsp;&raquo;</strong>. Essayez
+              avec d&rsquo;autres termes ou consultez la{" "}
               <Link href="/docs" className={fr.cx("fr-link")}>
                 documentation
               </Link>
