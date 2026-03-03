@@ -10,7 +10,7 @@ Lorsque vous implémentez la connexion OIDC via ProConnect sur votre Fournisseur
 
 Nous avons mis à disposition des identifiants de test sur différents Fournisseurs d'Identité.
 
-### 🔧 FIA1 - le FI Open Bar
+### 🔧 FIA1 – FI pour tests et intégration
 
 **En intégration** sur **Internet** et le **RIE**, ProConnect possède un Fournisseur d'Identité de test qui permet de se créer n'importe quel identifiant.
 
