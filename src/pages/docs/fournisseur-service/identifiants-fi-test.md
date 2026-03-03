@@ -10,15 +10,16 @@ Lorsque vous implémentez la connexion OIDC via ProConnect sur votre Fournisseur
 
 Nous avons mis à disposition des identifiants de test sur différents Fournisseurs d'Identité.
 
-### 🔧 FIA1
+### 🔧 FIA1 - le FI Open Bar
 
-**En intégration** sur **Internet** et le **RIE**, ProConnect possède un Fournisseur d'Identité de test.
+**En intégration** sur **Internet** et le **RIE**, ProConnect possède un Fournisseur d'Identité de test qui permet de se créer n'importe quel identifiant.
 
 Pour tester la connexion sur votre Fournisseur de service :
 
 - cliquez sur le bouton "S'identifier avec ProConnect" depuis votre Fournisseur de Service **en intégration**
-- à l'arrivée sur la mire ProConnect, entrez `test@fia1.fr`. Vous serez redirigés vers le FI de démonstration de ProConnect, avec cette adresse e-mail de renseignée.
-- cliquez sur "Se connecter". Vous devriez être redirigé vers votre Fournisseur de Service.
+- à l'arrivée sur la mire ProConnect, entrez `test@fia1.fr`. Vous serez redirigés vers le FI de démonstration de ProConnect, avec cette adresse e-mail de renseignée
+- vous pouvez choisir des éléments comme l'`email`, le `SIRET`, ou l'`ACR`
+- cliquez sur "Se connecter". Vous devriez être redirigé vers votre Fournisseur de Service avec les éléments sélectionnés
 
 ### 🔧 ProConnect Identité
 
