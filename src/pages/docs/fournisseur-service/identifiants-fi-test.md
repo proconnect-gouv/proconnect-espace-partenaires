@@ -12,7 +12,7 @@ Nous avons mis à disposition des identifiants de test sur différents Fournisse
 
 ### 🔧 FIA1 – FI pour tests et intégration
 
-**En intégration** sur **Internet** et le **RIE**, ProConnect possède un Fournisseur d'Identité de test qui permet de se créer n'importe quel identifiant.
+**En intégration** sur **Internet** et le **RIE**, ProConnect possède un Fournisseur d'Identité de test qui permet d'utiliser n'importe quel identifiant.
 
 Pour tester la connexion sur votre Fournisseur de service :
 
