@@ -20,3 +20,6 @@ Afin de prouver à l'équipe ProConnect que vous possédez bien le(s) nom(s) de 
 
 > [!IMPORTANT]
 > Vous devez garantir l'authentification de tous les utilisateurs disposant d'une adresse e-mail valide associée à l'un des noms de domaines que vous nous fournirez. Aucune exception ne doit être faite : chaque utilisateur dont l'adresse respecte les domaines spécifiés doit pouvoir être authentifié.
+
+> [!NOTE]
+> Certains Fournisseurs de Service peuvent exiger une authentification multi-facteur (MFA) de la part de leurs utilisateurs. Pour savoir comment supporter ce cas, consultez [la documentation sur l'authentification multi-facteur](./authentification-multifacteur.md).
