@@ -129,6 +129,4 @@ Selon votre Fournisseur d'Identité, il est possible qu'il vous faille spécifie
 
 ## Configurer le champ `acr`
 
-Le champ `acr` renvoyé par le Fournisseur d'Identité doit valoir `eidas1`.
-
 Pour en savoir plus sur la prise en charge de l'authentification multi-facteur et les valeurs `acr` associées, consultez [la documentation dédiée](./authentification-multifacteur.md).
