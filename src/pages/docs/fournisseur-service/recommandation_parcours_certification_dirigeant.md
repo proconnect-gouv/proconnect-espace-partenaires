@@ -27,8 +27,6 @@ La Certification Dirigeant ne couvre pas l'ensemble des dirigeants. Voici les po
 
 Si à terme ProConnect pourra certifier ces population, pour le moment il est impératif de prévoir un parcours alternatif pour ces utilisateurs afin de ne pas les bloquer sans recours.
 
-
-
 ### 2.1. Afficher clairement les critères d'éligibilité
 
 Avant de déclencher le parcours, affichez une liste de prérequis explicites. L'utilisateur est éligible si toutes ces conditions sont remplies :
@@ -87,7 +85,6 @@ Placez un bouton de déclenchement directement au point d'entrée de l'action se
 Dans ce scénario, l'accès au service est réservé aux dirigeants. La Certification Dirigeant est exigée dès le point d'entrée.
 
 [Voici un exemple de parcours avec schémas pour ce cas d'usage](https://www.figma.com/proto/KN1TfabEUBjMMOukq1VbVJ/Tutorials?page-id=26%3A1057&node-id=26-1058&p=f&viewport=-86%2C377%2C0.08&t=EQBPjFFUYJ4gdpVl-9&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=26%3A1058)
-
 
 ### 4.1. Distinguer le parcours Certification Dirigeant du parcours classique
 
