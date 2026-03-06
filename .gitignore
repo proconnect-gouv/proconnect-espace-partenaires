@@ -51,6 +51,9 @@ cypress/screenshots
 # Robots.txt
 robots.txt
 
+# Search index
+public/search-index.json
+
 # yarn berry
 .pnp.*
 .yarn/*
