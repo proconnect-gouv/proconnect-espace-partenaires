@@ -63,3 +63,7 @@ Chaque service a ses particularités. Quelles sont les vôtres ?
 ## 𖦏 Les cas non couverts par ProConnect
 
 Pour des raisons techniques, [certaines personnes professionnelles ne peuvent pas utiliser ProConnect](./couverture-proconnect.md). Si vous devez connecter ces personnes, nous vous conseillons de proposer un login alternatif email - mot de passe locaux.
+
+## Le cas de la Certification Dirigeant
+
+La [Certification Dirigeant](./certification-dirigeant.md) étant une fonctionnalité complexe, nous proposons une [recommandation parcours](./recommandation_parcours_certification_dirigeant.md) pour l'implémenter.
