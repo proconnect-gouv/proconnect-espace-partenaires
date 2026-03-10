@@ -56,17 +56,7 @@ Votre FI doit retourner dans l'ID token la valeur `acr` correspondant au niveau 
 - Retournez uniquement le niveau que l'utilisateur a effectivement atteint
 - Ne déclarez pas un niveau plus élevé que ce qui a été réellement accompli
 - Si l'utilisateur n'a pas encore de second facteur configuré ou ne l'a pas utilisé, forcez une étape d'authentification supplémentaire avant de retourner le token
-
-## Cas d'usage : que faire selon la situation
-
-| Situation                                                                        | Comportement attendu du FI                                                        | `acr` retourné                            |
-| -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ----------------------------------------- |
-| FS demande `eidas1-mfa`, utilisateur s'authentifie avec mot de passe + TOTP      | Authentification réussie                                                          | `eidas1-mfa`                              |
-| FS demande `eidas1-mfa`, utilisateur s'authentifie avec mot de passe uniquement  | Afficher une étape MFA (saisie TOTP, Passkey, etc.) avant de valider la session   |
-| FS demande `eidas1-mfa`, utilisateur n'a pas de second facteur configuré         | Proposer la configuration d'un second facteur, puis poursuivre l'authentification | `eidas1-mfa` une fois configuré et validé |
-| FS demande `eidas2`, utilisateur s'authentifie avec identité substantielle + MFA | Authentification réussie                                                          | `eidas2`                                  |
-| FS demande `eidas3`, utilisateur s'authentifie avec une carte agent              | Authentification réussie                                                          | `eidas3`                                  |
-| FS demande `eidas1-mfa` ou supérieur, votre FI ne supporte pas la MFA            | Retourner une erreur OIDC `access_denied`                                         | —                                         |
+  |
 
 ## Comment tester mon Fournisseur d'Identité ?
 
