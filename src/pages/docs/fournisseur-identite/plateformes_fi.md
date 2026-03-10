@@ -12,7 +12,7 @@ ProConnect met à disposition 3 plateformes pour répondre aux exigences de l’
 
 ### La plateforme « Internet »
 
-L'agent se connecte depuis Internet, à un Fournisseur de Services Internet via un Fournisseur d'Identité Internet.
+Le professionnel se connecte depuis Internet, à un Fournisseur de Services Internet via un Fournisseur d'Identité Internet.
 
 Ex : Accès à l’outil collaboratif Osmose depuis le FI Cerbère (MTE)
 

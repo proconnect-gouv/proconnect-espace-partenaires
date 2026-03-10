@@ -155,7 +155,7 @@ const Home: NextPage = () => {
               <h3 className="fr-mb-3v fr-mb-md-5 fr-h5">Fournisseur de Service</h3>
               <p className="fr-text--lg">
                 Je souhaite implémenter le bouton ProConnect sur mon site internet pour en faciliter
-                l&rsquo;accès aux agents publics.
+                l&rsquo;accès aux professionnels.
               </p>
               <p className="fr-text--lg">
                 <a href="/docs/fournisseur-service" className="fr-mb-6v">
