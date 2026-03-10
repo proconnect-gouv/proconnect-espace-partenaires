@@ -43,7 +43,7 @@ Nous vous recommandons de lire [notre page généraliste sur l'implémentation t
 
 ## 👤 4. Données utilisateur
 
-→ _Connaître les données disponibles sur l'agent et comment les récupérer_
+→ _Connaître les données disponibles sur les pros et comment les récupérer_
 
 | Page                                      | Question                                                                                            |
 | ----------------------------------------- | --------------------------------------------------------------------------------------------------- |
