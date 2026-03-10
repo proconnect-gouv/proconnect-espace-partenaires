@@ -73,5 +73,5 @@ Nous vous recommandons de lire [notre page généraliste sur l'implémentation t
 | Page | Question |
 |---|---|
 | [Messages d'erreur](./troubleshooting-fs.md) | J'ai un message d'erreur, comment le déchiffrer ? |
-| [Support](./aide_support.md) | J'aimerais contacter le service partenaires de ProConnect pour de l'aide ou pour une question |
+| [Service partenaires](./aide_support.md) | J'aimerais contacter le service partenaires de ProConnect pour de l'aide ou pour une question |
 | [Glossaire](./../ressources/glossaire.md) | Quel est le glossaire de tous ces termes techniques ? |
