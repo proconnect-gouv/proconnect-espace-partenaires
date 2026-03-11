@@ -8,6 +8,13 @@
 
 Par ailleurs la configuration suivante suppose un tenant (locataire) de type « Workforce » (annuaire interne d'entreprise) mais est susceptible de s'adapter à d'autres types.
 
+## Activer le mode "Entra ID" côté ProConnect
+
+Cette action ne peut être effectuée que par un membre de l'équipe ProConnect. Vous pouvez nous contacter à [support.partenaires@mail.proconnect.gouv.fr](mailto:?to=support.partenaires%40mail.proconnect.gouv.fr&subject=Activation%20du%20mode%20Entra%20ID) en précisant :
+
+- en objet : Activation du mode Entra ID
+- dans le corps du mail : l'identifiant de votre Fournisseur d'Identité
+
 ## Créer une « App Registration » (Inscription d'Application)
 
 Pour la création les paramètres importants sont:
