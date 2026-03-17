@@ -47,7 +47,7 @@ Lorsqu'un FS exige une MFA, ProConnect transmet cette exigence à votre FI via l
 Le champ `essential: true` signifie que l'exigence est **obligatoire** : si votre FI ne peut pas satisfaire l'un des niveaux demandés, l'authentification doit échouer.
 
 > [!NOTE]
-> Le FS peut demander un ou plusieurs niveaux à la fois. Votre FI doit satisfaire **au moins l'un** des niveaux listés.
+> Le FS peut demander un ou plusieurs niveaux à la fois. Votre FI doit satisfaire **exactement un** des niveaux listés.
 
 ## Ce que vous devez retourner
 
@@ -56,7 +56,6 @@ Votre FI doit retourner dans l'ID token la valeur `acr` correspondant au niveau 
 - Retournez uniquement le niveau que l'utilisateur a effectivement atteint
 - Ne déclarez pas un niveau plus élevé que ce qui a été réellement accompli
 - Si l'utilisateur n'a pas encore de second facteur configuré ou ne l'a pas utilisé, forcez une étape d'authentification supplémentaire avant de retourner le token
-  |
 
 ## Comment tester mon Fournisseur d'Identité ?
 
