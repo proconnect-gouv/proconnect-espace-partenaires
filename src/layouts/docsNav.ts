@@ -41,6 +41,12 @@ export const docTree: SideMenuProps.Item[] = [
         linkProps: { href: "/docs/fournisseur-identite/configuration" },
       },
       {
+        text: "Authentification multi-facteur",
+        linkProps: {
+          href: "/docs/fournisseur-identite/authentification-multifacteur",
+        },
+      },
+      {
         text: "Ressources",
         items: [
           {
