@@ -130,6 +130,12 @@ export function PageLayout({ children }: LayoutProps) {
         serviceTagline="Documentation technique et gestion des applications en développement"
         homeLinkProps={homeLinkPops}
         quickAccessItems={quickAccessItems}
+        onSearchButtonClick={(text) => {
+          if (text.trim()) {
+            router.push(`/search?q=${encodeURIComponent(text.trim())}`);
+          }
+        }}
+        allowEmptySearch={false}
         navigation={[
           {
             text: "Accueil",
