@@ -33,73 +33,8 @@ export const docTree: SideMenuProps.Item[] = [
         linkProps: { href: "/docs/fournisseur-identite" },
       },
       {
-        text: "Prérequis",
-        linkProps: { href: "/docs/fournisseur-identite/prerequis-fi" },
-      },
-      {
-        text: "Configuration",
-        linkProps: { href: "/docs/fournisseur-identite/configuration" },
-      },
-      {
-        text: "Authentification multi-facteur",
-        linkProps: {
-          href: "/docs/fournisseur-identite/authentification-multifacteur",
-        },
-      },
-      {
-        text: "Ressources",
-        items: [
-          {
-            text: "Test de configuration",
-            linkProps: {
-              href: "/docs/fournisseur-identite/test-configuration-fi",
-            },
-          },
-          {
-            text: "Plateformes et Hybridge",
-            linkProps: { href: "/docs/fournisseur-identite/plateformes_fi" },
-          },
-          {
-            text: "Certificats",
-            linkProps: { href: "/docs/fournisseur-identite/certificats_fi" },
-          },
-          {
-            text: "LemonLDAP",
-            linkProps: {
-              href: "/docs/fournisseur-identite/idp-configs/lemon-ldap",
-            },
-          },
-          {
-            text: "Keycloak",
-            linkProps: {
-              href: "/docs/fournisseur-identite/idp-configs/keycloak",
-            },
-          },
-          {
-            text: "Migration AgentConnect",
-            linkProps: {
-              href: "/docs/fournisseur-identite/changement-agentconnect-proconnect-fi",
-            },
-          },
-          {
-            text: "Erreurs récurrentes",
-            linkProps: {
-              href: "/docs/fournisseur-identite/troubleshooting-fi",
-            },
-          },
-          {
-            text: "Format de l'userinfo",
-            linkProps: {
-              href: "/docs/fournisseur-identite/format-user-info",
-            },
-          },
-          {
-            text: "Référentiel IP",
-            linkProps: {
-              href: "/docs/fournisseur-identite/referentiel-IP",
-            },
-          },
-        ],
+        text: "Table des matières",
+        linkProps: { href: "/docs/fournisseur-identite/table_matieres" },
       },
     ],
   },
