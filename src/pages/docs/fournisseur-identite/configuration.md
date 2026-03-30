@@ -129,7 +129,7 @@ Selon votre Fournisseur d'Identité, il est possible qu'il vous faille spécifie
 
 ## Configurer le champ `acr`
 
-Pour en savoir plus sur les valeurs `acr` et les niveaux d'assurance, consultez [la documentation dédiée](./niveaux-assurance-eidas.md). 
+Pour en savoir plus sur les valeurs `acr` et les niveaux d'assurance, consultez [la documentation dédiée](./niveaux-assurance-eidas.md).
 
 ## Configurer l'authentification multifacteur
 
