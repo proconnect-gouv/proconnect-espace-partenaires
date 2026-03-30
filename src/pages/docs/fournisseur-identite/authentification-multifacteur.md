@@ -27,6 +27,17 @@ Les niveaux d'assurance sont définis selon trois axes : la qualité de l'identi
 > [!NOTE]
 > `eidas2` et `eidas3` impliquent **toujours** une MFA. Il n'existe pas de variante simple-facteur pour ces niveaux.
 
+### Détail des niveaux eidas2 et eidas3
+
+**Lien certifié par une source officielle** désigne un processus d'embarquement RH : l'identité de la personne a été vérifiée à son arrivée (via des justificatifs ou un processus interne), puis elle a été rattachée à l'organisation dans l'annuaire (création de compte, remise des moyens d'authentification).
+
+La distinction entre eidas2 et eidas3 porte sur le type de moyen de double authentification :
+
+| Niveau   | Exemple de moyen d'authentification   |
+| -------- | ------------------------------------- |
+| `eidas2` | TOTP (application d'authentification) |
+| `eidas3` | Carte à puce avec code PIN            |
+
 ## Ce que ProConnect vous envoie
 
 Lorsqu'un FS exige une MFA, ProConnect transmet cette exigence à votre FI via le paramètre `claims` de la requête à l'`authorization_endpoint`. Voici une demande de MFA standard :
@@ -64,4 +75,4 @@ Pour tester la MFA de votre Fournisseur d'Identité, vous pouvez aller sur :
 - https://test.proconnect.gouv.fr/ en intégration sur Internet
 - https://docteur.proconnect.gouv.fr/ en production sur Internet
 
-Puis cliquer sur `Connexion double authentification (2FA)` et faire le parcours de connexion. Si vous faites une connexion complète sans retourner d'erreur, votre Fournisseur d'identité est prêt pour la MFA.
+Puis cliquer sur `Connexion double authentification (2FA)` et faire le parcours de connexion. Si vous faites une connexion complète sans retourner d'erreur, votre Fournisseur d'identité est prêt pour la MFA. Vous trouverez plus d'informations sur les tests [dans notre page dédiée](./test-configuration-fi.md)
