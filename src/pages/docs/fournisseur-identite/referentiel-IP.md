@@ -12,7 +12,7 @@ Les Fournisseurs d’Identité doivent s’assurer que leurs configurations rés
 
 Autoriser le trafic **TCP sur le port 443 (HTTPS)** depuis les adresses IP listées ci-dessous.
 
-Si votre Fournisseur d’Identité est **exposé sur le RIE**, une **demande spécifique auprès de la PFS** est nécessaire pour permettre à ces IP d’accéder à vos endpoints. Si votre Discovery URL n’est pas sur un domaine en `rie.gouv.fr` ou `ader.gouv.fr`, vous devrez également nous communiquer vos adresses IP explicitement — consultez [la page dédiée](./resolution_discovery_url.md).
+Si votre Fournisseur d’Identité est **exposé sur le RIE**, une **demande spécifique auprès de la PFS** est nécessaire pour permettre à ces IP d’accéder à vos endpoints. Si votre Discovery URL n’est pas sur un domaine en `rie.gouv.fr` ou `ader.gouv.fr`, vous devrez également nous communiquer vos adresses IP explicitement — consultez [la page dédiée à la résolution de la Discovery URL pour les FI RIE](./resolution_discovery_url.md).
 
 En cas de doute, n'hésitez pas à nous contacter à [support.partenaires@mail.proconnect.gouv.fr](mailto:support.partenaires@mail.proconnect.gouv.fr)
 

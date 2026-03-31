@@ -12,7 +12,7 @@ Avant toute chose, nous vous recommandons fortement de lire [notre page de proce
 | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | [Prérequis](./prerequis-fi.md)                                        | Quels sont les prérequis pour devenir Fournisseur d'Identité pour ProConnect ?                                                                  |
 | [Plateformes et Hybridge](./plateformes_fi.md)                        | Quelle est la différence entre la plateforme Internet, la plateforme RIE et l'Hybridge ?                                                        |
-| [Résolution de la Discovery URL (RIE)](./resolution_discovery_url.md) | Mon FI est sur le RIE mais n'a pas d'adresse en `rie.gouv.fr` ou `ader.gouv.fr` — comment permettre à ProConnect de résoudre ma Discovery URL ? |
+| [Résolution de la Discovery URL (RIE)](./resolution_discovery_url.md) | Mon FI est sur le RIE mais n'a pas d'adresse en `rie.gouv.fr` ou `ader.gouv.fr` : comment permettre à ProConnect de résoudre le nom de domaine de ma discovery URL ? |
 
 ## 🛠️ 2. Configuration et mise en service
 
