@@ -22,6 +22,9 @@ L’agent se connecte depuis le RIE, à un Fournisseur de Services RIE via un Fo
 
 Ex : Accès au portail du CISIRH depuis l’annuaire Passage 2 (MI)
 
+> [!NOTE]
+> Si votre FI est hébergé sur le RIE, assurez-vous que la Discovery URL utilise un domaine en `rie.gouv.fr` ou `ader.gouv.fr`. Dans le cas contraire, ProConnect ne pourra pas résoudre cette URL. Consultez [la page dédiée à la résolution de la Discovery URL pour les FI RIE](./resolution_discovery_url.md).
+
 ### La plateforme Hybridge ProConnect RIE-Internet
 
 L'Hybridge permet de relier un Fournisseur d’Identité RIE à un Fournisseur de Services Internet (et non l'inverse)
