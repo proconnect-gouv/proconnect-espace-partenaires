@@ -21,6 +21,7 @@ Avant toute chose, nous vous recommandons fortement de lire [notre page de proce
 | Page                                                                 | Question                                                                                      |
 | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | [Configuration](./configuration.md)                                  | Comment configurer OpenID Connect (OIDC) pour ProConnect en tant que Fournisseur d'Identité ? |
+| [Niveaux d'assurance (eidas)](./niveaux-assurance-eidas.md)          | Que signifient les niveaux eidas0, eidas1, eidas2, eidas3 ?                                   |
 | [Authentification multi-facteur](./authentification-multifacteur.md) | Comment supporter l'authentification multi-facteur (MFA) exigée par certains FS ?             |
 | [Test de configuration](./test-configuration-fi.md)                  | Comment tester la configuration de mon Fournisseur d'Identité ?                               |
 | [Format de l'userinfo](./format-user-info.md)                        | Quelles contraintes ProConnect applique-t-il sur les identités retournées par les userinfos ? |

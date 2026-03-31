@@ -6,26 +6,10 @@ Certains Fournisseurs de Service (FS) exigent que leurs utilisateurs s'authentif
 
 Pour comprendre comment un FS configure cette exigence de son côté, consultez [la documentation dédiée aux Fournisseurs de Service](../fournisseur-service/double_authentification.md).
 
+Pour en savoir plus sur les niveaux d'assurance (`acr`) utilisés par ProConnect, consultez [la documentation dédiée](./niveaux-assurance-eidas.md).
+
 > [!CAUTION]
 > Ces niveaux sont provisoires et seront définitifs au T2 2026. Vous pouvez commencer à les implémenter pour être MFA-ready.
-
-## Les niveaux d'assurance (ACR)
-
-Pour indiquer le niveau d'assurance d'une authentification, ProConnect utilise l'attribut `acr` (Authentication Context Class Reference).
-
-Les niveaux d'assurance sont définis selon trois axes : la qualité de l'identité, la méthode d'authentification, et le lien avec l'organisation.
-
-| Valeur `acr` | Identité              | Authentification      | Organisation                            |
-| ------------ | --------------------- | --------------------- | --------------------------------------- |
-| `eidas0`     | Faible ou déclarative | Simple (mot de passe) | Modération ou déclaratif                |
-| `eidas0-mfa` | Faible ou déclarative | **MFA**               | Modération ou déclaratif                |
-| `eidas1`     | Faible                | Simple (mot de passe) | Modération ou plus                      |
-| `eidas1-mfa` | Faible                | **MFA**               | Modération ou plus                      |
-| `eidas2`     | Substantielle         | **MFA**               | Lien certifié par une source officielle |
-| `eidas3`     | Élevée                | **MFA**               | Lien certifié par une source officielle |
-
-> [!NOTE]
-> `eidas2` et `eidas3` impliquent **toujours** une MFA. Il n'existe pas de variante simple-facteur pour ces niveaux.
 
 ## Ce que ProConnect vous envoie
 
@@ -64,4 +48,4 @@ Pour tester la MFA de votre Fournisseur d'Identité, vous pouvez aller sur :
 - https://test.proconnect.gouv.fr/ en intégration sur Internet
 - https://docteur.proconnect.gouv.fr/ en production sur Internet
 
-Puis cliquer sur `Connexion double authentification (2FA)` et faire le parcours de connexion. Si vous faites une connexion complète sans retourner d'erreur, votre Fournisseur d'identité est prêt pour la MFA.
+Puis cliquer sur `Connexion double authentification (2FA)` et faire le parcours de connexion. Si vous faites une connexion complète sans retourner d'erreur, votre Fournisseur d'identité est prêt pour la MFA. Vous trouverez plus d'informations sur les tests [dans notre page dédiée](./test-configuration-fi.md)

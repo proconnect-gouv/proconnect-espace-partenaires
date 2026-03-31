@@ -132,4 +132,8 @@ Selon votre Fournisseur d'Identité, il est possible qu'il vous faille spécifie
 
 ## Configurer le champ `acr`
 
-Pour en savoir plus sur la prise en charge de l'authentification multi-facteur et les valeurs `acr` associées, consultez [la documentation dédiée](./authentification-multifacteur.md).
+Pour en savoir plus sur les valeurs `acr` et les niveaux d'assurance, consultez [la documentation dédiée](./niveaux-assurance-eidas.md).
+
+## Configurer l'authentification multifacteur
+
+Pour la prise en charge de l'authentification multi-facteur, consultez [la documentation dédiée](./authentification-multifacteur.md).
