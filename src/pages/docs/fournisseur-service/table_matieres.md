@@ -24,6 +24,7 @@ Nous vous recommandons de lire [notre page généraliste sur l'implémentation t
 
 | Page                                                         | Question                                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------------------------------- |
+| [Référentiel IP](./referentiel-IP.md)                        | Quelles adresses IP dois-je autoriser pour requêter les serveurs ProConnect ?         |
 | [Bouton ProConnect](./bouton_proconnect.md)                  | Où se trouve le code html ou le composant du bouton ProConnect ?                      |
 | [Identifiants de test](./identifiants-fi-test.md)            | Quels identifiants de test puis-je utiliser ?                                         |
 | [Clés sur le RIE](./fs_RIE.md)                               | Comment obtenir un client_id et client_secret pour une application sur le RIE ?       |
