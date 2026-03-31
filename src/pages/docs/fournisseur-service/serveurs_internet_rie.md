@@ -23,3 +23,7 @@ ProConnect sur ses serveurs RIE ne peut utiliser que des Fournisseurs d'Identit�
 Voici un schéma de fonctionnement de ProConnect :
 
 ![](/images/docs/schema_reseau.png)
+
+## 3. Adresses IP à autoriser
+
+La liste des adresses IP des serveurs ProConnect que votre Fournisseur de Service doit pouvoir requêter est disponible sur la [page du référentiel IP](./referentiel-IP.md).
