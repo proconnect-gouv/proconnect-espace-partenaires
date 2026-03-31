@@ -24,6 +24,9 @@ La Discovery URL est une URL **publique** fournie par le FI qui expose un ensemb
 
 Cette URL doit être conservée pour être envoyée à ProConnect par le FI une fois la configuration faite.
 
+> [!NOTE]
+> Si votre FI est hébergé sur le RIE, assurez-vous que la Discovery URL utilise un domaine en `rie.gouv.fr` ou `ader.gouv.fr`. Dans le cas contraire, ProConnect ne pourra pas résoudre cette URL. Consultez [la page dédiée à la résolution de la Discovery URL pour les FI RIE](./resolution_discovery_url.md).
+
 ## Créer un client
 
 Commencez par créer un client OIDC pour ProConnect. Vous pouvez choisir comme `client_id` "proconnect" par exemple. Pour le `client_secret`, vous pouvez le générer de votre côté ou à l'aide d'outils en ligne comme [randomgenerate.io](https://randomgenerate.io/random-string-generator).

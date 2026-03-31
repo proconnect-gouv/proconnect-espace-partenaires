@@ -23,3 +23,6 @@ Afin de prouver à l'équipe ProConnect que vous possédez bien le(s) nom(s) de 
 
 > [!NOTE]
 > Certains Fournisseurs de Service peuvent exiger une authentification multi-facteur (MFA) de la part de leurs utilisateurs. Pour savoir comment supporter ce cas, consultez [la documentation sur l'authentification multi-facteur](./authentification-multifacteur.md).
+
+> [!NOTE]
+> Si votre FI est hébergé sur le RIE, assurez-vous que votre Discovery URL utilise un domaine en `rie.gouv.fr` ou `ader.gouv.fr`, faute de quoi ProConnect ne pourra pas la résoudre. Consultez [la page dédiée à la résolution de la Discovery URL pour les FI RIE](./resolution_discovery_url.md).
