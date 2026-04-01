@@ -22,6 +22,8 @@ Si vous souhaitez modifier les redirect_uri de connexion ou de déconnexion conf
 
 Voici un exemple d'application qui a implémenté ProConnect : [Docs, porté par la Dinum](https://github.com/suitenumerique/docs).
 
+Si vous voulez tester une connexion fonctionnelle en intégration, vous pouvez aller sur [https://test.proconnect.gouv.fr/](https://test.proconnect.gouv.fr/).
+
 ## 📘 2. Mode d'emploi technique
 
 ### 2.1. Intégrer le bouton ProConnect sur votre page de connexion
