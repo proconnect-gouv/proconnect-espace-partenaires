@@ -4,10 +4,10 @@ import { signOut, useSession } from "next-auth/react";
 
 import { Footer } from "@codegouvfr/react-dsfr/Footer";
 import { Header } from "@codegouvfr/react-dsfr/Header";
+import Notice from "@codegouvfr/react-dsfr/Notice";
 import { SkipLinks } from "@codegouvfr/react-dsfr/SkipLinks";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Notice from "@codegouvfr/react-dsfr/Notice";
 
 const brandTop = (
   <>
@@ -61,7 +61,9 @@ export function PageLayout({ children }: LayoutProps) {
     {
       text: "Contribuer sur GitHub",
       linkProps: {
-        href: `${process.env.NEXT_PUBLIC_APP_REPOSITORY_URL}` + getGithubDeepLink(router.asPath),
+        href:
+          `${process.env.NEXT_PUBLIC_APP_REPOSITORY_URL}` +
+          getGithubDeepLink(router.asPath),
       },
     },
   ];
@@ -105,7 +107,10 @@ export function PageLayout({ children }: LayoutProps) {
     <>
       <Head>
         {contentSecurityPolicy && (
-          <meta httpEquiv="Content-Security-Policy" content={contentSecurityPolicy} />
+          <meta
+            httpEquiv="Content-Security-Policy"
+            content={contentSecurityPolicy}
+          />
         )}
         <link rel="icon" href="/favicon.ico" />
       </Head>

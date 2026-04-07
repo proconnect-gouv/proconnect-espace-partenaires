@@ -5,10 +5,9 @@ import { Card } from "@codegouvfr/react-dsfr/Card";
 import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth/next";
 import { useState } from "react";
+import { MaintenanceBanner } from "../../components/MaintenanceBanner";
 import { OidcClient, pcdbClient } from "../../lib/pcdbapi";
 import { authOptions } from "../api/auth/[...nextauth]";
-import { MaintenanceBanner } from "../../components/MaintenanceBanner";
-
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getServerSession(context.req, context.res, authOptions);
@@ -22,7 +21,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
-  const isMaintenanceMode = process.env.FEATURE_DISPLAY_MAINTENANCE_MODE === "true";
+  const isMaintenanceMode =
+    process.env.FEATURE_DISPLAY_MAINTENANCE_MODE === "true";
 
   try {
     const apps = await pcdbClient.listOidcClients(session.user.email);
@@ -32,16 +32,31 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 };
 
-export default function AppsIndex({ apps, error, isMaintenanceMode }: { apps: OidcClient[]; error?: string; isMaintenanceMode: boolean }) {
+export default function AppsIndex({
+  apps,
+  error,
+  isMaintenanceMode,
+}: {
+  apps: OidcClient[];
+  error?: string;
+  isMaintenanceMode: boolean;
+}) {
   const [isCreating, setIsCreating] = useState(false);
-  
- if (isMaintenanceMode) {
-  return <MaintenanceBanner />;
-}
+
+  if (isMaintenanceMode) {
+    return <MaintenanceBanner />;
+  }
 
   if (error) {
     return (
-      <div className={fr.cx("fr-alert", "fr-alert--error", "fr-mb-3w", "fr-container")}>
+      <div
+        className={fr.cx(
+          "fr-alert",
+          "fr-alert--error",
+          "fr-mb-3w",
+          "fr-container",
+        )}
+      >
         <p>{error}</p>
       </div>
     );
@@ -79,28 +94,47 @@ export default function AppsIndex({ apps, error, isMaintenanceMode }: { apps: Oi
       >
         <div className={fr.cx("fr-container")}>
           <h1>Vos applications</h1>
-          <p>Gérez vos applications OpenID Connect en cours de développement.</p>
+          <p>
+            Gérez vos applications OpenID Connect en cours de développement.
+          </p>
         </div>
       </section>
 
       <div className={fr.cx("fr-my-4w", "fr-container")}>
-        <div className={fr.cx("fr-grid-row", "fr-grid-row--middle", "fr-grid-row--gutters")}>
+        <div
+          className={fr.cx(
+            "fr-grid-row",
+            "fr-grid-row--middle",
+            "fr-grid-row--gutters",
+          )}
+        >
           <div className={fr.cx("fr-col")}>
             <h2>Fournisseurs de Service</h2>
           </div>
         </div>
 
-        <div className={fr.cx("fr-grid-row", "fr-grid-row--gutters", "fr-pb-6w")}>
+        <div
+          className={fr.cx("fr-grid-row", "fr-grid-row--gutters", "fr-pb-6w")}
+        >
           {apps.length === 0 && (
             <div className={fr.cx("fr-col-12")}>
-              <p>Aucun Fournisseur de Service n&rsquo;est encore associé à votre email.</p>
+              <p>
+                Aucun Fournisseur de Service n&rsquo;est encore associé à votre
+                email.
+              </p>
               <p>Vous pouvez en créer un avec le bouton ci-dessous.</p>
             </div>
           )}
 
           <div className={fr.cx("fr-col-12")}>
-            <Button onClick={handleCreate} disabled={isCreating} iconId="fr-icon-add-line">
-              {isCreating ? "Création en cours..." : "Créer un nouveau fournisseur de service"}
+            <Button
+              onClick={handleCreate}
+              disabled={isCreating}
+              iconId="fr-icon-add-line"
+            >
+              {isCreating
+                ? "Création en cours..."
+                : "Créer un nouveau fournisseur de service"}
             </Button>
           </div>
 
@@ -133,11 +167,15 @@ export default function AppsIndex({ apps, error, isMaintenanceMode }: { apps: Oi
                   <span className={fr.cx("fr-mb-0", "fr-text--xs")}>
                     {app.createdAt && app.updatedAt && (
                       <span className={fr.cx("fr-mb-0", "fr-text--md")}>
-                        <strong>Date de création :</strong> {app.createdAt.substring(8, 10)}/
-                        {app.createdAt.substring(5, 7)}/{app.createdAt.substring(0, 4)}
+                        <strong>Date de création :</strong>{" "}
+                        {app.createdAt.substring(8, 10)}/
+                        {app.createdAt.substring(5, 7)}/
+                        {app.createdAt.substring(0, 4)}
                         <br />
-                        <strong>Date de mise à jour :</strong> {app.updatedAt.substring(8, 10)}/
-                        {app.updatedAt.substring(5, 7)}/{app.updatedAt.substring(0, 4)}
+                        <strong>Date de mise à jour :</strong>{" "}
+                        {app.updatedAt.substring(8, 10)}/
+                        {app.updatedAt.substring(5, 7)}/
+                        {app.updatedAt.substring(0, 4)}
                       </span>
                     )}
                   </span>
