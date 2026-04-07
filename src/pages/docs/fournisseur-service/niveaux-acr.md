@@ -11,7 +11,9 @@ Un fournisseur de service peut consulter le niveau ACR de l'authentification en 
 ```
 claims={
   "id_token": {
-    "acr": null
+    "acr": {
+      "essential": true
+    },
   }
 }
 ```
