@@ -48,6 +48,7 @@ Tous les Fournisseurs de Service intégrés depuis août 2024 ont accès par dé
 | uid        | uid        |
 | siret      | siret      |
 | idp_id     | idp_id     |
+| idp_acr    | idp_acr    |
 
 #### Le scope "phone"
 
