@@ -24,7 +24,7 @@ Pour tester la connexion sur votre Fournisseur de Service :
 - cliquez sur le bouton "S'identifier avec ProConnect" depuis votre Fournisseur de Service **en intégration**
 - à l'arrivée sur la mire ProConnect, entrez un email en `@test.proconnect.gouv.fr` (par exemple `test@test.proconnect.gouv.fr` ou `marie.durant@test.proconnect.gouv.fr`). Nous vous redirigerons vers le FI de test de ProConnect
 - vous pouvez choisir des éléments comme l'`email`, le `SIRET`, ou l'`ACR`
-    - Vous pouvez par exemple rentrer `john.lennon@elysee.fr` en `eidas3` pour le SIRET [10000001700010](https://annuaire-entreprises.data.gouv.fr/entreprise/republique-francaise-presidence-100000017) 
+  - Vous pouvez par exemple rentrer `john.lennon@elysee.fr` en `eidas3` pour le SIRET [10000001700010](https://annuaire-entreprises.data.gouv.fr/entreprise/republique-francaise-presidence-100000017)
 - cliquez sur "Se connecter". Nous vous redirigerons vers votre Fournisseur de Service avec les éléments sélectionnés
 
 ### 🔧 ProConnect Identité
