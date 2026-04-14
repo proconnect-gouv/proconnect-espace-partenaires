@@ -24,8 +24,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const { id } = context.params as { id: string };
 
-  const isMaintenanceMode =
-    process.env.FEATURE_DISPLAY_MAINTENANCE_MODE === "true";
+  const isMaintenanceMode = process.env.FEATURE_DISPLAY_MAINTENANCE_MODE === "true";
 
   try {
     const app = await pcdbClient.getOidcClient(id, session.user.email);
@@ -60,9 +59,7 @@ export default function AppDetailPage({
   const [data, setData] = useState(app);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [saveSuccess, setSaveSuccess] = useState(false);
-  const [idTokenSignatureAlg, setIdTokenSignatureAlg] = useState(
-    data.id_token_signed_response_alg,
-  );
+  const [idTokenSignatureAlg, setIdTokenSignatureAlg] = useState(data.id_token_signed_response_alg);
   const [userInfoSignatureAlg, setUserInfoSignatureAlg] = useState(
     data.userinfo_signed_response_alg || "",
   );
@@ -122,9 +119,7 @@ export default function AppDetailPage({
     }
   };
 
-  const handleIdTokenSignatureAlgChange = async (
-    e: React.ChangeEvent<HTMLSelectElement>,
-  ) => {
+  const handleIdTokenSignatureAlgChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newAlg = e.target.value;
     setIdTokenSignatureAlg(newAlg);
 
@@ -138,9 +133,7 @@ export default function AppDetailPage({
     }
   };
 
-  const handleUserInfoSignatureAlgChange = async (
-    e: React.ChangeEvent<HTMLSelectElement>,
-  ) => {
+  const handleUserInfoSignatureAlgChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newAlg = e.target.value;
     setUserInfoSignatureAlg(newAlg);
 
@@ -167,9 +160,7 @@ export default function AppDetailPage({
           <div className={fr.cx("fr-col-12", "fr-col-md-9", "fr-py-12v")}>
             <Breadcrumb
               currentPageLabel={data.name}
-              segments={[
-                { label: "Applications", linkProps: { href: "/apps" } },
-              ]}
+              segments={[{ label: "Applications", linkProps: { href: "/apps" } }]}
             />
 
             <div className={fr.cx("fr-mb-4w")}>
@@ -213,10 +204,7 @@ export default function AppDetailPage({
                   <CopyableField label="Client ID" value={data.key || ""} />
                 </div>
                 <div className={fr.cx("fr-col-12", "fr-mt-2w")}>
-                  <CopyableField
-                    label="Client Secret"
-                    value={data.client_secret || ""}
-                  />
+                  <CopyableField label="Client Secret" value={data.client_secret || ""} />
                 </div>
               </div>
             </div>
@@ -247,8 +235,7 @@ export default function AppDetailPage({
               <h1 id="algs">Algorithmes</h1>
               <h2>Algorithme de signature ID Token</h2>
               <p>
-                L&rsquo;algorithme de signature est utilisé pour signer les
-                jetons d&rsquo;identité.
+                L&rsquo;algorithme de signature est utilisé pour signer les jetons d&rsquo;identité.
               </p>
               <Select
                 label="Algorithme de signature"
@@ -268,8 +255,8 @@ export default function AppDetailPage({
             <div id="alg-user-info" className={fr.cx("fr-mb-10v")}>
               <h2>Algorithme de signature user-info</h2>
               <p>
-                L&rsquo;algorithme de signature est utilisé pour signer les
-                informations utilisateur.
+                L&rsquo;algorithme de signature est utilisé pour signer les informations
+                utilisateur.
               </p>
               <Select
                 label="Algorithme de signature user-info"
@@ -294,12 +281,8 @@ export default function AppDetailPage({
               <h2>Passage en production</h2>
               <p>Cette application est encore en test.</p>
               <p>
-                Pour connaître les étapes à suivre pour passer en production,
-                veuillez{" "}
-                <Link
-                  href="/docs/fournisseur-service"
-                  className={fr.cx("fr-link")}
-                >
+                Pour connaître les étapes à suivre pour passer en production, veuillez{" "}
+                <Link href="/docs/fournisseur-service" className={fr.cx("fr-link")}>
                   consulter la documentation
                 </Link>
                 .

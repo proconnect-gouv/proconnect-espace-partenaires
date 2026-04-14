@@ -61,9 +61,7 @@ export function PageLayout({ children }: LayoutProps) {
     {
       text: "Contribuer sur GitHub",
       linkProps: {
-        href:
-          `${process.env.NEXT_PUBLIC_APP_REPOSITORY_URL}` +
-          getGithubDeepLink(router.asPath),
+        href: `${process.env.NEXT_PUBLIC_APP_REPOSITORY_URL}` + getGithubDeepLink(router.asPath),
       },
     },
   ];
@@ -107,10 +105,7 @@ export function PageLayout({ children }: LayoutProps) {
     <>
       <Head>
         {contentSecurityPolicy && (
-          <meta
-            httpEquiv="Content-Security-Policy"
-            content={contentSecurityPolicy}
-          />
+          <meta httpEquiv="Content-Security-Policy" content={contentSecurityPolicy} />
         )}
         <link rel="icon" href="/favicon.ico" />
       </Head>
