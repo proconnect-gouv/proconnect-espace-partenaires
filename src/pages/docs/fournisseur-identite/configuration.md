@@ -1,14 +1,17 @@
 # Configurer OpenID Connect (OIDC) pour ProConnect en tant que Fournisseur d'Identité (FI)
 
-## Test de la connexion à votre FI
+## 1. Avant de commencer
+
+### 1.1. Tester et itérer
 
 Vous pouvez à tout moment tester l'intégration de votre FI à la fédération ProConnect. [Vous trouverez les informations de test ici](./test-configuration-fi.md).
+
 En cas d'erreur, deux documents vous permettront d'analyser vos erreurs :
 
 - [les erreurs récurrentes](./troubleshooting-fi.md)
 - [la liste des codes d'erreurs possibles renvoyés par ProConnect](https://github.com/france-connect/sources/blob/main/back/_doc/erreurs.md)
 
-## Configurations spécifiques
+### 1.2. Logiciels spécifiques
 
 Certains logiciels nécessitent des configurations particulières pour fonctionner avec ProConnect. Vous pouvez consulter ces spécificités si votre logiciel se trouve dans la liste ci-dessous :
 
@@ -16,7 +19,9 @@ Certains logiciels nécessitent des configurations particulières pour fonctionn
 - [Keycloak](./idp-configs/keycloak.md)
 - [Entra ID](./idp-configs/entra-id.md)
 
-## Trouver la Discovery URL
+## 2. Créer un client OIDC
+
+### 2.1. Trouver la Discovery URL
 
 La Discovery URL est une URL **publique** fournie par le FI qui expose un ensemble d'informations nécessaires à la bonne interaction avec les clients OIDC. Elle se termine nécessairement par `/.well-known/openid-configuration`.
 
@@ -27,7 +32,7 @@ Cette URL doit être conservée pour être envoyée à ProConnect par le FI une 
 > [!NOTE]
 > Si votre FI est hébergé sur le RIE, assurez-vous que la Discovery URL utilise un domaine en `rie.gouv.fr` ou `ader.gouv.fr`. Dans le cas contraire, ProConnect ne pourra pas résoudre cette URL. Consultez [la page dédiée à la résolution de la Discovery URL pour les FI RIE](./resolution_discovery_url.md).
 
-## Créer un client
+### 2.2. Paramètres du client
 
 Commencez par créer un client OIDC pour ProConnect. Vous pouvez choisir comme `client_id` "proconnect" par exemple. Pour le `client_secret`, vous pouvez le générer de votre côté ou à l'aide d'outils en ligne comme [randomgenerate.io](https://randomgenerate.io/random-string-generator).
 Ces deux valeurs doivent être conservées de votre côté pour être envoyées à ProConnect une fois la configuration faite.
@@ -35,37 +40,16 @@ Ces deux valeurs doivent être conservées de votre côté pour être envoyées 
 La `redirect_uri` (ou "adresse de redirection de connexion") à indiquer est la suivante :
 https://PROCONNECT_DOMAIN/api/v2/oidc-callback
 
-Vous pouvez retrouver la valeur de PROCONNECT_DOMAIN qui vous correspond [ici](../ressources/valeur_ac_domain.md). Si votre FI est présent sur le RIE et bénéficie de l'hybridge, il vous faut alors indiquer les `redirect_uri` correspondant aux domaines des réseaux RIE et Internet.
+Vous pouvez retrouver [la valeur de PROCONNECT_DOMAIN qui vous correspond ici](../ressources/valeur_ac_domain.md). Si votre FI est présent sur le RIE et bénéficie de l'hybridge, il vous faut alors indiquer les `redirect_uri` correspondant aux domaines des réseaux RIE et Internet.
 
 Il peut également vous être demandé de renseigner la "post_logout_redirect_uri" (ou "adresse de redirection post-déconnexion"). Dans ce cas, renseignez la suivante :
 https://PROCONNECT_DOMAIN/api/v2/client/logout-callback
 
-## Utiliser le paramètre `login_hint`
-
-À l'appel au `authorization_endpoint`, ProConnect envoie en query param `login_hint`, qui contient l'email renseigné par l'utilisateur sur la mire ProConnect.
-Pour simplifier le parcours de l'utilisateur, il est demandé au FI d'utiliser la valeur fournie pour pré-remplir le champ email de sa mire d'authentification lorsque cela est pertinent.
-
-## Utiliser le paramètre `sp_name`
-
-Pour ajouter du contexte dans la mire de connexion des FI, ProConnect envoie un query param `sp_name`, qui contient une chaine de caractères qui a la valeur du nom du FS qui a initialisé la connexion.
-
-Exemple : `sp_name=Bases%20Adresses%20Locales`.
-
-Pour clarifier le parcours de l'utilisateur, un FI peut utiliser ce paramètre pour afficher une mire de connexion contextualisée.
-
-Exemple de titre de page : `Se connecter au service « Bases Adresses Locales »`.
-
-## Spécifier la client authentication method
+### 2.3. Client authentication method
 
 ProConnect se connecte au Fournisseur d'Identité avec la client_authentication_method `client_secret_post`. Celle-ci doit être autorisée par le Fournisseur d'Identité.
 
-## Renseigner le claim `amr`
-
-Il est nécessaire de renseigner dans le claim `amr` la valeur correspondant au mode d'authentification utilisé. Cela permet, par exemple, aux Fournisseurs de Service d'épargner à l'usager le recours à une nouvelle authentification multi-facteur une fois retourné sur le FS.
-
-Vous trouverez les valeurs possibles pour ce claim [ici](../ressources/claim_amr.md).
-
-## Configurer la signature des échanges entre ProConnect et le FI
+### 2.4. Configurer la signature des échanges
 
 Les appels aux endpoints de création de jeton (`/token`) et de récupération des informations utilisateur (`/user-info`) par ProConnect peuvent être signés.
 
@@ -92,7 +76,9 @@ Les spécifications des algorithmes de signatures utilisés sont les suivants :
 - [JWS - https://tools.ietf.org/html/rfc7515#appendix-A.3](https://tools.ietf.org/html/rfc7515#appendix-A.3)
 - [JWE - https://tools.ietf.org/html/rfc7516#appendix-A.1](https://tools.ietf.org/html/rfc7516#appendix-A.1)
 
-## Configurer les scopes
+## 3. Configurer les données retournées
+
+### 3.1. Scopes
 
 La liste des scopes demandés par ProConnect est la suivante :
 | Scopes |
@@ -130,10 +116,33 @@ Est également exigé un champ sub:
 Les autres champs, si vous ne possédez pas l'information correspondante dans votre annuaire, doivent être **ignorés**. (cf. [RFC OIDC](https://openid.net/specs/openid-connect-core-1_0.html#IDToken) : _Any Claims used that are not understood MUST be ignored._)
 Selon votre Fournisseur d'Identité, il est possible qu'il vous faille spécifier, pour chacun des scopes demandés, une valeur de retour nulle, indéfinie, ou simplement ignorée.
 
-## Configurer le champ `acr`
+### 3.2. Champ `acr`
 
 Pour en savoir plus sur les valeurs `acr` et les niveaux d'assurance, consultez [la documentation dédiée](./niveaux-assurance-eidas.md).
 
-## Configurer l'authentification multifacteur
+### 3.3. Claim `amr`
+
+Il est nécessaire de renseigner dans le claim `amr` la valeur correspondant au mode d'authentification utilisé. Cela permet, par exemple, aux Fournisseurs de Service d'épargner à l'usager le recours à une nouvelle authentification multi-facteur une fois retourné sur le FS.
+
+Pour en savoir plus sur les valeurs possibles du claim `amr`, consultez [la documentation dédiée](../ressources/claim_amr.md).
+
+### 3.4. Authentification multifacteur
 
 Pour la prise en charge de l'authentification multi-facteur, consultez [la documentation dédiée](./authentification-multifacteur.md).
+
+## 4. Configurer l'authorization endpoint
+
+### 4.1. Paramètre `login_hint`
+
+À l'appel au `authorization_endpoint`, ProConnect envoie en query param `login_hint`, qui contient l'email renseigné par l'utilisateur sur la mire ProConnect.
+Pour simplifier le parcours de l'utilisateur, il est demandé au FI d'utiliser la valeur fournie pour pré-remplir le champ email de sa mire d'authentification lorsque cela est pertinent.
+
+### 4.2. Paramètre `sp_name`
+
+Pour ajouter du contexte dans la mire de connexion des FI, ProConnect envoie un query param `sp_name`, qui contient une chaine de caractères qui a la valeur du nom du FS qui a initialisé la connexion.
+
+Exemple : `sp_name=Bases%20Adresses%20Locales`.
+
+Pour clarifier le parcours de l'utilisateur, un FI peut utiliser ce paramètre pour afficher une mire de connexion contextualisée.
+
+Exemple de titre de page : `Se connecter au service « Bases Adresses Locales »`.
