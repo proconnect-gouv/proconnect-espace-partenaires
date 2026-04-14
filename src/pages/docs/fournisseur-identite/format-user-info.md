@@ -1,6 +1,6 @@
 # Contrôle des identités retournés par les userinfos des FI
 
-Pour que ProConnect reconnaisse comme valide une identité, le FI doit retourner les champs obligatoires définis [ici](./configuration.md#configurer-les-scopes) en respectant les contraintes.
+Pour que ProConnect reconnaisse comme valide une identité, le FI doit retourner les champs obligatoires définis [ici](./configuration.md#31-scopes) en respectant les contraintes.
 
 ## Siret
 
