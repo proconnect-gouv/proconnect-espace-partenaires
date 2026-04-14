@@ -4,7 +4,7 @@
 
 ### 1.1. Tester et itérer
 
-Vous pouvez à tout moment tester l'intégration de votre FI à la fédération ProConnect. [Vous trouverez les informations de test ici](./test-configuration-fi.md). 
+Vous pouvez à tout moment tester l'intégration de votre FI à la fédération ProConnect. [Vous trouverez les informations de test ici](./test-configuration-fi.md).
 
 En cas d'erreur, deux documents vous permettront d'analyser vos erreurs :
 
