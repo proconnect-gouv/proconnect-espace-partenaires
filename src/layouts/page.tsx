@@ -7,6 +7,7 @@ import { Header } from "@codegouvfr/react-dsfr/Header";
 import { SkipLinks } from "@codegouvfr/react-dsfr/SkipLinks";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import Notice from "@codegouvfr/react-dsfr/Notice";
 
 const brandTop = (
   <>
@@ -124,6 +125,13 @@ export function PageLayout({ children }: LayoutProps) {
           },
         ]}
       />
+      {process.env.NEXT_PUBLIC_FEATURE_DISPLAY_MAINTENANCE_MODE === "true" && (
+        <Notice
+          title=""
+          description="Le service « Vos applications », de l'espace partenaire, est temporairement indisponible en raison d'une opération de maintenance."
+          isClosable
+        />
+      )}
       <Header
         brandTop={brandTop}
         serviceTitle="Espace Partenaires ProConnect"

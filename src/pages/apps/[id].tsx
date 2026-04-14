@@ -14,6 +14,8 @@ import { NotificationsContainer } from "../../components/NotificationsContainer"
 import { ProviderUrl } from "../../components/ProviderUrl";
 import { OidcClient, pcdbClient } from "../../lib/pcdbapi";
 import { authOptions } from "../api/auth/[...nextauth]";
+import { MaintenanceBanner } from "../../components/MaintenanceBanner";
+
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getServerSession(context.req, context.res, authOptions);
@@ -22,9 +24,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   const { id } = context.params as { id: string };
+
+  const isMaintenanceMode = process.env.FEATURE_DISPLAY_MAINTENANCE_MODE === "true";
+
   try {
     const app = await pcdbClient.getOidcClient(id, session.user.email);
-    return { props: { app } };
+    return { props: { app, isMaintenanceMode } };
   } catch {
     return { notFound: true };
   }
@@ -45,7 +50,7 @@ const SIGNATURE_ALGORITHMS = [
   },
 ] as const;
 
-export default function AppDetailPage({ app }: { app: OidcClient }) {
+export default function AppDetailPage({ app, isMaintenanceMode }: { app: OidcClient; isMaintenanceMode: boolean }) {
   const [data, setData] = useState(app);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [saveSuccess, setSaveSuccess] = useState(false);
@@ -136,6 +141,10 @@ export default function AppDetailPage({ app }: { app: OidcClient }) {
       setSaveError("Failed to update user-info signature algorithm");
     }
   };
+
+  if (isMaintenanceMode) {
+     return <MaintenanceBanner />;
+  }
 
   return (
     <>

@@ -7,6 +7,8 @@ import { getServerSession } from "next-auth/next";
 import { useState } from "react";
 import { OidcClient, pcdbClient } from "../../lib/pcdbapi";
 import { authOptions } from "../api/auth/[...nextauth]";
+import { MaintenanceBanner } from "../../components/MaintenanceBanner";
+
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getServerSession(context.req, context.res, authOptions);
@@ -20,16 +22,22 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
+  const isMaintenanceMode = process.env.FEATURE_DISPLAY_MAINTENANCE_MODE === "true";
+
   try {
     const apps = await pcdbClient.listOidcClients(session.user.email);
-    return { props: { apps } };
+    return { props: { apps, isMaintenanceMode } };
   } catch (error) {
     return { props: { apps: [], error: String(error) } };
   }
 };
 
-export default function AppsIndex({ apps, error }: { apps: OidcClient[]; error?: string }) {
+export default function AppsIndex({ apps, error, isMaintenanceMode }: { apps: OidcClient[]; error?: string; isMaintenanceMode: boolean }) {
   const [isCreating, setIsCreating] = useState(false);
+  
+ if (isMaintenanceMode) {
+  return <MaintenanceBanner />;
+}
 
   if (error) {
     return (
