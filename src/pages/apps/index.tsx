@@ -21,11 +21,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
-  const isMaintenanceMode = process.env.FEATURE_DISPLAY_MAINTENANCE_MODE === "true";
+  const isYourApplicationsServiceDisabled =
+    process.env.IS_YOUR_APPLICATIONS_SERVICE_DISABLED === "true";
 
   try {
     const apps = await pcdbClient.listOidcClients(session.user.email);
-    return { props: { apps, isMaintenanceMode } };
+    return { props: { apps, isYourApplicationsServiceDisabled } };
   } catch (error) {
     return { props: { apps: [], error: String(error) } };
   }
@@ -34,15 +35,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 export default function AppsIndex({
   apps,
   error,
-  isMaintenanceMode,
+  isYourApplicationsServiceDisabled,
 }: {
   apps: OidcClient[];
   error?: string;
-  isMaintenanceMode: boolean;
+  isYourApplicationsServiceDisabled: boolean;
 }) {
   const [isCreating, setIsCreating] = useState(false);
 
-  if (isMaintenanceMode) {
+  if (isYourApplicationsServiceDisabled) {
     return <MaintenanceBanner />;
   }
 

@@ -125,10 +125,10 @@ export function PageLayout({ children }: LayoutProps) {
           },
         ]}
       />
-      {process.env.NEXT_PUBLIC_FEATURE_DISPLAY_MAINTENANCE_MODE === "true" && (
+      {!!process.env.NEXT_PUBLIC_MAINTENANCE_BANNER_MESSAGE && (
         <Notice
           title=""
-          description="Le service « Vos applications », de l'espace partenaire, est temporairement indisponible en raison d'une opération de maintenance."
+          description={process.env.NEXT_PUBLIC_MAINTENANCE_BANNER_MESSAGE}
           isClosable
         />
       )}

@@ -24,11 +24,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const { id } = context.params as { id: string };
 
-  const isMaintenanceMode = process.env.FEATURE_DISPLAY_MAINTENANCE_MODE === "true";
+  const isYourApplicationsServiceDisabled =
+    process.env.IS_YOUR_APPLICATIONS_SERVICE_DISABLED === "true";
 
   try {
     const app = await pcdbClient.getOidcClient(id, session.user.email);
-    return { props: { app, isMaintenanceMode } };
+    return { props: { app, isYourApplicationsServiceDisabled } };
   } catch {
     return { notFound: true };
   }
@@ -51,10 +52,10 @@ const SIGNATURE_ALGORITHMS = [
 
 export default function AppDetailPage({
   app,
-  isMaintenanceMode,
+  isYourApplicationsServiceDisabled,
 }: {
   app: OidcClient;
-  isMaintenanceMode: boolean;
+  isYourApplicationsServiceDisabled: boolean;
 }) {
   const [data, setData] = useState(app);
   const [saveError, setSaveError] = useState<string | null>(null);
@@ -147,7 +148,7 @@ export default function AppDetailPage({
     }
   };
 
-  if (isMaintenanceMode) {
+  if (isYourApplicationsServiceDisabled) {
     return <MaintenanceBanner />;
   }
 
