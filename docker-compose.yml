@@ -41,7 +41,7 @@ services:
       - /data/configdb
 
   pcdbapi:
-    image: ghcr.io/proconnect-gouv/federation/api-partner@sha256:30d4542292f85e8088b40686bebb38d04ec064de390558e782684c4c65831b76 # latest
+    image: ghcr.io/proconnect-gouv/federation/api-partner@sha256:4f05153918d6426448fd45811871b89083fccb817bbb5b9a307997c4dfe3dc60 # latest
     environment:
       - MONGODB_URL=mongodb://mongo:27017/core-fca-low?authSource=core-fca-low&directConnection=true
       - MONGODB_USERNAME=fc
@@ -58,13 +58,6 @@ services:
     depends_on:
       mongo:
         condition: service_healthy
-    healthcheck:
-      test:
-        - "CMD-SHELL"
-        - 'python -c "import urllib.request; urllib.request.urlopen(\"http://localhost:8000/healthz\")"'
-      interval: 10s
-      timeout: 5s
-      retries: 5
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
   mailcatcher:
