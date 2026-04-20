@@ -5,6 +5,7 @@ import { Card } from "@codegouvfr/react-dsfr/Card";
 import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth/next";
 import { useState } from "react";
+import { MaintenanceBanner } from "../../components/MaintenanceBanner";
 import { OidcClient, pcdbClient } from "../../lib/pcdbapi";
 import { authOptions } from "../api/auth/[...nextauth]";
 
@@ -20,16 +21,31 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
+  const isYourApplicationsServiceDisabled =
+    process.env.IS_YOUR_APPLICATIONS_SERVICE_DISABLED === "true";
+
   try {
     const apps = await pcdbClient.listOidcClients(session.user.email);
-    return { props: { apps } };
+    return { props: { apps, isYourApplicationsServiceDisabled } };
   } catch (error) {
     return { props: { apps: [], error: String(error) } };
   }
 };
 
-export default function AppsIndex({ apps, error }: { apps: OidcClient[]; error?: string }) {
+export default function AppsIndex({
+  apps,
+  error,
+  isYourApplicationsServiceDisabled,
+}: {
+  apps: OidcClient[];
+  error?: string;
+  isYourApplicationsServiceDisabled: boolean;
+}) {
   const [isCreating, setIsCreating] = useState(false);
+
+  if (isYourApplicationsServiceDisabled) {
+    return <MaintenanceBanner />;
+  }
 
   if (error) {
     return (
