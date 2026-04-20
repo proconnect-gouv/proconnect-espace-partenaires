@@ -58,13 +58,6 @@ services:
     depends_on:
       mongo:
         condition: service_healthy
-    healthcheck:
-      test:
-        - "CMD-SHELL"
-        - 'python -c "import urllib.request; urllib.request.urlopen(\"http://localhost:8000/healthz\")"'
-      interval: 10s
-      timeout: 5s
-      retries: 5
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
   mailcatcher:
