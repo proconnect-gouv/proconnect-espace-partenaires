@@ -25,4 +25,5 @@ La configuration de la MFA se fait dans Service OpenIDConnect -> Contexte d'Auth
 
 ![](/images/docs/lemonldap-mfa.png)
 
+> [!NOTE]
 > Pour une vue d'ensemble de la MFA sur ProConnect, consultez [la documentation dédiée](../authentification-multifacteur.md).
