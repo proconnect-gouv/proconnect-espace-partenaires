@@ -36,8 +36,7 @@ Les claims relatifs à l'authentification disponibles par ProConnect sont des cl
 
 ### Correspondance entre scope et claims sur ProConnect
 
-Le tableau suivant décrit la liste des _claims_ accessible en fonction des _scopes_ associés à l'access token.
-Tous les Fournisseurs de Service intégrés depuis août 2024 ont accès par défaut à tous les scopes suivants:
+Tous les Fournisseurs de Service intégrés depuis août 2024 ont accès par défaut à tous les scopes ci-dessous. La liste complète des données associées à chaque scope est disponible dans la [documentation des données fournies](./donnees_fournies.md).
 
 | Scope      | Claims     |
 | ---------- | ---------- |
