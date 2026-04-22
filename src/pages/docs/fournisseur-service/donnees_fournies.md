@@ -20,7 +20,7 @@ Ces données sont générées ou enrichies par ProConnect lui-même et sont **sy
 
 | Champs | Obligatoire | Description                                                                                                                | Format |
 | ------ | ----------- | -------------------------------------------------------------------------------------------------------------------------- | ------ |
-| sub    | Oui         | Identifiant unique de l'agent, spécifique à chaque couple FI/FS                                                           | String |
+| sub    | Oui         | Identifiant unique de l'agent, spécifique à chaque couple FI/FS                                                            | String |
 | idp_id | Oui         | Fournisseur d'Identité utilisé par l'utilisateur pour s'authentifier (plus de détails [ici](./connaitre-le-fi-utilise.md)) | String |
 
 ### Le champ sub
