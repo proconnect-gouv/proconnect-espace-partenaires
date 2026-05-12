@@ -8,23 +8,23 @@ En plus de l'openid, qui est obligatoire, des données sont **systématiquement*
 
 | Champs     | Obligatoire | Description                                              | Format                          |
 | ---------- | ----------- | -------------------------------------------------------- | ------------------------------- |
-| given_name | Oui         | Prénoms séparés par des espaces (standard OpenIDConnect) | UTF-8 (standard OpenIDConnect)  |
-| usual_name | Oui         | Nom de famille d'usage (par défaut = family_name)        | UTF-8                           |
-| email      | Oui         | Adresse courriel                                         | UTF-8 (standard OpenIDConnect)  |
-| uid        | Oui         | Identifiant unique de l'agent auprès du FI               | String (standard OpenIDConnect) |
-| siret      | Oui         | Identifiant d'établissement                              | string, 14 chiffres sans espace |
+| given_name | oui         | Prénoms séparés par des espaces (standard OpenIDConnect) | UTF-8 (standard OpenIDConnect)  |
+| usual_name | oui         | Nom de famille d'usage (par défaut = family_name)        | UTF-8                           |
+| email      | oui         | Adresse courriel                                         | UTF-8 (standard OpenIDConnect)  |
+| uid        | oui         | Identifiant unique de l'agent auprès du FI               | String (standard OpenIDConnect) |
+| siret      | oui         | Identifiant d'établissement                              | string, 14 chiffres sans espace |
 
 Il vous est possible d'obtenir des données complémentaires à celles-ci. Cependant ces données ne sont pas obligatoirement fournies par tous les Fournisseurs d'Identité, et leur format est plus sujet à fluctuation selon la qualité de l'annuaire du Fournisseur d'Identité.
 
-## Les données additionnelles
+## Les données enrichies par ProConnect
 
 ProConnect renvoie les données suivantes quand elles sont données par le fournisseur d'identité :
 
-| Champs | Obligatoire | Description                                                                                                                | Format           |
-| ------ | ----------- | -------------------------------------------------------------------------------------------------------------------------- | ---------------- |
-| phone  | non         | Téléphone de contact                                                                                                       | Format non normé |
-| idp_id | oui         | Fournisseur d'Identité utilisé par l'utilisateur pour s'authentifier (plus de détails [ici](./connaitre-le-fi-utilise.md)) | String           |
-| custom | non         | Champ avec données spécifiques au Fournisseur d'Identité (plus de détails [ici](./custom-scope.md))                        | JSON             |
+| Champs | Obligatoire | Description | Format |
+| ------ | ----------- | ----------- | ------ |
+
+| idp_id | oui | Fournisseur d'Identité utilisé par l'utilisateur pour s'authentifier (plus de détails [ici](./connaitre-le-fi-utilise.md)) | String |
+| roles | oui | Rôle(s) de l'utilisateur (plus de détails [ici](./roles.md)) | String |
 
 ## Les données complémentaires
 
@@ -32,11 +32,13 @@ Ces données dépendent des Fournisseurs d'Identité et peuvent varier fortement
 
 Ces données dépendent des Fournisseurs d'Identité et peuvent varier fortement d'un Fournisseur d'Identité à l'autre. Pour plus de détails, n'hésitez pas à contacter le Fournisseur d'Identité sur ces données.
 
-| Champs               | Obligatoire | Description                               | Format                                                     |
-| -------------------- | ----------- | ----------------------------------------- | ---------------------------------------------------------- |
-| organizational_unit  | non         | Ministère/Direction/Service d'affectation | UTF8                                                       |
-| belonging_population | non         | Population d'appartenance                 | string, Exemple: agent, prestataire, partenaire, stagiaire |
-| chorusdt             | Non         | Entité ministérielle/Matricule Agent      | string                                                     |
+| Champs               | Obligatoire | Description                                                                                         | Format                                                     |
+| -------------------- | ----------- | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| organizational_unit  | non         | Ministère/Direction/Service d'affectation                                                           | UTF8                                                       |
+| belonging_population | non         | Population d'appartenance                                                                           | string, Exemple: agent, prestataire, partenaire, stagiaire |
+| chorusdt             | non         | Entité ministérielle/Matricule Agent                                                                | string                                                     |
+| custom               | non         | Champ avec données spécifiques au Fournisseur d'Identité (plus de détails [ici](./custom-scope.md)) | JSON                                                       |
+| phone                | non         | Téléphone de contact                                                                                | Format non normé                                           |
 
 ## Le champ sub
 
