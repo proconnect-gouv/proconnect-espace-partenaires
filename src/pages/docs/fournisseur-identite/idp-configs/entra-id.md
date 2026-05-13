@@ -43,6 +43,20 @@ Dans la section Token Configuration de l'application, dans la partie « Optional
 
 Le claim doit être lié au token de type `ID`.
 
+## Configuration des valeurs du champ `acrs`
+
+Le [guide de développement de Microsoft pour les accès conditionnels](https://learn.microsoft.com/en-us/entra/identity-platform/developer-guide-conditional-access-authentication-context) indique comment configurer la valeur renvoyée par Entra ID à ProConnect.
+
+Les valeurs gérées par ProConnect pour EntraID sont les suivantes :
+
+| Valeurs `acrs` renvoyée par Entra ID | Valeur `acr` attribuée par ProConnect |
+| ------------------------------------ | ------------------------------------- |
+| `c1`                                 | `eidas1`                              |
+| `c2`                                 | `eidas2`                              |
+| `c3`                                 | `eidas3`                              |
+
+Pour plus d'informations, consultez [la documentation sur la signification des niveaux d'assurance eidas](../niveaux-assurance-eidas.md)
+
 ## Manifeste d'application
 
 Dans la section Manifest de la configuration de l'application, modifiez le texte du fichier de configuration, en recherchant la mention `"acceptMappedClaims": null` pour la modifier en `"acceptMappedClaims": true` . Cette modification autorise la configuration des correspondances d'attributs. (L'erreur **AADSTS50146** peut se produire tant que cette modification n'est pas effectuée.)
