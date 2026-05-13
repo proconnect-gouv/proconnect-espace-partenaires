@@ -57,6 +57,8 @@ Les valeurs gérées par ProConnect pour EntraID sont les suivantes :
 
 Pour plus d'informations, consultez [la documentation sur la signification des niveaux d'assurance eidas](../niveaux-assurance-eidas.md)
 
+> NB: lorsque le FI Entra ID renvoie une valeur dans `acrs` différentes de celles définies dans le tableau ci-dessus, alors ProConnect renverra par défaut la valeur `eidas1` pour cet utilisateur.
+
 ## Manifeste d'application
 
 Dans la section Manifest de la configuration de l'application, modifiez le texte du fichier de configuration, en recherchant la mention `"acceptMappedClaims": null` pour la modifier en `"acceptMappedClaims": true` . Cette modification autorise la configuration des correspondances d'attributs. (L'erreur **AADSTS50146** peut se produire tant que cette modification n'est pas effectuée.)
