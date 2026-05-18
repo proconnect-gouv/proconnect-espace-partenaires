@@ -83,7 +83,7 @@ export default defineConfig({
       cwd: "../..",
       env: {
         MONGODB_CONNECTION_STRING:
-          "mongodb://fc:pass@localhost:27017/core-fca-low?authSource=admin&replicaSet=rs0&directConnection=true",
+          "mongodb://fc_admin:pass@localhost:27017/core-fca-low?authSource=admin&replicaSet=rs0&directConnection=true&tls=true&tlsAllowInvalidCertificates=true",
       },
     },
   ],

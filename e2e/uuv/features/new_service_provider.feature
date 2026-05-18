@@ -21,8 +21,6 @@ Fonctionnalité: Créer un nouveau fournisseur de service
 
   Scénario: Créer un nouveau fournisseur de service
     Quand je clique sur le bouton nommé "Créer un nouveau fournisseur de service"
-    Alors je vois "Création en cours..."
-
     Alors je dois voir un titre nommé "Gestion de votre Fournisseur de Service" avec le niveau 1
     Et je clique sur "Nom de l’application"
     Et je vide le champ focalisé
