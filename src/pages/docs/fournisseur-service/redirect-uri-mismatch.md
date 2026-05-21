@@ -14,7 +14,7 @@ Vos `redirect_uri` sont enregistrées séparément sur les serveurs Internet et 
 
 ### 2.2. Intégration et production sont deux configurations distinctes
 
-De même, vos `redirect_uri` d'intégration et de production sont gérées indépendamment. Une URI valide en intégration ne sera pas reconnue en production.
+De même, vos `redirect_uri` d'intégration et de production sont gérées indépendamment. Une URI valide en intégration ne sera pas reconnue en production, et inversement.
 
 ### 2.3. Mon application est-elle configurée pour Internet ? Pour la production ?
 
@@ -27,19 +27,22 @@ Il y a un mismatch, il faudra donc comparer :
 - la liste des `redirect_uris` enregistrées dans votre application (procédure pour la récupérer plus haut)
 - la `redirect_uri` demandée à ProConnect
 
-Pour savoir avec certitude la `redirect_uri` demandée à ProConnect, récupérez l'adresse complète de l'url de l'`authorization_endpoint`, généralement au format `https://fca.integ01.dev-agentconnect.fr/api/v2/authorize?acr_values=eidas1&client_id=6925fb8143c76eded44d32b40c0cb1006065f7f003de52712b78985704f39950&nonce=agent_connect_nonce_D2S2eZwHL6rWtDQUg3c37PHyo3LpqtHn&redirect_uri=https%3A%2F%2Fmonurl.gouv.fr%2Fagent_connect%2Fcallback%2F&response_type=code&scope=openid%20email%20given_name%20usual_name&state=agent_connect_state_2yB6wdmHQbjHs8qrJDBD1tyKdc3ijKu6`.
+Pour connaître avec certitude la `redirect_uri` demandée à ProConnect, récupérez l'adresse complète de l'URL de l'`authorization_endpoint`, généralement au format `https://PROCONNECT_DOMAIN/api/v2/authorize?acr_values=eidas1&client_id=6925fb8143c76eded44d32b40c0cb1006065f7f003de52712b78985704f39950&nonce=agent_connect_nonce_D2S2eZwHL6rWtDQUg3c37PHyo3LpqtHn&redirect_uri=https%3A%2F%2Fmonurl.gouv.fr%2Fagent_connect%2Fcallback%2F&response_type=code&scope=openid%20email%20given_name%20usual_name&state=agent_connect_state_2yB6wdmHQbjHs8qrJDBD1tyKdc3ijKu6`.
 
 > [!NOTE]
-> Vous ne savez pas c'est quoi cette adresse `authorization_endpoint` ? C'est l'url de la page qui affiche l'erreur. Revenez sur la page qui dit "redirect_uri did not match any of the client's registered redirect_uris", récupérez l'url et vous avez la route `/authorize`.
-
-Une fois que vous avez l'url, récupérez la partie `&redirect_uri=https%3A%2F%2Fmonurl.gouv.fr%2Fagent_connect%2Fcallback%2F`, puis passez l'url dans un décodeur d'url ([nous recommandons ce décodeur](https://www.urldecoder.org/)), vous aurez l'url demandée à ProConnect et pourrez comparer avec la liste.
+> Vous ne savez pas comment obtenir l'adresse `authorization_endpoint` ? Il s'agit de l'URL de la page qui affiche l'erreur :
+>
+> - revenez sur la page sur laquelle est affiché le message "redirect_uri did not match any of the client's registered redirect_uris"
+> - récupérez l'URL
+> - passez l'URL dans un décodeur d'URL ([nous recommandons ce décodeur](https://www.urldecoder.org/))
+> - isolez la valeur du query parameter `redirect_uri` de l'URL
 
 Une fois le mismatch identifié, vous pouvez passer à la partie suivante.
 
 ## 4. Comment résoudre le problème
 
-Deux options selon la situation :
+Trois situations sont possibles :
 
-- **La `redirect_uri` est correcte mais absente de votre configuration** : ajoutez-la via la [procédure de modification des redirect_uri](./modification_redirect_uris.md).
+- **La `redirect_uri` est correcte mais absente de la configuration ProConnect pour votre FS** : ajoutez-la via la [procédure de modification des redirect_uri](./modification_redirect_uris.md).
 - **La `redirect_uri` n'est pas correcte** : changez-la dans votre configuration de développement.
-- **Vous appelez le mauvais serveur** : vérifiez que vous ciblez bien le bon environnement (intégration vs production) et le bon réseau (Internet vs RIE). Voir [la page dédiée aux FS sur le RIE](./fs_RIE.md).
+- **Vous appelez le mauvais serveur** : vérifiez que vous ciblez bien le bon environnement (intégration / production) et le bon réseau (Internet / RIE). Voir [la page dédiée aux FS sur le RIE](./fs_RIE.md).
