@@ -71,8 +71,9 @@ Nous vous recommandons de lire [notre page généraliste sur l'implémentation t
 
 → _Trouver de l'aide en cas de problème ou de question_
 
-| Page                                         | Question                                                                                      |
-| -------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| [Messages d'erreur](./troubleshooting-fs.md) | J'ai un message d'erreur, comment le déchiffrer ?                                             |
-| [Service partenaires](./aide_support.md)     | J'aimerais contacter le service partenaires de ProConnect pour de l'aide ou pour une question |
-| [Glossaire](./../ressources/glossaire.md)    | Quel est le glossaire de tous ces termes techniques ?                                         |
+| Page                                                        | Question                                                                                      |
+| ----------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| [Messages d'erreur](./troubleshooting-fs.md)                | J'ai un message d'erreur, comment le déchiffrer ?                                             |
+| [Erreur Y030031 — redirect_uri](./redirect-uri-mismatch.md) | J'ai une erreur Y030031 : ma redirect_uri n'est pas reconnue, comment résoudre le problème ?  |
+| [Service partenaires](./aide_support.md)                    | J'aimerais contacter le service partenaires de ProConnect pour de l'aide ou pour une question |
+| [Glossaire](./../ressources/glossaire.md)                   | Quel est le glossaire de tous ces termes techniques ?                                         |

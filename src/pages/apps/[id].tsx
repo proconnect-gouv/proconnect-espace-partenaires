@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
 import { SideMenu } from "../../components/AppSideMenu";
 import { CopyableField } from "../../components/CopyableField";
+import { MaintenanceBanner } from "../../components/MaintenanceBanner";
 import { NotificationsContainer } from "../../components/NotificationsContainer";
 import { ProviderUrl } from "../../components/ProviderUrl";
 import { OidcClient, pcdbClient } from "../../lib/pcdbapi";
@@ -22,9 +23,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   const { id } = context.params as { id: string };
+
+  const isYourApplicationsServiceDisabled =
+    process.env.IS_YOUR_APPLICATIONS_SERVICE_DISABLED === "true";
+
   try {
     const app = await pcdbClient.getOidcClient(id, session.user.email);
-    return { props: { app } };
+    return { props: { app, isYourApplicationsServiceDisabled } };
   } catch {
     return { notFound: true };
   }
@@ -45,7 +50,13 @@ const SIGNATURE_ALGORITHMS = [
   },
 ] as const;
 
-export default function AppDetailPage({ app }: { app: OidcClient }) {
+export default function AppDetailPage({
+  app,
+  isYourApplicationsServiceDisabled,
+}: {
+  app: OidcClient;
+  isYourApplicationsServiceDisabled: boolean;
+}) {
   const [data, setData] = useState(app);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [saveSuccess, setSaveSuccess] = useState(false);
@@ -136,6 +147,10 @@ export default function AppDetailPage({ app }: { app: OidcClient }) {
       setSaveError("Failed to update user-info signature algorithm");
     }
   };
+
+  if (isYourApplicationsServiceDisabled) {
+    return <MaintenanceBanner />;
+  }
 
   return (
     <>

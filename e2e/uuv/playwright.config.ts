@@ -75,7 +75,7 @@ export default defineConfig({
           "--tls",
           "--tlsAllowInvalidCertificates",
           "--username fc_admin",
-          "core-fca-low",
+          "corev2",
           `--eval "db.dropDatabase()"`,
         ].join(" "),
         "npx prisma db push --schema=./prisma/db_proconnect.prisma",
@@ -83,7 +83,7 @@ export default defineConfig({
       cwd: "../..",
       env: {
         MONGODB_CONNECTION_STRING:
-          "mongodb://fc:pass@localhost:27017/core-fca-low?authSource=admin&replicaSet=rs0&directConnection=true",
+          "mongodb://fc_admin:pass@localhost:27017/corev2?authSource=admin&replicaSet=rs0&directConnection=true&tls=true&tlsAllowInvalidCertificates=true",
       },
     },
   ],

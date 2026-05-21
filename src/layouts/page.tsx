@@ -4,6 +4,7 @@ import { signOut, useSession } from "next-auth/react";
 
 import { Footer } from "@codegouvfr/react-dsfr/Footer";
 import { Header } from "@codegouvfr/react-dsfr/Header";
+import Notice from "@codegouvfr/react-dsfr/Notice";
 import { SkipLinks } from "@codegouvfr/react-dsfr/SkipLinks";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -124,6 +125,13 @@ export function PageLayout({ children }: LayoutProps) {
           },
         ]}
       />
+      {!!process.env.NEXT_PUBLIC_MAINTENANCE_BANNER_MESSAGE && (
+        <Notice
+          title=""
+          description={process.env.NEXT_PUBLIC_MAINTENANCE_BANNER_MESSAGE}
+          isClosable
+        />
+      )}
       <Header
         brandTop={brandTop}
         serviceTitle="Espace Partenaires ProConnect"

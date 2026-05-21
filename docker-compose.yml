@@ -21,7 +21,7 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=fc_admin
       - MONGO_INITDB_ROOT_PASSWORD=pass
-      - MONGO_INITDB_API_USERNAME=fc
+      - MONGO_INITDB_API_USERNAME=proconnect-app-api-partner
       - MONGO_INITDB_API_PASSWORD=pass
     healthcheck:
       interval: 1s
@@ -41,10 +41,10 @@ services:
       - /data/configdb
 
   pcdbapi:
-    image: ghcr.io/proconnect-gouv/federation/api-partner@sha256:30d4542292f85e8088b40686bebb38d04ec064de390558e782684c4c65831b76 # latest
+    image: ghcr.io/proconnect-gouv/federation/api-partner@sha256:fa9b8bf87daa4bc775c81d2a1dd7dbcc4c42c3f4dd79866b62044f0c9056c7b8 # latest
     environment:
-      - MONGODB_URL=mongodb://mongo:27017/core-fca-low?authSource=core-fca-low&directConnection=true
-      - MONGODB_USERNAME=fc
+      - MONGODB_URL=mongodb://mongo:27017/corev2?authSource=corev2&directConnection=true
+      - MONGODB_USERNAME=proconnect-app-api-partner
       - MONGODB_PASSWORD=pass
       - MONGODB_CERTIFICATE_FILEPATH=/etc/ssl/mongo.pem
       - MONGODB_CA_FILEPATH=/etc/ssl/docker-stack-ca.crt
@@ -58,13 +58,6 @@ services:
     depends_on:
       mongo:
         condition: service_healthy
-    healthcheck:
-      test:
-        - "CMD-SHELL"
-        - 'python -c "import urllib.request; urllib.request.urlopen(\"http://localhost:8000/healthz\")"'
-      interval: 10s
-      timeout: 5s
-      retries: 5
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
   mailcatcher:
