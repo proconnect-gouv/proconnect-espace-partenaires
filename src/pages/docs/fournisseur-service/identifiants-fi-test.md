@@ -4,7 +4,7 @@ Lorsque vous implémentez la connexion OIDC via ProConnect sur votre Fournisseur
 
 ## 📋 Liste des fournisseurs d'identité en intégration
 
-[Voici la liste des Fournisseurs d'Identité](https://grist.numerique.gouv.fr/o/docs/3kQ829mp7bTy/ProConnect-Configuration-des-FI-et-FS/p/2) sur notre plateforme d'intégration. Si vous avez accès à des comptes de test, vous pouvez les utiliser.
+[Voici la liste des Fournisseurs d'Identité](https://grist.numerique.gouv.fr/o/proconnect/gNkPzdjPZnv8/ProConnect-Configuration-des-FI-et-FS/p/18) sur notre plateforme d'intégration. Si vous avez accès à des comptes de test, vous pouvez les utiliser.
 
 ## 🔐 Fournisseur d'Identité de test
 
@@ -13,7 +13,7 @@ Nous avons mis à disposition des identifiants de test sur différents Fournisse
 Vous pouvez tester des identifiants avec nos Fournisseurs de Service de test :
 
 - Sur internet : https://test.proconnect.gouv.fr
-- Sur le RIE : https://fsa1v2.integ02.agentconnect.rie.gouv.fr
+- Sur le RIE : https://test.proconnect.rie.gouv.fr
 
 ### 🔧 FIA1 – FI pour tests et intégration
 
