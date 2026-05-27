@@ -1,5 +1,7 @@
 # Contrôle des identités retournés par les userinfos des FI
 
+Après avoir récupéré l'ID token via `/token`, ProConnect appelle l'endpoint `/user-info` de votre FI pour obtenir les claims utilisateur (scopes listés dans la [section 3.1 de la configuration](./configuration.md#31-scopes)). C'est donc bien `/user-info` qui doit exposer ces données, et non l'ID token.
+
 Pour que ProConnect reconnaisse comme valide une identité, le FI doit retourner les champs obligatoires définis [ici](./configuration.md#31-scopes) en respectant les contraintes.
 
 ## Siret

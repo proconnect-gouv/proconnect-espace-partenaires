@@ -102,3 +102,22 @@ Le client secret a été généré automatiquement à l'étape 2 lors de la cré
 
 Celui-ci est spécifié dans les paramètres advancés de l'étape 2 : "créer un client pour la connexion de ProConnect à votre Keycloak".
 Nous recommandons l'algorithme RS256 pour la signature de l'ID token et celle des user infos.
+
+## Configuration : Authentification Multi-Facteurs (MFA)
+
+La configuration de la MFA se fait dans ACR to LoA Mapping. À partir de là, vous pourrez rentrer les combinaisons ACR (`acr` demandé) - LoA (type d'authentification que vous allez faire).
+
+![](/images/docs/keycloak/MFA/mfa-keycloak-1.png)
+
+![](/images/docs/keycloak/MFA/mfa-keycloak-2.png)
+
+![](/images/docs/keycloak/MFA/mfa-keycloak-3.png)
+
+![](/images/docs/keycloak/MFA/mfa-keycloak-4.png)
+
+![](/images/docs/keycloak/MFA/mfa-keycloak-5.png)
+
+![](/images/docs/keycloak/MFA/mfa-keycloak-6.png)
+
+> [!NOTE]
+> Pour une vue d'ensemble de la MFA sur ProConnect, consultez [la documentation dédiée](../authentification-multifacteur.md).

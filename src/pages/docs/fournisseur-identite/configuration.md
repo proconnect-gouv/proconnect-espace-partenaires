@@ -80,6 +80,8 @@ Les spécifications des algorithmes de signatures utilisés sont les suivants :
 
 ### 3.1. Scopes
 
+ProConnect récupère les claims utilisateur en appelant l'endpoint `/user-info` de votre FI. L'ID token retourné par `/token` doit contenir les claims `sub`, `acr` et `amr` ; les autres claims listés ci-dessous doivent être exposés via `/user-info`. Pour les contraintes appliquées sur ces valeurs, consultez [la page dédiée au format de l'userinfo](./format-user-info.md).
+
 La liste des scopes demandés par ProConnect est la suivante :
 | Scopes |
 | --- |

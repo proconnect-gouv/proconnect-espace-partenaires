@@ -31,7 +31,7 @@ db.createUser({
   roles: [{ role: "root", db: "admin" }]
 });
 
-db = db.getSiblingDB("core-fca-low")
+db = db.getSiblingDB("corev2")
 db.createCollection('client')
 db_test = db.getSiblingDB("proconnect_test")
 db_test.createCollection('client')
@@ -42,14 +42,14 @@ echo "Creating the runtime user"
 mongo ${MONGO_SSL_OPTIONS} --username=${MONGO_INITDB_ROOT_USERNAME} --password=${MONGO_INITDB_ROOT_PASSWORD} <<EOF
 use admin
 
-db = db.getSiblingDB("core-fca-low")
+db = db.getSiblingDB("corev2")
 
 db.createRole({
   role: "role_user_api_partenaires",
   roles: [],
   privileges: [
     {
-      resource: { db: "core-fca-low", collection: "client" },
+      resource: { db: "corev2", collection: "client" },
       actions: [ "find", "update", "insert" ]
     }
   ]
@@ -59,13 +59,13 @@ db.createUser({
   user: "${MONGO_INITDB_API_USERNAME}",
   pwd: "${MONGO_INITDB_API_PASSWORD}",
   roles: [
-    { role: "role_user_api_partenaires", db: "core-fca-low"}
+    { role: "role_user_api_partenaires", db: "corev2"}
   ]
 });
 EOF
 
 echo "Seeding the database..."
-mongoimport ${MONGOIMPORT_SSL_OPTIONS} --username=${MONGO_INITDB_ROOT_USERNAME} --password=${MONGO_INITDB_ROOT_PASSWORD} --authenticationDatabase=admin --db core-fca-low --collection client --file /init/mockdata.json --jsonArray
+mongoimport ${MONGOIMPORT_SSL_OPTIONS} --username=${MONGO_INITDB_ROOT_USERNAME} --password=${MONGO_INITDB_ROOT_PASSWORD} --authenticationDatabase=admin --db corev2 --collection client --file /init/mockdata.json --jsonArray
 
 # Keep the container running
 wait

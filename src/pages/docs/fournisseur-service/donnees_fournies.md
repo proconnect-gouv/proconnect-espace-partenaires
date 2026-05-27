@@ -8,11 +8,11 @@ Ces données sont **systématiquement** transmises par les Fournisseurs d'Identi
 
 | Champs     | Obligatoire | Description                                              | Format                          |
 | ---------- | ----------- | -------------------------------------------------------- | ------------------------------- |
-| given_name | Oui         | Prénoms séparés par des espaces (standard OpenIDConnect) | UTF-8 (standard OpenIDConnect)  |
-| usual_name | Oui         | Nom de famille d'usage (par défaut = family_name)        | UTF-8                           |
-| email      | Oui         | Adresse courriel                                         | UTF-8 (standard OpenIDConnect)  |
-| uid        | Oui         | Identifiant unique de l'agent auprès du FI               | String (standard OpenIDConnect) |
-| siret      | Oui         | Identifiant d'établissement                              | string, 14 chiffres sans espace |
+| given_name | oui         | Prénoms séparés par des espaces (standard OpenIDConnect) | UTF-8 (standard OpenIDConnect)  |
+| usual_name | oui         | Nom de famille d'usage (par défaut = family_name)        | UTF-8                           |
+| email      | oui         | Adresse courriel                                         | UTF-8 (standard OpenIDConnect)  |
+| uid        | oui         | Identifiant unique de l'agent auprès du FI               | String (standard OpenIDConnect) |
+| siret      | oui         | Identifiant d'établissement                              | string, 14 chiffres sans espace |
 
 ## 2. Les données renvoyées par ProConnect
 
