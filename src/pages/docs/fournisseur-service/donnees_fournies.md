@@ -18,10 +18,11 @@ Ces données sont **systématiquement** transmises par les Fournisseurs d'Identi
 
 Ces données sont enrichies par ProConnect lui-même et sont **systématiquement** présentes, indépendamment du Fournisseur d'Identité utilisé.
 
-| Scope  | Obligatoire | Description                                                                                                                | Format |
-| ------ | ----------- | -------------------------------------------------------------------------------------------------------------------------- | ------ |
-| sub    | Oui         | Identifiant unique de l'agent, spécifique à chaque couple FI/FS                                                            | String |
-| idp_id | Oui         | Fournisseur d'Identité utilisé par l'utilisateur pour s'authentifier (plus de détails [ici](./connaitre-le-fi-utilise.md)) | String |
+| Scope              | Obligatoire | Description                                                                                                                | Format |
+| ------------------ | ----------- | -------------------------------------------------------------------------------------------------------------------------- | ------ |
+| sub                | Oui         | Identifiant unique de l'agent, spécifique à chaque couple FI/FS                                                            | String |
+| idp_id             | Oui         | Fournisseur d'Identité utilisé par l'utilisateur pour s'authentifier (plus de détails [ici](./connaitre-le-fi-utilise.md)) | String |
+| organization_label | Oui         | Nom d'affichage de l'organisation rattachée à l'utilisateur (plus de détails [ici](./organization_label.md))               | String |
 
 ### 2.1. Le champ sub
 

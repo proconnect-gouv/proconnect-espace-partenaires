@@ -38,17 +38,24 @@ Les claims relatifs à l'authentification disponibles par ProConnect sont des cl
 
 Tous les Fournisseurs de Service intégrés depuis août 2024 ont accès par défaut à tous les scopes ci-dessous. La liste complète des données associées à chaque scope est disponible dans la [documentation des données fournies](./donnees_fournies.md).
 
-| Scope      | Claims       |
-| ---------- | ------------ |
-| openid     | sub          |
-| given_name | given_name   |
-| usual_name | usual_name   |
-| email      | email        |
-| uid        | uid          |
-| siret      | siret        |
-| idp_id     | idp_id       |
-| roles      | roles        |
-| phone      | phone_number |
-| custom     | custom       |
+| Scope              | Claims             |
+| ------------------ | ------------------ |
+| openid             | sub                |
+| given_name         | given_name         |
+| usual_name         | usual_name         |
+| email              | email              |
+| uid                | uid                |
+| siret              | siret              |
+| idp_id             | idp_id             |
+| roles              | roles              |
+| organization_label | organization_label |
+| phone              | phone_number       |
+| custom             | custom             |
 
-> NB: Les Fournisseurs de Service qui le souhaitent peuvent appeler le scope complémentaire `custom`. Pour plus d'informations, lire l'[article dédié](./custom-scope.md).
+### Scopes spécifiques
+
+Les fonctionnements des scopes ci-dessous sont spécifiques et sont détaillés dans des articles dédiés :
+
+- [custom](./custom-scope.md)
+- [roles](./roles.md)
+- [organization_label](./organization_label.md)
