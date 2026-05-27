@@ -22,7 +22,6 @@ ProConnect renvoie les données suivantes quand elles sont données par le fourn
 
 | Champs | Obligatoire | Description | Format |
 | ------ | ----------- | ----------- | ------ |
-
 | idp_id | oui | Fournisseur d'Identité utilisé par l'utilisateur pour s'authentifier (plus de détails [ici](./connaitre-le-fi-utilise.md)) | String |
 | roles | oui | Rôle(s) de l'utilisateur (plus de détails [ici](./roles.md)) | String |
 
