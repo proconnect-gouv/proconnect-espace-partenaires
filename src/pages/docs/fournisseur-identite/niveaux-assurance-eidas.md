@@ -28,3 +28,13 @@ La distinction entre eidas2 et eidas3 porte sur le type de moyen de double authe
 | -------- | ------------------------------------- |
 | `eidas2` | TOTP (application d'authentification) |
 | `eidas3` | Carte à puce avec code PIN            |
+
+### Différence entre eidas1-mfa et eidas2
+
+La distinction ne porte pas sur la robustesse technique du second facteur, mais sur **qui contrôle son cycle de vie** (distribution, association, révocation).
+
+|                            | eidas1-mfa                                               | eidas2                                                       |
+| -------------------------- | -------------------------------------------------------- | ------------------------------------------------------------ |
+| Contrôle du second facteur | L'agent gère lui-même (peut le changer, le transférer)  | L'organisation maîtrise l'intégralité du cycle de vie        |
+| Exemple                    | TOTP configuré par l'agent dans son application, transféré sur plusieurs téléphones         | Yubikey distribuée par les RH, association faite par l'admin |
+
