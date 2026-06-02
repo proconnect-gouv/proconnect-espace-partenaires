@@ -46,11 +46,12 @@ Nous vous recommandons de lire [notre page généraliste sur l'implémentation t
 
 → _Connaître les données disponibles sur les pros et comment les récupérer_
 
-| Page                                      | Question                                                                                            |
-| ----------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| [Données fournies](./donnees_fournies.md) | Quelles sont les données fournies par ProConnect sur l'utilisateur ?                                |
-| [Scopes et claims](./scope-claims.md)     | Quels scopes et claims utiliser ?                                                                   |
-| [Scope custom](./custom-scope.md)         | Comment récupérer les données non canoniques qui seraient renvoyées par un FI via le scope custom ? |
+| Page                                                | Question                                                                                            |
+| --------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| [Données fournies](./donnees_fournies.md)           | Quelles sont les données fournies par ProConnect sur l'utilisateur ?                                |
+| [Scopes et claims](./scope-claims.md)               | Quels scopes et claims utiliser ?                                                                   |
+| [Scope custom](./custom-scope.md)                   | Comment récupérer les données non canoniques qui seraient renvoyées par un FI via le scope custom ? |
+| [Scope organization_label](./organization_label.md) | Comment récupérer le nom de l'organisation à laquelle appartient l'usager ?                         |
 
 ## ✨ 5. Fonctionnalités avancées
 
