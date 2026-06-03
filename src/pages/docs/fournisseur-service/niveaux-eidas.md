@@ -46,18 +46,23 @@ Un facteur d'authentification appartient à l'une des trois catégories suivante
 
 Une authentification multi-facteur (MFA) doit combiner au moins deux facteurs appartenant à des **catégories différentes**. Deux mots de passe ne constituent pas une MFA.
 
-| Méthode                                  | Explication                                                                                                                                                                                                                                                                                              |
-| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Simple                                   | Un seul facteur d'authentification.                                                                                                                                                                                                                                                                      |
-| MFA (auto-géré)                          | Deux facteurs appartenant à des catégories différentes. Le second facteur peut être **présumé** sous le contrôle exclusif de la personne, et résiste aux attaquants à potentiel d'attaque modéré. L'agent configure et gère lui-même son second facteur.                                                 |
-| MFA (géré par l'organisation)            | Deux facteurs appartenant à des catégories différentes. L'organisation maîtrise l'intégralité du cycle de vie du second facteur (distribution, association, révocation). Résiste aux attaquants à potentiel d'attaque modéré.                                                                            |
-| MFA matérielle (géré par l'organisation) | Deux facteurs appartenant à des catégories différentes. La personne peut **fiablement** protéger le second facteur contre toute utilisation non autorisée — il résiste aux attaquants à potentiel d'attaque élevé. En pratique, cela implique un facteur physique dont la clé ne peut pas être extraite. |
+Deux critères issus du règlement permettent de distinguer les niveaux MFA entre eux :
+
+- **Contrôle du facteur (section 2.2.1)** : peut-on *présumer* que le second facteur est sous contrôle exclusif de la personne, ou la protection est-elle *fiable* par construction ?
+- **Résistance aux attaques (section 2.3.1)** : le mécanisme résiste-t-il à un attaquant à potentiel *modéré* ou *élevé* ?
+
+| Méthode                                  | Explication                                                                                                                                                                                                             |
+| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Simple                                   | Un seul facteur d'authentification.                                                                                                                                                                                     |
+| MFA (auto-géré)                          | Deux facteurs de catégories différentes. Contrôle : **présumé** exclusif. Résistance : attaquant à potentiel **modéré**. Le second facteur est configuré et géré par l'agent lui-même.                                  |
+| MFA (géré par l'organisation)            | Identique à MFA (auto-géré) du point de vue eIDAS — contrôle **présumé**, résistance **modérée**. Seule différence : l'organisation maîtrise le cycle de vie du second facteur (distribution, association, révocation). |
+| MFA matérielle (géré par l'organisation) | Deux facteurs de catégories différentes. Contrôle : **fiable** — le facteur est physique et sa clé ne peut pas être extraite. Résistance : attaquant à potentiel **élevé**.                                             |
 
 **Exemples commentés**
 
 Les exemples suivants illustrent pourquoi une méthode donnée atteint eidas2 mais pas eidas3, ou eidas3. La distinction repose sur les deux critères du règlement : garantie _présumée_ ou _fiable_ sur le contrôle du facteur, et résistance à un attaquant à potentiel _modéré_ ou _élevé_.
 
-| Méthode                                         | Niveau          | Pourquoi pas l'autre                                                                                                                                      |
+| Méthode                                         | Niveau max          | Pourquoi pas l'autre                                                                                                                                      |
 | ----------------------------------------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | TOTP (application authenticator)                | eidas2          | Le secret TOTP peut être sauvegardé et transféré sur un autre appareil → seulement _présumé_ sous contrôle exclusif. Ne résiste pas à un attaquant élevé. |
 | SMS OTP                                         | eidas2          | Vulnérable au SIM swapping et à l'interception SS7 → ne résiste pas à un attaquant élevé.                                                                 |
