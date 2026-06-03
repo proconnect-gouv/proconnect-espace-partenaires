@@ -19,12 +19,7 @@ Pour forcer la 2FA, le champ `acr` présent dans le paramètre `claims` envoyé 
     "id_token": {
       "acr": {
         "essential": true,
-        "values": [
-          "eidas0-mfa",
-          "eidas1-mfa",
-          "eidas2",
-          "eidas3"
-        ]
+        "values": ["eidas0-mfa", "eidas1-mfa", "eidas2", "eidas3"]
       }
     }
   }
