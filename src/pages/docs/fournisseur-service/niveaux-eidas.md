@@ -27,14 +27,14 @@ Les niveaux eidas sont construits sur trois piliers indépendants. Comprendre ch
 
 ### 1.1. La qualité de l'identité
 
-Le [règlement eIDAS](https://cyber.gouv.fr/reglementation/reglementation-identite-confiance-numerique/securite-echanges-voie-electronique/reglement-eidas/identification-electronique/) définit trois niveaux de garantie pour l'identification électronique. Ils décrivent dans quelle mesure l'identité numérique d'un utilisateur a été vérifiée avant de lui être attribuée. ProConnect y ajoute un niveau **déclaratif**, en-dessous des niveaux eIDAS.
+Le [règlement eIDAS (2015/1502)](https://eur-lex.europa.eu/legal-content/FR/TXT/PDF/?uri=CELEX:32015R1502&from=FR) définit trois niveaux de garantie pour l'identification électronique. Ils décrivent dans quelle mesure l'identité numérique d'un utilisateur a été vérifiée avant de lui être attribuée. ProConnect y ajoute un niveau **déclaratif**, en-dessous des niveaux eIDAS.
 
-| Qualité                 | Explication                                                                                                                 | Exemple                                                                                                             |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| Déclarative             | L'utilisateur renseigne lui-même ses informations, sans aucune vérification externe.                                        | Compte créé sans vérification d'identité                                                                            |
-| Faible _(eIDAS)_        | L'identité a été vérifiée avec pour objectif de **réduire** le risque d'usurpation ou d'altération.                         | Vérification d'identité avec FranceConnect                                                                          |
-| Substantielle _(eIDAS)_ | L'identité a été vérifiée avec pour objectif de **réduire substantiellement** le risque d'usurpation.                       | Vérification d'identité avec FranceConnect+                                                                         |
-| Élevée _(eIDAS)_        | L'identité a été vérifiée avec pour objectif de **prévenir** toute usurpation, y compris face à des attaques sophistiquées. | Embarquement par un processus RH traditionnel ; Vérification d'identité avec FranceConnect+ et MonIdentitéNumérique |
+| Qualité                 | Explication                                                                                                                                                                                              | Exemple                                                                                                             |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| Déclarative             | L'utilisateur renseigne lui-même ses informations, sans aucune vérification externe.                                                                                                                     | Compte créé sans vérification d'identité                                                                            |
+| Faible _(eIDAS)_        | L'existence de l'identité peut être **présumée** à partir d'une source faisant autorité. Aucune vérification active n'est requise : on présume que la personne est bien celle qu'elle prétend être.       | Vérification d'identité avec FranceConnect                                                                          |
+| Substantielle _(eIDAS)_ | Il a été **vérifié** que la personne est en possession d'un document d'identité reconnu, dont l'authenticité a été contrôlée. Des mesures ont été prises pour minimiser le risque d'usurpation (perte, vol, expiration, révocation). | Vérification d'identité avec FranceConnect+                                                                         |
+| Élevée _(eIDAS)_        | Niveau substantiel, plus : la personne a été identifiée par comparaison de **caractéristiques physiques** (biométrie ou photographie) auprès d'une source faisant autorité.                              | Embarquement par un processus RH traditionnel ; Vérification d'identité avec FranceConnect+ et MonIdentitéNumérique |
 
 ### 1.2. La méthode d'authentification
 
@@ -51,7 +51,7 @@ Le [règlement eIDAS](https://cyber.gouv.fr/reglementation/reglementation-identi
 | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Déclaratif                              | L'appartenance de l'utilisateur à son organisation est auto-déclarée.                                                                             |
 | Modération                              | L'appartenance est validée par un tiers (administrateur, modérateur).                                                                             |
-| Lien certifié par une source officielle | L'appartenance a été établie via un processus RH formel : création de compte, rattachement dans l'annuaire, remise des moyens d'authentification. |
+| Lien certifié par une source officielle | L'appartenance a été **enregistrée et vérifiée auprès d'une source faisant autorité** sur la base de procédures reconnues (processus RH formel : création de compte, rattachement dans l'annuaire, remise des moyens d'authentification). Le lien peut être suspendu ou révoqué à tout moment. |
 
 ### 1.4. Le cas de `eidas0`
 
