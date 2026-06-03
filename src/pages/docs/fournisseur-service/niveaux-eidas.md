@@ -38,12 +38,34 @@ Le [règlement eIDAS (2015/1502)](https://eur-lex.europa.eu/legal-content/FR/TXT
 
 ### 1.2. La méthode d'authentification
 
-| Méthode                                  | Explication                                                                                                                                 | Exemple                                                             |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| Simple                                   | Un seul facteur d'authentification.                                                                                                         | Mot de passe                                                        |
-| MFA (auto-géré)                          | Deux facteurs combinés, où l'agent configure et gère lui-même son second facteur.                                                           | TOTP configuré par l'agent sur son téléphone, clé d'accès (passkey) |
-| MFA (géré par l'organisation)            | Deux facteurs combinés, où l'organisation maîtrise l'intégralité du cycle de vie du second facteur (distribution, association, révocation). | Passkey distribué par les RH.                                       |
-| MFA matérielle (géré par l'organisation) | Second facteur physique dont la clé cryptographique est stockée dans la puce — ne peut pas être extraite ni copiée.                         | Carte agent avec PIN et certificats distribuée par les RH.          |
+Un facteur d'authentification appartient à l'une des trois catégories suivantes, telles que définies par le [règlement eIDAS (2015/1502)](https://eur-lex.europa.eu/legal-content/FR/TXT/PDF/?uri=CELEX:32015R1502&from=FR) :
+
+- **Connaissance** — quelque chose que l'on sait : mot de passe, code PIN
+- **Possession** — quelque chose que l'on possède : téléphone, clé physique, carte à puce
+- **Inhérent** — quelque chose que l'on est : empreinte digitale, reconnaissance faciale
+
+Une authentification multi-facteur (MFA) doit combiner au moins deux facteurs appartenant à des **catégories différentes**. Deux mots de passe ne constituent pas une MFA.
+
+| Méthode                                  | Explication                                                                                                                                                                                                                                  |
+| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Simple                                   | Un seul facteur d'authentification.                                                                                                                                                                                                          |
+| MFA (auto-géré)                          | Deux facteurs appartenant à des catégories différentes. Le second facteur peut être **présumé** sous le contrôle exclusif de la personne, et résiste aux attaquants à potentiel d'attaque modéré. L'agent configure et gère lui-même son second facteur. |
+| MFA (géré par l'organisation)            | Deux facteurs appartenant à des catégories différentes. L'organisation maîtrise l'intégralité du cycle de vie du second facteur (distribution, association, révocation). Résiste aux attaquants à potentiel d'attaque modéré.                 |
+| MFA matérielle (géré par l'organisation) | Deux facteurs appartenant à des catégories différentes. La personne peut **fiablement** protéger le second facteur contre toute utilisation non autorisée — il résiste aux attaquants à potentiel d'attaque élevé. En pratique, cela implique un facteur physique dont la clé ne peut pas être extraite. |
+
+**Exemples commentés**
+
+Les exemples suivants illustrent pourquoi une méthode donnée atteint eidas2 mais pas eidas3, ou eidas3. La distinction repose sur les deux critères du règlement : garantie *présumée* ou *fiable* sur le contrôle du facteur, et résistance à un attaquant à potentiel *modéré* ou *élevé*.
+
+| Méthode | Niveau | Pourquoi pas l'autre |
+| ------- | ------ | -------------------- |
+| TOTP (application authenticator) | eidas2 | Le secret TOTP peut être sauvegardé et transféré sur un autre appareil → seulement *présumé* sous contrôle exclusif. Ne résiste pas à un attaquant élevé. |
+| SMS OTP | eidas2 | Vulnérable au SIM swapping et à l'interception SS7 → ne résiste pas à un attaquant élevé. |
+| Push notification (ex. Microsoft Authenticator) | eidas2 | Dépend de la sécurité de l'appareil et du compte cloud associé → seulement *présumée* sous contrôle exclusif. |
+| Passkey synchronisé (ex. iCloud Keychain) | eidas2 | La clé est synchronisée entre appareils → seulement *présumée* sous contrôle exclusif. Ne résiste pas à un attaquant élevé. |
+| Passkey non-synchronisé (hardware-backed) | eidas2 à eidas3 | Si la clé est ancrée dans la puce de l'appareil et non exportable, peut atteindre une garantie *fiable*. Dépend de l'implémentation. |
+| Carte à puce + PIN (ex. carte agent) | eidas3 | La clé privée est ancrée dans la puce et ne peut pas être extraite → garantie *fiable*. Résiste aux attaquants à potentiel élevé. |
+| Clé FIDO2 matérielle (ex. YubiKey) + PIN | eidas3 | Clé générée dans le secure element, non exportable → garantie *fiable*. Résiste aux attaquants à potentiel élevé. |
 
 ### 1.3. Le lien avec l'organisation
 
