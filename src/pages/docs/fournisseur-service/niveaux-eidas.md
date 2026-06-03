@@ -48,8 +48,8 @@ Une authentification multi-facteur (MFA) doit combiner au moins deux facteurs ap
 
 Deux critères issus du règlement permettent de distinguer les niveaux MFA entre eux :
 
-- **Contrôle du facteur (section 2.2.1)** : peut-on *présumer* que le second facteur est sous contrôle exclusif de la personne, ou la protection est-elle *fiable* par construction ?
-- **Résistance aux attaques (section 2.3.1)** : le mécanisme résiste-t-il à un attaquant à potentiel *modéré* ou *élevé* ?
+- **Contrôle du facteur (section 2.2.1)** : peut-on _présumer_ que le second facteur est sous contrôle exclusif de la personne, ou la protection est-elle _fiable_ par construction ?
+- **Résistance aux attaques (section 2.3.1)** : le mécanisme résiste-t-il à un attaquant à potentiel _modéré_ ou _élevé_ ?
 
 | Méthode                                  | Explication                                                                                                                                                                                                             |
 | ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -62,7 +62,7 @@ Deux critères issus du règlement permettent de distinguer les niveaux MFA entr
 
 Les exemples suivants illustrent pourquoi une méthode donnée atteint eidas2 mais pas eidas3, ou eidas3. La distinction repose sur les deux critères du règlement : garantie _présumée_ ou _fiable_ sur le contrôle du facteur, et résistance à un attaquant à potentiel _modéré_ ou _élevé_.
 
-| Méthode                                         | Niveau max          | Pourquoi pas l'autre                                                                                                                                      |
+| Méthode                                         | Niveau max      | Pourquoi pas l'autre                                                                                                                                      |
 | ----------------------------------------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | TOTP (application authenticator)                | eidas2          | Le secret TOTP peut être sauvegardé et transféré sur un autre appareil → seulement _présumé_ sous contrôle exclusif. Ne résiste pas à un attaquant élevé. |
 | SMS OTP                                         | eidas2          | Vulnérable au SIM swapping et à l'interception SS7 → ne résiste pas à un attaquant élevé.                                                                 |
