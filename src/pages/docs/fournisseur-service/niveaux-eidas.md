@@ -53,6 +53,19 @@ Le [règlement eIDAS](https://cyber.gouv.fr/reglementation/reglementation-identi
 | Modération | L'appartenance est validée par un tiers (administrateur, modérateur). |
 | Lien certifié par une source officielle | L'appartenance a été établie via un processus RH formel : création de compte, rattachement dans l'annuaire, remise des moyens d'authentification. |
 
+### 1.4. Le cas de `eidas0`
+
+`eidas0` regroupe les cas où l'identité est **faible ou déclarative** et le lien organisationnel est **modération ou déclaratif**. Ces deux axes ayant chacun deux valeurs possibles, voici comment les combinaisons sont interprétées :
+
+| Identité | Organisation | Niveau |
+| -------- | ------------ | ------ |
+| Déclarative | Déclaratif | Non autorisé — les deux piliers sont au niveau minimal |
+| Déclarative | Modération | `eidas0` |
+| Faible | Déclaratif | `eidas0` |
+| Faible | Modération | `eidas1` — les deux piliers atteignent le niveau suivant |
+
+`eidas0` correspond donc aux cas intermédiaires : l'un des deux piliers est déclaratif tandis que l'autre atteint le niveau faible ou modération.
+
 
 ## 2. Comment exiger un niveau minimum ?
 
