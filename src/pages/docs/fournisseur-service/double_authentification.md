@@ -53,4 +53,4 @@ throw new HTTPException(403, {
 
 ## 6. Pour aller plus loin
 
-[Niveaux ACR](./niveaux-acr.md) — comment utiliser l'ACR dans vos requêtes, et comment lire les méthodes d'authentification (`amr`) retournées par ProConnect.
+[Niveaux ACR](./niveaux-acr.md) : comment utiliser l'ACR dans vos requêtes, et comment lire les méthodes d'authentification (`amr`) retournées par ProConnect.

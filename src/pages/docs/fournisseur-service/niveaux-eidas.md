@@ -40,9 +40,9 @@ Le [règlement eIDAS (2015/1502)](https://eur-lex.europa.eu/legal-content/FR/TXT
 
 Un facteur d'authentification appartient à l'une des trois catégories suivantes, telles que définies par le [règlement eIDAS (2015/1502)](https://eur-lex.europa.eu/legal-content/FR/TXT/PDF/?uri=CELEX:32015R1502&from=FR) :
 
-- **Connaissance** — quelque chose que l'on sait : mot de passe, code PIN
-- **Possession** — quelque chose que l'on possède : téléphone, clé physique, carte à puce
-- **Inhérent** — quelque chose que l'on est : empreinte digitale, reconnaissance faciale
+- **Connaissance** : quelque chose que l'on sait : mot de passe, code PIN
+- **Possession** : quelque chose que l'on possède : téléphone, clé physique, carte à puce
+- **Inhérent** : quelque chose que l'on est : empreinte digitale, reconnaissance faciale
 
 Une authentification multi-facteur (MFA) doit combiner au moins deux facteurs appartenant à des **catégories différentes**. Deux mots de passe ne constituent pas une MFA.
 
@@ -55,8 +55,8 @@ Deux critères issus du règlement permettent de distinguer les niveaux MFA entr
 | ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Simple                                   | Un seul facteur d'authentification.                                                                                                                                                                                     |
 | MFA (auto-géré)                          | Deux facteurs de catégories différentes. Contrôle : **présumé** exclusif. Résistance : attaquant à potentiel **modéré**. Le second facteur est configuré et géré par l'agent lui-même.                                  |
-| MFA (géré par l'organisation)            | Identique à MFA (auto-géré) du point de vue eIDAS — contrôle **présumé**, résistance **modérée**. Seule différence : l'organisation maîtrise le cycle de vie du second facteur (distribution, association, révocation). |
-| MFA matérielle (géré par l'organisation) | Deux facteurs de catégories différentes. Contrôle : **fiable** — le facteur est physique et sa clé ne peut pas être extraite. Résistance : attaquant à potentiel **élevé**.                                             |
+| MFA (géré par l'organisation)            | Identique à MFA (auto-géré) du point de vue eIDAS, contrôle **présumé**, résistance **modérée**. Seule différence : l'organisation maîtrise le cycle de vie du second facteur (distribution, association, révocation). |
+| MFA matérielle (géré par l'organisation) | Deux facteurs de catégories différentes. Contrôle : **fiable** (le facteur est physique et sa clé ne peut pas être extraite). Résistance : attaquant à potentiel **élevé**.                                             |
 
 **Exemples commentés**
 
@@ -86,10 +86,10 @@ Les exemples suivants illustrent pourquoi une méthode donnée atteint eidas2 ma
 
 | Identité    | Organisation | Niveau                                                   |
 | ----------- | ------------ | -------------------------------------------------------- |
-| Déclarative | Déclaratif   | Non autorisé — les deux piliers sont au niveau minimal   |
+| Déclarative | Déclaratif   | Non autorisé (les deux piliers sont au niveau minimal)   |
 | Déclarative | Modération   | `eidas0`                                                 |
 | Faible      | Déclaratif   | `eidas0`                                                 |
-| Faible      | Modération   | `eidas1` — les deux piliers atteignent le niveau suivant |
+| Faible      | Modération   | `eidas1` (les deux piliers atteignent le niveau suivant) |
 
 `eidas0` correspond donc aux cas intermédiaires : l'un des deux piliers est déclaratif tandis que l'autre atteint le niveau faible ou modération.
 
