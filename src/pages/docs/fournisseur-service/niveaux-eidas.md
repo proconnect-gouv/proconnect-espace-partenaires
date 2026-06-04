@@ -11,9 +11,9 @@ ProConnect communique le niveau de confiance d'une authentification via l'attrib
 - **Authentification** : comment l'utilisateur s'est-il authentifié ?
 - **Organisation** : quel est le lien entre l'utilisateur et son organisation ?
 
-| Valeur `acr` | Identité              | Authentification                             | Organisation                            |
-| ------------ | --------------------- | -------------------------------------------- | --------------------------------------- |
-| `eidas0`     | Faible ou déclarative | Simple (mot de passe)                        | Modération ou déclaratif                |
+| Valeur `acr` | Identité              | Authentification                         | Organisation                            |
+| ------------ | --------------------- | ---------------------------------------- | --------------------------------------- |
+| `eidas0`     | Faible ou déclarative | Simple (mot de passe)                    | Modération ou déclaratif                |
 | `eidas0-mfa` | Faible ou déclarative | MFA (auto-géré)                          | Modération ou déclaratif                |
 | `eidas1`     | Faible                | Simple (mot de passe)                    | Modération ou plus                      |
 | `eidas1-mfa` | Faible                | MFA (auto-géré)                          | Modération ou plus                      |
@@ -34,7 +34,7 @@ Le [règlement eIDAS (2015/1502)](https://eur-lex.europa.eu/legal-content/FR/TXT
 | Déclarative             | L'utilisateur renseigne lui-même ses informations, sans aucune vérification externe.                                                                                                                                                 | Compte créé sans vérification d'identité                                                                            |
 | Faible _(eIDAS)_        | L'existence de l'identité peut être **présumée** à partir d'une source faisant autorité. Aucune vérification active n'est requise : on présume que la personne est bien celle qu'elle prétend être.                                  | Vérification d'identité avec FranceConnect                                                                          |
 | Substantielle _(eIDAS)_ | Il a été **vérifié** que la personne est en possession d'un document d'identité reconnu, dont l'authenticité a été contrôlée. Des mesures ont été prises pour minimiser le risque d'usurpation (perte, vol, expiration, révocation). | Vérification d'identité avec FranceConnect+                                                                         |
-| Élevée _(eIDAS)_        | Niveau substantiel, plus : la personne a été identifiée par comparaison de caractéristiques physiques (biométrie ou photographie) auprès d'une source faisant autorité.                                                          | Embarquement par un processus RH traditionnel ; Vérification d'identité avec FranceConnect+ et MonIdentitéNumérique |
+| Élevée _(eIDAS)_        | Niveau substantiel, plus : la personne a été identifiée par comparaison de caractéristiques physiques (biométrie ou photographie) auprès d'une source faisant autorité.                                                              | Embarquement par un processus RH traditionnel ; Vérification d'identité avec FranceConnect+ et MonIdentitéNumérique |
 
 ### 1.2. La méthode d'authentification
 
@@ -51,12 +51,12 @@ Deux critères issus du règlement permettent de distinguer les niveaux MFA entr
 - **Contrôle du facteur (section 2.2.1)** : peut-on _présumer_ que le second facteur est sous contrôle exclusif de la personne, ou la protection est-elle _fiable_ par construction ?
 - **Résistance aux attaques (section 2.3.1)** : le mécanisme résiste-t-il à un attaquant à potentiel _modéré_ ou _élevé_ ?
 
-| Méthode                                  | Explication                                                                                                                                                                                                             |
-| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Simple                                   | Un seul facteur d'authentification.                                                                                                                                                                                     |
-| MFA (auto-géré)                          | Deux facteurs de catégories différentes. Contrôle : **présumé** exclusif. Résistance : attaquant à potentiel **modéré**. Le second facteur est configuré et géré par l'utilisateur lui-même.                                  |
+| Méthode                                  | Explication                                                                                                                                                                                                            |
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Simple                                   | Un seul facteur d'authentification.                                                                                                                                                                                    |
+| MFA (auto-géré)                          | Deux facteurs de catégories différentes. Contrôle : **présumé** exclusif. Résistance : attaquant à potentiel **modéré**. Le second facteur est configuré et géré par l'utilisateur lui-même.                           |
 | MFA (géré par l'organisation)            | Identique à MFA (auto-géré) du point de vue eIDAS, contrôle **présumé**, résistance **modérée**. Seule différence : l'organisation maîtrise le cycle de vie du second facteur (distribution, association, révocation). |
-| MFA matérielle (géré par l'organisation) | Deux facteurs de catégories différentes. Contrôle : **fiable** (le facteur est physique et sa clé ne peut pas être extraite). Résistance : attaquant à potentiel **élevé**.                                             |
+| MFA matérielle (géré par l'organisation) | Deux facteurs de catégories différentes. Contrôle : **fiable** (le facteur est physique et sa clé ne peut pas être extraite). Résistance : attaquant à potentiel **élevé**.                                            |
 
 **Exemples commentés**
 
@@ -74,10 +74,10 @@ Les exemples suivants illustrent pourquoi une méthode donnée atteint eidas2 ma
 
 ### 1.3. Le lien avec l'organisation
 
-| Lien                                    | Explication                                                                                                                                                                                                                                                                                    |
-| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Déclaratif                              | L'appartenance de l'utilisateur à son organisation est auto-déclarée.                                                                                                                                                                                                                          |
-| Modération                              | L'appartenance est validée par un tiers (administrateur, modérateur).                                                                                                                                                                                                                          |
+| Lien                                    | Explication                                                                                                                                                                                                                                                                                |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Déclaratif                              | L'appartenance de l'utilisateur à son organisation est auto-déclarée.                                                                                                                                                                                                                      |
+| Modération                              | L'appartenance est validée par un tiers (administrateur, modérateur).                                                                                                                                                                                                                      |
 | Lien certifié par une source officielle | L'appartenance a été enregistrée et vérifiée auprès d'une source faisant autorité sur la base de procédures reconnues (processus RH formel : création de compte, rattachement dans l'annuaire, remise des moyens d'authentification). Le lien peut être suspendu ou révoqué à tout moment. |
 
 ### 1.4. Le cas de `eidas0`
