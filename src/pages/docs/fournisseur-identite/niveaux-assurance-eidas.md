@@ -26,12 +26,12 @@ En tant que Fournisseur d'Identité, vous maîtrisez les trois piliers : l'ident
 
 En pratique, **le niveau que vous retournez est déterminé par la méthode d'authentification que vous proposez** :
 
-| Méthode d'authentification              | Niveau retourné | Exemples                                           |
-| --------------------------------------- | --------------- | -------------------------------------------------- |
-| Simple (mot de passe)                   | `eidas1`        | Mot de passe seul                                  |
-| MFA auto-géré par l'agent              | `eidas1-mfa`    | TOTP configuré par l'agent sur son téléphone       |
-| MFA géré par l'organisation             | `eidas2`        | TOTP distribué par les RH, SMS OTP, push notification |
-| MFA matérielle géré par l'organisation  | `eidas3`        | Carte à puce + PIN, clé FIDO2 matérielle (YubiKey) |
+| Méthode d'authentification             | Niveau retourné | Exemples                                              |
+| -------------------------------------- | --------------- | ----------------------------------------------------- |
+| Simple (mot de passe)                  | `eidas1`        | Mot de passe seul                                     |
+| MFA auto-géré par l'agent              | `eidas1-mfa`    | TOTP configuré par l'agent sur son téléphone          |
+| MFA géré par l'organisation            | `eidas2`        | TOTP distribué par les RH, SMS OTP, push notification |
+| MFA matérielle géré par l'organisation | `eidas3`        | Carte à puce + PIN, clé FIDO2 matérielle (YubiKey)    |
 
 Pour le détail des méthodes MFA qui atteignent eidas2 ou eidas3 (et pourquoi certaines n'atteignent pas eidas3), voir [Norme eIDAS — La méthode d'authentification](../ressources/norme_eidas.md#3-la-méthode-dauthentification).
 
