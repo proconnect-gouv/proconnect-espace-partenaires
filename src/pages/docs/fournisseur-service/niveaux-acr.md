@@ -33,41 +33,9 @@ claims={
 
 ## Niveaux d’assurance pour les identités
 
-> [!CAUTION]
-> Les niveaux ACR renvoyés par ProConnect sont actuellement en cours de définition en collaboration avec nos partenaires et l’ANSSI.<br><br>
-> Ils sont donc appelés à évoluer au fil des travaux et pourront être ajustés dans le futur.
+Pour comprendre ce que signifie chaque niveau eidas (identité, méthode d’authentification, lien avec l’organisation), voir [Niveaux eidas](./niveaux-eidas.md).
 
-### Identités issues d’un processus RH
-
-**Processus RH** : il s’agit de la procédure complète, depuis la création de l’identité numérique (éventuellement avec un contrôle en face-à-face) jusqu’à la résiliation du compte à la fin du contrat de travail.
-
-Les règles de preuve d’identité à respecter pour chaque niveau de confiance **eIDAS v1** sont détaillées dans le document ANSSI _« Référentiel d’exigences de sécurité pour les moyens d’identification électronique »_.
-
-Les exigences spécifiques aux échanges entre administrations françaises seront précisées dans le **RGS v3** (en cours de rédaction par l’ANSSI).
-
-**FranceConnect** peut être utilisé en complément d’une source de données authentique (par exemple l’INSEE pour la certification du dirigeant d’entreprise) afin de renforcer ce processus.
-
-**Niveaux eIDAS** pris en compte dans ProConnect :
-
-1. `eidas1` : Accès de type _login / mot de passe_, délivré dans un cadre RH.
-
-2. `eidas2` : Accès de type _login / mot de passe_ **+** un second facteur (TOTP, POP, ou équivalent), toujours délivré dans un cadre RH.
-
-3. `eidas3` : Accès via une **carte agent**, avec **PIN + certificats**, délivré dans un cadre RH.
-
-### Identités sans processus RH
-
-Dans le cas où l’identité n’est pas délivrée via un processus RH, seuls les niveaux **ci-dessous** sont disponibles.
-
-1. `https://proconnect.gouv.fr/assurance/self-asserted` : Identité déclarative simple.
-
-2. `https://proconnect.gouv.fr/assurance/self-asserted-2fa` : Identité déclarative + authentification à double facteur.
-
-3. `https://proconnect.gouv.fr/assurance/consistency-checked` : Identité déclarative + **test(s) de cohérence** (par exemple : contrôle du domaine de messagerie, envoi d’un code par courrier postal au siège social, vérification de l’adresse de contact dans un annuaire officiel, etc.).
-
-4. `https://proconnect.gouv.fr/assurance/consistency-checked-2fa` : Identité déclarative + test(s) de cohérence + authentification à double facteur.
-
-### Les niveaux d’assurance associés à un rôle
+## Les niveaux d’assurance associés à un rôle
 
 Le service ProConnect dispose d’une liste des dirigeants de chaque entreprise constituée à partir du répertoire Sirene et du registre national des entreprises (RNE).
 

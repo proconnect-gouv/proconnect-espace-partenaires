@@ -35,12 +35,10 @@ Nous vous recommandons de lire [notre page généraliste sur l'implémentation t
 
 → _Comprendre comment ProConnect gère la connexion et la durée de session_
 
-| Page                                       | Question                                                                              |
-| ------------------------------------------ | ------------------------------------------------------------------------------------- |
-| [SSO](./sso.md)                            | Comment fonctionne l'authentification unique (SSO) de ProConnect ?                    |
-| [Refresh token](./refresh-token.md)        | Comment prolonger la durée d'accès aux utilisateurs ProConnect via le refresh_token ? |
-| [Niveaux ACR](./niveaux-acr.md)            | À quoi correspondent les niveaux d'assurance d'authentification ACR ?                 |
-| [FI utilisé](./connaitre-le-fi-utilise.md) | Comment savoir avec quel Fournisseur d'Identité s'est authentifié mon utilisateur ?   |
+| Page                                | Question                                                                              |
+| ----------------------------------- | ------------------------------------------------------------------------------------- |
+| [SSO](./sso.md)                     | Comment fonctionne l'authentification unique (SSO) de ProConnect ?                    |
+| [Refresh token](./refresh-token.md) | Comment prolonger la durée d'accès aux utilisateurs ProConnect via le refresh_token ? |
 
 ## 👤 4. Données utilisateur
 
@@ -52,23 +50,39 @@ Nous vous recommandons de lire [notre page généraliste sur l'implémentation t
 | [Scopes et claims](./scope-claims.md)               | Quels scopes et claims utiliser ?                                                                   |
 | [Scope custom](./custom-scope.md)                   | Comment récupérer les données non canoniques qui seraient renvoyées par un FI via le scope custom ? |
 | [Scope organization_label](./organization_label.md) | Comment récupérer le nom de l'organisation à laquelle appartient l'usager ?                         |
+| [FI utilisé](./connaitre-le-fi-utilise.md)          | Comment savoir avec quel Fournisseur d'Identité s'est authentifié mon utilisateur ?                 |
 
-## ✨ 5. Fonctionnalités avancées
+## 🔒 5. Sécurité
 
-→ _Personnaliser le parcours et accéder à des niveaux de confiance renforcés_
+→ _Quel niveau de confiance et de sécurité puis-je exiger de ProConnect ?_
 
-| Page                                                                                   | Question                                                                                                                                     |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| [MFA](./double_authentification.md)                                                    | Comment forcer la double authentification ou la Multi Factor Authentication (MFA) ?                                                          |
-| [Certification dirigeant](./certification-dirigeant.md)                                | Qu'est-ce que la certification dirigeant et comment l'implémenter ?                                                                          |
-| [Design certification dirigeant](./recommandation_parcours_certification_dirigeant.md) | Quelles règles de design de parcours dois-je respecter pour la certification dirigeant ?                                                     |
-| [idp_hint](./idp_hint_usage.md)                                                        | Comment spécifier à ProConnect que les usagers de mon FS doivent être redirigés directement vers un Fournisseur d'Identité (FI) spécifique ? |
-| [login_hint](./login_hint_usage.md)                                                    | Comment préremplir l'adresse email dans la mire de connexion ProConnect ?                                                                    |
-| [siret_hint](./siret_hint_usage.md)                                                    | Comment spécifier à ProConnect que les usagers de mon FS doivent se voir suggérer une organisation spécifique à sélectionner ?               |
-| [Serveur de ressources](./resource_server.md)                                          | Comment implémenter un Serveur de Ressources ?                                                                                               |
-| [Niveaux ACR](./niveaux-acr.md)                                                        | À quoi correspondent les niveaux d'assurance d'authentification ACR ?                                                                        |
+| Page                                                    | Question                                                                                |
+| ------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| [Niveaux eidas](./niveaux-eidas.md)                     | Que signifient les niveaux eidas et comment en choisir un ?                             |
+| [Double authentification](./double_authentification.md) | Comment forcer la double authentification (2FA) / Multifacteur Authentification (MFA) ? |
+| [Niveaux ACR](./niveaux-acr.md)                         | Comment exiger un niveau minimum dans mes requêtes et lire le claim `amr` ?             |
 
-## 🆘 6. Aide
+## 🏢 6. Certification dirigeant
+
+→ _Comment exiger la certification dirigeant pour les entreprises et à quoi sert-elle ?_
+
+| Page                                                                                   | Question                                                                                 |
+| -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| [Certification dirigeant](./certification-dirigeant.md)                                | Qu'est-ce que la certification dirigeant et comment l'implémenter ?                      |
+| [Design certification dirigeant](./recommandation_parcours_certification_dirigeant.md) | Quelles règles de design de parcours dois-je respecter pour la certification dirigeant ? |
+
+## ✨ 7. Fonctionnalités avancées
+
+→ _Personnaliser le parcours utilisateur_
+
+| Page                                          | Question                                                                                                                                     |
+| --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| [idp_hint](./idp_hint_usage.md)               | Comment spécifier à ProConnect que les usagers de mon FS doivent être redirigés directement vers un Fournisseur d'Identité (FI) spécifique ? |
+| [login_hint](./login_hint_usage.md)           | Comment préremplir l'adresse email dans la mire de connexion ProConnect ?                                                                    |
+| [siret_hint](./siret_hint_usage.md)           | Comment spécifier à ProConnect que les usagers de mon FS doivent se voir suggérer une organisation spécifique à sélectionner ?               |
+| [Serveur de ressources](./resource_server.md) | Comment implémenter un Serveur de Ressources ?                                                                                               |
+
+## 🆘 8. Aide
 
 → _Trouver de l'aide en cas de problème ou de question_
 
