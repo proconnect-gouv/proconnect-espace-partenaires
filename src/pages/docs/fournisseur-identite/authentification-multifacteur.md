@@ -6,7 +6,7 @@ Certains Fournisseurs de Service (FS) exigent que leurs utilisateurs s'authentif
 
 Pour comprendre comment un FS configure cette exigence de son côté, consultez [la documentation dédiée aux Fournisseurs de Service](../fournisseur-service/double_authentification.md).
 
-Pour en savoir plus sur les niveaux d'assurance (`acr`) utilisés par ProConnect, consultez [la documentation dédiée](./niveaux-assurance-eidas.md).
+Pour savoir quelle méthode d'authentification correspond à chaque niveau demandé (`eidas2`, `eidas3`…), consultez [Niveaux d'assurance — Ce que cela signifie pour un FI](./niveaux-assurance-eidas.md#ce-que-cela-signifie-pour-un-fi).
 
 > [!CAUTION]
 > Ces niveaux sont provisoires et seront définitifs au T2 2026. Vous pouvez commencer à les implémenter pour être MFA-ready.
