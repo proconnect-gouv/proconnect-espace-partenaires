@@ -18,13 +18,9 @@ En cas de doute, n'hésitez pas à nous contacter à [support.partenaires@mail.p
 
 ## Liste des adresses IP à autoriser
 
-| **Exposition**                              | **Environnement** | **Tenant** | **IP à autoriser par les FS**    |
-| ------------------------------------------- | ----------------- | ---------- | -------------------------------- |
-| Internet                                    | Production        | ProConnect | 145.242.17.7 <br>145.242.17.170  |
-|                                             |                   | OPI Cloud  | 145.242.17.167 <br>185.24.185.30 |
-|                                             | Intégration       | ProConnect | 145.242.17.6                     |
-|                                             |                   | OPI Cloud  | 145.242.17.174 <br>185.24.185.31 |
-| RIE <br>(Réseau interministériel de l'Etat) | Production        | ProConnect | 100.67.22.9 <br>100.67.23.77     |
-|                                             |                   | OPI Cloud  | 100.67.22.39 <br>100.67.23.118   |
-|                                             | Intégration       | ProConnect | 100.67.22.12                     |
-|                                             |                   | OPI Cloud  | 100.67.22.110 <br>100.67.23.114  |
+| **Exposition**                              | **Environnement** | **IP à autoriser par les FS**    |
+| ------------------------------------------- | ----------------- | -------------------------------- |
+| Internet                                    | Production        | 145.242.17.167 <br>185.24.185.30 |
+|                                             | Intégration       | 145.242.17.174 <br>185.24.185.31 |
+| RIE <br>(Réseau interministériel de l'Etat) | Production        | 100.67.22.39 <br>100.67.23.118   |
+|                                             | Intégration       | 100.67.22.110 <br>100.67.23.114  |
