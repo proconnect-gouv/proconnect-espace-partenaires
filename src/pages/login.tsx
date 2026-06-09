@@ -1,7 +1,8 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Alert } from "@codegouvfr/react-dsfr/Alert";
-import { Button } from "@codegouvfr/react-dsfr/Button";
-import { Input } from "@codegouvfr/react-dsfr/Input";
+import Button from "@codegouvfr/react-dsfr/Button";
+import Input from "@codegouvfr/react-dsfr/Input";
+import { ProConnectButton } from "@codegouvfr/react-dsfr/ProConnectButton";
 import { GetServerSideProps, NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth/next";
 import { signIn } from "next-auth/react";
@@ -9,6 +10,7 @@ import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { authOptions } from "./api/auth/[...nextauth]";
+
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getServerSession(
     context.req as NextApiRequest,
@@ -32,27 +34,22 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 export default function Login() {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [magicLinkError, setMagicLinkError] = useState("");
   const router = useRouter();
+  const proConnectError = router.query.error as string | undefined;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    setError("");
+    setMagicLinkError("");
 
     try {
-      const result = await signIn("email", {
+      await signIn("email", {
         email,
-        redirect: false,
+        callbackUrl: "/apps",
       });
-
-      if (result?.error) {
-        setError("Une erreur est survenue. Veuillez réessayer.");
-      } else if (result?.ok) {
-        router.push("/auth/verify-request");
-      }
     } catch {
-      setError("Une erreur est survenue. Veuillez réessayer.");
+      setMagicLinkError("Une erreur est survenue. Veuillez réessayer.");
     } finally {
       setIsLoading(false);
     }
@@ -71,9 +68,20 @@ export default function Login() {
                 applications.
               </p>
 
-              {error && (
-                <Alert severity="error" description={error} className={fr.cx("fr-mb-3w")} small />
+              {(proConnectError || magicLinkError) && (
+                <Alert
+                  severity="error"
+                  description={proConnectError || magicLinkError}
+                  className={fr.cx("fr-mb-3w")}
+                  small
+                />
               )}
+
+              <div style={{ textAlign: "center" }}>
+                <ProConnectButton url="/api/proconnect/login" />
+              </div>
+
+              <div className="divider">ou</div>
 
               <form onSubmit={handleSubmit}>
                 <Input
@@ -94,7 +102,7 @@ export default function Login() {
                 </div>
               </form>
 
-              <p className={fr.cx("fr-mt-3w", "fr-text--sm")}>
+              <p className={fr.cx("fr-mt-3w", "fr-mb-0", "fr-text--sm")}>
                 Un lien de connexion sécurisé vous sera envoyé par email.
                 <br />
                 Ce lien est valable 24 heures.
