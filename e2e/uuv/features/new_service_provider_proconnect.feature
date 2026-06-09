@@ -2,22 +2,8 @@
 Fonctionnalité: Créer un nouveau fournisseur de service
 
   Contexte:
-    Étant donné que une boîte de réception vide
-    Étant donné que je visite l'Url "/"
-    Quand je clique sur le lien nommé "Se connecter"
-    Alors je dois voir un titre nommé "Connexion" avec le niveau 1
-    Et je clique sur "Email professionnel"
-    Quand j'entre la valeur "new.serive@local.host"
-    Et je clique sur le bouton nommé "Recevoir un lien de connexion"
-    Alors je dois voir un titre nommé "Vérifiez votre email" avec le niveau 3
-
-    Quand je vais à l'intérieur de l'email avec les filtres
-      | subject    | Lien de connexion à l'Espace Partenaires ProConnect |
-      | headers.to | new.serive@local.host                               |
-    Alors je vois "Vous avez demandé un lien d'identification à l'Espace Partenaires"
-    Quand je clique sur le lien nommé "Se connecter"
-    Étant donné que je supprime l'email
-
+    Étant donné que je suis connecté en tant que "new.service@local.host"
+    Quand je visite l'Url "/apps"
     Alors je dois voir un titre nommé "Vos applications" avec le niveau 1
 
   Scénario: Créer un nouveau fournisseur de service
