@@ -26,12 +26,12 @@ En tant que Fournisseur d'Identité, vous maîtrisez les trois piliers : l'ident
 
 En pratique, **le niveau que vous retournez est déterminé par la méthode d'authentification que vous proposez** :
 
-| Méthode d'authentification             | Niveau retourné | Exemples                                              |
-| -------------------------------------- | --------------- | ----------------------------------------------------- |
-| Simple (mot de passe)                  | `eidas1`        | Mot de passe seul                                     |
-| MFA auto-géré par l'agent              | `eidas1-mfa`    | TOTP configuré par l'agent sur son téléphone          |
-| MFA géré par l'organisation            | `eidas2`        | TOTP distribué par les RH, SMS OTP, push notification |
-| MFA matérielle géré par l'organisation | `eidas3`        | Carte à puce + PIN, clé FIDO2 matérielle (YubiKey)    |
+| Méthode d'authentification                     | Niveau retourné | Exemples                                           |
+| ---------------------------------------------- | --------------- | -------------------------------------------------- |
+| Simple (mot de passe)                          | `eidas1`        | Mot de passe seul                                  |
+| MFA faible (géré par l'agent)                  | `eidas1-mfa`    | SMS OTP                                            |
+| MFA forte (géré par l'organisation)            | `eidas2`        | TOTP distribué par les RH, push notification       |
+| MFA forte matérielle (géré par l'organisation) | `eidas3`        | Carte à puce + PIN, clé FIDO2 matérielle (YubiKey) |
 
 Pour le détail des méthodes MFA qui atteignent eidas2 ou eidas3 (et pourquoi certaines n'atteignent pas eidas3), voir [Norme eIDAS — La méthode d'authentification](../ressources/norme_eidas.md#3-la-méthode-dauthentification).
 
@@ -39,9 +39,12 @@ Pour implémenter la MFA côté FI, voir [Authentification multi-facteur](./auth
 
 ### La distinction eidas1-mfa / eidas2
 
-La frontière ne porte pas sur la robustesse technique du second facteur, mais sur **qui contrôle son cycle de vie** (distribution, association, révocation) :
+La frontière repose sur deux critères cumulatifs pour eidas2 :
 
-| Niveau       | Contrôle du second facteur                             | Exemple                                                                             |
-| ------------ | ------------------------------------------------------ | ----------------------------------------------------------------------------------- |
-| `eidas1-mfa` | L'agent gère lui-même (peut le changer, le transférer) | TOTP configuré par l'agent dans son application, transféré sur plusieurs téléphones |
-| `eidas2`     | L'organisation maîtrise l'intégralité du cycle de vie  | YubiKey distribuée par les RH, association faite par l'admin                        |
+- **Force cryptographique** (Guide ANSSI) : eidas2 requiert un facteur cryptographiquement fort (TOTP, FIDO2…). Un SMS OTP, canal non sécurisé, n'y atteint pas.
+- **Cycle de vie géré par l'organisation** : à eidas2, l'organisation maîtrise la distribution, l'association et la révocation du second facteur.
+
+| Niveau       | Second facteur                    | Cycle de vie            | Exemple                   |
+| ------------ | --------------------------------- | ----------------------- | ------------------------- |
+| `eidas1-mfa` | MFA faible (pas de crypto fort)   | Géré par l'agent        | SMS OTP                   |
+| `eidas2`     | MFA forte (protocole crypto fort) | Géré par l'organisation | TOTP distribué par les RH |
