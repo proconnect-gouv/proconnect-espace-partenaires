@@ -13,14 +13,14 @@ ProConnect communique le niveau de confiance d'une authentification via l'attrib
 - **Authentification** : comment l'utilisateur s'est-il authentifié ?
 - **Organisation** : quel est le lien entre l'utilisateur et son organisation ?
 
-| Valeur `acr` | Identité              | Authentification                         | Organisation                            |
-| ------------ | --------------------- | ---------------------------------------- | --------------------------------------- |
-| `eidas0`     | Faible ou déclarative | Simple (mot de passe)                    | Modération ou déclaratif                |
-| `eidas0-mfa` | Faible ou déclarative | MFA (auto-géré)                          | Modération ou déclaratif                |
-| `eidas1`     | Faible                | Simple (mot de passe)                    | Modération ou plus                      |
-| `eidas1-mfa` | Faible                | MFA (auto-géré)                          | Modération ou plus                      |
-| `eidas2`     | Substantielle         | MFA (géré par l'organisation)            | Lien certifié par une source officielle |
-| `eidas3`     | Élevée                | MFA matérielle (géré par l'organisation) | Lien certifié par une source officielle |
+| Valeur `acr` | Identité              | Authentification                               | Organisation                            |
+| ------------ | --------------------- | ---------------------------------------------- | --------------------------------------- |
+| `eidas0`     | Faible ou déclarative | Simple (mot de passe)                          | Modération ou déclaratif                |
+| `eidas0-mfa` | Faible ou déclarative | MFA faible                                     | Modération ou déclaratif                |
+| `eidas1`     | Faible                | Simple (mot de passe)                          | Modération ou plus                      |
+| `eidas1-mfa` | Faible                | MFA faible                                     | Modération ou plus                      |
+| `eidas2`     | Substantielle         | MFA forte (géré par l'organisation)            | Lien certifié par une source officielle |
+| `eidas3`     | Élevée                | MFA forte matérielle (géré par l'organisation) | Lien certifié par une source officielle |
 
 Les niveaux eIDAS sont construits sur trois piliers indépendants. Comprendre chacun d'eux permet de choisir le niveau adapté à votre contexte.
 
@@ -48,31 +48,35 @@ Un facteur d'authentification appartient à l'une des trois catégories suivante
 
 Une authentification multi-facteur (MFA) doit combiner au moins deux facteurs appartenant à des catégories différentes. Deux mots de passe ne constituent pas une MFA.
 
-Deux critères issus du règlement permettent de distinguer les niveaux MFA entre eux :
+Le [Guide ANSSI sur l'authentification multifacteur et les mots de passe](https://messervices.cyber.gouv.fr/documents-guides/anssi-guide-authentification_multifacteur_et_mots_de_passe.pdf) établit une distinction importante : une MFA n'est pas nécessairement une authentification forte. Une MFA faible combine plusieurs facteurs sans qu'aucun ne repose sur un mécanisme cryptographique robuste. Une MFA forte fait intervenir au moins un facteur cryptographiquement fort. Le guide cite explicitement TOTP, HOTP, FIDO2 et les certificats comme exemples de tels facteurs.
 
-- **Contrôle du facteur (section 2.2.1)** : peut-on _présumer_ que le second facteur est sous contrôle exclusif de la personne, ou la protection est-elle _fiable_ par construction ?
-- **Résistance aux attaques (section 2.3.1)** : le mécanisme résiste-t-il à un attaquant à potentiel _modéré_ ou _élevé_ ?
+Trois critères permettent de distinguer les niveaux MFA entre eux :
 
-| Méthode                                  | Explication                                                                                                                                                                                                            |
-| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Simple                                   | Un seul facteur d'authentification.                                                                                                                                                                                    |
-| MFA (auto-géré)                          | Deux facteurs de catégories différentes. Contrôle : **présumé** exclusif. Résistance : attaquant à potentiel **modéré**. Le second facteur est configuré et géré par l'utilisateur lui-même.                           |
-| MFA (géré par l'organisation)            | Identique à MFA (auto-géré) du point de vue eIDAS, contrôle **présumé**, résistance **modérée**. Seule différence : l'organisation maîtrise le cycle de vie du second facteur (distribution, association, révocation). |
-| MFA matérielle (géré par l'organisation) | Deux facteurs de catégories différentes. Contrôle : **fiable** (le facteur est physique et sa clé ne peut pas être extraite). Résistance : attaquant à potentiel **élevé**.                                            |
+- **Force cryptographique** (Guide ANSSI) : le second facteur repose-t-il sur un protocole cryptographique fort (TOTP, FIDO2…) ou non ?
+- **Contrôle du facteur** (eIDAS 2.2.1) : peut-on _présumer_ que le second facteur est sous contrôle exclusif de la personne, ou la protection est-elle _fiable_ par construction ?
+- **Résistance aux attaques** (eIDAS 2.3.1) : le mécanisme résiste-t-il à un attaquant à potentiel _modéré_ ou _élevé_ ?
+
+| Méthode                                        | Explication                                                                                                                                                                                                     |
+| ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Simple                                         | Un seul facteur d'authentification.                                                                                                                                                                             |
+| MFA faible                                     | Deux facteurs de catégories différentes. Aucun n'est cryptographiquement fort. Le second facteur est géré par l'utilisateur.                                                                                    |
+| MFA forte (géré par l'organisation)            | Deux facteurs de catégories différentes. Au moins un facteur est cryptographiquement fort (TOTP, FIDO2…). Contrôle : _présumé_ exclusif. Résistance : attaquant _modéré_. Cycle de vie géré par l'organisation. |
+| MFA forte matérielle (géré par l'organisation) | Deux facteurs de catégories différentes. Le second facteur est physique, sa clé est ancrée dans un composant de sécurité et ne peut pas être extraite. Contrôle : _fiable_. Résistance : attaquant _élevé_.     |
 
 ### 3.1. Exemples commentés
 
-Les exemples suivants illustrent pourquoi une méthode donnée atteint eidas2 mais pas eidas3, ou eidas3. La distinction repose sur les deux critères du règlement : garantie _présumée_ ou _fiable_ sur le contrôle du facteur, et résistance à un attaquant à potentiel _modéré_ ou _élevé_.
+Les exemples suivants illustrent pourquoi une méthode donnée atteint eidas1-mfa, eidas2 ou eidas3. La distinction repose sur les trois critères : force cryptographique du second facteur, garantie _présumée_ ou _fiable_ sur son contrôle, et résistance à un attaquant _modéré_ ou _élevé_.
 
-| Méthode                                         | Niveau max      | Pourquoi pas l'autre                                                                                                                                      |
-| ----------------------------------------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| TOTP (application authenticator)                | eidas2          | Le secret TOTP peut être sauvegardé et transféré sur un autre appareil → seulement _présumé_ sous contrôle exclusif. Ne résiste pas à un attaquant élevé. |
-| SMS OTP                                         | eidas2          | Vulnérable au SIM swapping et à l'interception SS7 → ne résiste pas à un attaquant élevé.                                                                 |
-| Push notification (ex. Microsoft Authenticator) | eidas2          | Dépend de la sécurité de l'appareil et du compte cloud associé → seulement _présumée_ sous contrôle exclusif.                                             |
-| Passkey synchronisé (ex. iCloud Keychain)       | eidas2          | La clé est synchronisée entre appareils → seulement _présumée_ sous contrôle exclusif. Ne résiste pas à un attaquant élevé.                               |
-| Passkey non-synchronisé (hardware-backed)       | eidas2 à eidas3 | Si la clé est ancrée dans la puce de l'appareil et non exportable, peut atteindre une garantie _fiable_. Dépend de l'implémentation.                      |
-| Carte à puce + PIN (ex. carte agent)            | eidas3          | La clé privée est ancrée dans la puce et ne peut pas être extraite → garantie _fiable_. Résiste aux attaquants à potentiel élevé.                         |
-| Clé FIDO2 matérielle (ex. YubiKey) + PIN        | eidas3          | Clé générée dans le secure element, non exportable → garantie _fiable_. Résiste aux attaquants à potentiel élevé.                                         |
+| Méthode                                         | Niveau max      | Pourquoi                                                                                                                                                 |
+| ----------------------------------------------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Mot de passe                                    | eidas1          | Facteur de connaissance unique, pas de protocole cryptographique fort, deux facteurs de catégories différentes sont requis pour atteindre un niveau MFA. |
+| SMS OTP                                         | eidas1-mfa      | Canal non sécurisé (interception SS7, SIM swapping) → pas un facteur cryptographiquement fort.                                                           |
+| TOTP (application authenticator)                | eidas2          | Protocole cryptographique fort, mais le secret peut être sauvegardé et transféré sur un autre appareil → seulement _présumé_ sous contrôle exclusif.     |
+| Push notification (ex. Microsoft Authenticator) | eidas2          | Protocole cryptographique fort, mais dépend de la sécurité de l'appareil et du compte cloud associé → seulement _présumée_ sous contrôle exclusif.       |
+| Passkey synchronisé (ex. iCloud Keychain)       | eidas2          | Protocole cryptographique fort, mais la clé est synchronisée entre appareils → seulement _présumée_ sous contrôle exclusif.                              |
+| Passkey non-synchronisé (hardware-backed)       | eidas2 à eidas3 | Si la clé est ancrée dans la puce de l'appareil et non exportable, peut atteindre une garantie _fiable_. Dépend de l'implémentation.                     |
+| Carte à puce + PIN (ex. carte agent)            | eidas3          | La clé privée est ancrée dans la puce et ne peut pas être extraite → garantie _fiable_. Résiste aux attaquants à potentiel élevé.                        |
+| Clé FIDO2 matérielle (ex. YubiKey) + PIN        | eidas3          | Clé générée dans le secure element, non exportable → garantie _fiable_. Résiste aux attaquants à potentiel élevé.                                        |
 
 ## 4. Le lien avec l'organisation
 

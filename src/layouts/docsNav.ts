@@ -55,6 +55,10 @@ export const docTree: SideMenuProps.Item[] = [
         linkProps: { href: "/docs/ressources/claim_amr" },
       },
       {
+        text: "Norme eIDAS",
+        linkProps: { href: "/docs/ressources/norme_eidas" },
+      },
+      {
         text: "Glossaire",
         linkProps: { href: "/docs/ressources/glossaire" },
       },
