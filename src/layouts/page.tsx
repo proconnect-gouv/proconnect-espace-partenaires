@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 import { Footer } from "@codegouvfr/react-dsfr/Footer";
 import { Header } from "@codegouvfr/react-dsfr/Header";
@@ -77,9 +77,7 @@ export function PageLayout({ children }: LayoutProps) {
             text: "Aide",
           },
           {
-            buttonProps: {
-              onClick: () => signOut({ callbackUrl: "/" }),
-            },
+            linkProps: { href: "/api/proconnect/logout" },
             iconId: "fr-icon-logout-box-r-line" as const,
             text: `Déconnecter ${session.user.email}`,
           },

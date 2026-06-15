@@ -24,7 +24,7 @@ export const authOptions: AuthOptions = {
     signIn: "/login",
     signOut: "/login",
     error: "/login",
-    verifyRequest: "/login",
+    verifyRequest: "/auth/verify-request",
   },
   session: {
     strategy: "database" as const,
