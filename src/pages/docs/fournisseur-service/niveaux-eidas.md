@@ -14,14 +14,14 @@ ProConnect communique le niveau de confiance d'une authentification via l'attrib
 - **Authentification** : comment l'utilisateur s'est-il authentifié ?
 - **Organisation** : quel est le lien entre l'utilisateur et son organisation ?
 
-| Valeur `acr` | Identité              | Authentification                               | Organisation                            |
-| ------------ | --------------------- | ---------------------------------------------- | --------------------------------------- |
-| `eidas0`     | Faible ou déclarative | Simple (mot de passe)                          | Modération ou déclaratif                |
-| `eidas0-mfa` | Faible ou déclarative | MFA faible                                     | Modération ou déclaratif                |
-| `eidas1`     | Faible                | Simple (mot de passe)                          | Modération ou plus                      |
-| `eidas1-mfa` | Faible                | MFA faible                                     | Modération ou plus                      |
-| `eidas2`     | Substantielle         | MFA forte (géré par l'organisation)            | Lien certifié par une source officielle |
-| `eidas3`     | Élevée                | MFA forte matérielle (géré par l'organisation) | Lien certifié par une source officielle |
+| Valeur `acr` | Identité              | Authentification      | Organisation                            |
+| ------------ | --------------------- | --------------------- | --------------------------------------- |
+| `eidas0`     | Faible ou déclarative | Simple (mot de passe) | Modération ou déclaratif                |
+| `eidas0-mfa` | Faible ou déclarative | MFA faible            | Modération ou déclaratif                |
+| `eidas1`     | Faible                | Simple (mot de passe) | Modération ou plus                      |
+| `eidas1-mfa` | Faible                | MFA faible            | Modération ou plus                      |
+| `eidas2`     | Substantielle         | MFA forte             | Lien certifié par une source officielle |
+| `eidas3`     | Élevée                | MFA forte matérielle  | Lien certifié par une source officielle |
 
 ## 2. Comment exiger un niveau minimum ?
 
