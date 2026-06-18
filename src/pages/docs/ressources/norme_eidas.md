@@ -13,14 +13,14 @@ ProConnect communique le niveau de confiance d'une authentification via l'attrib
 - **Authentification** : comment l'utilisateur s'est-il authentifié ?
 - **Organisation** : quel est le lien entre l'utilisateur et son organisation ?
 
-| Valeur `acr` | Identité              | Authentification                               | Organisation                            |
-| ------------ | --------------------- | ---------------------------------------------- | --------------------------------------- |
-| `eidas0`     | Faible ou déclarative | Simple (mot de passe)                          | Modération ou déclaratif                |
-| `eidas0-mfa` | Faible ou déclarative | MFA faible                                     | Modération ou déclaratif                |
-| `eidas1`     | Faible                | Simple (mot de passe)                          | Modération ou plus                      |
-| `eidas1-mfa` | Faible                | MFA faible                                     | Modération ou plus                      |
-| `eidas2`     | Substantielle         | MFA forte (géré par l'organisation)            | Lien certifié par une source officielle |
-| `eidas3`     | Élevée                | MFA forte matérielle (géré par l'organisation) | Lien certifié par une source officielle |
+| Valeur `acr` | Identité              | Authentification      | Organisation                            |
+| ------------ | --------------------- | --------------------- | --------------------------------------- |
+| `eidas0`     | Faible ou déclarative | Simple (mot de passe) | Modération ou déclaratif                |
+| `eidas0-mfa` | Faible ou déclarative | MFA faible            | Modération ou déclaratif                |
+| `eidas1`     | Faible                | Simple (mot de passe) | Modération ou plus                      |
+| `eidas1-mfa` | Faible                | MFA faible            | Modération ou plus                      |
+| `eidas2`     | Substantielle         | MFA forte             | Lien certifié par une source officielle |
+| `eidas3`     | Élevée                | MFA forte matérielle  | Lien certifié par une source officielle |
 
 Les niveaux eIDAS sont construits sur trois piliers indépendants. Comprendre chacun d'eux permet de choisir le niveau adapté à votre contexte.
 
@@ -56,12 +56,12 @@ Trois critères permettent de distinguer les niveaux MFA entre eux :
 - **Contrôle du facteur** (eIDAS 2.2.1) : peut-on _présumer_ que le second facteur est sous contrôle exclusif de la personne, ou la protection est-elle _fiable_ par construction ?
 - **Résistance aux attaques** (eIDAS 2.3.1) : le mécanisme résiste-t-il à un attaquant à potentiel _modéré_ ou _élevé_ ?
 
-| Méthode                                        | Explication                                                                                                                                                                                                     |
-| ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Simple                                         | Un seul facteur d'authentification.                                                                                                                                                                             |
-| MFA faible                                     | Deux facteurs de catégories différentes. Aucun n'est cryptographiquement fort. Le second facteur est géré par l'utilisateur.                                                                                    |
-| MFA forte (géré par l'organisation)            | Deux facteurs de catégories différentes. Au moins un facteur est cryptographiquement fort (TOTP, FIDO2…). Contrôle : _présumé_ exclusif. Résistance : attaquant _modéré_. Cycle de vie géré par l'organisation. |
-| MFA forte matérielle (géré par l'organisation) | Deux facteurs de catégories différentes. Le second facteur est physique, sa clé est ancrée dans un composant de sécurité et ne peut pas être extraite. Contrôle : _fiable_. Résistance : attaquant _élevé_.     |
+| Méthode              | Explication                                                                                                                                                                                                 |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Simple               | Un seul facteur d'authentification.                                                                                                                                                                         |
+| MFA faible           | Deux facteurs de catégories différentes. Aucun n'est cryptographiquement fort. Le second facteur est géré par l'utilisateur.                                                                                |
+| MFA forte            | Deux facteurs de catégories différentes. Au moins un facteur est cryptographiquement fort (TOTP, FIDO2…). Contrôle : _présumé_ exclusif. Résistance : attaquant _modéré_.                                   |
+| MFA forte matérielle | Deux facteurs de catégories différentes. Le second facteur est physique, sa clé est ancrée dans un composant de sécurité et ne peut pas être extraite. Contrôle : _fiable_. Résistance : attaquant _élevé_. |
 
 ### 3.1. Exemples commentés
 

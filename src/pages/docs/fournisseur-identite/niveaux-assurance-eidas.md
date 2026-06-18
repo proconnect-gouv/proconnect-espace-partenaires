@@ -11,14 +11,14 @@ ProConnect communique le niveau de confiance d'une authentification via l'attrib
 - **Authentification** : comment l'utilisateur s'est-il authentifié ?
 - **Organisation** : quel est le lien entre l'utilisateur et son organisation ?
 
-| Valeur `acr` | Identité              | Authentification                         | Organisation                            |
-| ------------ | --------------------- | ---------------------------------------- | --------------------------------------- |
-| `eidas0`     | Faible ou déclarative | Simple (mot de passe)                    | Modération ou déclaratif                |
-| `eidas0-mfa` | Faible ou déclarative | MFA (auto-géré)                          | Modération ou déclaratif                |
-| `eidas1`     | Faible                | Simple (mot de passe)                    | Modération ou plus                      |
-| `eidas1-mfa` | Faible                | MFA (auto-géré)                          | Modération ou plus                      |
-| `eidas2`     | Substantielle         | MFA (géré par l'organisation)            | Lien certifié par une source officielle |
-| `eidas3`     | Élevée                | MFA matérielle (géré par l'organisation) | Lien certifié par une source officielle |
+| Valeur `acr` | Identité              | Authentification      | Organisation                            |
+| ------------ | --------------------- | --------------------- | --------------------------------------- |
+| `eidas0`     | Faible ou déclarative | Simple (mot de passe) | Modération ou déclaratif                |
+| `eidas0-mfa` | Faible ou déclarative | MFA (auto-géré)       | Modération ou déclaratif                |
+| `eidas1`     | Faible                | Simple (mot de passe) | Modération ou plus                      |
+| `eidas1-mfa` | Faible                | MFA (auto-géré)       | Modération ou plus                      |
+| `eidas2`     | Substantielle         | MFA forte             | Lien certifié par une source officielle |
+| `eidas3`     | Élevée                | MFA forte matérielle  | Lien certifié par une source officielle |
 
 ## Ce que cela signifie pour un FI
 
@@ -26,12 +26,12 @@ En tant que Fournisseur d'Identité, vous maîtrisez les trois piliers : l'ident
 
 En pratique, **le niveau que vous retournez est déterminé par la méthode d'authentification que vous proposez** :
 
-| Méthode d'authentification                     | Niveau retourné | Exemples                                           |
-| ---------------------------------------------- | --------------- | -------------------------------------------------- |
-| Simple (mot de passe)                          | `eidas1`        | Mot de passe seul                                  |
-| MFA faible (géré par l'agent)                  | `eidas1-mfa`    | SMS OTP                                            |
-| MFA forte (géré par l'organisation)            | `eidas2`        | TOTP distribué par les RH, push notification       |
-| MFA forte matérielle (géré par l'organisation) | `eidas3`        | Carte à puce + PIN, clé FIDO2 matérielle (YubiKey) |
+| Méthode d'authentification    | Niveau retourné | Exemples                                           |
+| ----------------------------- | --------------- | -------------------------------------------------- |
+| Simple (mot de passe)         | `eidas1`        | Mot de passe seul                                  |
+| MFA faible (géré par l'agent) | `eidas1-mfa`    | SMS OTP                                            |
+| MFA forte                     | `eidas2`        | TOTP, push notification, passkey                   |
+| MFA forte matérielle          | `eidas3`        | Carte à puce + PIN, clé FIDO2 matérielle (YubiKey) |
 
 Pour le détail des méthodes MFA qui atteignent eidas2 ou eidas3 (et pourquoi certaines n'atteignent pas eidas3), voir [Norme eIDAS — La méthode d'authentification](../ressources/norme_eidas.md#3-la-méthode-dauthentification).
 
@@ -39,12 +39,11 @@ Pour implémenter la MFA côté FI, voir [Authentification multi-facteur](./auth
 
 ### La distinction eidas1-mfa / eidas2
 
-La frontière repose sur deux critères cumulatifs pour eidas2 :
+La frontière repose sur la force cryptographique du second facteur :
 
 - **Force cryptographique** (Guide ANSSI) : eidas2 requiert un facteur cryptographiquement fort (TOTP, FIDO2…). Un SMS OTP, canal non sécurisé, n'y atteint pas.
-- **Cycle de vie géré par l'organisation** : à eidas2, l'organisation maîtrise la distribution, l'association et la révocation du second facteur.
 
-| Niveau       | Second facteur                    | Cycle de vie            | Exemple                   |
-| ------------ | --------------------------------- | ----------------------- | ------------------------- |
-| `eidas1-mfa` | MFA faible (pas de crypto fort)   | Géré par l'agent        | SMS OTP                   |
-| `eidas2`     | MFA forte (protocole crypto fort) | Géré par l'organisation | TOTP distribué par les RH |
+| Niveau       | Second facteur                    | Exemple                          |
+| ------------ | --------------------------------- | -------------------------------- |
+| `eidas1-mfa` | MFA faible (pas de crypto fort)   | SMS OTP                          |
+| `eidas2`     | MFA forte (protocole crypto fort) | TOTP, push notification, passkey |
