@@ -1,8 +1,5 @@
 # Niveaux d'assurance eidas pour les Fournisseurs de Service
 
-> [!CAUTION]
-> Les niveaux ACR renvoyés par ProConnect sont actuellement en cours de définition en collaboration avec nos partenaires et l'ANSSI.
-
 > [!NOTE]
 > Pour en savoir plus sur la norme eIDAS à ProConnect, nous avons rédigé une ressource commune aux Fournisseurs d'Identité et Fournisseurs de Service disponible ici → [Norme eIDAS](../ressources/norme_eidas.md). Elle expliquera en détails avec des exemples les différents éléments de la norme.
 
