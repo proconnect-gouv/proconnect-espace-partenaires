@@ -8,9 +8,6 @@ Pour comprendre comment un FS configure cette exigence de son côté, consultez 
 
 Pour savoir quelle méthode d'authentification correspond à chaque niveau demandé (`eidas2`, `eidas3`…), consultez [Niveaux d'assurance — Ce que cela signifie pour un FI](./niveaux-assurance-eidas.md#ce-que-cela-signifie-pour-un-fi).
 
-> [!CAUTION]
-> Ces niveaux sont provisoires et seront définitifs au T2 2026. Vous pouvez commencer à les implémenter pour être MFA-ready.
-
 ## Ce que ProConnect vous envoie
 
 Lorsqu'un FS exige une MFA, ProConnect transmet cette exigence à votre FI via le paramètre `claims` de la requête à l'`authorization_endpoint`. Voici une demande de MFA standard :
