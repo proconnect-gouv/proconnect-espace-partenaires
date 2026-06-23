@@ -27,7 +27,7 @@ Selon votre environnement et le réseau de votre FI :
 ### 3.1. Intégration
 
 1. Rendez-vous sur l'URL de test correspondant à votre réseau (tableau ci-dessus)
-2. Cliquez sur **"S'identifier avec ProConnect"**
+2. Cliquez sur **"Connexion - Implémentation Fournisseur d'Identité"**
 3. Saisissez une adresse e-mail dont le domaine correspond à votre FI
 4. Cliquez sur **"Se connecter"** : vous devriez être redirigé vers votre portail d'authentification
 5. Connectez-vous avec des identifiants de recette sur votre FI
