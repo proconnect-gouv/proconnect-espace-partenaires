@@ -50,6 +50,7 @@ Nous vous recommandons de lire [notre page généraliste sur l'implémentation t
 | [Scopes et claims](./scope-claims.md)               | Quels scopes et claims utiliser ?                                                                   |
 | [Scope custom](./custom-scope.md)                   | Comment récupérer les données non canoniques qui seraient renvoyées par un FI via le scope custom ? |
 | [Scope organization_label](./organization_label.md) | Comment récupérer le nom de l'organisation à laquelle appartient l'usager ?                         |
+| [Scope roles](./roles.md)                           | Comment savoir si l'utilisateur authentifié est un agent public ?                                   |
 | [FI utilisé](./connaitre-le-fi-utilise.md)          | Comment savoir avec quel Fournisseur d'Identité s'est authentifié mon utilisateur ?                 |
 
 ## 🔒 5. Sécurité
