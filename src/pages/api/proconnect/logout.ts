@@ -1,26 +1,29 @@
-import { prisma_espace } from "@/lib/prisma";
 import { randomBytes } from "crypto";
 import { NextApiRequest, NextApiResponse } from "next";
+import { getServerSession } from "next-auth/next";
 import * as oidcClient from "openid-client";
+import { prisma_espace } from "../../../lib/prisma";
 import { getProConnectConfig } from "../../../lib/proconnect";
+import { authOptions } from "../auth/[...nextauth]";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const idTokenHint = req.cookies.pc_id_token;
+  const session = await getServerSession(req, res, authOptions);
 
-  if (!idTokenHint) {
-    const cookieName =
-      process.env.NODE_ENV === "production"
-        ? "__Secure-next-auth.session-token"
-        : "next-auth.session-token";
-    const sessionToken = req.cookies[cookieName] || req.cookies["next-auth.session-token"];
-    if (sessionToken) {
-      await prisma_espace.session.deleteMany({ where: { sessionToken } });
-    }
-    res.setHeader("Set-Cookie", [
-      `next-auth.session-token=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax`,
-      `__Secure-next-auth.session-token=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax; Secure`,
-    ]);
+  if (!session) {
     return res.redirect("/");
+  }
+
+  // Récupérer l'id_token depuis la table Account
+  const account = await prisma_espace.account.findFirst({
+    where: {
+      userId: (session.user as { id: string }).id,
+      provider: "proconnect",
+    },
+  });
+
+  if (!account?.id_token) {
+    // Pas de compte ProConnect, déconnexion simple via NextAuth
+    return res.redirect(`/api/auth/signout?callbackUrl=/`);
   }
 
   const state = randomBytes(32).toString("hex");
@@ -30,7 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const config = await getProConnectConfig();
 
   const logoutUrl = oidcClient.buildEndSessionUrl(config, {
-    id_token_hint: idTokenHint,
+    id_token_hint: account.id_token,
     post_logout_redirect_uri: `${process.env.NEXTAUTH_URL}/api/proconnect/logout-callback`,
     state,
   });

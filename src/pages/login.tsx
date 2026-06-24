@@ -78,7 +78,7 @@ export default function Login() {
               )}
 
               <div style={{ textAlign: "center" }}>
-                <ProConnectButton url="/api/proconnect/login" />
+                <ProConnectButton onClick={() => signIn("proconnect", { callbackUrl: "/apps" })} />
               </div>
 
               <div className="divider">ou</div>
