@@ -36,13 +36,18 @@ const { withDsfr, dsfrDocumentApi } = createNextDsfrIntegrationApi({
 
 export { dsfrDocumentApi };
 
-const { withAppEmotionCache, augmentDocumentWithEmotionCache } = createEmotionSsrAdvancedApproach({
-  key: "css",
-});
+const { withAppEmotionCache, augmentDocumentWithEmotionCache } =
+  createEmotionSsrAdvancedApproach({
+    key: "css",
+  });
 
 export { augmentDocumentWithEmotionCache };
 
-function App({ Component, pageProps: { session, ...pageProps }, router }: AppProps) {
+function App({
+  Component,
+  pageProps: { session, ...pageProps },
+  router,
+}: AppProps) {
   useEffect(() => {
     init({
       url: process.env.NEXT_PUBLIC_MATOMO_URL ?? "",
@@ -66,10 +71,13 @@ function App({ Component, pageProps: { session, ...pageProps }, router }: AppPro
         description="Documentation technique et gestion des applications en développement"
         openGraph={{
           title: "Espace Partenaires ProConnect",
-          description: "Documentation technique et gestion des applications en développement",
+          description:
+            "Documentation technique et gestion des applications en développement",
           images: [
             {
-              url: process.env.NEXT_PUBLIC_SITE_URL + "/images/espace-partenaires-hero.png",
+              url:
+                process.env.NEXT_PUBLIC_SITE_URL +
+                "/images/espace-partenaires-hero.png",
               width: 1000,
               height: 370,
               alt: "Espace Partenaires ProConnect",
