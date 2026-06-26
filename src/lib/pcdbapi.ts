@@ -14,27 +14,24 @@ export interface OidcClient {
   active: boolean;
   client_secret?: string;
   key?: string;
-
-  // Not sure we need to expose the following fields:
-  site?: string[];
-  entityId?: string;
-  scopes?: string[];
-  claims?: string[];
-  IPServerAddressesAndRanges?: string[];
-  credentialsFlow?: boolean;
   createdAt?: string;
   updatedAt?: string;
-  updatedBy?: string;
-  type?: string;
-  jwks_uri?: string;
 }
 
 export class PCDBClient {
-  private generateSignature(timestamp: string, method: string, path: string, body?: string) {
+  private generateSignature(
+    timestamp: string,
+    method: string,
+    path: string,
+    body?: string,
+  ) {
     const message = body
       ? `${timestamp}:${method}:${path}:${body}`
       : `${timestamp}:${method}:${path}`;
-    return crypto.createHmac("sha256", API_SECRET).update(message).digest("hex");
+    return crypto
+      .createHmac("sha256", API_SECRET)
+      .update(message)
+      .digest("hex");
   }
 
   private async request<T>(
@@ -77,7 +74,10 @@ export class PCDBClient {
     return this.request("GET", `/api/oidc_clients/${id}?email=${email}`);
   }
 
-  async createOidcClient(email: string, data: Partial<OidcClient>): Promise<OidcClient> {
+  async createOidcClient(
+    email: string,
+    data: Partial<OidcClient>,
+  ): Promise<OidcClient> {
     return this.request("POST", `/api/oidc_clients?email=${email}`, data);
   }
 
@@ -86,7 +86,11 @@ export class PCDBClient {
     email: string,
     data: Partial<OidcClient>,
   ): Promise<OidcClient> {
-    return this.request("PATCH", `/api/oidc_clients/${id}?email=${email}`, data);
+    return this.request(
+      "PATCH",
+      `/api/oidc_clients/${id}?email=${email}`,
+      data,
+    );
   }
 }
 
