@@ -10,9 +10,9 @@ import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
 import { SideMenu } from "../../components/AppSideMenu";
 import { CopyableField } from "../../components/CopyableField";
+import { EditableList } from "../../components/EditableList";
 import { MaintenanceBanner } from "../../components/MaintenanceBanner";
 import { NotificationsContainer } from "../../components/NotificationsContainer";
-import { ProviderUrl } from "../../components/ProviderUrl";
 import { OidcClient, pcdbClient } from "../../lib/pcdbapi";
 import { authOptions } from "../api/auth/[...nextauth]";
 
@@ -49,6 +49,9 @@ const SIGNATURE_ALGORITHMS = [
     value: "HS256",
   },
 ] as const;
+
+const EMAIL_PATTERN = /^\S+@\S+\.\S+$/;
+const URL_PATTERN = /^https?:\/\/[^/].+$/;
 
 export default function AppDetailPage({
   app,
@@ -115,7 +118,7 @@ export default function AppDetailPage({
       // For name, use debounced save
       debouncedSave(updates);
     } else {
-      // For URLs, save immediately
+      // For items that are updated on button click, save immediately
       handleSave(updates);
     }
   };
@@ -211,24 +214,32 @@ export default function AppDetailPage({
             </div>
 
             <div id="urls">
-              <ProviderUrl
-                urls={data.redirect_uris}
+              <EditableList
+                items={data.redirect_uris}
                 onUpdate={(redirect_uris) => handleUpdate({ redirect_uris })}
                 title="Configuration des URLs de redirection"
-                description="Saisissez l&rsquo;adresse des pages sur lesquelles vos utilisateurs seront redirigés après leur authentification sur ProConnect."
+                description="Saisissez l’adresse des pages sur lesquelles vos utilisateurs seront redirigés après leur authentification sur ProConnect."
                 label="URL de la page de redirection :"
+                placeholder="https://example.com"
+                inputValidationErrorMessage="L'URL doit commencer par https:// ou http:// et contenir un nom de domaine"
+                validateInput={(input) => URL_PATTERN.test(input)}
+                tableTitle="URLs configurées"
               />
             </div>
 
             <div id="urls-deconnexion">
-              <ProviderUrl
-                urls={data.post_logout_redirect_uris || []}
+              <EditableList
+                items={data.post_logout_redirect_uris}
                 onUpdate={(post_logout_redirect_uris) =>
                   handleUpdate({ post_logout_redirect_uris })
                 }
                 title="Configuration des URLs de déconnexion"
-                description="Saisissez l&rsquo;adresse des pages sur lesquelles vous souhaitez rediriger l&rsquo;utilisateur après sa déconnexion."
+                description="Saisissez l’adresse des pages sur lesquelles vos utilisateurs seront redirigés après leur déconnexion."
                 label="URL de la page de déconnexion :"
+                placeholder="https://example.com"
+                inputValidationErrorMessage="L'URL doit commencer par https:// ou http:// et contenir un nom de domaine"
+                validateInput={(input) => URL_PATTERN.test(input)}
+                tableTitle="URLs configurées"
               />
             </div>
 
@@ -276,6 +287,20 @@ export default function AppDetailPage({
                   Aucun - Non recommandé
                 </option>
               </Select>
+            </div>
+
+            <div id="collaborators" className={fr.cx("fr-mb-10v")}>
+              <EditableList
+                items={data.collaborators}
+                onUpdate={(collaborators) => handleUpdate({ collaborators })}
+                title="Personnes collaboratrices"
+                description="Saisissez les adresses des personnes que vous souhaitez autoriser à modifier votre application."
+                label="Adresse e-mail :"
+                placeholder="agent@example.com"
+                inputValidationErrorMessage="Veuillez saisir une adresse e-mail valide."
+                validateInput={(input) => EMAIL_PATTERN.test(input)}
+                tableTitle="Liste des personnes collaboratrices"
+              />
             </div>
 
             <div id="production" className={fr.cx("fr-mb-10v")}>

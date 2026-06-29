@@ -9,6 +9,7 @@ export interface OidcClient {
   email: string;
   redirect_uris: string[];
   post_logout_redirect_uris: string[];
+  collaborators: string[];
   id_token_signed_response_alg: string;
   userinfo_signed_response_alg: string | null;
   active: boolean;

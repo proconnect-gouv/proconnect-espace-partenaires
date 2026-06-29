@@ -5,31 +5,34 @@ import { Table } from "@codegouvfr/react-dsfr/Table";
 import { ChangeEvent, useState } from "react";
 
 type Props = {
-  urls: string[];
-  onUpdate: (urls: string[]) => void;
-  title?: string;
-  description?: string;
-  label?: string;
+  items: string[];
+  onUpdate: (items: string[]) => void;
+  title: string;
+  description: string;
+  label: string;
+  placeholder: string;
+  validateInput: (input: string) => boolean;
+  inputValidationErrorMessage: string;
+  tableTitle: string;
 };
 
-export const ProviderUrl = ({
-  urls = [],
+export const EditableList = ({
+  items,
   onUpdate,
-  title = "",
-  description = "",
-  label = "",
+  title,
+  description,
+  label,
+  placeholder,
+  validateInput,
+  inputValidationErrorMessage,
+  tableTitle,
 }: Props) => {
-  const [inputUrl, setInputUrl] = useState<string>("");
+  const [inputText, setInputText] = useState<string>("");
   const [inputError, setInputError] = useState<string | null>(null);
-
-  const validateUrl = (url: string): boolean => {
-    const urlPattern = /^https?:\/\/[^/].+$/;
-    return urlPattern.test(url);
-  };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const value = e.target.value;
-    setInputUrl(value);
+    setInputText(value);
 
     // Clear error when input is empty
     if (!value) {
@@ -38,27 +41,27 @@ export const ProviderUrl = ({
     }
 
     // Only validate while typing if there's already an error
-    if (inputError && validateUrl(value)) {
+    if (inputError && validateInput(value)) {
       setInputError(null);
     }
   };
 
-  const addUrlInArray = () => {
-    const trimmedUrl = inputUrl.trim();
-    if (!trimmedUrl) return;
+  const addItemToArray = () => {
+    const trimmedText = inputText.trim();
+    if (!trimmedText) return;
 
-    if (!validateUrl(trimmedUrl)) {
-      setInputError("L'URL doit commencer par https:// ou http:// et contenir un nom de domaine");
+    if (!validateInput(trimmedText)) {
+      setInputError(inputValidationErrorMessage);
       return;
     }
 
-    onUpdate([...(urls || []), trimmedUrl]);
-    setInputUrl("");
+    onUpdate([...(items || []), trimmedText]);
+    setInputText("");
     setInputError(null);
   };
 
-  const removeUrl = (indexToRemove: number) => {
-    onUpdate(urls.filter((_, index) => index !== indexToRemove));
+  const removeItemFromArray = (indexToRemove: number) => {
+    onUpdate(items.filter((_, index) => index !== indexToRemove));
   };
 
   return (
@@ -66,23 +69,23 @@ export const ProviderUrl = ({
       <h2>{title}</h2>
       <p>{description}</p>
 
-      {urls && urls.length > 0 && (
+      {items && items.length > 0 && (
         <div className={fr.cx("fr-mb-4v")}>
           <Table
-            data={urls.map((url, i) => [
-              url,
+            data={items.map((item, i) => [
+              item,
               <Button
                 key={i}
                 priority="tertiary no outline"
                 iconId="fr-icon-delete-bin-line"
-                onClick={() => removeUrl(i)}
-                title="Supprimer cette URL"
+                onClick={() => removeItemFromArray(i)}
+                title="Supprimer cette ligne"
               >
                 Supprimer
               </Button>,
             ])}
             className={fr.cx("fr-table--no-caption")}
-            headers={["URLs configurées", ""]}
+            headers={[tableTitle, ""]}
             bordered={false}
             noCaption
           />
@@ -97,13 +100,13 @@ export const ProviderUrl = ({
               state={inputError ? "error" : "default"}
               stateRelatedMessage={inputError}
               nativeInputProps={{
-                value: inputUrl,
-                placeholder: "https://",
+                value: inputText,
+                placeholder,
                 onChange: handleInputChange,
                 onKeyPress: (e) => {
                   if (e.key === "Enter") {
                     e.preventDefault();
-                    addUrlInArray();
+                    addItemToArray();
                   }
                 },
               }}
@@ -116,7 +119,7 @@ export const ProviderUrl = ({
               top: "2.1rem", // Aligns with input field accounting for label
             }}
           >
-            <Button disabled={!inputUrl || !!inputError} onClick={addUrlInArray}>
+            <Button disabled={!inputText || !!inputError} onClick={addItemToArray}>
               Ajouter
             </Button>
           </div>

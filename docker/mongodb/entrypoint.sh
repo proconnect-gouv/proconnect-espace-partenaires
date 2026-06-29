@@ -1,29 +1,20 @@
 #!/bin/bash
 
-MONGO_SSL_OPTIONS='--tls --tlsCertificateKeyFile /etc/ssl/mongo.pem --tlsCAFile /etc/ssl/docker-stack-ca.crt'
-MONGOIMPORT_SSL_OPTIONS='--ssl --sslPEMKeyFile /etc/ssl/mongo.pem --sslCAFile /etc/ssl/docker-stack-ca.crt'
-
-echo "Copying keyfile and setting permissions..."
-mkdir -p ~/.mongodb-ssl/
-cp /init/keyfile ~/.mongodb-ssl/keyfile
-chmod 400 ~/.mongodb-ssl/keyfile
-chown 999:999 ~/.mongodb-ssl/keyfile
-
 echo "Starting MongoDB in the background..."
-mongod --replSet rs0 --bind_ip_all --tlsMode requireTLS --tlsCertificateKeyFile /etc/ssl/mongo.pem --keyFile ~/.mongodb-ssl/keyfile &
+mongod --replSet rs0 --bind_ip_all &
 
 echo "Waiting for MongoDB to start..."
-until mongo ${MONGO_SSL_OPTIONS} --eval "printjson(rs.initiate())" 2>/dev/null; do
+until mongo --eval "printjson(rs.initiate())" 2>/dev/null; do
   sleep 1
 done
 
 echo "Waiting for replica set to be ready..."
-until mongo ${MONGO_SSL_OPTIONS} --eval "printjson(rs.status())" | grep -q '"ok" : 1'; do
+until mongo --eval "printjson(rs.status())" | grep -q '"ok" : 1'; do
   sleep 1
 done
 
 echo "Creating the admin user..."
-mongo ${MONGO_SSL_OPTIONS} <<EOF
+mongo <<EOF
 use admin
 db.createUser({
   user: "${MONGO_INITDB_ROOT_USERNAME}",
@@ -39,7 +30,7 @@ EOF
 
 echo "Creating the runtime user"
 
-mongo ${MONGO_SSL_OPTIONS} --username=${MONGO_INITDB_ROOT_USERNAME} --password=${MONGO_INITDB_ROOT_PASSWORD} <<EOF
+mongo --username=${MONGO_INITDB_ROOT_USERNAME} --password=${MONGO_INITDB_ROOT_PASSWORD} <<EOF
 use admin
 
 db = db.getSiblingDB("corev2")
@@ -65,7 +56,7 @@ db.createUser({
 EOF
 
 echo "Seeding the database..."
-mongoimport ${MONGOIMPORT_SSL_OPTIONS} --username=${MONGO_INITDB_ROOT_USERNAME} --password=${MONGO_INITDB_ROOT_PASSWORD} --authenticationDatabase=admin --db corev2 --collection client --file /init/mockdata.json --jsonArray
+mongoimport --username=${MONGO_INITDB_ROOT_USERNAME} --password=${MONGO_INITDB_ROOT_PASSWORD} --authenticationDatabase=admin --db corev2 --collection client --file /init/mockdata.json --jsonArray
 
 # Keep the container running
 wait
