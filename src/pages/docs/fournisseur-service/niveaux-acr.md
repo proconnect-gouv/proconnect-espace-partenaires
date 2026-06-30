@@ -61,9 +61,9 @@ claims={
 
 ProConnect Identité peut renvoyer différentes valeurs `amr`, éventuellement combinées :
 
-- `pwd` : authentification par mot de passe (en complément, un OTP peut être envoyé par e-mail si le navigateur utilisé n’est pas enrôlé).
+- `pwd` : authentification par mot de passe.
 
-- `mail` : authentification via un lien de connexion (« lien magique »).
+- `mail` : authentification avec confirmation par email.
 
 - `otp` : authentification par application « authenticator » (ex. FreeOTP).
 
