@@ -14,7 +14,7 @@ Les valeurs possibles pour `amr` sont les suivantes :
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | pwd        | Authentification par mot de passe. En complément d'un mot de passe, l'utilisateur a authentifié son navigateur avec un one-time password envoyé par mail |
 | mail       | Authentification par lien de connexion "lien magique".                                                                                                   |
-| totp       | Authentification avec une application "authenticator" comme FreeOTP.                                                                                     |
+| otp        | Authentification avec une application "authenticator" comme FreeOTP.                                                                                     |
 | pop        | Authentification avec une clé d'accès (Passkey) ou carte agent.                                                                                          |
 | mfa        | Authentification à deux facteurs.                                                                                                                        |
 

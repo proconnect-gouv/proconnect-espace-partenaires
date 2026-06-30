@@ -65,7 +65,7 @@ ProConnect Identité peut renvoyer différentes valeurs `amr`, éventuellement c
 
 - `mail` : authentification via un lien de connexion (« lien magique »).
 
-- `totp` : authentification par application « authenticator » (ex. FreeOTP).
+- `otp` : authentification par application « authenticator » (ex. FreeOTP).
 
 - `pop` : authentification par clé d’accès (Passkey).
 
