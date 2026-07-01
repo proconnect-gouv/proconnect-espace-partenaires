@@ -1,21 +1,31 @@
-# Quelles sont les valeurs possibles pour le champ amr ?
+# Le claim `amr` : méthodes d'authentification
 
-Pour éviter à un usager d'avoir à s'authentifier auprès de votre Fournisseur de Service avec un second facteur alors qu'il a déjà utilisé une authentification multi-facteur sur un autre Fournisseur de Service, il est possible de récupérer via le claim `amr` la liste des méthodes d'authentification et d'adapter votre parcours en fonction.
+Le claim `amr` (Authentication Methods References, défini dans [RFC 8176](https://www.rfc-editor.org/rfc/rfc8176)) est un tableau de chaînes de caractères présent dans l'ID token. Il décrit les méthodes d'authentification effectivement utilisées lors de la connexion.
 
-Par défaut ce claim `amr` n'est pas retourné dans l'idToken, il doit être demandé explicitement par le Fournisseur de Service. En plus des autres paramètres envoyés lors de l'appel au `authorization_endpoint`, il est nécessaire pour le Fournisseur de Service de passer la valeur suivante :
+- Un **Fournisseur d'Identité** le retourne pour décrire comment l'utilisateur s'est authentifié.
+- Un **Fournisseur de Service** peut le lire pour adapter son parcours — par exemple, éviter de redemander un second facteur si la MFA a déjà été réalisée.
+
+Contrairement à `acr` (niveau d'assurance global), `amr` liste les méthodes concrètes utilisées. Les deux claims sont complémentaires.
+
+## 1. Les valeurs `amr` dans ProConnect
+
+| Valeur `amr` | Description | Statut |
+| ------------ | ----------- | ------ |
+| `pwd`        | Authentification par mot de passe. En complément, un OTP peut être envoyé par email si le navigateur n'est pas enrôlé. | RFC 8176 |
+| `mail`       | Authentification par email reçu. | Extension ProConnect |
+| `otp`        | Authentification avec une application authenticator (TOTP/HOTP, ex. FreeOTP). | RFC 8176 |
+| `pop`        | Authentification avec une clé d'accès (Passkey) ou une carte agent. | Extension ProConnect |
+| `mfa`        | Indique qu'une authentification multi-facteur a été réalisée. Accompagne les autres valeurs. | RFC 8176 |
+
+> [!NOTE]
+> `mail` et `pop` sont des extensions propres à ProConnect. Les valeurs RFC 8176 équivalentes seraient respectivement inexistante pour le lien magique, et `hwk` / `swk` pour les clés d'accès. Il n'existe pas de valeur `amr` standard pour l'email OTP dans RFC 8176.
+
+## 2. Demander le claim `amr` (Fournisseurs de Service)
+
+Par défaut, `amr` n'est pas inclus dans l'ID token. Pour le demander explicitement, ajoutez le paramètre suivant à votre requête `authorization_endpoint` :
 
 | clé      | valeur                      |
 | -------- | --------------------------- |
 | `claims` | `{"id_token":{"amr":null}}` |
 
-Les valeurs possibles pour `amr` sont les suivantes :
-
-| valeur amr | description                                                                                                                                              |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| pwd        | Authentification par mot de passe. En complément d'un mot de passe, l'utilisateur a authentifié son navigateur avec un one-time password envoyé par mail |
-| mail       | Authentification par lien de connexion "lien magique".                                                                                                   |
-| otp        | Authentification avec une application "authenticator" comme FreeOTP.                                                                                     |
-| pop        | Authentification avec une clé d'accès (Passkey) ou carte agent.                                                                                          |
-| mfa        | Authentification à deux facteurs.                                                                                                                        |
-
-Vous trouverez de plus amples informations sur [la documentation de FranceConnect](https://docs.partenaires.franceconnect.gouv.fr/fs/fs-technique/fs-technique-amr/#quels-sont-les-differents-methodes-d-authentification-qui-peuvent-etre-utilisees).
+Pour plus d'informations sur les valeurs `amr` de FranceConnect, voir la [documentation FranceConnect](https://docs.partenaires.franceconnect.gouv.fr/fs/fs-technique/fs-technique-amr/#quels-sont-les-differents-methodes-d-authentification-qui-peuvent-etre-utilisees).

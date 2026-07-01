@@ -30,7 +30,19 @@ Afin de vérifier que votre Fournisseur d'Identité est conforme avec cette nouv
 
 ## Production
 
-## Bonus - les AMR
+## Prendre en compte les AMR
+
+En complément du claim `acr`, votre FI doit retourner les valeurs `amr` correspondant aux méthodes d'authentification effectivement utilisées. Ces valeurs permettent aux Fournisseurs de Service de connaître les méthodes concrètes employées lors de la connexion.
+
+| Méthode d'authentification | `acr` à retourner | Valeurs `amr`           |
+| -------------------------- | ----------------- | ----------------------- |
+| Mot de passe               | `eidas1`          | `["pwd"]`               |
+| Lien magique               | `eidas1`          | `["mail"]`              |
+| Mot de passe + TOTP        | `eidas2`          | `["pwd", "otp", "mfa"]` |
+| Passkey                    | `eidas2`          | `["pop"]`               |
+| Carte agent + PIN          | `eidas3`          | `["pop", "pin"]`        |
+
+Pour la liste complète des valeurs `amr` et leur statut (RFC 8176 standard vs extension ProConnect), voir [Claim AMR](../ressources/claim_amr.md).
 
 ## Notes relatives
 
@@ -40,4 +52,4 @@ Voici quelques notes relatives rédigées par les équipes de ProConnect au suje
 - [Niveaux d'assurance (eidas) pour les FI](./niveaux-assurance-eidas.md) : décrit comment ProConnect utilise l'attribut `acr` et ce que chaque valeur signifie du point de vue d'un Fournisseur d'Identité. À lire pour savoir quelle valeur `acr` retourner selon le parcours d'authentification proposé.
 - [Authentification multi-facteur pour les FI](./authentification-multifacteur.md) : explique comment ProConnect signale une exigence MFA à votre FI et ce que vous devez retourner dans l'ID token. La page de référence pour implémenter la MFA côté FI.
 - [MFA pour les Fournisseurs de Service](../fournisseur-service/double_authentification.md) : explique comment un FS active l'exigence de double authentification. Utile pour comprendre d'où vient la demande que votre FI reçoit et ce que le FS attend en retour.
-- amr ressource commune _(à compléter)_
+- [Claim AMR](../ressources/claim_amr.md) : ressource commune FI/FS qui liste les valeurs `amr` utilisées dans ProConnect, leur correspondance avec les méthodes d'authentification et leur statut vis-à-vis des standards OpenIDConnect.

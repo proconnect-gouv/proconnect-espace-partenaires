@@ -41,6 +41,18 @@ Votre FI doit retourner dans l'ID token la valeur `acr` correspondant au niveau 
 - Ne déclarez pas un niveau plus élevé que ce qui a été réellement accompli
 - Si l'utilisateur n'a pas encore de second facteur configuré ou ne l'a pas utilisé, forcez une étape d'authentification supplémentaire avant de retourner le token
 
+En complément, retournez les valeurs `amr` correspondant aux méthodes effectivement utilisées :
+
+| Méthode d'authentification | `acr` à retourner | Valeurs `amr`           |
+| -------------------------- | ----------------- | ----------------------- |
+| Mot de passe               | `eidas1`          | `["pwd"]`               |
+| Lien magique               | `eidas1`          | `["mail"]`              |
+| Mot de passe + TOTP        | `eidas2`          | `["pwd", "otp", "mfa"]` |
+| Passkey                    | `eidas2`          | `["pop"]`               |
+| Carte agent + PIN          | `eidas3`          | `["pop", "pin"]`        |
+
+Pour la liste complète des valeurs `amr` et leur statut (RFC 8176 standard vs extension ProConnect), voir [Claim AMR](../ressources/claim_amr.md).
+
 ## Comment tester mon Fournisseur d'Identité ?
 
 Pour tester la MFA de votre Fournisseur d'Identité, vous pouvez aller sur :
