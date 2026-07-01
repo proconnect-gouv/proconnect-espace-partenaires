@@ -1,8 +1,64 @@
 # Forcer la double authentification (2FA) sur votre service
 
+## 0. Préambule et Calendrier 2026
+
 > [!CAUTION]
-> La double authentification n’est pas supportée par tous les fournisseurs d’identité de la fédération ProConnect. Avant de forcer la 2FA sur votre service, vérifiez que les fournisseurs d’identité de vos utilisateurs supportent bien le niveau d’assurance requis.<br><br>
-> Si vous souhaitez en savoir plus sur la compatibilité 2FA ou son implémentation technique, contactez l’équipe technique partenaires à : support.partenaires@mail.proconnect.gouv.fr.
+> La double authentification n’est pas supportée par tous les fournisseurs d’identité de la fédération ProConnect. Avant de forcer la 2FA sur votre service, vérifiez le calendrier suivant.
+
+### 0.1. Introduction et état des lieux
+
+La [Feuille de Route Cyber de l'ANSSI](https://cyber.gouv.fr/nous-connaitre/publications/feuilles-de-route-de-la-securite-numerique-de-letat/feuille-de-route-de-securite-numerique-2026-2027/) oblige les Systèmes d'Information à "Déployer une authentification multi-facteur des utilisateurs sur le système d'information et de communication de l'Etat" :
+
+- avant le 28 février 2027 pour les SI à enjeux
+- avant le 28 février 2028 pour l'ensemble des SI
+
+ProConnect et ses Fournisseurs d'Identité sont considérés comme étant des SI à enjeux, le déploiement et la généralisation de la MFA est un de nos gros enjeux 2026.
+
+La majorité des Fournisseurs d'Identité a bien intégré la feuille de route cyber dans leur feuille de route et devraient respecter le délai du 28 février 2027.
+
+La comformité des Fournisseurs d'Identité arrivera au compte-goutte à l'automne. En attendant, ProConnect prendra le relai en proposant un OTP Mail avec une valeur `acr` de `eidas1-mfa`.
+
+Voici un schéma de l'authentification multi-facteur prévue en attendant la comformité générale du 28 février 2027 :
+
+```
+              FS
+              │
+              │ claims acr MFA
+              ▼
+         ProConnect
+              │
+      FI compatible MFA ?
+       ┌──────┴───────────┐
+      OUI                NON
+       │                   │
+       │ demande MFA       │ demande connexion std
+       ▼                   ▼
+      FI                  FI
+       │                   │
+       │ retour MFA        │ retour connexion
+       ▼                   ▼
+  ProConnect          ProConnect
+       │                   │
+       │                   │ OTP mail
+       │                   ▼
+       │             validation OTP
+       │                   │
+       ▼                   ▼
+      FS                  FS
+  acr: selon MFA      acr: eidas1-mfa
+       du FI
+  (eidas1-mfa → eidas3)
+```
+
+### 0.2. Calendrier des prochains mois
+
+| Date               | Étape                                                                                                 |
+| ------------------ | ----------------------------------------------------------------------------------------------------- |
+| Printemps 2026     | Normalisation et implémentation de [la nouvelle norme eidas ProConnect](../ressources/norme_eidas.md) |
+| Début juillet 2026 | WIP technique                                                                                         |
+| Fin juillet 2026   | Implémentation de l'OTP Mail selon le schéma ci-dessus                                                |
+| Fin de l'été 2026  | Les premiers Fournisseurs d'Identité deviennent compatibles MFA ProConnect                            |
+| 28 février 2027    | Tous les FIs sont compatibles MFA                                                                     |
 
 ## 1. Vue d'ensemble
 

@@ -1,12 +1,15 @@
 # Authentification multi-facteur (MFA) pour les Fournisseurs d'Identité
 
+> [!WARNING]
+> La [Feuille de Route Cyber de l'ANSSI](https://cyber.gouv.fr/nous-connaitre/publications/feuilles-de-route-de-la-securite-numerique-de-letat/feuille-de-route-de-securite-numerique-2026-2027/) oblige ProConnect et ses Fournisseurs d'Identité à « Déployer une authentification multi-facteur des utilisateurs sur le système d'information et de communication de l'État » **avant le 28 février 2027**. Pour vérifier si votre Fournisseur d'Identité est conforme à la MFA ProConnect, consultez [la procédure dédiée](./2026_03_conformite_mfa.md).
+
 ## Contexte
 
 Certains Fournisseurs de Service (FS) exigent que leurs utilisateurs s'authentifient avec un second facteur avant d'accéder à leur service. Lorsqu'un FS active cette exigence, ProConnect le signale à votre Fournisseur d'Identité lors de la requête d'autorisation.
 
 Pour comprendre comment un FS configure cette exigence de son côté, consultez [la documentation dédiée aux Fournisseurs de Service](../fournisseur-service/double_authentification.md).
 
-Pour savoir quelle méthode d'authentification correspond à chaque niveau demandé (`eidas2`, `eidas3`…), consultez [Niveaux d'assurance — Ce que cela signifie pour un FI](./niveaux-assurance-eidas.md#ce-que-cela-signifie-pour-un-fi).
+Pour comprendre ce que représente l'`acr` et quelle méthode d'authentification correspond à chaque niveau (`eidas1-mfa`, `eidas3`, …), consultez [Niveaux d'assurance — Qu'est-ce que l'ACR ?](./niveaux-assurance-eidas.md).
 
 ## Ce que ProConnect vous envoie
 
@@ -37,6 +40,18 @@ Votre FI doit retourner dans l'ID token la valeur `acr` correspondant au niveau 
 - Retournez uniquement le niveau que l'utilisateur a effectivement atteint
 - Ne déclarez pas un niveau plus élevé que ce qui a été réellement accompli
 - Si l'utilisateur n'a pas encore de second facteur configuré ou ne l'a pas utilisé, forcez une étape d'authentification supplémentaire avant de retourner le token
+
+En complément, retournez les valeurs `amr` correspondant aux méthodes effectivement utilisées :
+
+| Méthode d'authentification | `acr` à retourner | Valeurs `amr`           |
+| -------------------------- | ----------------- | ----------------------- |
+| Mot de passe               | `eidas1`          | `["pwd"]`               |
+| Lien magique               | `eidas1`          | `["mail"]`              |
+| Mot de passe + TOTP        | `eidas2`          | `["pwd", "otp", "mfa"]` |
+| Passkey                    | `eidas2`          | `["pop"]`               |
+| Carte agent + PIN          | `eidas3`          | `["pop", "pin"]`        |
+
+Pour la liste complète des valeurs `amr` et leur statut (RFC 8176 standard vs extension ProConnect), voir [Claim AMR](../ressources/claim_amr.md).
 
 ## Comment tester mon Fournisseur d'Identité ?
 
