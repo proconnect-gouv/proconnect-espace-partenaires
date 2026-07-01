@@ -19,7 +19,7 @@ Fonctionnalité: Connexion
 
     Alors je dois voir un titre nommé "Vos applications" avec le niveau 1
 
-    Quand je clique sur le bouton nommé "Déconnecter test@test.com"
+    Quand je clique sur le lien nommé "Déconnecter test@test.com"
     Alors je dois voir un titre nommé "Rejoignez les partenaires de ProConnect !" avec le niveau 1
 
     Quand je clique sur le lien nommé "Vos applications"
