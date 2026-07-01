@@ -5,6 +5,8 @@ import { Given, Then, World } from "@uuv/playwright";
 import { randomBytes } from "node:crypto";
 import { PrismaClient } from "../../../../prisma/generated_clients/db_espace";
 
+//
+
 Given("je clique sur {string}", async function (this: World, text: string) {
   await this.page.getByText(text).click();
 });
@@ -34,9 +36,6 @@ const prisma = new PrismaClient({
 //
 
 Given("je suis connecté en tant que {string}", async function (this: World, email: string) {
-  await prisma.session.deleteMany({ where: { user: { email } } });
-  await prisma.user.deleteMany({ where: { email } });
-
   const user = await prisma.user.create({
     data: { email },
   });

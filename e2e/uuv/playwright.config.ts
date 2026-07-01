@@ -14,7 +14,7 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
 
   // Opt out of parallel tests on CI.
-  workers: 1,
+  workers: process.env.CI ? 1 : undefined,
 
   // Reporter to use
   reporter: [["html", { open: "never" }]],

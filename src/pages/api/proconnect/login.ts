@@ -1,11 +1,10 @@
-import { randomBytes } from "crypto";
 import { NextApiRequest, NextApiResponse } from "next";
 import * as oidcClient from "openid-client";
 import { getProConnectConfig } from "../../../lib/proconnect";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const state = randomBytes(32).toString("hex");
-  const nonce = randomBytes(32).toString("hex");
+  const state = oidcClient.randomState();
+  const nonce = oidcClient.randomNonce();
 
   const secure = process.env.NODE_ENV === "production" ? "; Secure" : "";
   const cookieOptions = `Path=/; HttpOnly; SameSite=Lax${secure}`;

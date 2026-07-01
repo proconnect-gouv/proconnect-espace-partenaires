@@ -5,7 +5,11 @@ let proConnectConfig: client.Configuration | null = null;
 export async function getProConnectConfig(): Promise<client.Configuration> {
   if (proConnectConfig) return proConnectConfig;
 
-  const discoveryUrl = `https://${process.env.PROCONNECT_DOMAIN}/.well-known/openid-configuration`;
+  const discoveryUrl = process.env.PROCONNECT_DISCOVERY_URL;
+
+  if (!discoveryUrl) {
+    throw new Error("PROCONNECT_DISCOVERY_URL is not defined");
+  }
 
   proConnectConfig = await client.discovery(
     new URL(discoveryUrl),

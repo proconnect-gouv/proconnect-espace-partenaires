@@ -2,7 +2,6 @@
 Fonctionnalité: Connexion
 
   Scénario: Connexion avec un utilisateur
-    Étant donné que une boîte de réception vide
     Étant donné que je visite l'Url "/"
     Quand je clique sur le lien nommé "Se connecter"
     Alors je dois voir un titre nommé "Connexion" avec le niveau 1
