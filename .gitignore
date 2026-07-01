@@ -82,3 +82,6 @@ __pycache__/
 *.pyc
 .ruff_cache/
 .coverage
+
+# IntelliJ
+.idea
