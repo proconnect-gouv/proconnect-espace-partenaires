@@ -15,7 +15,7 @@ ProConnect utilise les valeurs définies dans [RFC 8176 — Authentication Metho
 
 | Valeur `amr` | Description                                                                                                            | Exemples                                                       |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| `pwd`        | Authentification par mot de passe. En complément, un OTP peut être envoyé par email si le navigateur n'est pas enrôlé. | Connexion ProConnect par mot de passe                          |
+| `pwd`        | Authentification par mot de passe. | Connexion ProConnect par mot de passe                          |
 | `mail`       | Authentification via un secret transmis par email (lien magique ou code à usage unique).                               | Code reçu par email, lien magique                              |
 | `otp`        | Authentification avec une application authenticator (TOTP/HOTP).                                                       | FreeOTP, Google Authenticator                                  |
 | `pin`        | Code PIN ou schéma saisi pour déverrouiller une clé sur l'appareil.                                                    | PIN de carte agent, PIN d'application                          |
