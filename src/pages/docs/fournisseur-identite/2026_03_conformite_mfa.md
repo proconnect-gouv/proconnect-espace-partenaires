@@ -28,8 +28,6 @@ Afin de vérifier que votre Fournisseur d'Identité est conforme avec cette nouv
   - Exemple : `eidas3` si c'est par carte agent
   - Plus d'information sur les exigences européennes de sécurité dans la ressource commune de la norme eidas : [Norme eIDAS](../ressources/norme_eidas.md)
 
-## Production
-
 ## Prendre en compte les AMR
 
 En complément du claim `acr`, votre FI doit retourner les valeurs `amr` correspondant aux méthodes d'authentification effectivement utilisées. Ces valeurs permettent aux Fournisseurs de Service de connaître les méthodes concrètes employées lors de la connexion.
@@ -45,6 +43,10 @@ Voici quelques exemples de valeurs amr à retourner :
 | Passkey hardware / carte agent + PIN  | `eidas3`          | `["hwk", "pin"]`        |
 
 Pour la liste complète des valeurs `amr` et leur statut (RFC 8176 standard vs extension ProConnect), voir [Claim AMR](../ressources/claim_amr.md).
+
+## Production
+
+Une fois ce paramétrage effectué, il faudra le copier et l'appliquer pour la production.
 
 ## Notes relatives
 
