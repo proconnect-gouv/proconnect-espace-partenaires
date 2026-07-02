@@ -1,8 +1,8 @@
-# Niveaux d’assurance et utilisation de l’ACR
+# Niveaux de confiance et utilisation de l’ACR
 
-## Communication du niveau d’assurance via l’ACR
+## Communication du niveau de confiance via l’ACR
 
-Pour indiquer le niveau d’assurance d’une authentification, ProConnect se base sur l’attribut ACR pour Authentication Context Class Reference.
+Pour indiquer le niveau de confiance d’une authentification, ProConnect se base sur l’attribut ACR pour Authentication Context Class Reference.
 
 Les principes d’utilisation de l’ACR sont décrits dans la spécification [OpenID Connect Core](https://openid.net/specs/openid-connect-core-1_0.html#acrSemantics).
 
@@ -31,11 +31,11 @@ claims={
 }
 ```
 
-## Niveaux d’assurance pour les identités
+## Niveaux de confiance pour les identités
 
 Pour comprendre ce que signifie chaque niveau eidas (identité, méthode d’authentification, lien avec l’organisation), voir [Niveaux eidas](./niveaux-eidas.md).
 
-## Les niveaux d’assurance associés à un rôle
+## Les niveaux de confiance associés à un rôle
 
 Le service ProConnect dispose d’une liste des dirigeants de chaque entreprise constituée à partir du répertoire Sirene et du registre national des entreprises (RNE).
 
@@ -43,7 +43,7 @@ ProConnect utilise donc le numéro SIREN que vous renseignez, puis vous invite �
 
 Si l’identité FranceConnect correspond à celle d’un des dirigeants pour ce numéro SIREN, votre compte est automatiquement certifié sur le portail de service public.
 
-Pour imposer ce niveau de certification dans un service, il suffit de demander le niveau d’assurance suivant : `https://proconnect.gouv.fr/assurance/certification-dirigeant`.
+Pour imposer ce niveau de certification dans un service, il suffit de demander le niveau de confiance suivant : `https://proconnect.gouv.fr/assurance/certification-dirigeant`.
 
 [Plus d’information sur la certification dirigeant.](./certification-dirigeant.md)
 

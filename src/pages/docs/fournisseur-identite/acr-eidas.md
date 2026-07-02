@@ -1,4 +1,4 @@
-# Niveaux d'assurance (eidas) pour les Fournisseurs d'Identité
+# niveaux de confiance (eidas) pour les Fournisseurs d'Identité
 
 ## Qu'est-ce que l'ACR ?
 
@@ -11,7 +11,7 @@ En pratique :
 
 Un fait important est **qu'un Fournisseur de Service peut exiger un niveau minimum** avant d'autoriser l'accès (exemple : exiger une authentification multi-facteur). Si votre Fournisseur d'Identité est mal configuré, il ne renverra pas les bons niveaux d'ACR et vos utilisateurs se retrouveront bloqués.
 
-## Les niveaux d'assurance (ACR)
+## Les niveaux de confiance (ACR)
 
 ProConnect communique le niveau de confiance d'une authentification via l'attribut `acr`. Chaque niveau est défini selon trois axes :
 

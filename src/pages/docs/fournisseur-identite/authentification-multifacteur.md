@@ -9,7 +9,7 @@ Certains Fournisseurs de Service (FS) exigent que leurs utilisateurs s'authentif
 
 Pour comprendre comment un FS configure cette exigence de son côté, consultez [la documentation dédiée aux Fournisseurs de Service](../fournisseur-service/double_authentification.md).
 
-Pour comprendre ce que représente l'`acr` et quelle méthode d'authentification correspond à chaque niveau (`eidas1-mfa`, `eidas3`, …), consultez [Niveaux d'assurance — Qu'est-ce que l'ACR ?](./niveaux-assurance-eidas.md).
+Pour comprendre ce que représente l'`acr` et quelle méthode d'authentification correspond à chaque niveau (`eidas1-mfa`, `eidas3`, …), consultez [niveaux de confiance — Qu'est-ce que l'ACR ?](./acr-eidas.md).
 
 ## Ce que ProConnect vous envoie
 

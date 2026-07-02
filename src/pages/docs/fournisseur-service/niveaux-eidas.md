@@ -1,4 +1,4 @@
-# Niveaux d'assurance eidas pour les Fournisseurs de Service
+# niveaux de confiance eidas pour les Fournisseurs de Service
 
 > [!NOTE]
 > Pour en savoir plus sur la norme eIDAS à ProConnect, nous avons rédigé une ressource commune aux Fournisseurs d'Identité et Fournisseurs de Service disponible ici → [Norme eIDAS](../ressources/norme_eidas.md). Elle expliquera en détails avec des exemples les différents éléments de la norme.

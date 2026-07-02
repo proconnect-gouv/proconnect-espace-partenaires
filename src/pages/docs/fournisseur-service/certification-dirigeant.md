@@ -32,7 +32,7 @@ Voici un exemple au format JSON à inclure :
 }
 ```
 
-L'attribut `essential: true` indique que la valeur spécifiée pour `acr` est **obligatoire** pour votre service. La propriété `value` doit être égale à l'URL qui identifie le niveau d'assurance souhaité, dans cet exemple :
+L'attribut `essential: true` indique que la valeur spécifiée pour `acr` est **obligatoire** pour votre service. La propriété `value` doit être égale à l'URL qui identifie le niveau de confiance souhaité, dans cet exemple :
 
 ```
 "https://proconnect.gouv.fr/assurance/certification-dirigeant"

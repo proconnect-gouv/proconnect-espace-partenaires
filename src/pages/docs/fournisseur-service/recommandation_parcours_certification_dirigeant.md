@@ -7,7 +7,7 @@
 
 ## 1. Contexte
 
-La Certification Dirigeant fonctionne comme un niveau d'assurance (ACR) OpenID Connect, de manière similaire à l'authentification multifacteur. Elle permet de vérifier que l'utilisateur est bien le dirigeant d'une organisation donnée en croisant son identité FranceConnect avec les données INSEE / RNE.
+La Certification Dirigeant fonctionne comme un niveau de confiance (ACR) OpenID Connect, de manière similaire à l'authentification multifacteur. Elle permet de vérifier que l'utilisateur est bien le dirigeant d'une organisation donnée en croisant son identité FranceConnect avec les données INSEE / RNE.
 
 Selon la nature de votre service, deux cas d'usage se distinguent :
 

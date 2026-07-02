@@ -5,7 +5,7 @@ Le claim `amr` (Authentication Methods References) est un tableau de chaînes de
 - Un **Fournisseur d'Identité** le retourne pour décrire comment l'utilisateur s'est authentifié.
 - Un **Fournisseur de Service** peut le lire pour adapter son parcours — par exemple, éviter de redemander un second facteur si la MFA a déjà été réalisée.
 
-Contrairement à `acr` (niveau d'assurance global), `amr` liste les méthodes concrètes utilisées. Les deux claims sont complémentaires.
+Contrairement à `acr` (niveau de confiance global), `amr` liste les méthodes concrètes utilisées. Les deux claims sont complémentaires.
 
 ## 1. Les valeurs `amr` dans ProConnect
 
