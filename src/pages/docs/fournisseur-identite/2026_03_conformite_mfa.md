@@ -34,13 +34,15 @@ Afin de vérifier que votre Fournisseur d'Identité est conforme avec cette nouv
 
 En complément du claim `acr`, votre FI doit retourner les valeurs `amr` correspondant aux méthodes d'authentification effectivement utilisées. Ces valeurs permettent aux Fournisseurs de Service de connaître les méthodes concrètes employées lors de la connexion.
 
-| Méthode d'authentification | `acr` à retourner | Valeurs `amr`           |
-| -------------------------- | ----------------- | ----------------------- |
-| Mot de passe               | `eidas1`          | `["pwd"]`               |
-| Lien magique               | `eidas1`          | `["mail"]`              |
-| Mot de passe + TOTP        | `eidas2`          | `["pwd", "otp", "mfa"]` |
-| Passkey                    | `eidas2`          | `["pop"]`               |
-| Carte agent + PIN          | `eidas3`          | `["pop", "pin"]`        |
+Voici quelques exemples de valeurs amr à retourner :
+
+| Méthode d'authentification           | `acr` à retourner | Valeurs `amr`           |
+| ------------------------------------- | ----------------- | ----------------------- |
+| Mot de passe                          | `eidas1`          | `["pwd"]`               |
+| Lien magique                          | `eidas1`          | `["mail"]`              |
+| Mot de passe + TOTP                   | `eidas2`          | `["pwd", "otp", "mfa"]` |
+| Passkey synchronisé (ex. iCloud)      | `eidas2`          | `["swk", "mfa"]`        |
+| Passkey hardware / carte agent + PIN  | `eidas3`          | `["hwk", "pin"]`        |
 
 Pour la liste complète des valeurs `amr` et leur statut (RFC 8176 standard vs extension ProConnect), voir [Claim AMR](../ressources/claim_amr.md).
 
