@@ -28,33 +28,28 @@ services:
       timeout: 2s
       test:
         - CMD-SHELL
-        - echo "try { rs.status() } catch (err) { rs.initiate() }" | mongosh --tls --tlsAllowInvalidCertificates --username fc_admin --password pass --authenticationDatabase admin --quiet
+        - echo "try { rs.status() } catch (err) { rs.initiate() }" | mongosh --username fc_admin --password pass --authenticationDatabase admin --quiet
 
     ports:
       - "27017:27017"
     volumes:
       - ./docker/mongodb:/init:ro
-      - ./docker/ssl:/etc/ssl:ro
     entrypoint: ["/init/entrypoint.sh"]
     tmpfs:
       - /data/db
       - /data/configdb
 
   pcdbapi:
-    image: ghcr.io/proconnect-gouv/federation/api-partner@sha256:0a2e92cbb37eb1cf8d1b659bce88c6319e6ae9f4041d97d94a1f55fd598afbcf # latest
+    image: ghcr.io/proconnect-gouv/federation/api-partner@sha256:0f8274de80659fbcc8b8ac88a60b761109131ccadacc2cf366393e027740d580 # commit 2e99d29 - 2026-06-29
     environment:
       - MONGODB_URL=mongodb://mongo:27017/corev2?authSource=corev2&directConnection=true
       - MONGODB_USERNAME=proconnect-app-api-partner
       - MONGODB_PASSWORD=pass
-      - MONGODB_CERTIFICATE_FILEPATH=/etc/ssl/mongo.pem
-      - MONGODB_CA_FILEPATH=/etc/ssl/docker-stack-ca.crt
       - API_SECRET=pcdb-api-secret-key
       - CLIENT_SECRET_CIPHER_PASS=test-pcdbapi-secret-cipher-passs
       - CANT_RUN_TESTS=1
     ports:
       - "8000:8000"
-    volumes:
-      - ./docker/ssl:/etc/ssl:ro
     depends_on:
       mongo:
         condition: service_healthy

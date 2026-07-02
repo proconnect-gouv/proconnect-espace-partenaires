@@ -262,7 +262,7 @@ jobs:
           DATABASE_URL: postgresql://usr:pwd@localhost:5432/proconnect_ep
       - run: npx --no prisma db push --schema=./prisma/db_proconnect.prisma
         env:
-          MONGODB_CONNECTION_STRING: mongodb://fc_admin:pass@localhost:27017/corev2?authSource=admin&replicaSet=rs0&directConnection=true&tls=true&tlsAllowInvalidCertificates=true
+          MONGODB_CONNECTION_STRING: mongodb://fc_admin:pass@localhost:27017/corev2?authSource=admin&replicaSet=rs0&directConnection=true
 
       - name: 🎬 Run Playwright tests
         working-directory: ./e2e
