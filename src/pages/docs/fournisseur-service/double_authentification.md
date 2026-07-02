@@ -12,7 +12,7 @@ La [Feuille de Route Cyber de l'ANSSI](https://cyber.gouv.fr/nous-connaitre/publ
 - avant le 28 février 2027 pour les SI à enjeux
 - avant le 28 février 2028 pour l'ensemble des SI
 
-ProConnect et ses Fournisseurs d'Identité sont considérés comme étant des SI à enjeux, le déploiement et la généralisation de la MFA est un de nos gros enjeux 2026.
+ProConnect et ses Fournisseurs d'Identité sont considérés comme étant des SI à enjeux, le déploiement et la généralisation de la MFA est un de nos gros chantiers de 2026.
 
 La majorité des Fournisseurs d'Identité a bien intégré la feuille de route cyber dans leur feuille de route et devraient respecter le délai du 28 février 2027.
 
