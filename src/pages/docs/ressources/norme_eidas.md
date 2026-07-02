@@ -2,8 +2,8 @@
 
 Cette page décrit les niveaux d'assurance eIDAS tels qu'utilisés par ProConnect. Elle est commune aux deux types de partenaires :
 
-- [Fournisseurs de Service → Niveaux eIDAS](../fournisseur-service/niveaux-eidas.md)
-- [Fournisseurs d'Identité → Niveaux d'assurance (eIDAS)](../fournisseur-identite/niveaux-assurance-eidas.md)
+- [Fournisseurs de Service : Niveaux eIDAS](../fournisseur-service/niveaux-eidas.md)
+- [Fournisseurs d'Identité : Niveaux d'assurance (eIDAS)](../fournisseur-identite/niveaux-assurance-eidas.md)
 
 ## 1. Les niveaux eIDAS
 
@@ -67,16 +67,17 @@ Trois critères permettent de distinguer les niveaux MFA entre eux :
 
 Les exemples suivants illustrent pourquoi une méthode donnée atteint eidas1-mfa, eidas2 ou eidas3. La distinction repose sur les trois critères : force cryptographique du second facteur, garantie _présumée_ ou _fiable_ sur son contrôle, et résistance à un attaquant _modéré_ ou _élevé_.
 
-| Méthode                                         | Niveau max      | Pourquoi                                                                                                                                                 |
-| ----------------------------------------------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Mot de passe                                    | eidas1          | Facteur de connaissance unique, pas de protocole cryptographique fort, deux facteurs de catégories différentes sont requis pour atteindre un niveau MFA. |
-| SMS OTP                                         | eidas1-mfa      | Canal non sécurisé (interception SS7, SIM swapping) → pas un facteur cryptographiquement fort.                                                           |
-| TOTP (application authenticator)                | eidas2          | Protocole cryptographique fort, mais le secret peut être sauvegardé et transféré sur un autre appareil → seulement _présumé_ sous contrôle exclusif.     |
-| Push notification (ex. Microsoft Authenticator) | eidas2          | Protocole cryptographique fort, mais dépend de la sécurité de l'appareil et du compte cloud associé → seulement _présumée_ sous contrôle exclusif.       |
-| Passkey synchronisé (ex. iCloud Keychain)       | eidas2          | Protocole cryptographique fort, mais la clé est synchronisée entre appareils → seulement _présumée_ sous contrôle exclusif.                              |
-| Passkey non-synchronisé (hardware-backed)       | eidas2 à eidas3 | Si la clé est ancrée dans la puce de l'appareil et non exportable, peut atteindre une garantie _fiable_. Dépend de l'implémentation.                     |
-| Carte à puce + PIN (ex. carte agent)            | eidas3          | La clé privée est ancrée dans la puce et ne peut pas être extraite → garantie _fiable_. Résiste aux attaquants à potentiel élevé.                        |
-| Clé FIDO2 matérielle (ex. YubiKey) + PIN        | eidas3          | Clé générée dans le secure element, non exportable → garantie _fiable_. Résiste aux attaquants à potentiel élevé.                                        |
+| Méthode                                         | Niveau max      | Pourquoi                                                                                                                                                                                |
+| ----------------------------------------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Mot de passe                                    | eidas1          | Facteur de connaissance unique, pas de protocole cryptographique fort, deux facteurs de catégories différentes sont requis pour atteindre un niveau MFA.                                |
+| Email OTP                                       | eidas1-mfa      | L'accès a la messagerie et a l'identité sont réputés différents. La combinaison de ces deux facteurs, d'une même catégorie, permet a titre dérogatoire de fournir un niveau MFA faible. |
+| SMS OTP                                         | eidas1-mfa      | Canal non sécurisé (interception SS7, SIM swapping) : pas un facteur cryptographiquement fort.                                                                                          |
+| TOTP (application authenticator)                | eidas2          | Protocole cryptographique fort, mais le secret peut être sauvegardé et transféré sur un autre appareil : seulement _présumé_ sous contrôle exclusif.                                    |
+| Push notification (ex. Microsoft Authenticator) | eidas2          | Protocole cryptographique fort, mais dépend de la sécurité de l'appareil et du compte cloud associé : seulement _présumée_ sous contrôle exclusif.                                      |
+| Passkey synchronisé (ex. iCloud Keychain)       | eidas2          | Protocole cryptographique fort, mais la clé est synchronisée entre appareils : seulement _présumée_ sous contrôle exclusif.                                                             |
+| Passkey non-synchronisé (hardware-backed)       | eidas2 à eidas3 | Si la clé est ancrée dans la puce de l'appareil et non exportable, peut atteindre une garantie _fiable_. Dépend de l'implémentation.                                                    |
+| Carte à puce + PIN (ex. carte agent)            | eidas3          | La clé privée est ancrée dans la puce et ne peut pas être extraite : garantie _fiable_. Résiste aux attaquants à potentiel élevé.                                                       |
+| Clé FIDO2 matérielle (ex. YubiKey) + PIN        | eidas3          | Clé générée dans le secure element, non exportable : garantie _fiable_. Résiste aux attaquants à potentiel élevé.                                                                       |
 
 ## 4. Le lien avec l'organisation
 

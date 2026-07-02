@@ -29,7 +29,7 @@ En pratique, **le niveau que vous retournez est déterminé par la méthode d'au
 | Méthode d'authentification    | Niveau retourné | Exemples                                           |
 | ----------------------------- | --------------- | -------------------------------------------------- |
 | Simple (mot de passe)         | `eidas1`        | Mot de passe seul                                  |
-| MFA faible (géré par l'agent) | `eidas1-mfa`    | SMS OTP                                            |
+| MFA faible (géré par l'agent) | `eidas1-mfa`    | SMS OTP, email OTP                                 |
 | MFA forte                     | `eidas2`        | TOTP, push notification, passkey                   |
 | MFA forte matérielle          | `eidas3`        | Carte à puce + PIN, clé FIDO2 matérielle (YubiKey) |
 
@@ -45,5 +45,5 @@ La frontière repose sur la force cryptographique du second facteur :
 
 | Niveau       | Second facteur                    | Exemple                          |
 | ------------ | --------------------------------- | -------------------------------- |
-| `eidas1-mfa` | MFA faible (pas de crypto fort)   | SMS OTP                          |
+| `eidas1-mfa` | MFA faible (pas de crypto fort)   | SMS OTP, email OTP               |
 | `eidas2`     | MFA forte (protocole crypto fort) | TOTP, push notification, passkey |
