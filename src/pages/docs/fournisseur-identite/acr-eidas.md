@@ -6,7 +6,7 @@
 
 En pratique :
 
-- Votre FI retourne une valeur `acr` dans l'ID token pour indiquer comment l'utilisateur s'est authentifié (mot de passe seul, MFA, etc.)
+- Votre FI retourne une valeur `acr` dans l'ID token pour indiquer le contexte d'authentification de l'utilisateur : identité, authentification, organisation.
 - ProConnect transmet cette valeur aux Fournisseurs de Service
 
 Un fait important est **qu'un Fournisseur de Service peut exiger un niveau minimum** avant d'autoriser l'accès (exemple : exiger une authentification multi-facteur). Si votre Fournisseur d'Identité est mal configuré, il ne renverra pas les bons niveaux d'ACR et vos utilisateurs se retrouveront bloqués.
