@@ -5,34 +5,31 @@ import { Table } from "@codegouvfr/react-dsfr/Table";
 import { ChangeEvent, useState } from "react";
 
 type Props = {
-  items: string[];
-  onUpdate: (items: string[]) => void;
-  title: string;
-  description: string;
-  label: string;
-  placeholder: string;
-  validateInput: (input: string) => boolean;
-  inputValidationErrorMessage: string;
-  tableTitle: string;
+  urls: string[];
+  onUpdate: (urls: string[]) => void;
+  title?: string;
+  description?: string;
+  label?: string;
 };
 
-export const EditableList = ({
-  items,
+export const ProviderUrl = ({
+  urls = [],
   onUpdate,
-  title,
-  description,
-  label,
-  placeholder,
-  validateInput,
-  inputValidationErrorMessage,
-  tableTitle,
+  title = "",
+  description = "",
+  label = "",
 }: Props) => {
-  const [inputText, setInputText] = useState<string>("");
+  const [inputUrl, setInputUrl] = useState<string>("");
   const [inputError, setInputError] = useState<string | null>(null);
+
+  const validateUrl = (url: string): boolean => {
+    const urlPattern = /^https?:\/\/[^/].+$/;
+    return urlPattern.test(url);
+  };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const value = e.target.value;
-    setInputText(value);
+    setInputUrl(value);
 
     // Clear error when input is empty
     if (!value) {
@@ -41,27 +38,27 @@ export const EditableList = ({
     }
 
     // Only validate while typing if there's already an error
-    if (inputError && validateInput(value)) {
+    if (inputError && validateUrl(value)) {
       setInputError(null);
     }
   };
 
-  const addItemToArray = () => {
-    const trimmedText = inputText.trim();
-    if (!trimmedText) return;
+  const addUrlInArray = () => {
+    const trimmedUrl = inputUrl.trim();
+    if (!trimmedUrl) return;
 
-    if (!validateInput(trimmedText)) {
-      setInputError(inputValidationErrorMessage);
+    if (!validateUrl(trimmedUrl)) {
+      setInputError("L'URL doit commencer par https:// ou http:// et contenir un nom de domaine");
       return;
     }
 
-    onUpdate([...(items || []), trimmedText]);
-    setInputText("");
+    onUpdate([...(urls || []), trimmedUrl]);
+    setInputUrl("");
     setInputError(null);
   };
 
-  const removeItemFromArray = (indexToRemove: number) => {
-    onUpdate(items.filter((_, index) => index !== indexToRemove));
+  const removeUrl = (indexToRemove: number) => {
+    onUpdate(urls.filter((_, index) => index !== indexToRemove));
   };
 
   return (
@@ -69,23 +66,23 @@ export const EditableList = ({
       <h2>{title}</h2>
       <p>{description}</p>
 
-      {items && items.length > 0 && (
+      {urls && urls.length > 0 && (
         <div className={fr.cx("fr-mb-4v")}>
           <Table
-            data={items.map((item, i) => [
-              item,
+            data={urls.map((url, i) => [
+              url,
               <Button
                 key={i}
                 priority="tertiary no outline"
                 iconId="fr-icon-delete-bin-line"
-                onClick={() => removeItemFromArray(i)}
-                title="Supprimer cette ligne"
+                onClick={() => removeUrl(i)}
+                title="Supprimer cette URL"
               >
                 Supprimer
               </Button>,
             ])}
             className={fr.cx("fr-table--no-caption")}
-            headers={[tableTitle, ""]}
+            headers={["URLs configurées", ""]}
             bordered={false}
             noCaption
           />
@@ -100,13 +97,13 @@ export const EditableList = ({
               state={inputError ? "error" : "default"}
               stateRelatedMessage={inputError}
               nativeInputProps={{
-                value: inputText,
-                placeholder,
+                value: inputUrl,
+                placeholder: "https://",
                 onChange: handleInputChange,
                 onKeyPress: (e) => {
                   if (e.key === "Enter") {
                     e.preventDefault();
-                    addItemToArray();
+                    addUrlInArray();
                   }
                 },
               }}
@@ -119,7 +116,7 @@ export const EditableList = ({
               top: "2.1rem", // Aligns with input field accounting for label
             }}
           >
-            <Button disabled={!inputText || !!inputError} onClick={addItemToArray}>
+            <Button disabled={!inputUrl || !!inputError} onClick={addUrlInArray}>
               Ajouter
             </Button>
           </div>
