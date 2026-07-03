@@ -72,8 +72,6 @@ export default defineConfig({
           "mongosh",
           "--authenticationDatabase admin",
           "--password pass",
-          "--tls",
-          "--tlsAllowInvalidCertificates",
           "--username fc_admin",
           "corev2",
           `--eval "db.dropDatabase()"`,
@@ -83,7 +81,7 @@ export default defineConfig({
       cwd: "../..",
       env: {
         MONGODB_CONNECTION_STRING:
-          "mongodb://fc_admin:pass@localhost:27017/corev2?authSource=admin&replicaSet=rs0&directConnection=true&tls=true&tlsAllowInvalidCertificates=true",
+          "mongodb://fc_admin:pass@localhost:27017/corev2?authSource=admin&replicaSet=rs0&directConnection=true",
       },
     },
   ],
