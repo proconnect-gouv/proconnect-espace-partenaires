@@ -51,7 +51,7 @@ En complément, retournez les valeurs `amr` correspondant aux méthodes effectiv
 | Passkey synchronisé (ex. iCloud)     | `eidas2`          | `["swk", "mfa"]`        |
 | Passkey hardware / carte agent + PIN | `eidas3`          | `["hwk", "pin"]`        |
 
-Pour la liste complète des valeurs `amr` et leur statut (RFC 8176 standard vs extension ProConnect), voir [Claim AMR](../ressources/claim_amr.md).
+Pour la liste complète des valeurs `amr` et leur statut, voir [Claim AMR](../ressources/claim_amr.md).
 
 ## Comment tester mon Fournisseur d'Identité ?
 
