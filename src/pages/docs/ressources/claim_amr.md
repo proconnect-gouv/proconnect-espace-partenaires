@@ -9,19 +9,20 @@ Contrairement à `acr` (niveau de confiance global), `amr` liste les méthodes c
 
 ## 1. Les valeurs `amr` dans ProConnect
 
-ProConnect utilise les valeurs définies dans [RFC 8176 — Authentication Method Reference Values](https://www.rfc-editor.org/rfc/rfc8176), complétées par une extension propre à ProConnect pour le cas du lien magique.
+ProConnect utilise les valeurs définies dans [RFC 8176 — Authentication Method Reference Values](https://www.rfc-editor.org/rfc/rfc8176) et dans [OpenID Connect EAP ACR Values 1.0](https://openid.net/specs/openid-connect-eap-acr-values-1_0.html), complétées par une extension propre à ProConnect pour le cas du lien magique. Ces valeurs sont enregistrées dans le [registre IANA AMR](https://www.iana.org/assignments/authentication-method-reference-values/authentication-method-reference-values.xhtml), qui fait référence.
 
 ### 1.1. Tableau des valeurs
 
-| Valeur `amr` | Description                                                                                  | Exemples                                                       |
-| ------------ | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| `pwd`        | Authentification par mot de passe.                                                           | Connexion ProConnect par mot de passe                          |
-| `mail`       | Authentification via un secret transmis par email (lien magique ou code à usage unique).     | Code reçu par email, lien magique                              |
-| `otp`        | Authentification avec une application authenticator (TOTP/HOTP).                             | FreeOTP, Google Authenticator                                  |
-| `pin`        | Code PIN ou schéma saisi pour déverrouiller une clé sur l'appareil.                          | PIN de carte agent, PIN d'application                          |
-| `hwk`        | Clé cryptographique ancrée dans un composant matériel de sécurité (non extractable).         | Carte agent, YubiKey, passkey non-synchronisé hardware-backed  |
-| `swk`        | Clé cryptographique protégée par logiciel.                                                   | Passkey synchronisé (iCloud Keychain, Google Password Manager) |
-| `mfa`        | Indique qu'une authentification multi-facteur a été réalisée. Accompagne les autres valeurs. | Combiné avec `otp`, `hwk`, `swk`…                              |
+| Valeur `amr` | Description                                                                                  | Exemples                                                       | Origine       |
+| ------------ | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | ------------- |
+| `pwd`        | Authentification par mot de passe.                                                           | Connexion ProConnect par mot de passe                          | RFC 8176      |
+| `mail`       | Authentification via un secret transmis par email (lien magique ou code à usage unique).     | Code reçu par email, lien magique                              | ProConnect    |
+| `otp`        | Authentification avec une application authenticator (TOTP/HOTP).                             | FreeOTP, Google Authenticator                                  | RFC 8176      |
+| `pin`        | Code PIN ou schéma saisi pour déverrouiller une clé sur l'appareil.                          | PIN de carte agent, PIN d'application                          | RFC 8176      |
+| `pop`        | Proof-of-possession d'une clé (hardware ou software non spécifié).                           | Passkey, carte agent                                           | OpenID EAP    |
+| `hwk`        | Clé cryptographique ancrée dans un composant matériel de sécurité (non extractable).         | Carte agent, YubiKey, passkey non-synchronisé hardware-backed  | RFC 8176      |
+| `swk`        | Clé cryptographique protégée par logiciel.                                                   | Passkey synchronisé (iCloud Keychain, Google Password Manager) | RFC 8176      |
+| `mfa`        | Indique qu'une authentification multi-facteur a été réalisée. Accompagne les autres valeurs. | Combiné avec `otp`, `hwk`, `swk`…                              | RFC 8176      |
 
 ### 1.2. Le cas de `mail`
 
