@@ -9,7 +9,7 @@ Contrairement à `acr` (niveau de confiance global), `amr` liste les méthodes c
 
 ## 1. Les valeurs `amr` dans ProConnect
 
-ProConnect utilise les valeurs définies dans [RFC 8176 — Authentication Method Reference Values](https://www.rfc-editor.org/rfc/rfc8176) et dans [OpenID Connect EAP ACR Values 1.0](https://openid.net/specs/openid-connect-eap-acr-values-1_0.html), complétées par une extension propre à ProConnect pour le cas du lien magique. Ces valeurs sont enregistrées dans le [registre IANA AMR](https://www.iana.org/assignments/authentication-method-reference-values/authentication-method-reference-values.xhtml), qui fait référence.
+ProConnect utilise les valeurs définies dans [RFC 8176 — Authentication Method Reference Values](https://www.rfc-editor.org/rfc/rfc8176) et dans [OpenID Connect EAP ACR Values 1.0](https://openid.net/specs/openid-connect-eap-acr-values-1_0.html), complétées par une extension propre à ProConnect pour le cas de la confirmation par email. Ces valeurs sont enregistrées dans le [registre IANA AMR](https://www.iana.org/assignments/authentication-method-reference-values/authentication-method-reference-values.xhtml), qui fait référence.
 
 ### 1.1. Tableau des valeurs
 
