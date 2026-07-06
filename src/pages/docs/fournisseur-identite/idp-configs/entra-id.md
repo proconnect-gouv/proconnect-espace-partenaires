@@ -55,7 +55,7 @@ Les valeurs gérées par ProConnect pour EntraID sont les suivantes :
 | `c2`                                 | `eidas2`                              |
 | `c3`                                 | `eidas3`                              |
 
-Pour plus d'informations, consultez [la documentation sur la signification des niveaux d'assurance eidas](../niveaux-assurance-eidas.md)
+Pour plus d'informations, consultez [la documentation sur la signification des niveaux de confiance eidas](../acr-eidas.md)
 
 > NB: lorsque le FI Entra ID renvoie une valeur dans `acrs` différentes de celles définies dans le tableau ci-dessus, alors ProConnect renverra par défaut la valeur `eidas1` pour cet utilisateur.
 

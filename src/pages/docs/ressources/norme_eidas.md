@@ -1,9 +1,9 @@
-# Norme eIDAS : niveaux d'assurance
+# Norme eIDAS : niveaux de confiance
 
-Cette page décrit les niveaux d'assurance eIDAS tels qu'utilisés par ProConnect. Elle est commune aux deux types de partenaires :
+Cette page décrit les niveaux de confiance eIDAS tels qu'utilisés par ProConnect. Elle est commune aux deux types de partenaires :
 
 - [Fournisseurs de Service : Niveaux eIDAS](../fournisseur-service/niveaux-eidas.md)
-- [Fournisseurs d'Identité : Niveaux d'assurance (eIDAS)](../fournisseur-identite/niveaux-assurance-eidas.md)
+- [Fournisseurs d'Identité : niveaux de confiance (eIDAS)](../fournisseur-identite/acr-eidas.md)
 
 ## 1. Les niveaux eIDAS
 

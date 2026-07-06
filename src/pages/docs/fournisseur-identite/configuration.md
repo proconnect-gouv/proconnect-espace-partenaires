@@ -120,7 +120,7 @@ Selon votre Fournisseur d'Identité, il est possible qu'il vous faille spécifie
 
 ### 3.2. Champ `acr`
 
-Pour en savoir plus sur les valeurs `acr` et les niveaux d'assurance, consultez [la documentation dédiée](./niveaux-assurance-eidas.md).
+Pour en savoir plus sur les valeurs `acr` et les niveaux de confiance, consultez [la documentation dédiée](./acr-eidas.md).
 
 ### 3.3. Claim `amr`
 
