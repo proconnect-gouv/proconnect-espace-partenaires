@@ -55,7 +55,6 @@ Voici un schéma de l'authentification multi-facteur prévue en attendant la com
 | Date               | Étape                                                                                                 |
 | ------------------ | ----------------------------------------------------------------------------------------------------- |
 | Printemps 2026     | Normalisation et implémentation de [la nouvelle norme eidas ProConnect](../ressources/norme_eidas.md) |
-| Début juillet 2026 | WIP technique                                                                                         |
 | Fin juillet 2026   | Implémentation de l'OTP Mail selon le schéma ci-dessus                                                |
 | Fin de l'été 2026  | Les premiers Fournisseurs d'Identité deviennent compatibles MFA ProConnect                            |
 | 28 février 2027    | Tous les FIs sont compatibles MFA                                                                     |
