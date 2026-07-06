@@ -39,8 +39,8 @@ Voici quelques exemples de valeurs amr à retourner :
 | Mot de passe                         | `eidas1`          | `["pwd"]`               |
 | Lien magique                         | `eidas1`          | `["mail"]`              |
 | Mot de passe + TOTP                  | `eidas2`          | `["pwd", "otp", "mfa"]` |
-| Passkey synchronisé (ex. iCloud)     | `eidas2`          | `["swk", "mfa"]`        |
-| Passkey hardware / carte agent + PIN | `eidas3`          | `["hwk", "pin"]`        |
+| Passkey synchronisé (ex. iCloud)     | `eidas2`          | `["pop", "mfa"]`        |
+| Passkey hardware / carte agent + PIN | `eidas3`          | `["pop", "pin", "mfa"]` |
 
 Pour la liste complète des valeurs `amr` et leur statut (RFC 8176 standard vs extension ProConnect), voir [Claim AMR](../ressources/claim_amr.md).
 
