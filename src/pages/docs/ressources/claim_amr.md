@@ -13,16 +13,16 @@ ProConnect utilise les valeurs définies dans [RFC 8176 — Authentication Metho
 
 ### 1.1. Tableau des valeurs
 
-| Valeur `amr` | Description                                                                                  | Exemples                                                       | Origine       |
-| ------------ | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | ------------- |
-| `pwd`        | Authentification par mot de passe.                                                           | Connexion ProConnect par mot de passe                          | RFC 8176      |
-| `mail`       | Authentification via un secret transmis par email (lien magique ou code à usage unique).     | Code reçu par email, lien magique                              | ProConnect    |
-| `otp`        | Authentification avec une application authenticator (TOTP/HOTP).                             | FreeOTP, Google Authenticator                                  | RFC 8176      |
-| `pin`        | Code PIN ou schéma saisi pour déverrouiller une clé sur l'appareil.                          | PIN de carte agent, PIN d'application                          | RFC 8176      |
-| `pop`        | Proof-of-possession d'une clé (hardware ou software non spécifié).                           | Passkey, carte agent                                           | OpenID EAP    |
-| `hwk`        | Clé cryptographique ancrée dans un composant matériel de sécurité (non extractable).         | Carte agent, YubiKey, passkey non-synchronisé hardware-backed  | RFC 8176      |
-| `swk`        | Clé cryptographique protégée par logiciel.                                                   | Passkey synchronisé (iCloud Keychain, Google Password Manager) | RFC 8176      |
-| `mfa`        | Indique qu'une authentification multi-facteur a été réalisée. Accompagne les autres valeurs. | Combiné avec `otp`, `hwk`, `swk`…                              | RFC 8176      |
+| Valeur `amr` | Description                                                                                  | Exemples                                                       | Origine    |
+| ------------ | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | ---------- |
+| `pwd`        | Authentification par mot de passe.                                                           | Connexion ProConnect par mot de passe                          | RFC 8176   |
+| `mail`       | Authentification via un secret transmis par email (lien magique ou code à usage unique).     | Code reçu par email, lien magique                              | ProConnect |
+| `otp`        | Authentification avec une application authenticator (TOTP/HOTP).                             | FreeOTP, Google Authenticator                                  | RFC 8176   |
+| `pin`        | Code PIN ou schéma saisi pour déverrouiller une clé sur l'appareil.                          | PIN de carte agent, PIN d'application                          | RFC 8176   |
+| `pop`        | Proof-of-possession d'une clé (hardware ou software non spécifié).                           | Passkey, carte agent                                           | OpenID EAP |
+| `hwk`        | Clé cryptographique ancrée dans un composant matériel de sécurité (non extractable).         | Carte agent, YubiKey, passkey non-synchronisé hardware-backed  | RFC 8176   |
+| `swk`        | Clé cryptographique protégée par logiciel.                                                   | Passkey synchronisé (iCloud Keychain, Google Password Manager) | RFC 8176   |
+| `mfa`        | Indique qu'une authentification multi-facteur a été réalisée. Accompagne les autres valeurs. | Combiné avec `otp`, `hwk`, `swk`…                              | RFC 8176   |
 
 ### 1.2. Le cas de `mail`
 
