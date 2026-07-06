@@ -42,7 +42,7 @@ Voici quelques exemples de valeurs amr à retourner :
 | Passkey synchronisé (ex. iCloud)     | `eidas2`          | `["pop", "mfa"]`        |
 | Passkey hardware / carte agent + PIN | `eidas3`          | `["pop", "pin", "mfa"]` |
 
-Pour la liste complète des valeurs `amr` et leur statut (RFC 8176 standard vs extension ProConnect), voir [Claim AMR](../ressources/claim_amr.md).
+Pour la liste complète des valeurs `amr` et leur statut, voir [Claim AMR](../ressources/claim_amr.md).
 
 ## Production
 
