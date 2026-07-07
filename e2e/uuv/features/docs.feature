@@ -3,7 +3,7 @@ Fonctionnalité: Pages de documentation
 
   Scénario: Page d'accueil de la documentation
     Étant donné que je visite l'Url "/docs"
-    Alors je dois voir un titre nommé "📚 Documentation technique" avec le niveau 2
+    Alors je dois voir un titre nommé "📚 Documentation technique" avec le niveau 1
 
   Scénario: Documentation Fournisseur de Service
     Étant donné que je visite l'Url "/docs/fournisseur-service"
