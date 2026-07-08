@@ -49,7 +49,18 @@ Pour la liste complète des valeurs `amr` et leur statut, voir [Claim AMR](../re
 
 Une fois ce paramétrage effectué, il faudra le copier et l'appliquer pour la production.
 
-## 4. Notes relatives
+## 4. Est-ce que mon Fournisseur d'Identité est prêt ?
+
+Pour savoir si votre Fournisseurs d'Identité est prêt pour la conformité ProConnect MFA, voici la checklist :
+
+- [ ] Sur [https://test.proconnect.gouv.fr/](https://test.proconnect.gouv.fr/) la `Connexion - implémentation Fournisseur d’Identité` est fonctionnelle
+- [ ] Sur [https://test.proconnect.gouv.fr/](https://test.proconnect.gouv.fr/) le clic sur `Forcer une connexion à deux facteurs` est fonctionnel et renvoie un `acr` conforme au parcours d'authentification
+- [ ] Sur [https://test.proconnect.gouv.fr/](https://test.proconnect.gouv.fr/) le clic sur `Forcer une connexion à deux facteurs` renvoie aussi un `amr` conforme au parcours d'authentification
+- [ ] Vous avez copié votre configuration pour la production
+
+Si vous avez coché les quatre cases, vous pouvez nous contacter via support.partenaires@mail.proconnect.gouv.fr pour nous dire que vous êtes conformes MFA. Nous procèderons à la mise à jour de votre Fournisseur d'Identité et vos utilisateurs passeront désormais par votre MFA lorsque des Fournisseurs de Service demanderons la MFA.
+
+## 5. Notes relatives
 
 Voici quelques notes relatives rédigées par les équipes de ProConnect au sujet de la MFA :
 
