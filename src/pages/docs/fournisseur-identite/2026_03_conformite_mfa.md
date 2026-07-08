@@ -34,13 +34,14 @@ En complément du claim `acr`, votre FI doit retourner les valeurs `amr` corresp
 
 Voici quelques exemples de valeurs amr à retourner :
 
-| Méthode d'authentification           | `acr` à retourner | Valeurs `amr`           |
-| ------------------------------------ | ----------------- | ----------------------- |
-| Mot de passe                         | `eidas1`          | `["pwd"]`               |
-| Lien magique                         | `eidas1`          | `["mail"]`              |
-| Mot de passe + TOTP                  | `eidas2`          | `["pwd", "otp", "mfa"]` |
-| Passkey synchronisé (ex. iCloud)     | `eidas2`          | `["pop", "mfa"]`        |
-| Passkey hardware / carte agent + PIN | `eidas3`          | `["pop", "pin", "mfa"]` |
+| Méthode d'authentification           | `acr` à retourner | Valeurs `amr`            |
+| ------------------------------------ | ----------------- | ------------------------ |
+| Mot de passe                         | `eidas1`          | `["pwd"]`                |
+| Lien magique                         | `eidas1`          | `["mail"]`               |
+| Mot de passe + mail OTP              | `eidas1-mfa`      | `["pwd", "mail", "mfa"]` |
+| Mot de passe + TOTP                  | `eidas2`          | `["pwd", "otp", "mfa"]`  |
+| Passkey synchronisé (ex. iCloud)     | `eidas2`          | `["pop", "mfa"]`         |
+| Passkey hardware / carte agent + PIN | `eidas3`          | `["pop", "pin", "mfa"]`  |
 
 Pour la liste complète des valeurs `amr` et leur statut, voir [Claim AMR](../ressources/claim_amr.md).
 
