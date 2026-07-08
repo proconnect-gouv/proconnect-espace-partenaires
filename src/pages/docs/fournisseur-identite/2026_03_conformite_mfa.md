@@ -4,13 +4,13 @@ La [Feuille de Route de Sécurité Numérique 2026-2027 de l'ANSSI](https://cybe
 
 ProConnect et ses Fournisseurs d'Identité sont concernés par cette obligation.
 
-ProConnect a récemment changé les niveaux de confiance renvoyés aux Fournisseurs d'Identité. Nous demandons à nos Fournisseurs d'Identité de verifier leur conformité MFA et de nous prévenir par mail à support.partenaires@mail.proconnect.gouv.fr. La liste des Fournisseurs d'Identité compatibles est disponibles ici : https://grist.numerique.gouv.fr/o/proconnect/gNkPzdjPZnv8/ProConnect-Configuration-des-FI-et-FS/p/13
+ProConnect a récemment changé les niveaux de confiance renvoyés aux Fournisseurs d'Identité. Nous demandons à nos Fournisseurs d'Identité de verifier leur conformité MFA et de nous prévenir par mail à support.partenaires@mail.proconnect.gouv.fr. La liste des Fournisseurs d'Identité compatibles est disponible ici : https://grist.numerique.gouv.fr/o/proconnect/gNkPzdjPZnv8/ProConnect-Configuration-des-FI-et-FS/p/13
 
 Afin de vérifier que votre Fournisseur d'Identité est conforme avec cette nouvelle norme, voici la procédure.
 
-## Vérifier la conformité de votre FI en intégration
+## 1. Vérifier la conformité de votre FI en intégration
 
-### Vérifier la connexion fonctionnelle des niveaux d'ACR possibles
+### 1.1. Vérifier la connexion fonctionnelle des niveaux d'ACR possibles
 
 - Allez sur [https://test.proconnect.gouv.fr/](https://test.proconnect.gouv.fr/) et cliquez sur `Connexion - implémentation Fournisseur d’Identité`
 - La connexion devrait être fonctionnelle
@@ -18,7 +18,7 @@ Afin de vérifier que votre Fournisseur d'Identité est conforme avec cette nouv
 > [!NOTE]
 > Ce lien renvoie tous les ACR possibles que ProConnect peut demander. Si la connexion est fonctionnelle, c'est que vous n'aurez pas d'écran de plantage en cas d'un ACR demandé par un Fournisseur de Service. Plus d'information dans les niveaux de confiance et les ACR dans la note dédiée : [niveaux de confiance](./acr-eidas.md)
 
-### Vérifier que l'authentification multifacteur est fonctionnelle
+### 1.2. Vérifier que l'authentification multifacteur est fonctionnelle
 
 - Allez sur [https://test.proconnect.gouv.fr/](https://test.proconnect.gouv.fr/) et cliquez sur `Forcer une connexion à deux facteurs`
 - La connexion devrait proposer un parcours d'authentification multifacteur
@@ -28,7 +28,7 @@ Afin de vérifier que votre Fournisseur d'Identité est conforme avec cette nouv
   - Exemple : `eidas3` si c'est par carte agent
   - Plus d'information sur les exigences européennes de sécurité dans la ressource commune de la norme eidas : [Norme eIDAS](../ressources/norme_eidas.md)
 
-## Prendre en compte les AMR
+## 2. Prendre en compte les AMR
 
 En complément du claim `acr`, votre FI doit retourner les valeurs `amr` correspondant aux méthodes d'authentification effectivement utilisées. Ces valeurs permettent aux Fournisseurs de Service de connaître les méthodes concrètes employées lors de la connexion.
 
@@ -44,11 +44,11 @@ Voici quelques exemples de valeurs amr à retourner :
 
 Pour la liste complète des valeurs `amr` et leur statut, voir [Claim AMR](../ressources/claim_amr.md).
 
-## Production
+## 3. Production
 
 Une fois ce paramétrage effectué, il faudra le copier et l'appliquer pour la production.
 
-## Notes relatives
+## 4. Notes relatives
 
 Voici quelques notes relatives rédigées par les équipes de ProConnect au sujet de la MFA :
 
