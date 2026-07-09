@@ -1,6 +1,5 @@
 //
 
-import { expect } from "@playwright/test";
 import { Given, When, type World } from "@uuv/playwright";
 
 //
@@ -11,15 +10,6 @@ const maildevApi = () => {
 };
 
 //
-
-Given("une boîte de réception vide", async function () {
-  const response = await fetch(`${maildevApi()}/email/all`, {
-    method: "DELETE",
-  });
-  const body = await response.json();
-
-  expect(response.ok, JSON.stringify(body)).toBe(true);
-});
 
 When(
   "je vais à l'intérieur de l'email avec les filtres",
