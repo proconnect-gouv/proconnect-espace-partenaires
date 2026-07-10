@@ -14,6 +14,7 @@ type Props = {
   validateInput: (input: string) => boolean;
   inputValidationErrorMessage: string;
   tableTitle: string;
+  computeIsLineDeletable?: (item: string) => boolean;
 };
 
 export const EditableList = ({
@@ -26,6 +27,7 @@ export const EditableList = ({
   validateInput,
   inputValidationErrorMessage,
   tableTitle,
+  computeIsLineDeletable,
 }: Props) => {
   const [inputText, setInputText] = useState<string>("");
   const [inputError, setInputError] = useState<string | null>(null);
@@ -80,6 +82,7 @@ export const EditableList = ({
                 iconId="fr-icon-delete-bin-line"
                 onClick={() => removeItemFromArray(i)}
                 title="Supprimer cette ligne"
+                disabled={computeIsLineDeletable ? !computeIsLineDeletable(item) : false}
               >
                 Supprimer
               </Button>,
