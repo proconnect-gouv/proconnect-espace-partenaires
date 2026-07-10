@@ -1,8 +1,8 @@
 {
   "folders": [
     {
-      "path": "."
-    }
+      "path": ".",
+    },
   ],
   "settings": {
     "cucumber.features": ["uuv/features/**/*.feature"],
@@ -10,14 +10,14 @@
       "e2e/uuv/cucumber/step_definitions/**/*.{js,ts}",
       "e2e/node_modules/@uuv/*/src/cucumber/step_definitions/*/unsafe/**/*.ts",
       "e2e/node_modules/@uuv/*/src/cucumber/step_definitions/*/generated/**/*.ts",
-      "e2e/node_modules/@uuv/*/src/cucumber/step_definitions/*/generated/enriched/*/*.ts"
-    ]
+      "e2e/node_modules/@uuv/*/src/cucumber/step_definitions/*/generated/enriched/*/*.ts",
+    ],
   },
   "extensions": {
     "recommendations": [
       "cucumberopen.cucumber-official",
       "esbenp.prettier-vscode",
-      "yoavbls.pretty-ts-errors"
-    ]
-  }
+      "yoavbls.pretty-ts-errors",
+    ],
+  },
 }
