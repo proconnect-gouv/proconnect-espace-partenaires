@@ -29,7 +29,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   try {
     const app = await pcdbClient.getOidcClient(id, session.user.email);
-    return { props: { app, isYourApplicationsServiceDisabled } };
+    return {
+      props: {
+        app,
+        isYourApplicationsServiceDisabled,
+        userEmail: session.user.email,
+      },
+    };
   } catch {
     return { notFound: true };
   }
@@ -56,9 +62,11 @@ const URL_PATTERN = /^https?:\/\/[^/].+$/;
 export default function AppDetailPage({
   app,
   isYourApplicationsServiceDisabled,
+  userEmail,
 }: {
   app: OidcClient;
   isYourApplicationsServiceDisabled: boolean;
+  userEmail: string;
 }) {
   const [data, setData] = useState(app);
   const [saveError, setSaveError] = useState<string | null>(null);
@@ -300,6 +308,7 @@ export default function AppDetailPage({
                 inputValidationErrorMessage="Veuillez saisir une adresse e-mail valide."
                 validateInput={(input) => EMAIL_PATTERN.test(input)}
                 tableTitle="Liste des personnes collaboratrices"
+                computeIsLineDeletable={(item) => item !== userEmail}
               />
             </div>
 
