@@ -1,5 +1,5 @@
 import { convert } from "html-to-text";
-import { createTransport } from "nodemailer";
+import { createTransport } from "nodemailer-v9";
 
 import { MagicLink } from "@gouvfr-lasuite/proconnect.email";
 import { SendVerificationRequestParams } from "next-auth/providers/email";
