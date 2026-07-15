@@ -47,6 +47,9 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: ""
           NODE_ENV: production
 
+      - name: 🔥 Prune dev dependencies
+        run: npm prune --omit=dev
+
       - name: 💾 Save app dependencies cache
         if: steps.cache-deps.outputs.cache-hit != 'true'
         uses: actions/cache/save@v6
