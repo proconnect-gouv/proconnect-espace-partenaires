@@ -193,7 +193,7 @@ export default function AppDetailPage({
               </div>
             </div>
 
-            <div className={fr.cx("fr-mb-10v")}>
+            <div className={fr.cx("fr-mb-12v")}>
               <Input
                 className={fr.cx("fr-col-md-7")}
                 state={data.name === "" ? "error" : "default"}
@@ -209,7 +209,7 @@ export default function AppDetailPage({
               />
             </div>
 
-            <div id="cles" className={fr.cx("fr-mb-10v")}>
+            <div id="cles" className={fr.cx("fr-mb-12v")}>
               <h2>Clés d&rsquo;API</h2>
               <div className={fr.cx("fr-grid-row", "fr-grid-row--gutters")}>
                 <div className={fr.cx("fr-col-12")}>
@@ -251,7 +251,7 @@ export default function AppDetailPage({
               />
             </div>
 
-            <div id="alg-id-token" className={fr.cx("fr-mb-10v")}>
+            <div id="alg-id-token" className={fr.cx("fr-mb-12v")}>
               <h1 id="algs">Algorithmes</h1>
               <h2>Algorithme de signature ID Token</h2>
               <p>
@@ -272,7 +272,7 @@ export default function AppDetailPage({
                 ))}
               </Select>
             </div>
-            <div id="alg-user-info" className={fr.cx("fr-mb-10v")}>
+            <div id="alg-user-info" className={fr.cx("fr-mb-12v")}>
               <h2>Algorithme de signature user-info</h2>
               <p>
                 L&rsquo;algorithme de signature est utilisé pour signer les informations
@@ -297,7 +297,10 @@ export default function AppDetailPage({
               </Select>
             </div>
 
-            <div id="collaborators" className={fr.cx("fr-mb-10v")}>
+            <Badge severity="new" small>
+              Nouvelle fonctionnalité
+            </Badge>
+            <div id="collaborators" className={fr.cx("fr-mb-12v")}>
               <EditableList
                 items={data.collaborators}
                 onUpdate={(collaborators) => handleUpdate({ collaborators })}
@@ -312,7 +315,7 @@ export default function AppDetailPage({
               />
             </div>
 
-            <div id="production" className={fr.cx("fr-mb-10v")}>
+            <div id="production" className={fr.cx("fr-mb-12v")}>
               <h2>Passage en production</h2>
               <p>Cette application est encore en test.</p>
               <p>
