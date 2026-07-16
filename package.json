@@ -93,6 +93,9 @@
     "typescript": "5.7.3",
     "unist-util-visit": "^5.0.0"
   },
+  "overrides": {
+    "nodemailer": "^9.0.1"
+  },
   "optionalDependencies": {
     "@swc/core-linux-x64-gnu": "^1.10.12"
   },
