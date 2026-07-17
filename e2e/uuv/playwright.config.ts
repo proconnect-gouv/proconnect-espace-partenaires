@@ -50,10 +50,8 @@ export default defineConfig({
         PROCONNECT_CLIENT_ID: process.env.PROCONNECT_CLIENT_ID ?? "",
         PROCONNECT_CLIENT_SECRET: process.env.PROCONNECT_CLIENT_SECRET ?? "",
         PROCONNECT_DISCOVERY_URL:
-          process.env.PROCONNECT_DISCOVERY_URL ??
           "https://fca.integ01.dev-agentconnect.fr/api/v2/.well-known/openid-configuration",
       },
-      reuseExistingServer: !process.env.CI,
     },
     {
       command: "docker compose up --wait",

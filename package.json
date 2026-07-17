@@ -17,7 +17,6 @@
     "db_proconnect:reset": "dotenv -e .env.local -- prisma db push --schema=./prisma/db_proconnect.prisma",
     "predev": "npm run prisma:generate && node -r @swc-node/register scripts/generate-search-index.ts && npm run build:packages && npm run only-include-used-icons",
     "dev": "next dev",
-    "e2e": "NEXT_PUBLIC_BASE_PATH='' NODE_ENV=production npm run build && npm run playwright test",
     "postinstall": "rm -f node_modules/@kitajs/html/*.d.ts",
     "lint": "prettier --write '**/*.{feature,ts,tsx,css,md,mdx,mjs,js}' --print-width 100 && eslint --no-cache . && npm run type-check",
     "migrate": "prisma migrate",
