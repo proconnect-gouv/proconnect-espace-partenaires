@@ -12,6 +12,7 @@ import { createEmotionSsrAdvancedApproach } from "tss-react/next";
 import { init } from "@socialgouv/matomo-next";
 import { DefaultSeo } from "next-seo";
 
+import { ClosableNotice } from "@/components/ClosableNotice";
 import { DocsLayoutFactory } from "../layouts/docs";
 import { PageLayout } from "../layouts/page";
 
@@ -84,6 +85,12 @@ function App({ Component, pageProps: { session, ...pageProps }, router }: AppPro
           flexDirection: "column",
         }}
       >
+        <ClosableNotice
+          id="proconnect-will-replace-magic-link-notice"
+          title="La connexion à votre Espace Partenaires se renforce."
+          severity="info"
+          description="ProConnect remplacera bientôt la connexion par lien de connexion. Assurez-vous que vos applications restent accessibles en utilisant la nouvelle fonctionnalité d’ajout de personnes collaboratrices."
+        />
         <Layout>
           <Component {...pageProps} />
         </Layout>
