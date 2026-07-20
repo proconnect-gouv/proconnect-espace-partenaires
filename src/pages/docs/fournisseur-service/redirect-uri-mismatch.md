@@ -18,7 +18,7 @@ De même, vos `redirect_uri` d'intégration et de production sont gérées indé
 
 ### 2.3. Mon application est-elle configurée pour Internet ? Pour la production ?
 
-Pour savoir pour quel serveur le `client_id` est configuré, allez sur [la liste complète des Fournisseurs de Service ProConnect](https://grist.numerique.gouv.fr/o/proconnect/gNkPzdjPZnv8/ProConnect-Configuration-des-FI-et-FS/p/14), faites une recherche (`ctrl` + `F`) avec votre `client_id` : vous trouverez où est configurée votre application. Vous aurez aussi la liste complète des `redirect_uris` renseignées.
+Pour savoir pour quel serveur le `client_id` est configuré, allez sur [la liste complète des Fournisseurs de Service ProConnect](https://grist.numerique.gouv.fr/o/proconnect/gNkPzdjPZnv8/ProConnect-Configuration-des-FI-et-FS/p/14) (⚠️ accessible uniquement en se connectant), faites une recherche (`ctrl` + `F`) avec votre `client_id` : vous trouverez où est configurée votre application. Vous aurez aussi la liste complète des `redirect_uris` renseignées.
 
 ## 3. Comment identifier ce qui ne va pas
 

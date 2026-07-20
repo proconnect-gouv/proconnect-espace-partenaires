@@ -4,7 +4,7 @@ La [Feuille de Route de Sécurité Numérique 2026-2027 de l'ANSSI](https://cybe
 
 ProConnect et ses Fournisseurs d'Identité sont concernés par cette obligation.
 
-ProConnect a récemment changé les niveaux de confiance renvoyés aux Fournisseurs d'Identité. Nous demandons à nos Fournisseurs d'Identité de verifier leur conformité MFA et de nous prévenir par mail à support.partenaires@mail.proconnect.gouv.fr. La liste des Fournisseurs d'Identité compatibles est disponibles ici : https://grist.numerique.gouv.fr/o/proconnect/gNkPzdjPZnv8/ProConnect-Configuration-des-FI-et-FS/p/13
+ProConnect a récemment changé les niveaux de confiance renvoyés aux Fournisseurs d'Identité. Nous demandons à nos Fournisseurs d'Identité de verifier leur conformité MFA et de nous prévenir par mail à support.partenaires@mail.proconnect.gouv.fr. La liste des Fournisseurs d'Identité compatibles est disponible ici : https://grist.numerique.gouv.fr/o/proconnect/gNkPzdjPZnv8/ProConnect-Configuration-des-FI-et-FS/p/13 (⚠️ accessible uniquement en se connectant)
 
 Afin de vérifier que votre Fournisseur d'Identité est conforme avec cette nouvelle norme, voici la procédure.
 
