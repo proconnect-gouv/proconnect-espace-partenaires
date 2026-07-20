@@ -177,7 +177,7 @@ export default function AppDetailPage({
 
             <div className={fr.cx("fr-mb-4w")}>
               <div className={fr.cx("fr-col")}>
-                <h1>Gestion de votre Fournisseur de Service</h1>
+                <h1 className={fr.cx("fr-h2")}>Gestion de votre Fournisseur de Service</h1>
               </div>
               <div>
                 <ul className={fr.cx("fr-badges-group")}>
@@ -210,7 +210,7 @@ export default function AppDetailPage({
             </div>
 
             <div id="cles" className={fr.cx("fr-mb-12v")}>
-              <h2>Clés d&rsquo;API</h2>
+              <h2 className={fr.cx("fr-h3")}>Clés d&rsquo;API</h2>
               <div className={fr.cx("fr-grid-row", "fr-grid-row--gutters")}>
                 <div className={fr.cx("fr-col-12")}>
                   <CopyableField label="Client ID" value={data.key || ""} />
@@ -252,8 +252,7 @@ export default function AppDetailPage({
             </div>
 
             <div id="alg-id-token" className={fr.cx("fr-mb-12v")}>
-              <h1 id="algs">Algorithmes</h1>
-              <h2>Algorithme de signature ID Token</h2>
+              <h2 className={fr.cx("fr-h3")}>Algorithme de signature ID Token</h2>
               <p>
                 L&rsquo;algorithme de signature est utilisé pour signer les jetons d&rsquo;identité.
               </p>
@@ -273,7 +272,7 @@ export default function AppDetailPage({
               </Select>
             </div>
             <div id="alg-user-info" className={fr.cx("fr-mb-12v")}>
-              <h2>Algorithme de signature user-info</h2>
+              <h2 className={fr.cx("fr-h3")}>Algorithme de signature user-info</h2>
               <p>
                 L&rsquo;algorithme de signature est utilisé pour signer les informations
                 utilisateur.
@@ -297,10 +296,10 @@ export default function AppDetailPage({
               </Select>
             </div>
 
-            <Badge severity="new" small>
-              Nouvelle fonctionnalité
-            </Badge>
             <div id="collaborators" className={fr.cx("fr-mb-12v")}>
+              <Badge className={fr.cx("fr-mb-3v")} severity="new" small>
+                Nouvelle fonctionnalité
+              </Badge>
               <EditableList
                 items={data.collaborators}
                 onUpdate={(collaborators) => handleUpdate({ collaborators })}
@@ -316,7 +315,7 @@ export default function AppDetailPage({
             </div>
 
             <div id="production" className={fr.cx("fr-mb-12v")}>
-              <h2>Passage en production</h2>
+              <h2 className={fr.cx("fr-h3")}>Passage en production</h2>
               <p>Cette application est encore en test.</p>
               <p>
                 Pour connaître les étapes à suivre pour passer en production, veuillez{" "}

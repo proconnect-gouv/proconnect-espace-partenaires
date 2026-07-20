@@ -79,22 +79,24 @@ export default function AppsIndex({
   return (
     <>
       <section
-        className={fr.cx("fr-pt-6w", "fr-pb-4w")}
+        className={fr.cx("fr-py-3w")}
         style={{
           backgroundColor: "var(--background-alt-blue-france)",
         }}
         id="apps-hero"
       >
         <div className={fr.cx("fr-container")}>
-          <h1>Vos applications</h1>
-          <p>Gérez vos applications OpenID Connect en cours de développement.</p>
+          <h1 className={fr.cx("fr-h2", "fr-mb-2v")}>Vos applications</h1>
+          <p className={fr.cx("fr-mb-0")}>
+            Gérez vos applications OpenID Connect en cours de développement.
+          </p>
         </div>
       </section>
 
       <div className={fr.cx("fr-my-4w", "fr-container")}>
         <div className={fr.cx("fr-grid-row", "fr-grid-row--middle", "fr-grid-row--gutters")}>
           <div className={fr.cx("fr-col")}>
-            <h2>Fournisseurs de Service</h2>
+            <h2 className={fr.cx("fr-h3", "fr-mb-2v")}>Fournisseurs de Service</h2>
           </div>
         </div>
 

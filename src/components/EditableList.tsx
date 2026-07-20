@@ -68,7 +68,7 @@ export const EditableList = ({
 
   return (
     <div className={fr.cx("fr-mb-10v")}>
-      <h2>{title}</h2>
+      <h2 className={fr.cx("fr-h3")}>{title}</h2>
       <p>{description}</p>
 
       {items && items.length > 0 && (
