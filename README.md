@@ -20,6 +20,8 @@ Ce dépôt a été initié à partir du [template Next.js de betagouv](https://g
 
 ### Développement
 
+Get values for PROCONNECT_CLIENT_ID and PROCONNECT_CLIENT_SECRET and put it into `.env.development.local`
+
 ```bash
 docker compose up --build --wait # pour lancer les conteneurs de base de données
 npm ci # pour installer les dépendances
@@ -31,13 +33,28 @@ Il suffit ensuite de se rendre sur [http://127.0.0.1:3000/](http://127.0.0.1:300
 
 ### Tests
 
-```bash
-# lancer les tests unitaires
-npm run test
+Lancer les tests unitaires :
 
-# lancer les tests end-to-end
-npx playwright install chromium
-npm run e2e -- --ui
+```bash
+npm run test
+```
+
+Préparation des tests end-to-end :
+
+```bash
+docker compose up --build --wait
+cat .env.development .env.development.local > .env.production.local
+npm run build
+npm run db_espace:reset
+cd e2e
+npm ci
+```
+
+Lancer les tests end-to-end :
+
+```bash
+cd e2e
+PROCONNECT_CLIENT_ID=xxx PROCONNECT_CLIENT_SECRET=xxx npm run studio
 ```
 
 ### Documentation

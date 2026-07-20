@@ -39,6 +39,24 @@ export function PageLayout({ children }: LayoutProps) {
   const { data: session } = useSession();
   const contentSecurityPolicy = process.env.CONTENT_SECURITY_POLICY;
 
+  const handleLogout = async () => {
+    const idToken = session?.proConnectIdToken;
+
+    await signOut({ redirect: true });
+
+    if (idToken) {
+      const logoutUrl = new URL(`${process.env.NEXT_PUBLIC_PROCONNECT_END_SESSION_URL}`);
+      logoutUrl.searchParams.set("id_token_hint", idToken);
+      logoutUrl.searchParams.set(
+        "post_logout_redirect_uri",
+        process.env.NEXT_PUBLIC_PROCONNECT_POST_LOGOUT_URI!,
+      );
+      window.location.href = logoutUrl.toString();
+    } else {
+      window.location.href = "/";
+    }
+  };
+
   const bottomLinks = [
     {
       text: "Conditions générales d'utilisation",
@@ -78,7 +96,7 @@ export function PageLayout({ children }: LayoutProps) {
           },
           {
             buttonProps: {
-              onClick: () => signOut({ callbackUrl: "/" }),
+              onClick: handleLogout,
             },
             iconId: "fr-icon-logout-box-r-line" as const,
             text: `Déconnecter ${session.user.email}`,

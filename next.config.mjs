@@ -63,6 +63,15 @@ const moduleExports = {
       },
     ];
   },
+  redirects: async () => {
+    return [
+      {
+        source: "/api/proconnect/logout-callback",
+        destination: "/",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default withMDX(withSentryConfig(moduleExports, { silent: true }));
