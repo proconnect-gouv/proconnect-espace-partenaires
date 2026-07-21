@@ -14,7 +14,8 @@ Given("je clique sur {string}", async function (this: World, text: string) {
 //
 
 Then("je vois {string}", async function (this: World, text: string) {
-  await expect(this.page.getByText(text)).toBeVisible();
+  const locator = this.page.getByText(text).and(this.page.locator(":visible"));
+  await expect(locator).toBeVisible();
 });
 
 //
