@@ -25,6 +25,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(200).json(app);
     }
 
+    if (req.method === "DELETE") {
+      const result = await pcdbClient.deleteOidcClient(id, session.user.email);
+      return res.status(200).json(result);
+    }
+
     return res.status(405).json({ message: "Method not allowed" });
   } catch (error) {
     console.error("API error:", error);

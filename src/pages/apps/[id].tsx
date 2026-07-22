@@ -1,12 +1,15 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Badge } from "@codegouvfr/react-dsfr/Badge";
 import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
+import Button from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
+import { createModal } from "@codegouvfr/react-dsfr/Modal";
 import { Select } from "@codegouvfr/react-dsfr/Select";
 import debounce from "debounce";
 import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth/next";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useCallback, useMemo, useState } from "react";
 import { SideMenu } from "../../components/AppSideMenu";
 import { CopyableField } from "../../components/CopyableField";
@@ -59,6 +62,11 @@ const SIGNATURE_ALGORITHMS = [
 const EMAIL_PATTERN = /^\S+@\S+\.\S+$/;
 const URL_PATTERN = /^https?:\/\/[^/].+$/;
 
+const deleteModal = createModal({
+  id: "delete-app-modal",
+  isOpenedByDefault: false,
+});
+
 export default function AppDetailPage({
   app,
   isYourApplicationsServiceDisabled,
@@ -68,6 +76,9 @@ export default function AppDetailPage({
   isYourApplicationsServiceDisabled: boolean;
   userEmail: string;
 }) {
+  const router = useRouter();
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
   const [data, setData] = useState(app);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [saveSuccess, setSaveSuccess] = useState(false);
@@ -109,6 +120,26 @@ export default function AppDetailPage({
     },
     [data._id],
   );
+
+  const handleDelete = async () => {
+    setIsDeleting(true);
+    setDeleteError(null);
+    try {
+      const response = await fetch(`/api/apps/${data._id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete app");
+      }
+
+      router.push("/apps");
+    } catch (error) {
+      console.error("Failed to delete app:", error);
+      setDeleteError("La suppression a échoué. Veuillez réessayer.");
+      setIsDeleting(false);
+    }
+  };
 
   // Create a memoized debounced save function
   const debouncedSave = useMemo(
@@ -325,14 +356,54 @@ export default function AppDetailPage({
                 .
               </p>
             </div>
+
+            <div id="suppression" className={fr.cx("fr-mb-12v")}>
+              <h2>Supprimer l&rsquo;application</h2>
+              <p>
+                Cette action est irréversible. Toutes les clés d&rsquo;API associées seront
+                immédiatement invalidées.
+              </p>
+              <Button
+                priority="secondary"
+                iconId="fr-icon-delete-line"
+                onClick={() => deleteModal.open()}
+              >
+                Supprimer cette application
+              </Button>
+            </div>
           </div>
         </div>
       </div>
 
+      <deleteModal.Component
+        title="Supprimer cette application ?"
+        buttons={[
+          {
+            children: "Annuler",
+            priority: "secondary",
+          },
+          {
+            children: isDeleting ? "Suppression..." : "Supprimer définitivement",
+            priority: "primary",
+            onClick: handleDelete,
+            disabled: isDeleting,
+          },
+        ]}
+      >
+        <p>
+          Vous êtes sur le point de supprimer <strong>{data.name}</strong>. Cette action est
+          irréversible : le Client ID, le Client Secret et toutes les URLs de redirection
+          configurées seront définitivement perdus.
+        </p>
+      </deleteModal.Component>
+
       <NotificationsContainer
-        error={saveError}
+        error={saveError || deleteError}
         success={saveSuccess ? "Les modifications ont été enregistrées" : null}
-        onErrorClose={() => setSaveError(null)}
+        onErrorClose={() => {
+          setSaveError(null);
+          setDeleteError(null);
+        }}
         onSuccessClose={() => setSaveSuccess(false)}
       />
     </>

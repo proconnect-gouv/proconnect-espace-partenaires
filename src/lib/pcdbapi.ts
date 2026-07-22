@@ -89,6 +89,10 @@ export class PCDBClient {
   ): Promise<OidcClient> {
     return this.request("PATCH", `/api/oidc_clients/${id}?email=${email}`, data);
   }
+
+  async deleteOidcClient(id: string, email: string): Promise<{ deleted: boolean }> {
+    return this.request("DELETE", `/api/oidc_clients/${id}?email=${email}`);
+  }
 }
 
 export const pcdbClient = new PCDBClient();
