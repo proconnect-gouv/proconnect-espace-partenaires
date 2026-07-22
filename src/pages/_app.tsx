@@ -89,7 +89,7 @@ function App({ Component, pageProps: { session, ...pageProps }, router }: AppPro
           id="proconnect-will-replace-magic-link-notice"
           title="La connexion à votre Espace Partenaires se renforce."
           severity="info"
-          description="ProConnect remplacera bientôt la connexion par lien de connexion. Assurez-vous que vos applications restent accessibles en utilisant la nouvelle fonctionnalité d’ajout de personnes collaboratrices."
+          description="Les liens de connexion seront prochainement remplacés par la connexion via le bouton ProConnect. Pour garantir l’accès à vos applications, ajoutez dès maintenant les personnes concernées à vos espaces via la nouvelle fonctionnalité d’ajout de personnes collaboratrices."
         />
         <Layout>
           <Component {...pageProps} />
