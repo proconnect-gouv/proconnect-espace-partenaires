@@ -25,10 +25,10 @@ services:
       - MONGO_INITDB_API_PASSWORD=pass
     healthcheck:
       interval: 1s
-      timeout: 2s
       test:
         - CMD-SHELL
         - echo "try { rs.status() } catch (err) { rs.initiate() }" | mongosh --username fc_admin --password pass --authenticationDatabase admin --quiet
+      timeout: 2s
 
     ports:
       - "27017:27017"
@@ -39,24 +39,26 @@ services:
       - /data/db
       - /data/configdb
 
-  pcdbapi:
-    image: ghcr.io/proconnect-gouv/federation/api-partner@sha256:3c4b183a4d3ed00ab17c60a9045f7d942de613fc4e601d94f5f94b6101a93f24 # commit 5ae2f9e - 22/07/2026
-    environment:
-      - MONGODB_URL=mongodb://mongo:27017/corev2?authSource=corev2&directConnection=true
-      - MONGODB_USERNAME=proconnect-app-api-partner
-      - MONGODB_PASSWORD=pass
-      - MONGODB_TLS=false
-      - API_SECRET=pcdb-api-secret-key
-      - CLIENT_SECRET_CIPHER_PASS=test-pcdbapi-secret-cipher-passs
-      - CANT_RUN_TESTS=1
-    ports:
-      - "8000:8000"
+  api-partenaires:
+    image: ghcr.io/proconnect-gouv/api-partenaires:sha-56cce71 # latest
     depends_on:
       mongo:
         condition: service_healthy
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-
-  mailcatcher:
+    environment:
+      CLIENT_SECRET_CIPHER_PASS: test-pcdbapi-secret-cipher-passs
+      FEATURE_ENABLE_SANDBOX_ENDPOINT: true
+      MONGODB_URI: mongodb://proconnect-app-api-partner:pass@mongo:27017/corev2?authSource=corev2&directConnection=true
+      OIDC_CLIENTS_API_SECRET: pcdb-api-secret-key
+      OIDC_PROVIDERS_API_SECRET: test-oidc-providers-secret
+    healthcheck:
+      interval: 1s
+      test:
+        - "CMD-SHELL"
+        - "wget --no-verbose --tries=1 --spider http://127.0.0.1:3000/readyz || exit 1"
+      timeout: 2s
+    ports:
+      - "8000:3000"
+  maildev:
     image: maildev/maildev:2.2.1
     ports:
       - "1080:1080"
