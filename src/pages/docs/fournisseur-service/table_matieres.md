@@ -12,6 +12,7 @@ Avant toute chose, nous vous recommandons fortement de lire [notre page de proce
 | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
 | [Éligibilité](./eligibilite_installation.md)          | Suis-je éligible à utiliser le bouton ProConnect pour mon application ?                                 |
 | [Couverture ProConnect](./couverture-proconnect.md)   | Qui peut se connecter (et qui ne peut pas se connecter) à ProConnect ?                                  |
+| [Restreindre l'accès](./restriction_acces.md)         | Comment restreindre mon service à une population spécifique de professionnels ?                         |
 | [DataPass](./datapass-fs.md)                          | Comment remplir le DataPass, qui fait office de contractualisation entre mon organisation et la DINUM ? |
 | [Règles de design](./recommandation_parcours.md)      | Quelles règles de design de parcours dois-je respecter impérativement ?                                 |
 | [Serveurs Internet / RIE](./serveurs_internet_rie.md) | Quelle est la différence entre les serveurs Internet et les serveurs RIE ?                              |
