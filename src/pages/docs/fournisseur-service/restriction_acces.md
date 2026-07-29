@@ -15,7 +15,7 @@ En dehors de ce cas, toute restriction supplémentaire doit être faite de votre
 
 ## 2. La restriction est du côté métier
 
-ProConnect est un outil d'authentification : il vérifie l'identité d'une personne professionnelle, mais ne décide pas s'elle a le droit d'accéder à votre service. Comme rappelé dans nos [recommandations de parcours](./recommandation_parcours.md), c'est vous qui avez le contrôle sur ce qui se passe avant et après la connexion.
+ProConnect est un outil d'authentification : il vérifie l'identité d'une personne professionnelle, mais ne décide pas si elle a le droit d'accéder à votre service. Comme rappelé dans nos [recommandations de parcours](./recommandation_parcours.md), c'est vous qui avez le contrôle sur ce qui se passe avant et après la connexion.
 
 Concrètement, une fois le retour de ProConnect reçu sur votre service (`id_token` et claims associés), c'est à vous de vérifier si l'utilisateur authentifié a le droit d'accéder à votre service, et de bloquer l'accès si ce n'est pas le cas.
 
