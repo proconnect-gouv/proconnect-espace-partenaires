@@ -6,7 +6,7 @@ Toute personne professionnelle disposant d'un compte ProConnect valide (voir [Co
 
 ### 1.1. La seule exception : les organisations privées
 
-La seule exception est pour les personnes travaillant pour une organisation privée : il est possible de ne restreindre son application uniquement pour les agents publics.
+La seule exception est pour les personnes travaillant pour une organisation de droit privé : il est possible de ne restreindre son application uniquement pour les agents publics.
 
 > [!NOTE]
 > Les organisations privées utilisant ProConnect ne peuvent connecter que les agents publics. Voir [Éligibilité](./eligibilite_installation.md).
