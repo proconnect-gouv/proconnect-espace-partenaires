@@ -2,7 +2,7 @@
 
 ## 1. ProConnect ne filtre pas qui peut se connecter à votre service
 
-Toute personne professionnelle disposant d'un compte ProConnect valide (voir [Couverture ProConnect](./couverture-proconnect.md) pour savoir qui peut utiliser ProConnect) peut utiliser le bouton ProConnect dès qu'il est installé sur votre service. ProConnect n'offre pas encore de mécanisme de restriction pour le compte des Fournisseurs de Service.
+Toute personne professionnelle disposant d'un compte ProConnect valide (voir [Couverture ProConnect](./couverture-proconnect.md) pour savoir qui peut utiliser ProConnect) peut utiliser le bouton ProConnect dès qu'il est installé sur votre service. ProConnect n'offre pas de mécanisme de restriction pour le compte des Fournisseurs de Service.
 
 ### 1.1. La seule exception : les organisations privées
 
