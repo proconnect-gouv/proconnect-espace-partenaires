@@ -44,8 +44,8 @@ Mêmes étapes, avec une précaution supplémentaire :
 
 Voici ce que nous attendons d'un Fournisseur d'Identité fonctionnel :
 
-- [ ] Le parcours de connexion complet est fonctionnel
-- [ ] Le parcours de déconnexion complet est fonctionnel
+- [ ] Le parcours de connexion complet (en cliquant sur **"Connexion - Implémentation Fournisseur d'Identité"**) est fonctionnel
+- [ ] Le parcours de déconnexion complet (en cliquant sur **"Connexion - Implémentation Fournisseur d'Identité"**) est fonctionnel
 - [ ] [La connexion par double-authentification](./authentification-multifacteur.md) renvoie un comportement maitrisé par vous qui ne casse pas le parcours
 
 ## 🆘 5. En cas d'erreur
