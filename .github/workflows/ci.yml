@@ -49,15 +49,15 @@ jobs:
           NEXT_PUBLIC_PROCONNECT_POST_LOGOUT_URI: "http://localhost:3000/api/proconnect/logout-callback"
           NEXT_PUBLIC_PROCONNECT_END_SESSION_URL: "https://fca.integ01.dev-agentconnect.fr/api/v2/session/end"
 
-      - name: 🔥 Prune dev dependencies
-        run: npm prune --omit=dev
-
       - name: 💾 Save app dependencies cache
         if: steps.cache-deps.outputs.cache-hit != 'true'
         uses: actions/cache/save@v6
         with:
           path: node_modules
           key: node-cache-${{ runner.os }}-${{ runner.arch }}-npm-${{ hashFiles('package-lock.json') }}
+
+      - name: 🔥 Prune dev dependencies
+        run: npm prune --omit=dev
 
       - name: 📤 Upload build artifacts
         uses: actions/upload-artifact@v7
