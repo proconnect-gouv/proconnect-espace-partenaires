@@ -2,8 +2,7 @@
 Fonctionnalité: Connexion
 
   Scénario: Connexion avec un utilisateur via un lien de connexion envoyé par email puis via ProConnect
-    Étant donné que je visite l'Url "/"
-    Quand je clique sur le lien nommé "Se connecter"
+    Étant donné que je visite l'Url "/magic-link-login"
     Alors je dois voir un titre nommé "Connexion" avec le niveau 1
     Et je clique sur "Email professionnel"
     Quand j'entre la valeur "user@test.proconnect.gouv.fr"
@@ -52,8 +51,7 @@ Fonctionnalité: Connexion
     Quand je clique sur le bouton nommé "Déconnecter ursula@test.proconnect.gouv.fr"
     Alors je dois voir un titre nommé "Rejoignez les partenaires de ProConnect !" avec le niveau 1
 
-    Et je clique sur le lien nommé "Vos applications"
-
+    Et que je visite l'Url "/magic-link-login"
     Et je clique sur "Email professionnel"
 
     Quand j'entre la valeur "ursula@test.proconnect.gouv.fr"

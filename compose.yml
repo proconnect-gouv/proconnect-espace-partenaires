@@ -40,7 +40,7 @@ services:
       - /data/configdb
 
   api-partenaires:
-    image: ghcr.io/proconnect-gouv/api-partenaires:sha-56cce71 # latest
+    image: ghcr.io/proconnect-gouv/api-partenaires:sha-d71957a # latest
     depends_on:
       mongo:
         condition: service_healthy

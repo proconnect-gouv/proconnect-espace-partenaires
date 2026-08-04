@@ -1,3 +1,4 @@
+import { ClosableNotice } from "@/components/ClosableNotice";
 import { fr } from "@codegouvfr/react-dsfr";
 import { Badge } from "@codegouvfr/react-dsfr/Badge";
 import { Button } from "@codegouvfr/react-dsfr/Button";
@@ -78,6 +79,19 @@ export default function AppsIndex({
 
   return (
     <>
+      <ClosableNotice
+        id="cannot-find-your-apps-notice"
+        title="Vous ne retrouvez pas vos applications ?"
+        severity="warning"
+        link={{
+          text: "Documentation",
+          linkProps: {
+            href: "/docs/fournisseur-service/retrouver_apps_espace_partenaires",
+          },
+        }}
+        description="Les applications créées avec l'ancien système de connexion peuvent ne plus être accessibles. Pour les récupérer, veuillez suivre la documentation."
+      />
+
       <section
         className={fr.cx("fr-py-3w")}
         style={{
