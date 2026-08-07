@@ -187,7 +187,7 @@ jobs:
         run: npm run predev
 
       - name: ⛑️ Lint
-        run: npm run test:lint
+        run: npm run lint
 
   test:
     name: 💪 Test
@@ -271,7 +271,7 @@ jobs:
 
       - name: 🎬 Run Playwright tests
         working-directory: ./e2e
-        run: npm run test:video
+        run: npm run test:e2e:video
         env:
           PROCONNECT_CLIENT_ID: ${{ secrets.PROCONNECT_CLIENT_ID }}
           PROCONNECT_CLIENT_SECRET: ${{ secrets.PROCONNECT_CLIENT_SECRET }}
