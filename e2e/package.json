@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "test": "uuv run",
-    "studio": "uuv open",
-    "test:video": "PW_VIDEO=1 uuv run"
+    "test:e2e": "uuv run",
+    "test:e2e:studio": "uuv open",
+    "test:e2e:video": "PW_VIDEO=1 uuv run"
   },
   "devDependencies": {
     "@playwright/test": "1.61.1",
