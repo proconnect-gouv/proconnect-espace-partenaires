@@ -1,6 +1,7 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Alert } from "@codegouvfr/react-dsfr/Alert";
-import { ProConnectButton } from "@codegouvfr/react-dsfr/ProConnectButton";
+import Button from "@codegouvfr/react-dsfr/Button";
+import Input from "@codegouvfr/react-dsfr/Input";
 import { GetServerSideProps, NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth/next";
 import { signIn } from "next-auth/react";
@@ -29,21 +30,27 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return { props: {} };
 };
 
-export default function Login() {
+export default function MagicLinkLogin() {
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [authenticationError, setAuthenticationError] = useState("");
   const router = useRouter();
   const oidcCallbackError = router.query.error as string | undefined;
 
-  const handleProConnectLogin = async (e: React.FormEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     setAuthenticationError("");
 
     try {
-      await signIn("proconnect", {
+      await signIn("email", {
+        email,
         callbackUrl: "/apps",
       });
     } catch {
       setAuthenticationError("Une erreur est survenue. Veuillez réessayer.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -69,9 +76,30 @@ export default function Login() {
                 />
               )}
 
-              <div style={{ textAlign: "center" }}>
-                <ProConnectButton onClick={handleProConnectLogin} />
-              </div>
+              <form onSubmit={handleSubmit}>
+                <Input
+                  label="Email professionnel"
+                  nativeInputProps={{
+                    type: "email",
+                    value: email,
+                    onChange: (e) => setEmail(e.target.value.trim()),
+                    required: true,
+                    autoComplete: "email",
+                    disabled: isLoading,
+                  }}
+                />
+                <div className={fr.cx("fr-mt-2w")}>
+                  <Button type="submit" disabled={isLoading || !email}>
+                    {isLoading ? "Envoi en cours..." : "Recevoir un lien de connexion"}
+                  </Button>
+                </div>
+              </form>
+
+              <p className={fr.cx("fr-mt-3w", "fr-mb-0", "fr-text--sm")}>
+                Un lien de connexion sécurisé vous sera envoyé par email.
+                <br />
+                Ce lien est valable 24 heures.
+              </p>
             </div>
           </div>
         </div>

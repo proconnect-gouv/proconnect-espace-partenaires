@@ -22,9 +22,7 @@ npm install
 
 ### Debug & Development
 
-- **`npm run test:debug`** - Run tests with browser visible and slow motion for debugging
-- **`npm run test:screenshot`** - Run tests and capture screenshots only on failure
-- **`npm run test:video`** - Run tests with video recording enabled
+- **`npm run test:e2e:video`** - Run tests with video recording enabled
 
 ## Project Structure
 

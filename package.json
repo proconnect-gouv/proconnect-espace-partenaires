@@ -18,16 +18,16 @@
     "predev": "npm run prisma:generate && node -r @swc-node/register scripts/generate-search-index.ts && npm run build:packages && npm run only-include-used-icons",
     "dev": "next dev",
     "postinstall": "rm -f node_modules/@kitajs/html/*.d.ts",
-    "lint": "prettier --write '**/*.{feature,ts,tsx,css,md,mdx,mjs,js}' --print-width 100 && eslint --no-cache . && npm run type-check",
+    "format": "prettier --write '**/*.{feature,ts,tsx,css,md,mdx,mjs,js}' --print-width 100",
     "migrate": "prisma migrate",
     "only-include-used-icons": "node node_modules/@codegouvfr/react-dsfr/bin/only-include-used-icons.js",
     "prisma:generate": "prisma generate --schema=./prisma/db_espace.prisma && prisma generate --schema=./prisma/db_proconnect.prisma",
     "prod:prune": "find node_modules -type f -name '*.map' -delete && rm -rf .next/cache",
     "start": "node .next/standalone/server.js",
-    "test": "npm run test:lint",
+    "test": "npm run lint",
     "test:links": "start-server-and-test 'npm run dev' 3000 'linkinator 'http://localhost:3000' --recurse --skip \"^(?!http://localhost:3000)\"'",
-    "test:lint": "prettier '**/*.{feature,ts,tsx,css,md,mdx,mjs,js}' --list-different --print-width 100 && eslint --no-cache . && npm run type-check",
-    "type-check": "tsc --noEmit"
+    "lint": "prettier '**/*.{feature,ts,tsx,css,md,mdx,mjs,js}' --list-different --print-width 100 && eslint --no-cache . && npm run type:check",
+    "type:check": "tsc --noEmit"
   },
   "prettier": {
     "plugins": [
