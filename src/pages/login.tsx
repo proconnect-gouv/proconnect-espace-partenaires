@@ -53,7 +53,7 @@ export default function Login() {
       <div className={fr.cx("fr-py-6w", "fr-container")}>
         <div className={fr.cx("fr-grid-row", "fr-grid-row--center")}>
           <div className={fr.cx("fr-col-12", "fr-col-md-8", "fr-col-lg-6")}>
-            <div className={fr.cx("fr-card", "fr-p-4w")}>
+            <div className={fr.cx("fr-card", "fr-p-4w")} style={{ textAlign: "center" }}>
               <h1>Connexion</h1>
               <p>
                 Connectez-vous pour accéder à votre Espace Partenaires ProConnect et gérer vos
@@ -68,10 +68,7 @@ export default function Login() {
                   small
                 />
               )}
-
-              <div style={{ textAlign: "center" }}>
-                <ProConnectButton onClick={handleProConnectLogin} />
-              </div>
+              <ProConnectButton onClick={handleProConnectLogin} />
             </div>
           </div>
         </div>

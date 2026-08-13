@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import { SideMenu as DsfrSideMenu } from "@codegouvfr/react-dsfr/SideMenu";
 import { useRouter } from "next/router";
 
@@ -9,7 +10,7 @@ export const SideMenu = () => {
     <DsfrSideMenu
       className="fr-col-12 fr-col-md-3"
       classes={{
-        inner: "fr-pt-12v",
+        inner: fr.cx("fr-pt-0", "fr-pt-md-12v"),
       }}
       sticky
       fullHeight

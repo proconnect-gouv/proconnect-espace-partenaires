@@ -22,8 +22,8 @@ export const CopyableField = ({ label, value, readOnly = true }: Props) => {
   };
 
   return (
-    <div className={fr.cx("fr-grid-row")}>
-      <div className={fr.cx("fr-col-md-7")}>
+    <div className={fr.cx("fr-grid-row", "fr-grid-row--bottom", "fr-grid-row--gutters")}>
+      <div className={fr.cx("fr-col-12", "fr-col-md-7")}>
         <Input
           label={label}
           nativeInputProps={{
@@ -32,7 +32,7 @@ export const CopyableField = ({ label, value, readOnly = true }: Props) => {
           }}
         />
       </div>
-      <div style={{ paddingTop: "calc(1.5rem + 8px)", paddingLeft: "1rem" }}>
+      <div className={`${fr.cx("fr-col-12", "fr-mb-3v")} fr-col-md-auto`}>
         <Button
           priority={copied ? "primary" : "secondary"}
           onClick={copyToClipBoard}
