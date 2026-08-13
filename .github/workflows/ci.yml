@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout repository
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7.0.1
 
       - name: 🔧 Setup Node.js
         uses: actions/setup-node@v7
@@ -76,7 +76,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout repository
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7.0.1
 
       - name: 🔧 Setup Node.js
         uses: actions/setup-node@v7
@@ -130,7 +130,7 @@ jobs:
       contents: write
     steps:
       - name: 📥 Checkout repository
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7.0.1
         with:
           ref: ${{ github.head_ref }}
 
@@ -164,7 +164,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout repository
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7.0.1
 
       - name: 🔧 Setup Node.js
         uses: actions/setup-node@v7
@@ -194,7 +194,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout repository
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7.0.1
 
       - name: 🔧 Setup Node.js
         uses: actions/setup-node@v7
@@ -226,7 +226,7 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: 📥 Checkout repository
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7.0.1
 
       - name: 🔧 Setup Node.js
         uses: actions/setup-node@v7
