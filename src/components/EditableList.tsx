@@ -94,38 +94,29 @@ export const EditableList = ({
           />
         </div>
       )}
-
-      <div>
-        <div style={{ position: "relative", paddingRight: "7rem", width: "650px" }}>
-          <div>
-            <Input
-              label={label}
-              state={inputError ? "error" : "default"}
-              stateRelatedMessage={inputError}
-              nativeInputProps={{
-                value: inputText,
-                placeholder,
-                onChange: handleInputChange,
-                onKeyPress: (e) => {
-                  if (e.key === "Enter") {
-                    e.preventDefault();
-                    addItemToArray();
-                  }
-                },
-              }}
-            />
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              right: 0,
-              top: "2.1rem", // Aligns with input field accounting for label
+      <div className={fr.cx("fr-grid-row", "fr-grid-row--bottom", "fr-grid-row--gutters")}>
+        <div className={fr.cx("fr-col-12", "fr-col-md-8")}>
+          <Input
+            label={label}
+            state={inputError ? "error" : "default"}
+            stateRelatedMessage={inputError}
+            nativeInputProps={{
+              value: inputText,
+              placeholder,
+              onChange: handleInputChange,
+              onKeyPress: (e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  addItemToArray();
+                }
+              },
             }}
-          >
-            <Button disabled={!inputText || !!inputError} onClick={addItemToArray}>
-              Ajouter
-            </Button>
-          </div>
+          />
+        </div>
+        <div className={`${fr.cx("fr-col-12", "fr-mb-3v")} fr-col-md-auto`}>
+          <Button disabled={!inputText || !!inputError} onClick={addItemToArray}>
+            Ajouter
+          </Button>
         </div>
       </div>
     </div>

@@ -200,7 +200,9 @@ export default function AppDetailPage({
         <div className={fr.cx("fr-grid-row", "fr-grid-row--gutters")}>
           <SideMenu />
 
-          <div className={fr.cx("fr-col-12", "fr-col-md-9", "fr-py-12v")}>
+          <div
+            className={fr.cx("fr-col-12", "fr-col-md-8", "fr-pb-12v", "fr-pt-0", "fr-pt-md-12v")}
+          >
             <Breadcrumb
               currentPageLabel={data.name}
               segments={[{ label: "Applications", linkProps: { href: "/apps" } }]}
