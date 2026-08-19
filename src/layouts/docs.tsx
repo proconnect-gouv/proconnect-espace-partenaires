@@ -127,11 +127,11 @@ function DocsLayout({ children, pathname }: DocsLayoutProps) {
             fullHeight
             className={fr.cx("fr-mb-0-5v")}
             classes={{
-              inner: fr.cx("fr-pt-12v"),
+              inner: fr.cx("fr-pt-0", "fr-pt-md-12v"),
             }}
           />
         </div>
-        <div className={fr.cx("fr-col-12", "fr-col-md-8", "fr-py-12v")}>
+        <div className={fr.cx("fr-col-12", "fr-col-md-8", "fr-pb-12v", "fr-pt-0", "fr-pt-md-12v")}>
           <Breadcrumb
             segments={breadcrumbSegments.slice(0, -1)}
             currentPageLabel={breadcrumbSegments[breadcrumbSegments.length - 1]?.label}
