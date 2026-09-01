@@ -4,7 +4,7 @@
 
 L'erreur `invalid_client` signifie que ProConnect ne trouve pas de `client_id` avec le client_id que vous envoyez.
 
-Cela peut être dû à une coquille, mais elle est souvent dûe à cause d'un appel sur le mauvais environnement de ProConnect.
+Cela peut être dû à une coquille, mais elle est souvent due à un appel sur le mauvais environnement de ProConnect.
 
 ## 2. Sources fréquentes de confusion
 
