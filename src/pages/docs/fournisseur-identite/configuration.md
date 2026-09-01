@@ -105,12 +105,14 @@ Parmi ces champs, seuls sont obligatoires :
 |email |Adresse courriel | email |string (standard OpenIDConnect)|
 |siret |SIRET de l'organisation de rattachement| 14 caractères [Lunh](https://fr.wikipedia.org/wiki/Formule_de_Luhn) | string|
 |uid | Identifiant unique du professionnel auprès du FI | 1 caractère minimum | string |
+|sub | L'identifiant unique du FI pour une identité | 1 caractère minimum | ASCII |
 
-Est également exigé un champ sub:
+**Différence entre `uid` et `sub`** :
 
-| Champ | Description                                  | Contraintes         | Format |
-| ----- | -------------------------------------------- | ------------------- | ------ |
-| sub   | L'identifiant unique du FI pour une identité | 1 caractère minimum | ASCI   |
+- `uid` est l'identifiant unique que vous utilisez de votre côté pour identifier la personne, par exemple si l'on vous demande un log de connexion.
+- `sub` est l'identifiant unique que vous envoyez à ProConnect pour identifier la personne chez nous. Nous lui appliquons un hash pour qu'il reste unique quel que soit le FI (par exemple, si deux Fournisseurs d'Identité utilisent des `sub` de type `1`, `2`, `3`, etc.) le hash évite toute collision entre eux).
+
+En général, les champs `sub` et `uid` peuvent être identiques.
 
 > [!IMPORTANT]
 > Le champ SIRET est obligatoire, s'il ne vous est pas possible de le renseigner ou si son format est incorrect, nous attribuerons un champ SIRET par défaut pour le Fournisseur d'Identité (généralement celui de l'entité qui gère le Fournisseur d'Identité).
