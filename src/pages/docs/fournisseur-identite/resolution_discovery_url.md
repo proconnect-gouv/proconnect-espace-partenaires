@@ -10,13 +10,13 @@ Or, **seuls les domaines en `rie.gouv.fr` ou `ader.gouv.fr`** sont résolus par 
 
 Deux solutions s'offrent à vous :
 
-### Option 1 — Utiliser un domaine en `rie.gouv.fr` ou `ader.gouv.fr` (recommandé)
+### Option 1 : Utiliser un domaine en `rie.gouv.fr` ou `ader.gouv.fr` (recommandé)
 
 Assurez-vous que la Discovery URL de votre FI utilise un domaine reconnu par le serveur DNS du RIE.
 
 Exemple : `https://monfi.ministere.rie.gouv.fr/.well-known/openid-configuration`
 
-### Option 2 — Fournir les adresses IP explicitement
+### Option 2 : Fournir les adresses IP explicitement
 
 Si vous ne pouvez pas utiliser un domaine en `rie.gouv.fr` ou `ader.gouv.fr`, vous devez nous communiquer les adresses IP d'exposition de votre serveur afin que nous puissions le configurer directement.
 

@@ -38,7 +38,7 @@ Voici un schéma explicatif de ProConnect. L'utilisateur clique sur ProConnect, 
                             ▼
                  ┌────────────────────────┐
                  │   Fournisseur de       │
-                 │   Service — connecté   │
+                 │   Service - connecté   │
                  └────────────────────────┘
 ```
 

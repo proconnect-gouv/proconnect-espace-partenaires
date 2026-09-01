@@ -11,9 +11,9 @@ La Certification Dirigeant fonctionne comme un niveau de confiance (ACR) OpenID 
 
 Selon la nature de votre service, deux cas d'usage se distinguent :
 
-- **Cas 1 — Action sensible ponctuelle** : l'utilisateur est déjà connecté via un parcours classique. Au moment d'effectuer une action sensible (ex. : fermeture de l'entreprise), votre service déclenche une Certification Dirigeant pour confirmer son identité, à l'image d'une confirmation par authentification multifacteur avant une action irréversible.
+- **Cas 1 : Action sensible ponctuelle** : l'utilisateur est déjà connecté via un parcours classique. Au moment d'effectuer une action sensible (ex. : fermeture de l'entreprise), votre service déclenche une Certification Dirigeant pour confirmer son identité, à l'image d'une confirmation par authentification multifacteur avant une action irréversible.
 
-- **Cas 2 — Service entièrement sensible** : l'ensemble du service nécessite le statut de dirigeant. La Certification Dirigeant est alors demandée dès la page de connexion.
+- **Cas 2 : Service entièrement sensible** : l'ensemble du service nécessite le statut de dirigeant. La Certification Dirigeant est alors demandée dès la page de connexion.
 
 ---
 
@@ -45,7 +45,7 @@ Une fois les populations identifiées, ProConnect peut gérer automatiquement le
 
 ---
 
-## 3. Cas 1 — Certification Dirigeant pour une action sensible
+## 3. Cas 1 : Certification Dirigeant pour une action sensible
 
 Dans ce scénario, l'utilisateur est déjà authentifié sur votre service. La Certification Dirigeant intervient comme une étape de confirmation avant une action critique.
 
@@ -80,7 +80,7 @@ Placez un bouton de déclenchement directement au point d'entrée de l'action se
 
 ---
 
-## 4. Cas 2 — Certification Dirigeant dès la connexion
+## 4. Cas 2 : Certification Dirigeant dès la connexion
 
 Dans ce scénario, l'accès au service est réservé aux dirigeants. La Certification Dirigeant est exigée dès le point d'entrée.
 

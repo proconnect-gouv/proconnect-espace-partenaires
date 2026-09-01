@@ -1,4 +1,4 @@
-# Erreur Y030031 — redirect_uri non autorisée
+# Erreur : redirect_uri non autorisée
 
 ## 1. L'erreur
 
