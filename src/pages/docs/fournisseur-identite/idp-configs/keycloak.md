@@ -105,9 +105,12 @@ Nous recommandons l'algorithme RS256 pour la signature de l'ID token et celle de
 
 ## Configuration : Authentification Multi-Facteurs (MFA)
 
-La configuration de la MFA se fait dans ACR to LoA Mapping. À partir de là, vous pourrez rentrer les combinaisons ACR (`acr` demandé) - LoA (type d'authentification que vous allez faire).
+La configuration de la MFA se fait dans ACR to LoA Mapping. À partir de là, vous pourrez rentrer les combinaisons ACR (`acr` demandé) - LoA (type d'authentification que vous allez faire). 
 
-![](/images/docs/keycloak/MFA/mfa-keycloak-1.png)
+> [!WARNING]
+> Ces images sont à titre indicatif pour vous donner une orientation de où aller dans l'interface Keycloak. Elles ne sont pas à prendre au premier degrès.
+
+![](/images/docs/keycloak/MFA/mfa-keycloak-7.png)
 
 ![](/images/docs/keycloak/MFA/mfa-keycloak-2.png)
 
