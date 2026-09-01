@@ -52,5 +52,5 @@ Voici ce que nous attendons d'un Fournisseur d'Identité fonctionnel :
 
 Si le test échoue, deux ressources sont disponibles :
 
-- [Configuration](./configuration.md) - la page qui explique comment configurer son Fournisseur d'Identité
-- [Erreurs récurrentes](./troubleshooting-fi.md) — liste des codes d'erreur les plus fréquents et leur résolution
+- [Configuration](./configuration.md) : la page qui explique comment configurer son Fournisseur d'Identité
+- [Erreurs récurrentes](./troubleshooting-fi.md) : liste des codes d'erreur les plus fréquents et leur résolution
