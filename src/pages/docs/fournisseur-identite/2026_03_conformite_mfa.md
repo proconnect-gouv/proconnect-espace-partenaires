@@ -1,4 +1,4 @@
-# Conformité MFA — Feuille de Route Cyber ANSSI 2026-2027
+# Conformité MFA - Feuille de Route Cyber ANSSI 2026-2027
 
 La [Feuille de Route de Sécurité Numérique 2026-2027 de l'ANSSI](https://cyber.gouv.fr/nous-connaitre/publications/feuilles-de-route-de-la-securite-numerique-de-letat/feuille-de-route-de-securite-numerique-2026-2027/) impose de « Déployer une authentification multi-facteur des utilisateurs sur le système d'information et de communication de l'État » **avant le 28 février 2027**.
 

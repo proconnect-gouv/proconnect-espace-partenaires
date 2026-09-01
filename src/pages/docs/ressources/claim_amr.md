@@ -3,13 +3,13 @@
 Le claim `amr` (Authentication Methods References) est un tableau de chaînes de caractères présent dans l'ID token. Il décrit les méthodes d'authentification effectivement utilisées lors de la connexion.
 
 - Un **Fournisseur d'Identité** le retourne pour décrire comment l'utilisateur s'est authentifié.
-- Un **Fournisseur de Service** peut le lire pour adapter son parcours — par exemple, éviter de redemander un second facteur si la MFA a déjà été réalisée.
+- Un **Fournisseur de Service** peut le lire pour adapter son parcours, par exemple, éviter de redemander un second facteur si la MFA a déjà été réalisée.
 
 Contrairement à `acr` (niveau de confiance global), `amr` liste les méthodes concrètes utilisées. Les deux claims sont complémentaires.
 
 ## 1. Les valeurs `amr` dans ProConnect
 
-ProConnect utilise les valeurs définies dans [RFC 8176 — Authentication Method Reference Values](https://www.rfc-editor.org/rfc/rfc8176) et dans [OpenID Connect EAP ACR Values 1.0](https://openid.net/specs/openid-connect-eap-acr-values-1_0.html), complétées par une extension propre à ProConnect pour le cas de la confirmation par email. Ces valeurs sont enregistrées dans le [registre IANA AMR](https://www.iana.org/assignments/authentication-method-reference-values/authentication-method-reference-values.xhtml), qui fait référence.
+ProConnect utilise les valeurs définies dans [RFC 8176 : Authentication Method Reference Values](https://www.rfc-editor.org/rfc/rfc8176) et dans [OpenID Connect EAP ACR Values 1.0](https://openid.net/specs/openid-connect-eap-acr-values-1_0.html), complétées par une extension propre à ProConnect pour le cas de la confirmation par email. Ces valeurs sont enregistrées dans le [registre IANA AMR](https://www.iana.org/assignments/authentication-method-reference-values/authentication-method-reference-values.xhtml), qui fait référence.
 
 ### 1.1. Tableau des valeurs
 
