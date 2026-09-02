@@ -17,10 +17,10 @@ Par exemple, si vos domaines sont `@france.fr` et `@france.gouv.fr`, tout usager
 
 Selon votre environnement et le réseau de votre FI :
 
-|             | Internet                                                  | RIE                                             |
-| ----------- | --------------------------------------------------------- | ----------------------------------------------- |
-| Intégration | https://test.proconnect.gouv.fr                           | https://fsa1v2.integ02.agentconnect.rie.gouv.fr |
-| Production  | [Docteur ProConnect](https://docteur.proconnect.gouv.fr/) | [CisirRH](https://portail.cisirh.rie.gouv.fr)   |
+|             | Internet                                                  | RIE                                           |
+| ----------- | --------------------------------------------------------- | --------------------------------------------- |
+| Intégration | https://test.proconnect.gouv.fr                           | https://test.proconnect.rie.gouv.fr           |
+| Production  | [Docteur ProConnect](https://docteur.proconnect.gouv.fr/) | [CisirRH](https://portail.cisirh.rie.gouv.fr) |
 
 ## 🧪 3. Protocole de test
 
