@@ -8,13 +8,6 @@
 
 Par ailleurs la configuration suivante suppose un tenant (locataire) de type « Workforce » (annuaire interne d'entreprise) mais est susceptible de s'adapter à d'autres types.
 
-## Activer le mode "Entra ID" côté ProConnect
-
-Cette action ne peut être effectuée que par un membre de l'équipe ProConnect. Vous pouvez nous contacter à [support.partenaires@mail.proconnect.gouv.fr](mailto:?to=support.partenaires%40mail.proconnect.gouv.fr&subject=Activation%20du%20mode%20Entra%20ID) en précisant :
-
-- en objet : Activation du mode Entra ID
-- dans le corps du mail : l'identifiant de votre Fournisseur d'Identité
-
 ## Créer une « App Registration » (Inscription d'Application)
 
 Pour la création les paramètres importants sont:
@@ -43,9 +36,13 @@ Dans la section Token Configuration de l'application, dans la partie « Optional
 
 Le claim doit être lié au token de type `ID`.
 
-## Configuration des valeurs du champ `acrs`
+## Authentification sécurisée : Configuration des valeurs du champ `acrs`
 
 Le [guide de développement de Microsoft pour les accès conditionnels](https://learn.microsoft.com/en-us/entra/identity-platform/developer-guide-conditional-access-authentication-context) indique comment configurer la valeur renvoyée par Entra ID à ProConnect.
+
+Les niveaux d'ACR permettent de configurer des éléments importants comme les requêtes [d'authentification multifacteur](../authentification-multifacteur.md). Pour plus de détails sur l'ACR, consultez [la documentation sur la signification des niveaux de confiance eidas](../acr-eidas.md).
+
+Microsoft Entra ID ne supporte pas nativement le claim standard `acr` et le remplace par un claim propriétaire : `acrs`. Nous parlerons en équivalence `acrs` vers `acr` que nous convertisssons de notre côté.
 
 Les valeurs gérées par ProConnect pour EntraID sont les suivantes :
 
@@ -55,9 +52,11 @@ Les valeurs gérées par ProConnect pour EntraID sont les suivantes :
 | `c2`                                 | `eidas2`                              |
 | `c3`                                 | `eidas3`                              |
 
-Pour plus d'informations, consultez [la documentation sur la signification des niveaux de confiance eidas](../acr-eidas.md)
+Donc par exemple, si ProConnect vous demande de l'authentification multifacteur, configurez une politique d'accès conditionnel exigeant le MFA sur le contexte `c2` (pour `eidas2`) (nous recommandons le contrôle « Force d'authentification » plutôt que « Exiger l'authentification multifacteur », afin de maîtriser les méthodes acceptées). Entra émettra alors `c2` dans `acrs` pour les utilisateurs l'ayant satisfait. N'utilisez `c3` que si votre configuration répond aux exigences du niveau `eidas3`.
 
-> NB: lorsque le FI Entra ID renvoie une valeur dans `acrs` différentes de celles définies dans le tableau ci-dessus, alors ProConnect renverra par défaut la valeur `eidas1` pour cet utilisateur.
+⚠️ Le contexte doit être publié (case « Publier dans les applications » / `isAvailable`) : sans cela, aucune valeur ne sera émise, et ce sans message d'erreur.
+
+Le contexte `c1` ne nécessite pas de politique d'accès conditionnel : en l'absence de politique associée, la valeur est émise par défaut.
 
 ## Manifeste d'application
 
