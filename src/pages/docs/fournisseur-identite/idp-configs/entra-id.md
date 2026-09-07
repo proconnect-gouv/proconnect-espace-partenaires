@@ -42,7 +42,7 @@ Le [guide de développement de Microsoft pour les accès conditionnels](https://
 
 Les niveaux d'ACR permettent de configurer des éléments importants comme les requêtes [d'authentification multifacteur](../authentification-multifacteur.md). Pour plus de détails sur l'ACR, consultez [la documentation sur la signification des niveaux de confiance eidas](../acr-eidas.md).
 
-Microsoft Entra ID ne supporte pas nativement le claim standard `acr` et le remplace par un claim propriétaire : `acrs`. Nous parlerons en équivalence `acrs` vers `acr` que nous convertisssons de notre côté.
+Microsoft Entra ID ne supporte pas nativement le claim standard `acr` et le remplace par un claim propriétaire : `acrs`. ProConnect effectue automatiquement une conversion de la valeur `acrs` renvoyée par Microsoft Entra ID vers une valeur pour le champ `acr`
 
 Les valeurs gérées par ProConnect pour EntraID sont les suivantes :
 
