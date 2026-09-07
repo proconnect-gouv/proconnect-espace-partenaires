@@ -8,14 +8,14 @@ Avant toute chose, nous vous recommandons fortement de lire [notre page de proce
 
 → _Vérifier que votre cas d'usage est éligible et formaliser votre entrée dans la fédération_
 
-| Page                                                  | Question                                                                                                |
-| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| [Éligibilité](./eligibilite_installation.md)          | Suis-je éligible à utiliser le bouton ProConnect pour mon application ?                                 |
-| [Couverture ProConnect](./couverture-proconnect.md)   | Qui peut se connecter (et qui ne peut pas se connecter) à ProConnect ?                                  |
-| [Restreindre l'accès](./restriction_acces.md)         | Comment restreindre mon service à une population spécifique de professionnels ?                         |
-| [DataPass](./datapass-fs.md)                          | Comment remplir le DataPass, qui fait office de contractualisation entre mon organisation et la DINUM ? |
-| [Règles de design](./recommandation_parcours.md)      | Quelles règles de design de parcours dois-je respecter impérativement ?                                 |
-| [Vous êtes sur le RIE ?](./fs_RIE.md)                 | Quelles sont les exceptions à connaître si mon application est sur le RIE ?                             |
+| Page                                                | Question                                                                                                |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| [Éligibilité](./eligibilite_installation.md)        | Suis-je éligible à utiliser le bouton ProConnect pour mon application ?                                 |
+| [Couverture ProConnect](./couverture-proconnect.md) | Qui peut se connecter (et qui ne peut pas se connecter) à ProConnect ?                                  |
+| [Restreindre l'accès](./restriction_acces.md)       | Comment restreindre mon service à une population spécifique de professionnels ?                         |
+| [DataPass](./datapass-fs.md)                        | Comment remplir le DataPass, qui fait office de contractualisation entre mon organisation et la DINUM ? |
+| [Règles de design](./recommandation_parcours.md)    | Quelles règles de design de parcours dois-je respecter impérativement ?                                 |
+| [Vous êtes sur le RIE ?](./fs_RIE.md)               | Quelles sont les exceptions à connaître si mon application est sur le RIE ?                             |
 
 ## 🔧 2. Mise en service
 

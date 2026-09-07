@@ -20,15 +20,15 @@ Voici un schéma de fonctionnement de ProConnect :
 
 ## 2. Vue d'ensemble des différences
 
-| Sujet | Internet (par défaut) | RIE |
-| --- | --- | --- |
-| Obtenir ses clé (intégration) | Auto-service sur [l'espace partenaires](/apps) | [Formulaire Démarche-Numérique](./obtenir_cles_rie.md) |
-| Obtenir ses clés (production) | Formulaire Démarche-Numérique | [Formulaire  Démarche-Numérique](./obtenir_cles_rie.md) |
-| ProconnectDomain | `fca.integ01.dev-agentconnect.fr` / `auth.agentconnect.gouv.fr` | `fca.integ02.agentconnect.rie.gouv.fr` / `auth.agentconnect.rie.gouv.fr` |
-| Adresses IP à autoriser | Liste publique | [Demande spécifique auprès de la PFS](./referentiel-IP.md) |
-| Fournisseurs d'Identité disponibles | FI Internet + RIE (si VPN activé) | FI RIE uniquement |
-| ProConnect Identité (création de compte email / mot de passe) | Disponible | Non disponible |
-| Population couverte | Voir [couverture ProConnect](./couverture-proconnect.md) | Essentiellement des agents publics déjà éligibles |
+| Sujet                                                         | Internet (par défaut)                                           | RIE                                                                      |
+| ------------------------------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Obtenir ses clé (intégration)                                 | Auto-service sur [l'espace partenaires](/apps)                  | [Formulaire Démarche-Numérique](./obtenir_cles_rie.md)                   |
+| Obtenir ses clés (production)                                 | Formulaire Démarche-Numérique                                   | [Formulaire Démarche-Numérique](./obtenir_cles_rie.md)                   |
+| ProconnectDomain                                              | `fca.integ01.dev-agentconnect.fr` / `auth.agentconnect.gouv.fr` | `fca.integ02.agentconnect.rie.gouv.fr` / `auth.agentconnect.rie.gouv.fr` |
+| Adresses IP à autoriser                                       | Liste publique                                                  | [Demande spécifique auprès de la PFS](./referentiel-IP.md)               |
+| Fournisseurs d'Identité disponibles                           | FI Internet + RIE (si VPN activé)                               | FI RIE uniquement                                                        |
+| ProConnect Identité (création de compte email / mot de passe) | Disponible                                                      | Non disponible                                                           |
+| Population couverte                                           | Voir [couverture ProConnect](./couverture-proconnect.md)        | Essentiellement des agents publics déjà éligibles                        |
 
 ## 3. Obtenir et modifier vos identifiants
 
@@ -56,7 +56,6 @@ Pour savoir quels sont les Fournisseurs d'Identité disponibles sur le RIE, voic
 
 ## 7. Qui peut se connecter
 
-Les [cas non couverts par ProConnect](./couverture-proconnect.md) (étudiants, entreprises étrangères, organisations sans SIRET...) s'appliquent sur Internet. 
+Les [cas non couverts par ProConnect](./couverture-proconnect.md) (étudiants, entreprises étrangères, organisations sans SIRET...) s'appliquent sur Internet.
 
 Sur le RIE, seuls les personnes ayant un Fournisseur d'Identité sur le RIE branché à ProConnect peuvent se connecter. Pour savoir quels sont les Fournisseurs d'Identité disponibles sur le RIE, voici le tableau dédié : [Liste des Fournisseurs d'Identité ProConnect](https://grist.numerique.gouv.fr/o/proconnect/gNkPzdjPZnv8/ProConnect-Configuration-des-FI-et-FS)
-
