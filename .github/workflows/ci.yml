@@ -47,7 +47,9 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: ""
           NODE_ENV: production
           NEXT_PUBLIC_PROCONNECT_POST_LOGOUT_URI: "http://localhost:3000/api/proconnect/logout-callback"
-          NEXT_PUBLIC_PROCONNECT_END_SESSION_URL: "https://fca.integ01.dev-agentconnect.fr/api/v2/session/end"
+          # This build is only ever used by the E2E job, which runs against
+          # e2e/mock-proconnect.ts instead of the real ProConnect test instance.
+          NEXT_PUBLIC_PROCONNECT_END_SESSION_URL: "http://localhost:4000/session/end"
 
       - name: 💾 Save app dependencies cache
         if: steps.cache-deps.outputs.cache-hit != 'true'
@@ -269,12 +271,12 @@ jobs:
         env:
           MONGODB_CONNECTION_STRING: mongodb://fc_admin:pass@localhost:27017/corev2?authSource=admin&replicaSet=rs0&directConnection=true
 
+      - name: 🔐 Check the mock ProConnect provider
+        run: node --test e2e/mock-proconnect.test.ts
+
       - name: 🎬 Run Playwright tests
         working-directory: ./e2e
         run: npm run test:e2e:video
-        env:
-          PROCONNECT_CLIENT_ID: ${{ secrets.PROCONNECT_CLIENT_ID }}
-          PROCONNECT_CLIENT_SECRET: ${{ secrets.PROCONNECT_CLIENT_SECRET }}
 
       - name: 📊 Upload test results
         uses: actions/upload-artifact@v7
