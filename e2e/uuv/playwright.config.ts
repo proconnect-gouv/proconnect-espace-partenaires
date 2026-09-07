@@ -47,11 +47,15 @@ export default defineConfig({
         DATABASE_URL: "postgresql://usr:pwd@localhost:5432/proconnect_ep",
         PCDB_API_URL: "http://localhost:8000",
         PCDB_API_SECRET: "pcdb-api-secret-key",
-        PROCONNECT_CLIENT_ID: process.env.PROCONNECT_CLIENT_ID ?? "",
-        PROCONNECT_CLIENT_SECRET: process.env.PROCONNECT_CLIENT_SECRET ?? "",
-        PROCONNECT_DISCOVERY_URL:
-          "https://fca.integ01.dev-agentconnect.fr/api/v2/.well-known/openid-configuration",
+        PROCONNECT_CLIENT_ID: "mock-proconnect-client-id",
+        PROCONNECT_CLIENT_SECRET: "mock-proconnect-client-secret",
+        PROCONNECT_DISCOVERY_URL: "http://localhost:4000/.well-known/openid-configuration",
       },
+    },
+    {
+      command: "node e2e/mock-proconnect.ts",
+      cwd: "../..",
+      url: "http://localhost:4000/.well-known/openid-configuration",
     },
     {
       command: "docker compose up --wait",
