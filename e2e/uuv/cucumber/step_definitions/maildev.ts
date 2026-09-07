@@ -11,17 +11,31 @@ const maildevApi = () => {
 
 //
 
+// The app sends the mail through SMTP after it has answered the browser, so it
+// can still be in flight when the step runs. Wait for it instead of reading an
+// empty inbox once.
+const waitForEmail = async (search_params: URLSearchParams, timeout = 10_000) => {
+  const deadline = Date.now() + timeout;
+  do {
+    const response = await fetch(`${maildevApi()}/email?${search_params}`, {
+      method: "GET",
+    });
+    const [email]: { id: string }[] = await response.json();
+    if (email) return email.id;
+    await new Promise((resolve) => setTimeout(resolve, 200));
+  } while (Date.now() < deadline);
+
+  throw new Error(`No email matching ${search_params} after ${timeout}ms`);
+};
+
+//
+
 When(
   "je vais à l'intérieur de l'email avec les filtres",
   async function (this: World, dataTable: any) {
     const filters = dataTable.rowsHash();
 
-    const search_params = new URLSearchParams(filters);
-    const response = await fetch(`${maildevApi()}/email?${search_params}`, {
-      method: "GET",
-    });
-    const body: [{ id: string }] = await response.json();
-    const [{ id }] = body;
+    const id = await waitForEmail(new URLSearchParams(filters));
 
     {
       // Mark as read
