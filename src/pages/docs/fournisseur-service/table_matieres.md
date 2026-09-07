@@ -15,7 +15,7 @@ Avant toute chose, nous vous recommandons fortement de lire [notre page de proce
 | [Restreindre l'accès](./restriction_acces.md)         | Comment restreindre mon service à une population spécifique de professionnels ?                         |
 | [DataPass](./datapass-fs.md)                          | Comment remplir le DataPass, qui fait office de contractualisation entre mon organisation et la DINUM ? |
 | [Règles de design](./recommandation_parcours.md)      | Quelles règles de design de parcours dois-je respecter impérativement ?                                 |
-| [Serveurs Internet / RIE](./serveurs_internet_rie.md) | Quelle est la différence entre les serveurs Internet et les serveurs RIE ?                              |
+| [Vous êtes sur le RIE ?](./fs_RIE.md)                 | Quelles sont les exceptions à connaître si mon application est sur le RIE ?                             |
 
 ## 🔧 2. Mise en service
 
@@ -28,9 +28,8 @@ Nous vous recommandons de lire [notre page généraliste sur l'implémentation t
 | [Référentiel IP](./referentiel-IP.md)                        | Quelles adresses IP dois-je autoriser pour requêter les serveurs ProConnect ?         |
 | [Bouton ProConnect](./bouton_proconnect.md)                  | Où se trouve le code html ou le composant du bouton ProConnect ?                      |
 | [Identifiants de test](./identifiants-fi-test.md)            | Quels identifiants de test puis-je utiliser ?                                         |
-| [Clés sur le RIE](./fs_RIE.md)                               | Comment obtenir un client_id et client_secret pour une application sur le RIE ?       |
+| [Clés sur le RIE](./obtenir_cles_rie.md)                     | Comment obtenir un client_id et client_secret pour une application sur le RIE ?       |
 | [Modifier les redirect_uri](./modification_redirect_uris.md) | Comment modifier des redirect_uri de ma configuration — intégration ou production — ? |
-| [Serveurs Internet / RIE](./serveurs_internet_rie.md)        | Quelle est la différence entre les serveurs Internet et les serveurs RIE ?            |
 
 ## 🔐 3. Authentification et sessions
 
