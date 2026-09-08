@@ -16,7 +16,7 @@ ProConnect et ses Fournisseurs d'Identité sont considérés comme étant des SI
 
 La majorité des Fournisseurs d'Identité a bien intégré la feuille de route cyber dans leur feuille de route et devraient respecter le délai du 28 février 2027.
 
-La comformité des Fournisseurs d'Identité arrivera au compte-goutte à l'automne. En attendant, ProConnect prendra le relai en proposant un OTP Mail avec une valeur `acr` de `eidas1-mfa`.
+La comformité des Fournisseurs d'Identité arrivera au compte-goutte à l'automne, [que vous pouvez suivre dans le tableau de nos Fournisseurs d'Identité et de Service](https://grist.numerique.gouv.fr/o/proconnect/gNkPzdjPZnv8/ProConnect-Configuration-des-FI-et-FS/p/20). En attendant, ProConnect prendra le relai en proposant un OTP Mail avec une valeur `acr` de `eidas1-mfa`.
 
 Voici un schéma de l'authentification multi-facteur prévue en attendant la comformité générale du 28 février 2027 :
 
@@ -49,6 +49,9 @@ Voici un schéma de l'authentification multi-facteur prévue en attendant la com
        du FI
   (eidas1-mfa → eidas3)
 ```
+
+> [!CAUTION]
+> L'OTP Mail (relais `eidas1-mfa` décrit ci-dessus) n'est pas disponible pour les Fournisseurs de Service sur le RIE. Pour plus de détails, voir [les exceptions à connaître sur le RIE](./fs_RIE.md).
 
 ### 0.2. Calendrier des prochains mois
 

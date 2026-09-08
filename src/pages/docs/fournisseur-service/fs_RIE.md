@@ -28,6 +28,7 @@ Voici un schéma de fonctionnement de ProConnect :
 | Adresses IP à autoriser                                       | Liste publique                                                  | [Demande spécifique auprès de la PFS](./referentiel-IP.md)               |
 | Fournisseurs d'Identité disponibles                           | FI Internet + RIE (si VPN activé)                               | FI RIE uniquement                                                        |
 | ProConnect Identité (création de compte email / mot de passe) | Disponible                                                      | Non disponible                                                           |
+| Double authentification (OTP mail de secours)                 | Disponible (`eidas1-mfa`)                                       | Non disponible                                                           |
 | Population couverte                                           | Voir [couverture ProConnect](./couverture-proconnect.md)        | Essentiellement des agents publics déjà éligibles                        |
 
 ## 3. Obtenir et modifier vos identifiants
@@ -59,3 +60,7 @@ Pour savoir quels sont les Fournisseurs d'Identité disponibles sur le RIE, voic
 Les [cas non couverts par ProConnect](./couverture-proconnect.md) (étudiants, entreprises étrangères, organisations sans SIRET...) s'appliquent sur Internet.
 
 Sur le RIE, seuls les personnes ayant un Fournisseur d'Identité sur le RIE branché à ProConnect peuvent se connecter. Pour savoir quels sont les Fournisseurs d'Identité disponibles sur le RIE, voici le tableau dédié : [Liste des Fournisseurs d'Identité ProConnect](https://grist.numerique.gouv.fr/o/proconnect/gNkPzdjPZnv8/ProConnect-Configuration-des-FI-et-FS)
+
+## 8. Double authentification (2FA)
+
+Si vous souhaitez [forcer la double authentification](./double_authentification.md) sur votre service, sachez que l'OTP Mail (le relais `eidas1-mfa` proposé par ProConnect en attendant que tous les FI soient compatibles MFA) n'est pas disponible sur le RIE. L'authentification multifacteur dépendra donc du Fournisseur d'Identité utilisé : si le Fournisseur d'Identité n'est pas compatible MFA, la connexion par authentification multifacteur ne sera pas disponible. Vous pouvez suivre l'état de conformité de nos Fournisseurs d'Identité [dans le tableau de nos Fournisseurs d'Identité et de Service](https://grist.numerique.gouv.fr/o/proconnect/gNkPzdjPZnv8/ProConnect-Configuration-des-FI-et-FS/p/20)
