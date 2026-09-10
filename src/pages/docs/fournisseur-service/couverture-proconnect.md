@@ -23,3 +23,6 @@ Voici la liste des cas de personnes professionnelles sans SIRET :
 - certaines associations n'ont pas de SIRET, mais juste un numéro au Répertoire National des Associations (RNA). Si au niveau étatique cela posera rarement des soucis, il se peut que vous ayez à travailler avec ces associations au niveau local (ex : une collectivité proposant une application de réservation de salles pour la maison des associations locale)
 
 À noter qu'à terme, ProConnect, sera capable de connecter ces cas particuliers.
+
+> [!NOTE]
+> Si votre Fournisseur de Service est sur le RIE, cette page ne s'applique pas. Voir [les exceptions à connaître sur le RIE](./fs_RIE.md).
