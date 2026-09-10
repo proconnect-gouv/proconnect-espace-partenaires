@@ -42,6 +42,9 @@ Voici un schéma explicatif de ProConnect. L'utilisateur clique sur ProConnect, 
                  └────────────────────────┘
 ```
 
+> [!NOTE]
+> Ce schéma ne s'applique pas si votre Fournisseur de Service est sur le RIE : la branche ProConnect Identité n'y existe pas, la connexion se fait uniquement via un Fournisseur d'Identité. Voir [les exceptions à connaître sur le RIE](./fournisseur-service/fs_RIE.md).
+
 ## 2. 🏢 Vous êtes Fournisseur de Service ?
 
 Vous implémentez le bouton ProConnect pour permettre à vos utilisateurs de s'identifier sur un de vos services en ligne ?
