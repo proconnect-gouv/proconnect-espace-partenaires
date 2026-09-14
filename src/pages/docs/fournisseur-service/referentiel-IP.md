@@ -4,7 +4,7 @@
 
 Dans le cadre d'un **changement d'infrastructure visant à améliorer la résilience et la disponibilité** du service, nous mettons à disposition la liste actualisée des adresses IP utilisées par **ProConnect Fédération** pour interagir avec les Fournisseurs de Service.
 
-Ces adresses correspondent aux _reverse proxies_ par lesquels transitent les requêtes sortantes de la Fédération vers les endpoints des Fournisseurs de Service.
+Ces adresses correspondent aux _reverse proxies_ par lesquels transitent les requêtes sortantes des Fournisseurs de Service vers les endpoints de la Fédération.
 
 Les Fournisseurs de Service doivent s'assurer que leurs configurations réseau **autorisent le trafic HTTPS sortant vers ces adresses IP**, afin de garantir la bonne communication avec la plateforme ProConnect.
 
