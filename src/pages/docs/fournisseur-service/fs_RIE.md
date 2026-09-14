@@ -29,6 +29,7 @@ Voici un schéma de fonctionnement de ProConnect :
 | Fournisseurs d'Identité disponibles                           | FI Internet + RIE (si VPN activé)                               | FI RIE uniquement                                                        |
 | ProConnect Identité (création de compte email / mot de passe) | Disponible                                                      | Non disponible                                                           |
 | Double authentification (OTP mail de secours)                 | Disponible (`eidas1-mfa`)                                       | Non disponible                                                           |
+| Scope `roles`                                                  | Disponible                                                      | Ne se calcule pas correctement                                          |
 | Population couverte                                           | Voir [couverture ProConnect](./couverture-proconnect.md)        | Essentiellement des agents publics déjà éligibles                        |
 
 ## 3. Obtenir et modifier vos identifiants
@@ -64,3 +65,7 @@ Sur le RIE, seuls les personnes ayant un Fournisseur d'Identité sur le RIE bran
 ## 8. Double authentification (2FA)
 
 Si vous souhaitez [forcer la double authentification](./double_authentification.md) sur votre service, sachez que l'OTP Mail (le relais `eidas1-mfa` proposé par ProConnect en attendant que tous les FI soient compatibles MFA) n'est pas disponible sur le RIE. L'authentification multifacteur dépendra donc du Fournisseur d'Identité utilisé : si le Fournisseur d'Identité n'est pas compatible MFA, la connexion par authentification multifacteur ne sera pas disponible. Vous pouvez suivre l'état de conformité de nos Fournisseurs d'Identité [dans le tableau de nos Fournisseurs d'Identité et de Service](https://grist.numerique.gouv.fr/o/proconnect/gNkPzdjPZnv8/ProConnect-Configuration-des-FI-et-FS/p/20)
+
+## 9. Scope `roles`
+
+Le [scope `roles`](./roles.md) ne se calcule pas correctement sur le RIE : l'API Entreprises permettant de connaitre le rôle de la personne en fonction du SIRET n'est pas disponible hors Internet, nous ne calculons pas le scope `roles`.
