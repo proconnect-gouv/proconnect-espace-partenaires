@@ -10,3 +10,6 @@ Le champ `roles` est un tableau de String. Il :
 - est vide sinon
 
 Le calcul de cette valeur est détaillé dans [ce code](https://github.com/proconnect-gouv/proconnect-identite/blob/main/packages/identite/src/services/organization/compute-service-public-info.ts).
+
+> [!CAUTION]
+> Le scope `roles` ne se calcule pas correctement sur le RIE. Voir [les exceptions à connaître sur le RIE](./fs_RIE.md).
