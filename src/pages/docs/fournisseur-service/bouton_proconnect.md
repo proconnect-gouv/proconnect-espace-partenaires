@@ -8,7 +8,7 @@ Pour intégrer ce bouton sur votre service, 3 options s’offrent à vous.
 
 ### Vous utilisez le Système de Design de l’État
 
-Vous pouvez suivre les instructions du [Système de Design de l’État (DSFR)](https://www.systeme-de-design.gouv.fr/) sur le bouton FranceConnect : [https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/bouton-franceconnect](https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/bouton-franceconnect).
+Vous pouvez suivre les instructions du [Système de Design de l’État (DSFR)](https://www.systeme-de-design.gouv.fr/) sur le bouton FranceConnect : [https://www.systeme-de-design.gouv.fr/version-courante/fr/composants/boutons-franceconnect-et-proconnect](https://www.systeme-de-design.gouv.fr/version-courante/fr/composants/boutons-franceconnect-et-proconnect).
 
 Veuillez apporter les modifications suivantes :
 
