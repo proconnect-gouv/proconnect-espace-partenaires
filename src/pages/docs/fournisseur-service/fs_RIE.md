@@ -29,7 +29,7 @@ Voici un schéma de fonctionnement de ProConnect :
 | Fournisseurs d'Identité disponibles                           | FI Internet + RIE (si VPN activé)                               | FI RIE uniquement                                                        |
 | ProConnect Identité (création de compte email / mot de passe) | Disponible                                                      | Non disponible                                                           |
 | Double authentification (OTP mail de secours)                 | Disponible (`eidas1-mfa`)                                       | Non disponible                                                           |
-| Scope `roles`                                                  | Disponible                                                      | Ne se calcule pas correctement                                          |
+| Scope `roles`                                                 | Disponible                                                      | Ne se calcule pas correctement                                           |
 | Population couverte                                           | Voir [couverture ProConnect](./couverture-proconnect.md)        | Essentiellement des agents publics déjà éligibles                        |
 
 ## 3. Obtenir et modifier vos identifiants
