@@ -17,7 +17,7 @@ Le champ `roles` n'est pas systématiquement renvoyé par ProConnect. Pour l'obt
 
 ## Usage du champ `roles` par le Fournisseur de Service à des fins de blocage
 
-Si vous souhaitez bloquez l'accès à votre application pour les utilisateurs qui ne possèdent pas certaines valeurs du champ `roles`, il est **impératif de respecter les règles suivantes** sur l'écran de blocage:
+Si vous souhaitez bloquer l'accès à votre application pour les utilisateurs qui ne possèdent pas certaines valeurs du champ `roles`, il est **impératif de respecter les règles suivantes** sur l'écran de blocage:
 
 - indiquer à l'utilisateur la règle du blocage
 - indiquer à l'utilisateur les rôles qui lui sont associés
