@@ -17,7 +17,9 @@ Le champ `roles` n'est pas systématiquement renvoyé par ProConnect. Pour l'obt
 
 ## Usage du champ `roles` par le Fournisseur de Service à des fins de blocage
 
-Si vous souhaitez bloquer l'accès à votre application pour les utilisateurs qui ne possèdent pas certaines valeurs du champ `roles`, il est **impératif de respecter les règles suivantes** sur l'écran de blocage:
+Plus de détails sur les restrictions dans notre page dédiée : [Comment restreindre l'accès à mon service à certaines populations ?](./restriction_acces.md)
+
+Si vous souhaitez bloquer l'accès à votre application pour les utilisateurs qui ne possèdent pas certaines valeurs du champ `roles`, il est **impératif de respecter les règles suivantes** sur l'écran de blocage :
 
 - indiquer à l'utilisateur la règle du blocage
 - indiquer à l'utilisateur les rôles qui lui sont associés
@@ -26,5 +28,5 @@ Si vous souhaitez bloquer l'accès à votre application pour les utilisateurs qu
 Voici un exemple de message d'erreur qui respecte ces consignes :
 
 > [!CAUTION]
-> Vous n'êtes pas autorisé à vous connecter à cette application.
+> Vous n'avez pas l'autorisation de vous connecter à cette application.
 > Cette application n'autorise que les agents publics de la Fonction Publique Territoriale. Or, les rôles qui vous sont associés sont : "agent_public", "agent_public_etat" pour l'organisation de rattachement "DINUM" (SIRET: 13002526500013)
