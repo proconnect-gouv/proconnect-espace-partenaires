@@ -44,7 +44,7 @@ Ces données dépendent des Fournisseurs d'Identité et peuvent varier fortement
 | chorusdt             | Non         | Entité ministérielle/Matricule Agent                                                                | string                                                     |
 
 > [!WARNING]
-> Les scopes de ces données ne sont pas dans la configuration de base ProConnect et il faudra les demander à ProConnect pour y avoir accès.
+> Les scopes de ces données ne sont pas dans la configuration de base ProConnect et il faudra les [demander à ProConnect](mailto:support.partenaires@mail.proconnect.gouv.fr) pour y avoir accès.
 
 ## 5. La liste des scopes disponibles lors de l'étape d'authentification ProConnect
 
