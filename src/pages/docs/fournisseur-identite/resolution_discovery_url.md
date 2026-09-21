@@ -18,9 +18,7 @@ Exemple : `https://monfi.ministere.rie.gouv.fr/.well-known/openid-configuration`
 
 ### Option 2 : Fournir les adresses IP explicitement
 
-Si vous ne pouvez pas utiliser un domaine en `rie.gouv.fr` ou `ader.gouv.fr`, vous devez nous communiquer les adresses IP d'exposition de votre serveur afin que nous puissions le configurer directement.
-
-Contactez-nous à [support.partenaires@mail.proconnect.gouv.fr](mailto:support.partenaires@mail.proconnect.gouv.fr) ou [sur notre chaîne Tchap](https://www.tchap.gouv.fr/#/room/!kBghcRpyMNThkFQjdW:agent.dinum.tchap.gouv.fr).
+Si vous ne pouvez pas utiliser un domaine en `rie.gouv.fr` ou `ader.gouv.fr`, vous devez nous communiquer les adresses IP d'exposition de votre serveur afin que nous puissions le configurer directement à l'adresse [support.partenaires@mail.proconnect.gouv.fr](mailto:support.partenaires@mail.proconnect.gouv.fr).
 
 ## Voir aussi
 

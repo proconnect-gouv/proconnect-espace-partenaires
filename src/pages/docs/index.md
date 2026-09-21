@@ -59,7 +59,6 @@ Vous intégrez ProConnect en tant que Fournisseur d'Identité et permettez aux m
 
 ## 4. 🤔 Question technique
 
-Pour toute question relative à l'implémentation de ProConnect pour votre application, vous pouvez contacter l'équipe technique partenaires par les deux canaux suivants :
+Pour toute question relative à l'implémentation de ProConnect pour votre application, vous pouvez contacter l'équipe technique partenaires par mail à support.partenaires@mail.proconnect.gouv.fr
 
-- par mail à support.partenaires@mail.proconnect.gouv.fr
-- [sur notre chaîne Tchap](https://www.tchap.gouv.fr/#/room/!kBghcRpyMNThkFQjdW:agent.dinum.tchap.gouv.fr)
+Il vous est également possible de poser vos questions dans [le salon Tchap ProConnect - Communauté](https://www.tchap.gouv.fr/#/room/!kBghcRpyMNThkFQjdW:agent.dinum.tchap.gouv.fr), dans lequel d'autres partenaires ayant eu le même problème pourront vous répondre

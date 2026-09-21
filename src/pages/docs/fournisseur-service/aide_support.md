@@ -12,14 +12,12 @@ Si cela n'est pas suffisant, voici la marche à suivre pour vous aider.
 
 ## 2. Contacter le service partenaires de ProConnect
 
-### 2.1. Canaux de communication
+### 2.1. Canal de communication privilégié
 
 Comme ces conversations peuvent envoyer de gros messages, nous vous recommandons de passer par notre email : support.partenaires@mail.proconnect.gouv.fr
 
-Vous pouvez utiliser notre chaine Tchap pour faire des pré-questions avant la demande d'aide.
-
 > [!IMPORTANT]
-> Ces liens concernent le service partenaires de ProConnect, pour nos partenaires qui essaient de coder le bouton ProConnect sur leur application. Si vous voulez contacter le support usager de ProConnect car vous n'arrivez pas à vous connecter à une application, suite à une erreur, [nous vous donnons ici le lien vers le centre d'aide de ProConnect](https://proconnect.crisp.help/fr/) qui pourra répondre à vos questions.
+> Cette adresse e-mail concerne le service partenaires de ProConnect, pour nos partenaires qui essaient de coder le bouton ProConnect sur leur application. Si vous voulez contacter le support usager de ProConnect car vous n'arrivez pas à vous connecter à une application, suite à une erreur, [nous vous donnons ici le lien vers le centre d'aide de ProConnect](https://proconnect.crisp.help/fr/) qui pourra répondre à vos questions.
 
 ### 2.2. Les éléments à nous envoyer
 
