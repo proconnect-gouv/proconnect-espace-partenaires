@@ -16,14 +16,14 @@ Ces données sont **systématiquement** transmises par les Fournisseurs d'Identi
 
 ## 2. Les données enrichies par ProConnect
 
-Ces données sont enrichies par ProConnect lui-même et sont **systématiquement** présentes, indépendamment du Fournisseur d'Identité utilisé.
+Ces données sont enrichies par ProConnect lui-même et sont **systématiquement** calculées, indépendamment du Fournisseur d'Identité utilisé.
 
-| Scope              | Obligatoire | Description                                                                                                                | Format |
-| ------------------ | ----------- | -------------------------------------------------------------------------------------------------------------------------- | ------ |
-| sub                | Oui         | Identifiant unique de l'utilisateur                                                                                        | String |
-| idp_id             | Oui         | Fournisseur d'Identité utilisé par l'utilisateur pour s'authentifier (plus de détails [ici](./connaitre-le-fi-utilise.md)) | String |
-| organization_label | Oui         | Nom d'affichage de l'organisation rattachée à l'utilisateur (plus de détails [ici](./organization_label.md))               | String |
-| roles              | Oui         | Indique si l'utilisateur est un agent public (plus de détails [ici](./roles.md))                                           | Array  |
+| Scope              | Renvoyées systématiquement | Description                                                                                                                | Format |
+| ------------------ | -------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------ |
+| sub                | Oui                        | Identifiant unique de l'utilisateur                                                                                        | String |
+| idp_id             | Oui                        | Fournisseur d'Identité utilisé par l'utilisateur pour s'authentifier (plus de détails [ici](./connaitre-le-fi-utilise.md)) | String |
+| organization_label | Oui                        | Nom d'affichage de l'organisation rattachée à l'utilisateur (plus de détails [ici](./organization_label.md))               | String |
+| roles              | Non                        | Indique les rôles éventuels de l'utilisateur (plus de détails [ici](./roles.md))                                           | Array  |
 
 ### 2.1. Le champ sub
 
