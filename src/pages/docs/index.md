@@ -57,7 +57,13 @@ Vous intégrez ProConnect en tant que Fournisseur d'Identité et permettez aux m
 
 ➡️ Consultez la [documentation Fournisseur d'Identité (FI)](./fournisseur-identite/index.mdx).
 
-## 4. 🤔 Question technique
+## 4. 🛡️ Vous êtes côté sécurité ou métier ?
+
+Vous souhaitez comprendre le fonctionnement de ProConnect sans rentrer dans les détail technique : eIDAS, fonctionnement, sécurité ?
+
+➡️ Consultez la [documentation Sécurité et métier](./metier/table_matieres.md).
+
+## 5. 🤔 Question technique
 
 Pour toute question relative à l'implémentation de ProConnect pour votre application, vous pouvez contacter l'équipe technique partenaires par mail à support.partenaires@mail.proconnect.gouv.fr
 
