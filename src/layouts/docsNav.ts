@@ -39,28 +39,11 @@ export const docTree: SideMenuProps.Item[] = [
     ],
   },
   {
-    text: "Ressources communes",
-    //linkProps: { href: "/docs/fournisseur-identite" },
+    text: "Sécurité et métier",
     items: [
       {
-        text: "Flux OpenID Connect",
-        linkProps: { href: "/docs/ressources/flux_oidc" },
-      },
-      {
-        text: "Valeur de PROCONNECT_DOMAIN",
-        linkProps: { href: "/docs/ressources/valeur_ac_domain" },
-      },
-      {
-        text: "Claim amr",
-        linkProps: { href: "/docs/ressources/claim_amr" },
-      },
-      {
-        text: "Norme eIDAS",
-        linkProps: { href: "/docs/ressources/norme_eidas" },
-      },
-      {
-        text: "Glossaire",
-        linkProps: { href: "/docs/ressources/glossaire" },
+        text: "Table des matières",
+        linkProps: { href: "/docs/metier/table_matieres" },
       },
     ],
   },
