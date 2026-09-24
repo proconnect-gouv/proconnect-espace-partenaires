@@ -1,9 +1,22 @@
 # Niveaux de confiance eidas pour les Fournisseurs de Service
 
-> [!NOTE]
-> Pour en savoir plus sur la norme eIDAS à ProConnect, nous avons rédigé une ressource commune aux Fournisseurs d'Identité et Fournisseurs de Service disponible ici → [Norme eIDAS](../ressources/norme_eidas.md). Elle expliquera en détails avec des exemples les différents éléments de la norme.
+## 1. Norme eIDAS commune
 
-## 1. Les niveaux eidas
+> [!NOTE]
+> Chaque niveau `eidas` combine trois critères : identité personnelle, type et sécurisation de l'authentification, lien à l'organisation. Le détail de ces critères et des exemples commentés sont disponibles dans la note dédiée : [Norme eIDAS : niveaux de confiance](../ressources/norme_eidas.md).
+
+## 2. Qu'est-ce que l'ACR ?
+
+**ACR** (_Authentication Context Reference_) est un champ standard d'OpenID Connect. Il représente le **niveau de confiance** d'une authentification. Autrement dit, la qualité de la preuve que l'utilisateur est bien qui il prétend être.
+
+En pratique :
+
+- Le Fournisseur d'Identité de l'utilisateur retourne une valeur `acr` dans l'ID token pour indiquer le contexte d'authentification : identité, authentification, organisation.
+- ProConnect transmet cette valeur à votre Fournisseur de Service.
+
+Un fait important est **que vous pouvez exiger un niveau minimum** avant d'autoriser l'accès à votre service (exemple : exiger une authentification multi-facteur).
+
+## 3. Les niveaux de confiance en un coup d'oeil
 
 ProConnect communique le niveau de confiance d'une authentification via l'attribut `acr`. Chaque niveau est défini selon trois axes :
 
@@ -20,7 +33,7 @@ ProConnect communique le niveau de confiance d'une authentification via l'attrib
 | `eidas2`     | Substantielle         | MFA forte             | Lien certifié par une source officielle |
 | `eidas3`     | Élevée                | MFA forte matérielle  | Lien certifié par une source officielle |
 
-## 2. Comment exiger un niveau minimum ?
+## 4. Ce que cela signifie pour un FS
 
 Pour exiger un niveau eidas minimum, ajoutez le paramètre `acr` avec `essential: true` dans votre requête `/authorize` :
 
