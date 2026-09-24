@@ -68,6 +68,6 @@ Puis cliquer sur `Connexion double authentification (2FA)` et faire le parcours 
 
 Dans [le cadre du calendrier MFA](./../fournisseur-service/double_authentification.md), nous appliquons un OTP mail aux Fournisseurs d'Identité **qui ne sont pas conformes à la MFA**.
 
-Cela veut dire que si vous voyez l'écran ci-dessous, c'est que votre Fournisseur d'Identité n'a pas renvoyé une classe d'authentification conforme MFA, très probablement `eidas1`. Il faut finaliser la configuration pour que le FI renvoie une classe d'authentification conforme MFA.
+Cela veut dire que si vous voyez l'écran ci-dessous, c'est que votre Fournisseur d'Identité n'a pas renvoyé une classe d'authentification conforme MFA, (il a très probablement renvoyé `eidas1`). Il faut finaliser la configuration pour que le FI renvoie une classe d'authentification conforme MFA et demandée par le Fournisseur de Service.
 
 ![Écran code OTP Mail](/images/docs/keycloak/MFA/code_email_FI.png)
