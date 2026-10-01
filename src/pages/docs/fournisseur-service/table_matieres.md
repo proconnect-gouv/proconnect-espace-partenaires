@@ -23,13 +23,15 @@ Avant toute chose, nous vous recommandons fortement de lire [notre page de proce
 
 Nous vous recommandons de lire [notre page généraliste sur l'implémentation technique](./implementation_technique.md) pour avoir un aperçu précis et généraliste de l'implémentation ProConnect.
 
-| Page                                                         | Question                                                                              |
-| ------------------------------------------------------------ | ------------------------------------------------------------------------------------- |
-| [Référentiel IP](./referentiel-IP.md)                        | Quelles adresses IP dois-je autoriser pour requêter les serveurs ProConnect ?         |
-| [Bouton ProConnect](./bouton_proconnect.md)                  | Où se trouve le code html ou le composant du bouton ProConnect ?                      |
-| [Identifiants de test](./identifiants-fi-test.md)            | Quels identifiants de test puis-je utiliser ?                                         |
-| [Clés sur le RIE](./obtenir_cles_rie.md)                     | Comment obtenir un client_id et client_secret pour une application sur le RIE ?       |
-| [Modifier les redirect_uri](./modification_redirect_uris.md) | Comment modifier des redirect_uri de ma configuration — intégration ou production — ? |
+| Page                                                                          | Question                                                                                           |
+| ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| [Flux OpenID Connect](../ressources/flux_oidc.md) _(ressource commune FS/FI)_ | Comment se déroule techniquement l'échange OpenID Connect (OIDC) entre mon service et ProConnect ? |
+| [Valeur de PROCONNECT_DOMAIN](../ressources/valeur_ac_domain.md)              | Quelle est la valeur de PROCONNECT_DOMAIN selon mon réseau et mon environnement ?                  |
+| [Référentiel IP](./referentiel-IP.md)                                         | Quelles adresses IP dois-je autoriser pour requêter les serveurs ProConnect ?                      |
+| [Bouton ProConnect](./bouton_proconnect.md)                                   | Où se trouve le code html ou le composant du bouton ProConnect ?                                   |
+| [Identifiants de test](./identifiants-fi-test.md)                             | Quels identifiants de test puis-je utiliser ?                                                      |
+| [Clés sur le RIE](./obtenir_cles_rie.md)                                      | Comment obtenir un client_id et client_secret pour une application sur le RIE ?                    |
+| [Modifier les redirect_uri](./modification_redirect_uris.md)                  | Comment modifier des redirect_uri de ma configuration — intégration ou production — ?              |
 
 ## 🔐 3. Authentification et sessions
 

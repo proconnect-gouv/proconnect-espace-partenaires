@@ -18,17 +18,19 @@ Avant toute chose, nous vous recommandons fortement de lire [notre page de proce
 
 → _Configurer votre FI, tester l'intégration et supporter la MFA_
 
-| Page                                                                    | Question                                                                                                                                     |
-| ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Configuration](./configuration.md)                                     | Comment configurer OpenID Connect (OIDC) pour ProConnect en tant que Fournisseur d'Identité ?                                                |
-| [niveaux de confiance (eidas)](./acr-eidas.md)                          | Qu'est-ce que l'ACR ? Que signifient les niveaux eidas0, eidas1, eidas2, eidas3 ?                                                            |
-| [Norme eIDAS](../ressources/norme_eidas.md) _(ressource commune FS/FI)_ | Quels sont les trois piliers de la norme eIDAS (identité, authentification, organisation), les méthodes MFA et le cas particulier d'eidas0 ? |
-| [Authentification multi-facteur](./authentification-multifacteur.md)    | Comment supporter l'authentification multi-facteur (MFA) exigée par certains FS ?                                                            |
-| [Claim AMR](../ressources/claim_amr.md) _(ressource commune FS/FI)_     | Quelles sont les valeurs `amr` utilisées dans ProConnect et lesquelles sont standard ?                                                       |
-| [Test de configuration](./test-configuration-fi.md)                     | Comment tester la configuration de mon Fournisseur d'Identité ?                                                                              |
-| [Format de l'userinfo](./format-user-info.md)                           | Quelles contraintes ProConnect applique-t-il sur les identités retournées par les userinfos ?                                                |
-| [Certificats](./certificats_fi.md)                                      | Quels sont les certificats d'authentification utilisés par ProConnect ?                                                                      |
-| [Référentiel IP](./referentiel-IP.md)                                   | Quelles adresses IP dois-je autoriser pour que ProConnect puisse contacter mon FI ?                                                          |
+| Page                                                                          | Question                                                                                                                                     |
+| ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Flux OpenID Connect](../ressources/flux_oidc.md) _(ressource commune FS/FI)_ | Comment se déroule techniquement l'échange OpenID Connect (OIDC) entre mon Fournisseur d'Identité et ProConnect ?                            |
+| [Configuration](./configuration.md)                                           | Comment configurer OpenID Connect (OIDC) pour ProConnect en tant que Fournisseur d'Identité ?                                                |
+| [Valeur de PROCONNECT_DOMAIN](../ressources/valeur_ac_domain.md)              | Quelle est la valeur de PROCONNECT_DOMAIN selon mon réseau et mon environnement ?                                                            |
+| [niveaux de confiance (eidas)](./acr-eidas.md)                                | Qu'est-ce que l'ACR ? Que signifient les niveaux eidas0, eidas1, eidas2, eidas3 ?                                                            |
+| [Norme eIDAS](../ressources/norme_eidas.md) _(ressource commune FS/FI)_       | Quels sont les trois piliers de la norme eIDAS (identité, authentification, organisation), les méthodes MFA et le cas particulier d'eidas0 ? |
+| [Authentification multi-facteur](./authentification-multifacteur.md)          | Comment supporter l'authentification multi-facteur (MFA) exigée par certains FS ?                                                            |
+| [Claim AMR](../ressources/claim_amr.md) _(ressource commune FS/FI)_           | Quelles sont les valeurs `amr` utilisées dans ProConnect et lesquelles sont standard ?                                                       |
+| [Test de configuration](./test-configuration-fi.md)                           | Comment tester la configuration de mon Fournisseur d'Identité ?                                                                              |
+| [Format de l'userinfo](./format-user-info.md)                                 | Quelles contraintes ProConnect applique-t-il sur les identités retournées par les userinfos ?                                                |
+| [Certificats](./certificats_fi.md)                                            | Quels sont les certificats d'authentification utilisés par ProConnect ?                                                                      |
+| [Référentiel IP](./referentiel-IP.md)                                         | Quelles adresses IP dois-je autoriser pour que ProConnect puisse contacter mon FI ?                                                          |
 
 ## ⚙️ 3. Configurations spécifiques
 
