@@ -70,9 +70,10 @@ Dans [le cadre du calendrier MFA](./../fournisseur-service/double_authentificati
 
 En effet, l'écran ci-dessous apparaît pour l'utilisateur après authentification par le FI lorsque :
 
-- le FI est taggé comme "non-conforme MFA" dans ProConnect Fédération (cf. [Grist récapitulatif des statuts de FI](https://grist.numerique.gouv.fr/o/proconnect/gNkPzdjPZnv8/ProConnect-Configuration-des-FI-et-FS/p/19))
 - le FS a requis une classe d'authentification ACR conforme MFA
-- le FI a renvoyé un ACR non-conforme MFA que ProConnect est capable d'enrichir
+- le FI **n'est pas capable de renvoyer un ACR conforme MFA**
+
+Si cet écran s'affiche pour votre FI, cela signifie donc que des développements sont encore à faire pour qu'il soit conforme.
 
 Voici la liste des ACR que ProConnect est capable d'enrichir :
 
