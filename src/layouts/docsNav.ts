@@ -38,4 +38,13 @@ export const docTree: SideMenuProps.Item[] = [
       },
     ],
   },
+  {
+    text: "Sécurité et métier",
+    items: [
+      {
+        text: "Table des matières",
+        linkProps: { href: "/docs/metier/table_matieres" },
+      },
+    ],
+  },
 ];
