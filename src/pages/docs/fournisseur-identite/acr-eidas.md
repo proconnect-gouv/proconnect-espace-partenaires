@@ -48,7 +48,6 @@ En pratique, **le niveau que vous retournez est déterminé par la méthode d'au
 
 Pour le détail des méthodes MFA qui atteignent eidas2 ou eidas3 (et pourquoi certaines n'atteignent pas eidas3), voir [Norme eIDAS : La méthode d'authentification](../ressources/norme_eidas.md#4-la-méthode-dauthentification). Pour comprendre tous les types d'authentification côté métier sans jargon technique, voici la note qui explique côté métier qu'est-ce que l'authentification multifacteur et quels sont les moyens d'authentification : [Authentification Multifacteur](./../ressources/mfa.md)
 
-
 Pour implémenter la MFA côté FI, voir [Authentification multi-facteur](./authentification-multifacteur.md).
 
 ### 4.1. La distinction eidas1-mfa / eidas2

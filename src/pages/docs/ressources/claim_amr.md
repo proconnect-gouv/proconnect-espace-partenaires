@@ -27,7 +27,6 @@ ProConnect utilise les valeurs définies dans [RFC 8176 : Authentication Method 
 > [!NOTE]
 > Pour avoir un aperçu moins technique des différents type d'authentification, nous avons rédigé une note à ce sujet, vous pouvez la lire ici : [L'Authentification Multifacteur](./mfa.md)
 
-
 ### 1.2. Le cas de `mail`
 
 RFC 8176 ne définit pas de valeur standard pour les liens magiques ni pour l'email OTP. ProConnect a ajouté `mail` comme extension pour deux raisons :
