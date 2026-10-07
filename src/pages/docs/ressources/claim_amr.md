@@ -24,6 +24,9 @@ ProConnect utilise les valeurs définies dans [RFC 8176 : Authentication Method 
 | `swk`        | Clé cryptographique protégée par logiciel.                                                   | Passkey synchronisé (iCloud Keychain, Google Password Manager) | RFC 8176   |
 | `mfa`        | Indique qu'une authentification multi-facteur a été réalisée. Accompagne les autres valeurs. | Combiné avec `otp`, `hwk`, `swk`…                              | RFC 8176   |
 
+> [!NOTE]
+> Pour avoir un aperçu moins technique des différents type d'authentification, nous avons rédigé une note à ce sujet, vous pouvez la lire ici : [L'Authentification Multifacteur](./mfa.md)
+
 ### 1.2. Le cas de `mail`
 
 RFC 8176 ne définit pas de valeur standard pour les liens magiques ni pour l'email OTP. ProConnect a ajouté `mail` comme extension pour deux raisons :

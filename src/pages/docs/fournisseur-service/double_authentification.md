@@ -110,4 +110,6 @@ throw new HTTPException(403, {
 
 ## 6. Pour aller plus loin
 
+[Authentification Multifacteur](./../ressources/mfa.md) est la note qui explique côté métier qu'est-ce que l'authentification multifacteur et quels sont les moyens d'authentification. Idéale pour avoir un aperçu sans jargon sur le terme "MFA".
+
 [Niveaux ACR](./niveaux-acr.md) : comment utiliser l'ACR dans vos requêtes, et comment lire les méthodes d'authentification (`amr`) retournées par ProConnect.
