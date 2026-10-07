@@ -46,7 +46,8 @@ En pratique, **le niveau que vous retournez est déterminé par la méthode d'au
 | MFA forte                     | `eidas2`        | TOTP, push notification, passkey                   |
 | MFA forte matérielle          | `eidas3`        | Carte à puce + PIN, clé FIDO2 matérielle (YubiKey) |
 
-Pour le détail des méthodes MFA qui atteignent eidas2 ou eidas3 (et pourquoi certaines n'atteignent pas eidas3), voir [Norme eIDAS : La méthode d'authentification](../ressources/norme_eidas.md#4-la-méthode-dauthentification).
+Pour le détail des méthodes MFA qui atteignent eidas2 ou eidas3 (et pourquoi certaines n'atteignent pas eidas3), voir [Norme eIDAS : La méthode d'authentification](../ressources/norme_eidas.md#4-la-méthode-dauthentification). Pour comprendre tous les types d'authentification côté métier sans jargon technique, voici la note qui explique côté métier qu'est-ce que l'authentification multifacteur et quels sont les moyens d'authentification : [Authentification Multifacteur](./../ressources/mfa.md)
+
 
 Pour implémenter la MFA côté FI, voir [Authentification multi-facteur](./authentification-multifacteur.md).
 

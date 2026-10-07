@@ -58,6 +58,9 @@ Une authentification multi-facteur (MFA) doit combiner au moins deux facteurs ap
 
 ### 4.1. Comprendre les facteurs et niveaux de MFA
 
+> [!NOTE]
+> Nous avons écrit une note qui explique au niveau métier qu'est-ce que la MFA, vous pouvez la lire ici : [L'Authentification Multifacteur](./mfa.md)
+
 Le [Guide ANSSI sur l'authentification multifacteur et les mots de passe](https://messervices.cyber.gouv.fr/documents-guides/anssi-guide-authentification_multifacteur_et_mots_de_passe.pdf) établit une distinction importante : une MFA n'est pas nécessairement une authentification forte. Une MFA faible combine plusieurs facteurs sans qu'aucun ne repose sur un mécanisme cryptographique robuste. Une MFA forte fait intervenir au moins un facteur cryptographiquement fort. Le guide cite explicitement TOTP, HOTP, FIDO2 et les certificats comme exemples de tels facteurs.
 
 Trois critères permettent de distinguer les niveaux MFA entre eux :

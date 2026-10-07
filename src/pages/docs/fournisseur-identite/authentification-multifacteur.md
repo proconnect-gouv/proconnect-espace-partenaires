@@ -53,6 +53,9 @@ En complément, retournez les valeurs `amr` correspondant aux méthodes effectiv
 
 Pour la liste complète des valeurs `amr` et leur statut, voir [Claim AMR](../ressources/claim_amr.md).
 
+Pour comprendre tous les types d'authentification côté métier sans jargon technique, voici la note qui explique côté métier qu'est-ce que l'authentification multifacteur et quels sont les moyens d'authentification : [Authentification Multifacteur](./../ressources/mfa.md)
+
+
 ## 4. Comment tester mon Fournisseur d'Identité (FI) ?
 
 ### 4.1. Tester le FI
