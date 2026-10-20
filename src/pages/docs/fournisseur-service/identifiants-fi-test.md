@@ -2,11 +2,11 @@
 
 Lorsque vous implémentez la connexion OIDC via ProConnect sur votre Fournisseur de Service, vous voudrez sans doute tester la connexion à votre Fournisseur de Service.
 
-## 📋 Liste des fournisseurs d'identité en intégration
+## 📋 1. Liste des fournisseurs d'identité en intégration
 
 [Voici la liste des Fournisseurs d'Identité](https://grist.numerique.gouv.fr/o/proconnect/gNkPzdjPZnv8/ProConnect-Configuration-des-FI-et-FS/p/18) sur notre plateforme d'intégration. Si vous avez accès à des comptes de test, vous pouvez les utiliser.
 
-## 🔐 Fournisseur d'Identité de test
+## 🔐 2. Application de test
 
 Nous avons mis à disposition des identifiants de test sur différents Fournisseurs d'Identité.
 
@@ -15,7 +15,9 @@ Vous pouvez tester des identifiants avec nos Fournisseurs de Service de test :
 - Sur internet : https://test.proconnect.gouv.fr
 - Sur le RIE : https://test.proconnect.rie.gouv.fr
 
-### 🔧 FIA1 – FI pour tests et intégration
+Vous pourrez voir les informations remontées par ces identifiants.
+
+## 🔧 3. Identifiants libres pour vos tests
 
 **En intégration** sur **Internet** et le **RIE**, ProConnect possède un Fournisseur d'Identité de test qui permet d'utiliser n'importe quel identifiant.
 
@@ -27,7 +29,7 @@ Pour tester la connexion sur votre Fournisseur de Service :
   - Vous pouvez par exemple rentrer `john.lennon@elysee.fr` en `eidas3` pour le SIRET [10000001700010](https://annuaire-entreprises.data.gouv.fr/entreprise/republique-francaise-presidence-100000017)
 - cliquez sur "Se connecter". Nous vous redirigerons vers votre Fournisseur de Service avec les éléments sélectionnés
 
-### 🔧 ProConnect Identité
+## 🔧 4. ProConnect Identité
 
 **En intégration** sur **Internet** seulement, il vous est possible d'utiliser ProConnect Identité.
 
