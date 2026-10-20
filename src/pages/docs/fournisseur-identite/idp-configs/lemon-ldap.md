@@ -1,4 +1,4 @@
-# Configuration spécifique à LemonLDAP
+# Configuration spécifique à LemonLDAP::NG
 
 ## Service OpenID Connect
 
@@ -17,7 +17,7 @@ Il vous faut créer un mapping :
 |eidas2 | 2 |
 |eidas3 | 3 |
 
-Le client doit être `public`.
+Le client doit être confidentiel (ne pas activer le mode `public`).
 
 ## Authentification Multi-Facteurs (MFA)
 
@@ -27,3 +27,6 @@ La configuration de la MFA se fait dans Service OpenIDConnect -> Contexte d'Auth
 
 > [!NOTE]
 > Pour une vue d'ensemble de la MFA sur ProConnect, consultez [la documentation dédiée](../authentification-multifacteur.md).
+
+> [!NOTE]
+> Voir aussi [la documentation ProConnect](https://lemonldap-ng.org/documentation/latest/oidc-proconnect.html) sur le site de LemonLDAP::NG. 
