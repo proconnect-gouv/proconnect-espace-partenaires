@@ -17,7 +17,7 @@ Il vous faut créer un mapping :
 |eidas2 | 2 |
 |eidas3 | 3 |
 
-Le client doit être `public`.
+Attention, contrairement à ce que nous mentionnions encore récemment, le client doit être `privé`.
 
 ## Authentification Multi-Facteurs (MFA)
 
