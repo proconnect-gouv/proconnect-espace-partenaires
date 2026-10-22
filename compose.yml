@@ -59,7 +59,7 @@ services:
     ports:
       - "8000:3000"
   maildev:
-    image: maildev/maildev:2.2.1
+    image: maildev/maildev:3.0.0
     ports:
       - "1080:1080"
       - "1025:1025"
