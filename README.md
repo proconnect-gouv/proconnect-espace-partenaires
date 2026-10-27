@@ -62,4 +62,4 @@ PROCONNECT_CLIENT_ID=xxx PROCONNECT_CLIENT_SECRET=xxx npm run studio
 La documentation est disponible dans le dossier `docs`.
 
 - [Architecture](docs/architecture.md)
-- [Bonnes pratiques](/docs/best-practices.md)
+- [Règles pour les agents IA](AGENTS.md)
