@@ -22,6 +22,7 @@ Read the whole page before editing. Partners read these pages linearly, and a pa
 - Keep the existing heading style of the page: numbered (`## 1.`, `### 1.1.`) or not, emoji or not.
 - Do not touch the `# H1` unless that is the task: it is the page title, the breadcrumb label, the search-index key, and it is asserted in `e2e/uuv/features/docs.feature` for the section index pages. If you do change it, check that file.
 - If the update makes the page answer a second question, stop and propose splitting it instead — see the `doc-page-create` skill.
+- Match the size of the ask. A clarification is a sentence or two with a link, not a new table, callout and cross-link — that apparatus belongs to `doc-page-create`, not to a one-fact fix. If satisfying the request well seems to need more than what was asked, stop and propose the fuller version to the person before writing it, rather than committing to the heavier edit unasked.
 - Dated information (a compliance deadline, a migration, a deprecation) belongs in a dated page such as `fournisseur-identite/2026_03_conformite_mfa.md`, not inlined into a reference page where it will silently become false.
 - Removing content is a real option, but say so explicitly in the report rather than deleting quietly — a partner may be relying on it.
 
