@@ -1,13 +1,13 @@
 # Recommandation de parcours lors de l'implémentation de la Certification Dirigeant
 
 > [!NOTE]
-> Ce document complète la [documentation technique de la Certification Dirigeant](./certification-dirigeant.md) en apportant des recommandations UX et UI pour offrir un parcours fluide à vos utilisateurs.
+> Ce document complète la [documentation technique de la Certification Dirigeant](./implementer-certification-dirigeant.md) en apportant des recommandations UX et UI pour offrir un parcours fluide à vos utilisateurs.
 
 ---
 
 ## 1. Contexte
 
-La Certification Dirigeant fonctionne comme un niveau de confiance (ACR) OpenID Connect, de manière similaire à l'authentification multifacteur. Elle permet de vérifier que l'utilisateur est bien le dirigeant d'une organisation donnée en croisant son identité FranceConnect avec les données INSEE / RNE.
+La Certification Dirigeant fonctionne comme un niveau de confiance (ACR) OpenID Connect, de manière similaire à l'authentification multifacteur. Pour ce qu'elle garantit et comment elle est établie, voir [Qu'est-ce que la certification dirigeant ?](../metier/certification-dirigeant.md).
 
 Selon la nature de votre service, deux cas d'usage se distinguent :
 
@@ -17,15 +17,9 @@ Selon la nature de votre service, deux cas d'usage se distinguent :
 
 ---
 
-## 2. Populations non éligibles
+## 2. Prendre en charge les populations non éligibles
 
-La Certification Dirigeant ne couvre pas l'ensemble des dirigeants. Voici les populations non éligibles à la certification dirigeant :
-
-- Les organisations publiques
-- Les associations
-- Les entreprises appartenant exclusivement à des entreprises
-
-Si à terme ProConnect pourra certifier ces population, pour le moment il est impératif de prévoir un parcours alternatif pour ces utilisateurs afin de ne pas les bloquer sans recours.
+La Certification Dirigeant ne couvre pas l'ensemble des dirigeants : voir [les populations non éligibles](../metier/certification-dirigeant.md#4-qui-ne-peut-pas-lêtre). Il est impératif de prévoir un parcours alternatif pour ces utilisateurs afin de ne pas les bloquer sans recours.
 
 ### 2.1. Afficher clairement les critères d'éligibilité
 
@@ -70,7 +64,7 @@ Exemple de formulation :
 Placez un bouton de déclenchement directement au point d'entrée de l'action sensible (et non en amont). Lors du clic :
 
 1. Stockez l'état courant (action en attente, données du formulaire) dans la session ou via le paramètre `state` de la requête `/authorize`.
-2. Lancez le flux OpenID Connect avec le paramètre `claims` incluant l'ACR requis ([voir documentation technique](./certification-dirigeant.md#2-configuration-du-paramètre-claims)).
+2. Lancez le flux OpenID Connect avec le paramètre `claims` incluant l'ACR requis ([voir documentation technique](./implementer-certification-dirigeant.md#2-configuration-du-paramètre-claims)).
 3. Après retour, vérifiez l'`acr` dans l'ID token côté serveur avant d'exécuter l'action.
 
 ### 3.3. Gérer le retour après certification
@@ -109,5 +103,5 @@ En cas d'échec de certification, redirigez vers une page dédiée indiquant la 
 - [ ] Un parcours alternatif est accessible pour les populations non éligibles
 - [ ] L'utilisateur est informé de ce qui va se passer avant le déclenchement du flux
 - [ ] Le paramètre `state` (ou session) préserve le contexte avant la redirection
-- [ ] L'`acr` est vérifié côté serveur après réception de l'ID token ([voir documentation technique](./certification-dirigeant.md#4-traitement-par-proconnect))
+- [ ] L'`acr` est vérifié côté serveur après réception de l'ID token ([voir documentation technique](./implementer-certification-dirigeant.md#4-traitement-par-proconnect))
 - [ ] En cas d'échec, le message indique la cause et propose le parcours alternatif ou le support

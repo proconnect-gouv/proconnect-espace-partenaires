@@ -59,4 +59,4 @@ Pour la correspondance détaillée entre scopes et claims, consultez [la documen
 
 ## 6. Le cas du SIRET
 
-Le SIRET renvoyé permet d'identifier la structure de travail de la personne qui se connecte. Si cette structure est privée, la [certification dirigeant](certification-dirigeant.md) permet de garantir de parler à une personne capable de représenter l'organisation privée.
+Le SIRET renvoyé permet d'identifier la structure de travail de la personne qui se connecte. Si cette structure est privée, la [certification dirigeant](../metier/certification-dirigeant.md) permet de garantir de parler à une personne capable de représenter l'organisation privée.
