@@ -73,8 +73,9 @@ Nous vous recommandons de lire [notre page généraliste sur l'implémentation t
 
 | Page                                                                                   | Question                                                                                 |
 | -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| [Certification dirigeant](./certification-dirigeant.md)                                | Qu'est-ce que la certification dirigeant et comment l'implémenter ?                      |
-| [Design certification dirigeant](./recommandation_parcours_certification_dirigeant.md) | Quelles règles de design de parcours dois-je respecter pour la certification dirigeant ? |
+| [Qu'est-ce que la certification dirigeant ?](../metier/certification-dirigeant.md)     | Qu'est-ce que la certification dirigeant, et qui peut en bénéficier ?                    |
+| [Implémentation technique](./implementer-certification-dirigeant.md)                   | Comment demander et vérifier la certification dirigeant dans mon flux OpenID Connect ?   |
+| [Design certification dirigeant](./recommandation-parcours-certification-dirigeant.md) | Quelles règles de design de parcours dois-je respecter pour la certification dirigeant ? |
 
 ## ✨ 7. Fonctionnalités avancées
 
