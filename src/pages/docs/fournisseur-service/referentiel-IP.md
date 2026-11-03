@@ -12,7 +12,7 @@ Les Fournisseurs de Service doivent s'assurer que leurs configurations réseau *
 
 Autoriser le trafic **TCP sur le port 443 (HTTPS)** vers les adresses IP listées ci-dessous.
 
-Si votre Fournisseur de Service est **exposé sur le RIE**, une **demande spécifique auprès de la PFS** est nécessaire pour permettre à votre adresse IP d'accéder à ces endpoints.
+Si votre Fournisseur de Service est **exposé sur le RIE**, une **demande spécifique auprès de votre gestionnaire réseau RIE (ou de votre administration)** est nécessaire pour permettre à votre adresse IP d'accéder à ces endpoints.
 
 En cas de doute, n'hésitez pas à nous contacter à [support.partenaires@mail.proconnect.gouv.fr](mailto:support.partenaires@mail.proconnect.gouv.fr)
 
