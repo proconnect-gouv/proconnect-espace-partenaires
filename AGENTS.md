@@ -105,6 +105,15 @@ When unsure what belongs on a page, [Diátaxis](https://diataxis.fr/start-here/)
 - Components available in `.mdx` only: `CallOut`, `VerticalStepper` / `Step`, `Quote` — see `src/mdx-components.tsx`.
 - Emoji in headings are an established convention here; stay consistent with neighbouring pages.
 
+### 5.5. Naming a page file
+
+The filename is the public URL, so it is a published decision, not an internal detail.
+
+- **Separator: hyphen.** `implementer-certification-dirigeant.md`, not `implementer_certification_dirigeant.md`. The folders are already hyphenated (`fournisseur-service`, `fournisseur-identite`), so a hyphenated file keeps one single separator across the whole URL; search engines also read a hyphen as a word break and an underscore as a word join. Half the tree still uses underscores — leave those alone, this applies to new and renamed pages.
+- **Name the question the page answers.** A reference page takes its subject (`niveaux-acr.md`), a how-to takes its action (`implementer-certification-dirigeant.md`, `connaitre-le-fi-utilise.md`). If the name needs more than a few words, the page is probably answering two questions — see the atomic-pages rule in 5.2.
+- **Two folders may share a basename only for audience twins.** `referentiel-IP.md`, `table_matieres.md` and `index.mdx` are duplicated on purpose: same subject, different audience, different content. Two pages of different _nature_ on one subject must not collide, which is why the business page is `metier/certification-dirigeant.md` and the technical one `fournisseur-service/implementer-certification-dirigeant.md`.
+- **Renaming an existing page to satisfy this convention is its own change**, never a drive-by: it changes a public URL, so it carries the redirect question of 5.4 and needs every inbound link fixed by hand.
+
 ## 6. Git, commits and pull requests
 
 Follow the [ProConnect team guidelines](https://github.com/proconnect-gouv/federation/blob/main/CONTRIBUTING.md) for branches, commits and pull requests. Two things they do not cover, both specific to this repository:
