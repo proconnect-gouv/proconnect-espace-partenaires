@@ -75,6 +75,8 @@ npm run build     # catches Invalid link and MDX errors
 npm run dev       # open the page, the table of contents row, and every link you added
 ```
 
+- Verify only at commit time. No need to verify before.
+
 ## 5. Report
 
 Say which page you created, where you linked it from, and **what you could not verify** — any factual claim about ProConnect behaviour that you did not read in the code or in the upstream repositories needs a maintainer's confirmation before merge. Guessing here is worse than leaving a gap: partners implement against these pages.
