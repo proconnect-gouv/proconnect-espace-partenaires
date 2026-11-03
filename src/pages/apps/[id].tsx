@@ -14,6 +14,7 @@ import { EditableList } from "../../components/EditableList";
 import { MaintenanceBanner } from "../../components/MaintenanceBanner";
 import { NotificationsContainer } from "../../components/NotificationsContainer";
 import { OidcClient, pcdbClient } from "../../lib/pcdbapi";
+import { INVALID_NAME_MESSAGE, VALID_INPUT_STRING_REGEX } from "../../lib/valid-input-string-regex";
 import { authOptions } from "../api/auth/[...nextauth]";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -69,6 +70,7 @@ export default function AppDetailPage({
   userEmail: string;
 }) {
   const [data, setData] = useState(app);
+  const isNameValid = VALID_INPUT_STRING_REGEX.test(data.name);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [idTokenSignatureAlg, setIdTokenSignatureAlg] = useState(data.id_token_signed_response_alg);
@@ -123,8 +125,12 @@ export default function AppDetailPage({
     }));
 
     if ("name" in updates) {
-      // For name, use debounced save
-      debouncedSave(updates);
+      // For name, use debounced save, and never save an invalid name
+      if (VALID_INPUT_STRING_REGEX.test(updates.name ?? "")) {
+        debouncedSave(updates);
+      } else {
+        debouncedSave.clear();
+      }
     } else {
       // For items that are updated on button click, save immediately
       handleSave(updates);
@@ -196,8 +202,10 @@ export default function AppDetailPage({
             <div className={fr.cx("fr-mb-12v")}>
               <Input
                 className={fr.cx("fr-col-md-7")}
-                state={data.name === "" ? "error" : "default"}
-                stateRelatedMessage="Nom de projet obligatoire"
+                state={isNameValid ? "default" : "error"}
+                stateRelatedMessage={
+                  data.name === "" ? "Nom de projet obligatoire" : INVALID_NAME_MESSAGE
+                }
                 label="Nom de l&rsquo;application"
                 nativeInputProps={{
                   type: "text",
