@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth/next";
 import { pcdbClient } from "../../../lib/pcdbapi";
+import { VALID_INPUT_STRING_REGEX } from "../../../lib/valid-input-string-regex";
 import { authOptions } from "../auth/[...nextauth]";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -16,6 +17,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     if (req.method === "PATCH") {
+      if (
+        req.body &&
+        typeof req.body === "object" &&
+        "name" in req.body &&
+        (typeof req.body.name !== "string" || !VALID_INPUT_STRING_REGEX.test(req.body.name))
+      ) {
+        return res.status(400).json({ message: "Invalid name" });
+      }
       const app = await pcdbClient.updateOidcClient(id, session.user.email, req.body);
       return res.status(200).json(app);
     }
