@@ -58,8 +58,3 @@ services:
       timeout: 2s
     ports:
       - "8000:3000"
-  maildev:
-    image: maildev/maildev:2.2.1
-    ports:
-      - "1080:1080"
-      - "1025:1025"
