@@ -36,7 +36,7 @@ jobs:
         uses: actions/cache@v6
         with:
           path: .next/cache
-          key: nextjs-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-${{ hashFiles('src/**', 'packages/**', 'next.config.mjs') }}
+          key: nextjs-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-${{ hashFiles('src/**', 'next.config.mjs') }}
           restore-keys: |
             nextjs-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-
             nextjs-${{ runner.os }}-
@@ -67,7 +67,6 @@ jobs:
           path: |
             .next/standalone/
             .next/static/
-            packages/*/dist/
             public/
           retention-days: 1
           include-hidden-files: true

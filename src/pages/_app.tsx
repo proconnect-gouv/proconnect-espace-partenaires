@@ -86,10 +86,14 @@ function App({ Component, pageProps: { session, ...pageProps }, router }: AppPro
         }}
       >
         <ClosableNotice
-          id="proconnect-will-replace-magic-link-notice"
-          title="La connexion à votre Espace Partenaires se renforce."
+          id="magic-link-removed-notice"
+          title="Les liens de connexion par e-mail ont été supprimés."
           severity="info"
-          description="Les liens de connexion seront prochainement remplacés par la connexion via le bouton ProConnect. Pour garantir l’accès à vos applications, ajoutez dès maintenant les personnes concernées à vos espaces via la nouvelle fonctionnalité d’ajout de personnes collaboratrices."
+          description="Nous avons laissé un délai suffisant pour migrer : la connexion à votre Espace Partenaires se fait désormais uniquement via le bouton ProConnect."
+          link={{
+            linkProps: { href: "https://proconnect.crisp.help/fr/" },
+            text: "Besoin d’aide ? Consultez le centre d’aide ProConnect",
+          }}
         />
         <Layout>
           <Component {...pageProps} />

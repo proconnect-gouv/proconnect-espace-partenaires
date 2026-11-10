@@ -6,11 +6,11 @@ Instructions for AI coding agents (Claude Code, Codex, Cursor, Copilot, Gemini C
 
 This Next.js app serves two things with **different rules**. Identify which one you are touching before writing anything.
 
-| Area                                      | Paths                                                                                                                         | Rules                            |
-| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
-| **Espace Partenaires** — the application  | `src/pages/*.tsx`, `src/pages/apps/`, `src/pages/api/`, `src/components/`, `src/lib/`, `src/layouts/`, `prisma/`, `packages/` | sections 3 and 4                 |
-| **Documentation technique** — public docs | `src/pages/docs/**`                                                                                                           | sections 3 and 5                 |
-| End-to-end tests                          | `e2e/**`                                                                                                                      | `e2e/AGENTS.md` (a stub for now) |
+| Area                                      | Paths                                                                                                            | Rules                            |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | -------------------------------- |
+| **Espace Partenaires** — the application  | `src/pages/*.tsx`, `src/pages/apps/`, `src/pages/api/`, `src/components/`, `src/lib/`, `src/layouts/`, `prisma/` | sections 3 and 4                 |
+| **Documentation technique** — public docs | `src/pages/docs/**`                                                                                              | sections 3 and 5                 |
+| End-to-end tests                          | `e2e/**`                                                                                                         | `e2e/AGENTS.md` (a stub for now) |
 
 Keep them separate: a documentation change should not touch application code, and a feature change should not rewrite documentation pages. If a task genuinely needs both, say so and split the commits.
 
@@ -31,7 +31,7 @@ Setup is in [README.md](README.md). Two things it does not say: `PROCONNECT_CLIE
 ## 3. Rules that apply everywhere
 
 - **Credentials** go in `.env.development.local` / `.env.local`, which are git-ignored. `.env.development` is committed and holds placeholders — never put a real value there.
-- **Never edit generated output**: `.next/`, `prisma/generated_clients/`, `public/search-index.json`, `public/robots.txt`, `packages/email/dist/`. Change the generator instead.
+- **Never edit generated output**: `.next/`, `prisma/generated_clients/`, `public/search-index.json`, `public/robots.txt`. Change the generator instead.
 - **Run `npm run lint` before reporting a task done**, and `npm run format` if it reports formatting differences. CI runs the same thing.
 - **No new dependency** without asking first. This is a public State service: every addition is supply-chain surface.
 - **Do not run `npm run db:reset`** (it runs `docker compose down -v` and destroys local volumes) unless explicitly asked.

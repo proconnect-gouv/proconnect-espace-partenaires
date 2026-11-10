@@ -84,9 +84,7 @@ The data model is strictly enforced by Pydantic models, see `pcdbapi/main.py`.
 ## Authentication Flow
 
 1. User -> Next.js Frontend
-   - Magic link authentication via email
-   - No password required
-   - Secure token in email link
+   - OIDC authentication via ProConnect
 
 2. Next.js Frontend -> Next.js API
    - NextAuth.js session management
