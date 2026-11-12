@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import { prisma_espace } from "./prisma";
 
 const API_SECRET = process.env.PCDB_API_SECRET!;
 const API_URL = process.env.PCDB_API_URL!;
@@ -38,25 +39,45 @@ export class PCDBClient {
     return crypto.createHmac("sha256", API_SECRET).update(message).digest("hex");
   }
 
+  private async findProconnectAccessToken(email: string): Promise<string | null> {
+    const account = await prisma_espace.account.findFirst({
+      where: { provider: "proconnect", user: { email } },
+      select: { access_token: true, expires_at: true },
+    });
+    const now = Math.floor(Date.now() / 1000);
+    if (!account?.access_token || !account.expires_at || account.expires_at <= now) return null;
+    return account.access_token;
+  }
+
   private async request<T>(
     method: string,
     path: string,
+    email: string,
     requestData?: Partial<OidcClient>,
   ): Promise<T> {
-    const timestamp = Math.floor(Date.now() / 1000).toString();
     const body = requestData ? JSON.stringify(requestData) : undefined;
-    const signature = this.generateSignature(timestamp, method, path, body);
+    const accessToken = await this.findProconnectAccessToken(email);
 
-    const headers: Record<string, string> = {
-      "X-Signature": signature,
-      "X-Timestamp": timestamp,
-    };
+    let url: string;
+    let headers: Record<string, string>;
+    if (accessToken) {
+      url = `${API_URL}${path}`;
+      headers = { Authorization: `Bearer ${accessToken}` };
+    } else {
+      const signedPath = `${path}?email=${email}`;
+      const timestamp = Math.floor(Date.now() / 1000).toString();
+      url = `${API_URL}${signedPath}`;
+      headers = {
+        "X-Signature": this.generateSignature(timestamp, method, signedPath, body),
+        "X-Timestamp": timestamp,
+      };
+    }
 
     if (body) {
       headers["Content-Type"] = "application/json";
     }
 
-    const response = await fetch(`${API_URL}${path}`, {
+    const response = await fetch(url, {
       method,
       headers,
       body,
@@ -71,15 +92,15 @@ export class PCDBClient {
   }
 
   async listOidcClients(email: string): Promise<OidcClient[]> {
-    return this.request("GET", `/api/oidc_clients?email=${email}`);
+    return this.request("GET", "/api/oidc_clients", email);
   }
 
   async getOidcClient(id: string, email: string): Promise<OidcClient> {
-    return this.request("GET", `/api/oidc_clients/${id}?email=${email}`);
+    return this.request("GET", `/api/oidc_clients/${id}`, email);
   }
 
   async createOidcClient(email: string, data: Partial<OidcClient>): Promise<OidcClient> {
-    return this.request("POST", `/api/oidc_clients?email=${email}`, data);
+    return this.request("POST", "/api/oidc_clients", email, data);
   }
 
   async updateOidcClient(
@@ -87,11 +108,11 @@ export class PCDBClient {
     email: string,
     data: Partial<OidcClient>,
   ): Promise<OidcClient> {
-    return this.request("PATCH", `/api/oidc_clients/${id}?email=${email}`, data);
+    return this.request("PATCH", `/api/oidc_clients/${id}`, email, data);
   }
 
   async deleteOidcClient(id: string, email: string): Promise<{ deleted: boolean }> {
-    return this.request("DELETE", `/api/oidc_clients/${id}?email=${email}`);
+    return this.request("DELETE", `/api/oidc_clients/${id}`, email);
   }
 }
 
