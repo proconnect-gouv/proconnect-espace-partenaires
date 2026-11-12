@@ -66,4 +66,4 @@ Pour des raisons techniques, [certaines personnes professionnelles ne peuvent pa
 
 ## Le cas de la Certification Dirigeant
 
-La [Certification Dirigeant](./certification-dirigeant.md) étant une fonctionnalité complexe, nous proposons une [recommandation parcours](./recommandation_parcours_certification_dirigeant.md) pour l'implémenter.
+La [Certification Dirigeant](../metier/certification-dirigeant.md) étant une fonctionnalité complexe, nous proposons une [recommandation parcours](./recommandation-parcours-certification-dirigeant.md) pour l'implémenter.

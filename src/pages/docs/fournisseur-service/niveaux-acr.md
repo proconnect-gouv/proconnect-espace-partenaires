@@ -45,7 +45,7 @@ Si l’identité FranceConnect correspond à celle d’un des dirigeants pour ce
 
 Pour imposer ce niveau de certification dans un service, il suffit de demander le niveau de confiance suivant : `https://proconnect.gouv.fr/assurance/certification-dirigeant`.
 
-[Plus d’information sur la certification dirigeant.](./certification-dirigeant.md)
+[Plus d’information sur la certification dirigeant.](../metier/certification-dirigeant.md)
 
 ## Les méthodes d’authentifications
 

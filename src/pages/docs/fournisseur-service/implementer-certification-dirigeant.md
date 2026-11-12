@@ -1,4 +1,4 @@
-# 💼 Cas de l'authentification d'un rôle (dirigeant, élu, etc.)
+# 💼 Implémenter la certification dirigeant
 
 Ce document décrit la manière d'utiliser ProConnect en tant que **fournisseur OpenID** afin de récupérer une identité de niveau « certifié dirigeant ». Nous nous appuyons sur les spécifications [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html).
 
@@ -7,11 +7,11 @@ Ce document décrit la manière d'utiliser ProConnect en tant que **fournisseur 
 
 ## 1. Qu'est-ce que la certification dirigeant ?
 
-Parmi les niveaux d'authentification disponibles, ProConnect propose notamment le niveau de certification suivant :
+Le niveau `certification-dirigeant` prouve le statut de dirigeant au sein d'une organisation. Il s'obtient en demandant explicitement un niveau de garantie (`acr`) spécifique dans le cadre d'un flux OpenID Connect.
 
-- `certification-dirigeant` : prouve le statut de dirigeant au sein d'une organisation.
+Pour ce que la certification garantit, qui peut en bénéficier et quand l'utiliser, voir [Qu'est-ce que la certification dirigeant ?](../metier/certification-dirigeant.md).
 
-Cette certification s'obtient en demandant explicitement un niveau de garantie (acr) spécifique dans le cadre d'un flux OpenID Connect.
+La certification dirigeant étant une fonctionnalité complexe, nous proposons [une recommandation de parcours](./recommandation-parcours-certification-dirigeant.md) à respecter lors de son implémentation.
 
 ## 2. Configuration du paramètre `claims`
 
@@ -86,15 +86,17 @@ Il est **IMPÉRATIF** de vérifier la présence et la valeur du paramètre `acr`
 - [Utilisation du paramètre `claims`](https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter)
 - [Semantics of the `acr` Claim](https://openid.net/specs/openid-connect-core-1_0.html#acrSemantics)
 
-## 6. Annexe
+## 6. Tester la certification dirigeant en intégration
 
-### 6.1. Recommandation parcours
+Pour tester un parcours qui force la certification dirigeant, vous pouvez utiliser le [fournisseur de service de test](https://test.proconnect.gouv.fr) de ProConnect en cliquant sur `Forcer une connexion par Certification Dirigeant`.
 
-La certification dirigeant étant une fonctionnalité complexe, nous proposons [une recommandation de parcours](./recommandation_parcours_certification_dirigeant.md) à respecter lors de son implémentation.
+### 6.1. Identifiants libres pour vos tests
 
-### 6.2 Tester la certification dirigeant en intégration
+Le plus simple pour vos tests est d'utiliser le [Fournisseur d'Identité de test](./identifiants-fi-test.md) : à l'arrivée sur la mire ProConnect, entrez un email en `@test.proconnect.gouv.fr`, puis choisissez directement l'`ACR` `certification-dirigeant` parmi les éléments proposés. Vous pourrez aussi paramétrer le SIRET et l'email de votre choix et vous connecter en quelques clics à peine.
 
-Pour tester la certification dirigeant, vous pouvez utiliser le [fournisseur de service de test](https://test.proconnect.gouv.fr) de ProConnect en cliquant sur `Forcer une connexion par Certification Dirigeant`.
+### 6.2. Tester le parcours complet de la Certification Dirigeant
+
+Il est possible aussi d'essayer le parcours complet de la Certification Dirigeant avec vérification d'identité et confirmation du SIRET.
 
 > [!IMPORTANT]
 > Si vous n'avez pas de données fictives dans l'environnement d'intégration d'une personne dirigeante d'entreprise, sachez que nous avons ajouté des [données fictives](https://github.com/proconnect-gouv/proconnect-identite/blob/4ce6c5fcfb8b548cf24fea7dc168c04d88317fca/packages/testing/src/api/routes/api.insee.fr/etablissements/83832482000011.json#L29) pour que [cette utilisatrice fictive](https://github.com/france-connect/sources/blob/96ad0d3d379cd3b0c55f7 c8d71a77a7e228717ee/docker/volumes/fcp-high/mocks/idp/databases/citizen/base.csv#L2) puisse être dirigeante de [cette entreprise](https://annuaire-entreprises.data.gouv.fr/etablissement/83832482000011). Cette même utilisatrice pourra être dirigeante de n'importe quelle établissement de [cette Unité Légale](https://annuaire-entreprises.data.gouv.fr/entreprise/thunnus-thynnus-iii-807612296).
