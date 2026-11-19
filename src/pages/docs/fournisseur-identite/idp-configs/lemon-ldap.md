@@ -29,4 +29,4 @@ La configuration de la MFA se fait dans Service OpenIDConnect -> Contexte d'Auth
 > Pour une vue d'ensemble de la MFA sur ProConnect, consultez [la documentation dédiée](../authentification-multifacteur.md).
 
 > [!NOTE]
-> Voir aussi [la documentation ProConnect](https://lemonldap-ng.org/documentation/latest/oidc-proconnect.html) sur le site de LemonLDAP::NG. 
+> Voir aussi [la documentation ProConnect](https://lemonldap-ng.org/documentation/latest/oidc-proconnect.html) sur le site de LemonLDAP::NG.
