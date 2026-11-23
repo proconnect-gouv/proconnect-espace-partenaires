@@ -51,6 +51,7 @@ Les valeurs gérées par ProConnect pour EntraID sont les suivantes :
 | `c1`                                 | `eidas1`                              |
 | `c2`                                 | `eidas2`                              |
 | `c3`                                 | `eidas3`                              |
+| `c4`                                 | `eidas1-mfa`                          |
 
 Par exemple : si, lors de la connexion d'un utilisateur, ProConnect requiert l'authentification multifacteur (via une liste de valeurs pour le claim `acr` à `"essential": true`), il vous faut une politique d'accès conditionnel exigeant le MFA sur le contexte `c2` (pour `eidas2`) (nous recommandons le contrôle « Force d'authentification » plutôt que « Exiger l'authentification multifacteur », afin de maîtriser les méthodes acceptées). Microsoft EntraID émettra alors `c2` dans `acrs` pour les utilisateurs l'ayant satisfait. N'utilisez `c3` que si votre configuration répond aux exigences du niveau `eidas3`.
 

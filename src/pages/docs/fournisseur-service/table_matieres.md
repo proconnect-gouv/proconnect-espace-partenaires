@@ -59,12 +59,13 @@ Nous vous recommandons de lire [notre page généraliste sur l'implémentation t
 
 → _Quel niveau de confiance et de sécurité puis-je exiger de ProConnect ?_
 
-| Page                                                                    | Question                                                                                                                                     |
-| ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Niveaux eidas](./niveaux-eidas.md)                                     | Que signifient les niveaux eidas et comment en choisir un ?                                                                                  |
-| [Norme eIDAS](../ressources/norme_eidas.md) _(ressource commune FS/FI)_ | Quels sont les trois piliers de la norme eIDAS (identité, authentification, organisation), les méthodes MFA et le cas particulier d'eidas0 ? |
-| [Double authentification](./double_authentification.md)                 | Comment forcer la double authentification (2FA) / Multifacteur Authentification (MFA) ?                                                      |
-| [Niveaux ACR](./niveaux-acr.md)                                         | Comment exiger un niveau minimum dans mes requêtes et lire le claim `amr` ?                                                                  |
+| Page                                                                                     | Question                                                                                                                                     |
+| ---------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Authentification multi-facteur (MFA)](../ressources/mfa.md) _(ressource commune FS/FI)_ | Qu'est-ce que l'authentification multi-facteur (MFA) et quels sont les différents moyens de s'authentifier ?                                 |
+| [Niveaux eidas](./niveaux-eidas.md)                                                      | Que signifient les niveaux eidas et comment en choisir un ?                                                                                  |
+| [Norme eIDAS](../ressources/norme_eidas.md) _(ressource commune FS/FI)_                  | Quels sont les trois piliers de la norme eIDAS (identité, authentification, organisation), les méthodes MFA et le cas particulier d'eidas0 ? |
+| [Double authentification](./double_authentification.md)                                  | Comment forcer la double authentification (2FA) / Multifacteur Authentification (MFA) ?                                                      |
+| [Niveaux ACR](./niveaux-acr.md)                                                          | Comment exiger un niveau minimum dans mes requêtes et lire le claim `amr` ?                                                                  |
 
 ## 🏢 6. Certification dirigeant
 

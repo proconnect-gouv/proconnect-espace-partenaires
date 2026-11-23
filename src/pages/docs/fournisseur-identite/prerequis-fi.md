@@ -1,16 +1,36 @@
 # Quels sont les prérequis pour devenir Fournisseur d'Identité pour ProConnect ?
 
-Les prérequis sont les suivants :
+## 1. Être l'entité légitime du processus RH
 
-- être l'entité légitime qui gère le processus RH d'un professionnel jusqu'à la fin du contrat
-- pouvoir déployer une cinématique au standard OpenID Connect - authorization code flow
-- être en capacité de transmettre à ProConnect les 5 données obligatoires :
-  - nom de famille
-  - prénom
-  - adresse e-mail professionnelle
-  - identifiant technique (du FI)
-  - identifiant SIRET (14 chiffres sans espace) de l'organisation à laquelle appartient le professionnel
-- fournir les noms de domaine des adresses emails concernées par le FI (par exemple : `@justice.fr` et `@justice.gouv.fr` pour le Ministère de la Justice)
+Vous devez être l'entité légitime qui gère le processus RH d'un professionnel jusqu'à la fin du contrat.
+
+## 2. Supporter le protocole technique
+
+Vous devez pouvoir déployer une cinématique au standard OpenID Connect - authorization code flow.
+
+> [!NOTE]
+> Si votre FI est hébergé sur le RIE, assurez-vous que la Discovery URL utilise un domaine en `rie.gouv.fr` ou `ader.gouv.fr`. Dans le cas contraire, ProConnect ne pourra pas résoudre cette URL. Consultez [la page dédiée à la résolution de la Discovery URL pour les FI RIE](./resolution_discovery_url.md).
+
+## 3. Transmettre les données obligatoires
+
+Vous devez être en capacité de transmettre à ProConnect les 5 données obligatoires :
+
+- nom de famille
+- prénom
+- adresse e-mail professionnelle
+- identifiant technique (du FI)
+- identifiant SIRET (14 chiffres sans espace) de l'organisation à laquelle appartient le professionnel
+
+## 4. Fournir et prouver les noms de domaine
+
+### 4.1. Domaines concernés
+
+Vous devez fournir les noms de domaine des adresses emails concernées par le FI (par exemple : `@justice.fr` et `@justice.gouv.fr` pour le Ministère de la Justice).
+
+> [!IMPORTANT]
+> Vous devez garantir l'authentification de tous les utilisateurs disposant d'une adresse e-mail valide associée à l'un des noms de domaines que vous nous fournirez. Aucune exception ne doit être faite : chaque utilisateur dont l'adresse respecte les domaines spécifiés doit pouvoir être authentifié.
+
+### 4.2. Preuve de possession des domaines
 
 Afin de prouver à l'équipe ProConnect que vous possédez bien le(s) nom(s) de domaine pour lesquels vous souhaitez effectuer la redirection, il vous est demandé d'ajouter un enregistrement TXT au DNS pour chaque nom de domaine concerné, contenant l'Identity Provider ID de votre Fournisseur d'Identité (que nous vous fournissons après réception de votre formulaire Démarches Simplifiées) :
 
@@ -18,11 +38,8 @@ Afin de prouver à l'équipe ProConnect que vous possédez bien le(s) nom(s) de 
 - Nom/hôte : @ ou nom-de-domaine.com (selon votre interface de gestion DNS)
 - Valeur : `proconnect-identity-provider-{{idp_id}}`
 
-> [!IMPORTANT]
-> Vous devez garantir l'authentification de tous les utilisateurs disposant d'une adresse e-mail valide associée à l'un des noms de domaines que vous nous fournirez. Aucune exception ne doit être faite : chaque utilisateur dont l'adresse respecte les domaines spécifiés doit pouvoir être authentifié.
+## 5. Supporter l'authentification multi-facteur (MFA)
 
-> [!NOTE]
-> Certains Fournisseurs de Service peuvent exiger une authentification multi-facteur (MFA) de la part de leurs utilisateurs. Pour savoir comment supporter ce cas, consultez [la documentation sur l'authentification multi-facteur](./authentification-multifacteur.md).
+Certains Fournisseurs de Service exigent une authentification multi-facteur (MFA) de la part de leurs utilisateurs. Vous devez être en capacité de répondre favorablement à une exigence MFA pour n'importe quel utilisateur de votre Fournisseur d'Identité.
 
-> [!NOTE]
-> Si votre FI est hébergé sur le RIE, assurez-vous que la Discovery URL utilise un domaine en `rie.gouv.fr` ou `ader.gouv.fr`. Dans le cas contraire, ProConnect ne pourra pas résoudre cette URL. Consultez [la page dédiée à la résolution de la Discovery URL pour les FI RIE](./resolution_discovery_url.md).
+Pour savoir comment supporter ce cas, consultez [la documentation sur l'authentification multi-facteur](./authentification-multifacteur.md).

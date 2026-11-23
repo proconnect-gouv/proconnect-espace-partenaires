@@ -8,9 +8,9 @@
     "test:e2e:video": "PW_VIDEO=1 uuv run"
   },
   "devDependencies": {
-    "@playwright/test": "1.62.1",
-    "@uuv/playwright": "3.78.0",
-    "tsx": "4.23.13",
+    "@playwright/test": "1.65.1",
+    "@uuv/playwright": "3.81.0",
+    "tsx": "4.23.15",
     "typescript": "7.0.2"
   },
   "engines": {

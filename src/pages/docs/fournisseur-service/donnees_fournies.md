@@ -11,7 +11,7 @@ Ces données sont **systématiquement** transmises par les Fournisseurs d'Identi
 | given_name | oui         | Prénoms séparés par des espaces (standard OpenIDConnect) | UTF-8 (standard OpenIDConnect)  |
 | usual_name | oui         | Nom de famille d'usage (par défaut = family_name)        | UTF-8                           |
 | email      | oui         | Adresse courriel                                         | UTF-8 (standard OpenIDConnect)  |
-| uid        | oui         | Identifiant unique de l'utilisateur auprès du FI         | String (standard OpenIDConnect) |
+| uid        | oui         | Identifiant de l'utilisateur auprès du FI (voir 2.1)     | String (standard OpenIDConnect) |
 | siret      | oui         | Identifiant d'établissement                              | string, 14 chiffres sans espace |
 
 ## 2. Les données enrichies par ProConnect
@@ -20,16 +20,18 @@ Ces données sont enrichies par ProConnect lui-même et sont **systématiquement
 
 | Scope              | Renvoyées systématiquement | Description                                                                                                                | Format |
 | ------------------ | -------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------ |
-| sub                | Oui                        | Identifiant unique de l'utilisateur                                                                                        | String |
+| sub                | Oui                        | Identifiant unique de l'utilisateur, calculé par ProConnect (voir la section 2.1)                                          | String |
 | idp_id             | Oui                        | Fournisseur d'Identité utilisé par l'utilisateur pour s'authentifier (plus de détails [ici](./connaitre-le-fi-utilise.md)) | String |
 | organization_label | Oui                        | Nom d'affichage de l'organisation rattachée à l'utilisateur (plus de détails [ici](./organization_label.md))               | String |
 | roles              | Non                        | Indique les rôles éventuels de l'utilisateur (plus de détails [ici](./roles.md))                                           | Array  |
 
-### 2.1. Le champ sub
+### 2.1. Les champs `sub` et `uid`
 
 ProConnect transmet systématiquement au Fournisseur de Services un identifiant unique pour chaque agent (le `sub`) : cet identifiant est spécifique **à chaque Fournisseur d'Identité**. Il est recommandé de l'utiliser pour effectuer la réconciliation d'identité.
 
 ![schéma de reconciliation d'identité par le sub](/images/docs/reconciliation-sub.png)
+
+Le `sub` et le `uid` identifient tous deux l'utilisateur, mais le `sub` est calculé par ProConnect (hash, garanti unique tous FI confondus) alors que le `uid` est transmis tel quel par le FI (unique seulement au sein de ce FI). Utilisez le `sub` pour la réconciliation ; [le point de vue FI sur ces deux champs](../fournisseur-identite/configuration.md) donne le détail du calcul.
 
 ## 3. Les données complémentaires
 
