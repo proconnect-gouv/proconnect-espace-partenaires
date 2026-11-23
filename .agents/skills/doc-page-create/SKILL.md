@@ -25,7 +25,7 @@ Confirm the answers with the person asking if any of them is a guess.
 
 ## 2. Create the file
 
-Path: `src/pages/docs/<section>/<slug>.md`. Slug style is inconsistent across the repo (`niveaux-acr.md`, `custom-scope.md`, `siret_hint_usage.md`) — match the files already in that folder rather than introducing a third style.
+Path: `src/pages/docs/<section>/<slug>.md`. Name the file per [`AGENTS.md`](../../../AGENTS.md) section 5.5: hyphens, and a name that says which question the page answers. Do not copy the underscores of neighbouring files — they are legacy, not the convention.
 
 Use `.mdx` only if you need `CallOut`, `VerticalStepper`/`Step` or `Quote`. Plain `.md` otherwise: it is simpler and every other page is `.md`.
 
