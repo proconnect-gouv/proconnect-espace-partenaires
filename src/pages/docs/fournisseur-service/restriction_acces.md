@@ -77,4 +77,4 @@ Le scope `custom` peut contenir des données propres à certains Fournisseurs d'
 
 ## 5. Ce que la restriction n'est pas
 
-Exiger un niveau de confiance (ACR) ou la [certification dirigeant](./certification-dirigeant.md) permet de prouver la fiabilité d'une identité ou d'un rôle, pas de filtrer une population. Un utilisateur peut parfaitement obtenir le niveau requis sans pour autant faire partie du public que vous souhaitez cibler. Voir [Niveaux ACR](./niveaux-acr.md).
+Exiger un niveau de confiance (ACR) ou la [certification dirigeant](../metier/certification-dirigeant.md) permet de prouver la fiabilité d'une identité ou d'un rôle, pas de filtrer une population. Un utilisateur peut parfaitement obtenir le niveau requis sans pour autant faire partie du public que vous souhaitez cibler. Voir [Niveaux ACR](./niveaux-acr.md).

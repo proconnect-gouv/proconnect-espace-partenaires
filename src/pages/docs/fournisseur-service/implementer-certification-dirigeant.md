@@ -1,4 +1,4 @@
-# 💼 Cas de l'authentification d'un rôle (dirigeant, élu, etc.)
+# 💼 Implémenter la certification dirigeant
 
 Ce document décrit la manière d'utiliser ProConnect en tant que **fournisseur OpenID** afin de récupérer une identité de niveau « certifié dirigeant ». Nous nous appuyons sur les spécifications [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html).
 
@@ -7,11 +7,11 @@ Ce document décrit la manière d'utiliser ProConnect en tant que **fournisseur 
 
 ## 1. Qu'est-ce que la certification dirigeant ?
 
-Parmi les niveaux d'authentification disponibles, ProConnect propose notamment le niveau de certification suivant :
+Le niveau `certification-dirigeant` prouve le statut de dirigeant au sein d'une organisation. Il s'obtient en demandant explicitement un niveau de garantie (`acr`) spécifique dans le cadre d'un flux OpenID Connect.
 
-- `certification-dirigeant` : prouve le statut de dirigeant au sein d'une organisation.
+Pour ce que la certification garantit, qui peut en bénéficier et quand l'utiliser, voir [Qu'est-ce que la certification dirigeant ?](../metier/certification-dirigeant.md).
 
-Cette certification s'obtient en demandant explicitement un niveau de garantie (acr) spécifique dans le cadre d'un flux OpenID Connect.
+La certification dirigeant étant une fonctionnalité complexe, nous proposons [une recommandation de parcours](./recommandation-parcours-certification-dirigeant.md) à respecter lors de son implémentation.
 
 ## 2. Configuration du paramètre `claims`
 
@@ -86,13 +86,7 @@ Il est **IMPÉRATIF** de vérifier la présence et la valeur du paramètre `acr`
 - [Utilisation du paramètre `claims`](https://openid.net/specs/openid-connect-core-1_0.html#ClaimsParameter)
 - [Semantics of the `acr` Claim](https://openid.net/specs/openid-connect-core-1_0.html#acrSemantics)
 
-## 6. Annexe
-
-### 6.1. Recommandation parcours
-
-La certification dirigeant étant une fonctionnalité complexe, nous proposons [une recommandation de parcours](./recommandation_parcours_certification_dirigeant.md) à respecter lors de son implémentation.
-
-### 6.2 Tester la certification dirigeant en intégration
+## 6. Tester la certification dirigeant en intégration
 
 Pour tester la certification dirigeant, vous pouvez utiliser le [fournisseur de service de test](https://test.proconnect.gouv.fr) de ProConnect en cliquant sur `Forcer une connexion par Certification Dirigeant`.
 
