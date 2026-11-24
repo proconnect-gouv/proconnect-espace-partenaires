@@ -27,7 +27,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     process.env.IS_YOUR_APPLICATIONS_SERVICE_DISABLED === "true";
 
   try {
-    const apps = await pcdbClient.listOidcClients(session.user.email);
+    const apps = await pcdbClient.listOidcClients({
+      email: session.user.email,
+      id: session.user.id,
+    });
     return { props: { apps, isYourApplicationsServiceDisabled } };
   } catch (error) {
     logger.error("Failed to list apps:", error);

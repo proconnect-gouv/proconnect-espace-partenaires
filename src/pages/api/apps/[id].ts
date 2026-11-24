@@ -9,6 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (!session?.user?.email) {
     return res.status(401).json({ message: "Not authenticated" });
   }
+  const user = { email: session.user.email, id: session.user.id };
 
   const { id } = req.query;
   if (typeof id !== "string") {
@@ -17,17 +18,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     if (req.method === "PATCH") {
-      const app = await pcdbClient.updateOidcClient(id, session.user.email, req.body);
+      const app = await pcdbClient.updateOidcClient(id, user, req.body);
       return res.status(200).json(app);
     }
 
     if (req.method === "GET") {
-      const app = await pcdbClient.getOidcClient(id, session.user.email);
+      const app = await pcdbClient.getOidcClient(id, user);
       return res.status(200).json(app);
     }
 
     if (req.method === "DELETE") {
-      const result = await pcdbClient.deleteOidcClient(id, session.user.email);
+      const result = await pcdbClient.deleteOidcClient(id, user);
       return res.status(200).json(result);
     }
 

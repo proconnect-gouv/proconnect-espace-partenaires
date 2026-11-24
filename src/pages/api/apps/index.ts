@@ -9,15 +9,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (!session?.user?.email) {
     return res.status(401).json({ message: "Not authenticated" });
   }
+  const user = { email: session.user.email, id: session.user.id };
 
   try {
     if (req.method === "GET") {
-      const apps = await pcdbClient.listOidcClients(session.user.email);
+      const apps = await pcdbClient.listOidcClients(user);
       return res.status(200).json(apps);
     }
 
     if (req.method === "POST") {
-      const app = await pcdbClient.createOidcClient(session.user.email, {
+      const app = await pcdbClient.createOidcClient(user, {
         name: "Nouvelle application",
         redirect_uris: [],
         post_logout_redirect_uris: [],

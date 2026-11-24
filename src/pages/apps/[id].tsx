@@ -32,7 +32,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     process.env.IS_YOUR_APPLICATIONS_SERVICE_DISABLED === "true";
 
   try {
-    const app = await pcdbClient.getOidcClient(id, session.user.email);
+    const app = await pcdbClient.getOidcClient(id, {
+      email: session.user.email,
+      id: session.user.id,
+    });
     return {
       props: {
         app,
