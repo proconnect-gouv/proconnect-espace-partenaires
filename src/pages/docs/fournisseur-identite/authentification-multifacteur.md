@@ -75,13 +75,6 @@ En effet, l'écran ci-dessous apparaît pour l'utilisateur après authentificati
 - le FS a requis une classe d'authentification ACR conforme MFA
 - le FI **n'est pas capable de renvoyer un ACR conforme MFA**
 
-Si cet écran s'affiche pour votre FI, cela signifie donc que des développements sont encore à faire pour qu'il soit conforme.
-
-Voici la liste des ACR que ProConnect est capable d'enrichir :
-
-| ACR requis par le FS | ACR renvoyé par le FI | ACR enrichi par PCF après validation de l'OTP e-mail |
-| -------------------- | --------------------- | ---------------------------------------------------- |
-| `eidas1-mfa`         | `eidas1`              | `eidas1-mfa`                                         |
-| `eidas0-mfa`         | `eidas0`              | `eidas0-mfa`                                         |
+Si l'écran ci-dessous s'affiche pour votre FI, cela signifie donc que des développements sont encore à faire pour qu'il soit conforme.
 
 ![Écran code OTP Mail](/images/docs/keycloak/MFA/code_email_FI.png)
