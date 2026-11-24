@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { apiPartenairesClient } from "../../../lib/api-partenaires";
 import { logger } from "../../../lib/log";
-import { pcdbClient } from "../../../lib/pcdbapi";
 import { getSessionUser } from "../../../lib/session";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -11,12 +11,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     if (req.method === "GET") {
-      const apps = await pcdbClient.listOidcClients(user);
+      const apps = await apiPartenairesClient.listOidcClients(user);
       return res.status(200).json(apps);
     }
 
     if (req.method === "POST") {
-      const app = await pcdbClient.createOidcClient(user, {
+      const app = await apiPartenairesClient.createOidcClient(user, {
         name: "Nouvelle application",
         redirect_uris: [],
         post_logout_redirect_uris: [],

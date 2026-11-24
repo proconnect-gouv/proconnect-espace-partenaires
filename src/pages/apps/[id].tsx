@@ -15,8 +15,8 @@ import { CopyableField } from "../../components/CopyableField";
 import { EditableList } from "../../components/EditableList";
 import { MaintenanceBanner } from "../../components/MaintenanceBanner";
 import { NotificationsContainer } from "../../components/NotificationsContainer";
+import { OidcClient, apiPartenairesClient } from "../../lib/api-partenaires";
 import { logger } from "../../lib/log";
-import { OidcClient, pcdbClient } from "../../lib/pcdbapi";
 import { getSessionUser } from "../../lib/session";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -31,7 +31,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     process.env.IS_YOUR_APPLICATIONS_SERVICE_DISABLED === "true";
 
   try {
-    const app = await pcdbClient.getOidcClient(id, user);
+    const app = await apiPartenairesClient.getOidcClient(id, user);
     return {
       props: {
         app,

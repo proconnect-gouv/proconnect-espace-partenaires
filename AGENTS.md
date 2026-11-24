@@ -46,11 +46,11 @@ Setup is in [README.md](README.md). Two things it does not say: `PROCONNECT_CLIE
 - **Types everywhere.** No `any`, no `@ts-ignore`. The `@ts-expect-error` comments in `src/layouts/docs.tsx` are legacy — do not add more.
 - **KISS and DRY**, and prefer an existing helper over a new abstraction.
 - **No global state store.** Per-page React state, as today.
-- **Secrets and data access are server-side only**: `getServerSideProps` or `src/pages/api/*`. Authenticate with `getSessionUser(req, res)` from `src/lib/session.ts` and bail out with a 401 or a redirect to `/login` when it returns `null` — copy the pattern in `src/pages/api/apps/index.ts`. Pass that user to `pcdbClient`, which logs its id on every request.
+- **Secrets and data access are server-side only**: `getServerSideProps` or `src/pages/api/*`. Authenticate with `getSessionUser(req, res)` from `src/lib/session.ts` and bail out with a 401 or a redirect to `/login` when it returns `null` — copy the pattern in `src/pages/api/apps/index.ts`. Pass that user to `apiPartenairesClient`, which logs its id on every request.
 - **Two databases, two Prisma schemas** — pick deliberately:
 - `prisma/db_espace.prisma` (PostgreSQL) — NextAuth users, sessions, tokens. Ours.
 - `prisma/db_proconnect.prisma` (MongoDB) — the external ProConnect database. Treat as foreign.
-- **All OIDC client operations go through `src/lib/pcdbapi.ts`** (HMAC-SHA256 signed requests to PCDBAPI). Never call that API from a component or with a hand-rolled fetch.
+- **All OIDC client operations go through `src/lib/api-partenaires.ts`** (the person's unexpired ProConnect access token as `Bearer`, otherwise an HMAC-SHA256 signature). Never call that API from a component or with a hand-rolled fetch.
 - **Language**: user-facing strings in French; identifiers, types and comments in English.
 
 ## 5. Documentation technique (`src/pages/docs/**`)

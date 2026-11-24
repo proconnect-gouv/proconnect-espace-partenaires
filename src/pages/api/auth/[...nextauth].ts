@@ -59,12 +59,30 @@ export const authOptions: AuthOptions = {
     },
   },
   events: {
-    signIn({ account, isNewUser, user }) {
+    async signIn({ account, isNewUser, user }) {
       track("auth.sign_in.completed", {
         email: user.email,
         is_new_user: isNewUser,
         sub: account?.providerAccountId,
         user_id: user.id,
+      });
+      if (!account || isNewUser) return;
+      await prisma_espace.account.update({
+        where: {
+          provider_providerAccountId: {
+            provider: account.provider,
+            providerAccountId: account.providerAccountId,
+          },
+        },
+        data: {
+          access_token: account.access_token,
+          expires_at: account.expires_at,
+          id_token: account.id_token,
+          refresh_token: account.refresh_token,
+          scope: account.scope,
+          session_state: account.session_state,
+          token_type: account.token_type,
+        },
       });
     },
   },
