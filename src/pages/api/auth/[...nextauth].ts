@@ -1,5 +1,6 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import NextAuth, { AuthOptions } from "next-auth";
+import { logger, track } from "../../../lib/log";
 import { prisma_espace } from "../../../lib/prisma";
 
 export const authOptions: AuthOptions = {
@@ -55,6 +56,22 @@ export const authOptions: AuthOptions = {
         session.proConnectIdToken = account?.id_token ?? null;
       }
       return session;
+    },
+  },
+  events: {
+    signIn({ isNewUser, user }) {
+      track("auth.sign_in.completed", { is_new_user: isNewUser, user_id: user.id });
+    },
+  },
+  logger: {
+    error(code, metadata) {
+      logger.error(
+        `[next-auth][error][${code}]`,
+        metadata instanceof Error ? metadata : metadata.error,
+      );
+    },
+    warn(code) {
+      logger.warn(`[next-auth][warn][${code}]`);
     },
   },
 };

@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth/next";
+import { logger } from "../../../lib/log";
 import { pcdbClient } from "../../../lib/pcdbapi";
 import { authOptions } from "../auth/[...nextauth]";
 
@@ -30,7 +31,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     return res.status(405).json({ message: "Method not allowed" });
   } catch (error) {
-    console.error("API error:", error);
+    logger.error("API error:", error);
     return res.status(500).json({ message: "Error processing request" });
   }
 }

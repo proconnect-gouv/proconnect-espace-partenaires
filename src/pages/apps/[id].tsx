@@ -16,6 +16,7 @@ import { CopyableField } from "../../components/CopyableField";
 import { EditableList } from "../../components/EditableList";
 import { MaintenanceBanner } from "../../components/MaintenanceBanner";
 import { NotificationsContainer } from "../../components/NotificationsContainer";
+import { logger } from "../../lib/log";
 import { OidcClient, pcdbClient } from "../../lib/pcdbapi";
 import { authOptions } from "../api/auth/[...nextauth]";
 
@@ -39,7 +40,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         userEmail: session.user.email,
       },
     };
-  } catch {
+  } catch (error) {
+    logger.error("Failed to load app:", error);
     return { notFound: true };
   }
 };
