@@ -51,6 +51,7 @@ export default defineConfig({
         PROCONNECT_CLIENT_SECRET: "mock-proconnect-client-secret",
         PROCONNECT_DISCOVERY_URL: "http://localhost:4000/.well-known/openid-configuration",
       },
+      stdout: "pipe",
     },
     {
       command: "node e2e/mock-proconnect.ts",
