@@ -93,15 +93,15 @@ export class PCDBClient {
   }
 
   async listOidcClients(email: string): Promise<OidcClient[]> {
-    return this.request("GET", `/api/oidc_clients?email=${email}`);
+    return this.request("GET", `/api/oidc_clients?email=${encodeURIComponent(email)}`);
   }
 
   async getOidcClient(id: string, email: string): Promise<OidcClient> {
-    return this.request("GET", `/api/oidc_clients/${id}?email=${email}`);
+    return this.request("GET", `/api/oidc_clients/${id}?email=${encodeURIComponent(email)}`);
   }
 
   async createOidcClient(email: string, data: Partial<OidcClient>): Promise<OidcClient> {
-    return this.request("POST", `/api/oidc_clients?email=${email}`, data);
+    return this.request("POST", `/api/oidc_clients?email=${encodeURIComponent(email)}`, data);
   }
 
   async updateOidcClient(
@@ -109,11 +109,15 @@ export class PCDBClient {
     email: string,
     data: Partial<OidcClient>,
   ): Promise<OidcClient> {
-    return this.request("PATCH", `/api/oidc_clients/${id}?email=${email}`, data);
+    return this.request(
+      "PATCH",
+      `/api/oidc_clients/${id}?email=${encodeURIComponent(email)}`,
+      data,
+    );
   }
 
   async deleteOidcClient(id: string, email: string): Promise<{ deleted: boolean }> {
-    return this.request("DELETE", `/api/oidc_clients/${id}?email=${email}`);
+    return this.request("DELETE", `/api/oidc_clients/${id}?email=${encodeURIComponent(email)}`);
   }
 }
 
