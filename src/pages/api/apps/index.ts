@@ -1,23 +1,22 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getServerSession } from "next-auth/next";
 import { logger } from "../../../lib/log";
 import { pcdbClient } from "../../../lib/pcdbapi";
-import { authOptions } from "../auth/[...nextauth]";
+import { getSessionUser } from "../../../lib/session";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const session = await getServerSession(req, res, authOptions);
-  if (!session?.user?.email) {
+  const user = await getSessionUser(req, res);
+  if (!user) {
     return res.status(401).json({ message: "Not authenticated" });
   }
 
   try {
     if (req.method === "GET") {
-      const apps = await pcdbClient.listOidcClients(session.user.email);
+      const apps = await pcdbClient.listOidcClients(user);
       return res.status(200).json(apps);
     }
 
     if (req.method === "POST") {
-      const app = await pcdbClient.createOidcClient(session.user.email, {
+      const app = await pcdbClient.createOidcClient(user, {
         name: "Nouvelle application",
         redirect_uris: [],
         post_logout_redirect_uris: [],

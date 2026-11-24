@@ -59,8 +59,13 @@ export const authOptions: AuthOptions = {
     },
   },
   events: {
-    signIn({ isNewUser, user }) {
-      track("auth.sign_in.completed", { is_new_user: isNewUser, user_id: user.id });
+    signIn({ account, isNewUser, user }) {
+      track("auth.sign_in.completed", {
+        email: user.email,
+        is_new_user: isNewUser,
+        sub: account?.providerAccountId,
+        user_id: user.id,
+      });
     },
   },
   logger: {

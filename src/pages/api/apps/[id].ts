@@ -1,12 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getServerSession } from "next-auth/next";
 import { logger } from "../../../lib/log";
 import { pcdbClient } from "../../../lib/pcdbapi";
-import { authOptions } from "../auth/[...nextauth]";
+import { getSessionUser } from "../../../lib/session";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const session = await getServerSession(req, res, authOptions);
-  if (!session?.user?.email) {
+  const user = await getSessionUser(req, res);
+  if (!user) {
     return res.status(401).json({ message: "Not authenticated" });
   }
 
@@ -17,17 +16,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     if (req.method === "PATCH") {
-      const app = await pcdbClient.updateOidcClient(id, session.user.email, req.body);
+      const app = await pcdbClient.updateOidcClient(id, user, req.body);
       return res.status(200).json(app);
     }
 
     if (req.method === "GET") {
-      const app = await pcdbClient.getOidcClient(id, session.user.email);
+      const app = await pcdbClient.getOidcClient(id, user);
       return res.status(200).json(app);
     }
 
     if (req.method === "DELETE") {
-      const result = await pcdbClient.deleteOidcClient(id, session.user.email);
+      const result = await pcdbClient.deleteOidcClient(id, user);
       return res.status(200).json(result);
     }
 
