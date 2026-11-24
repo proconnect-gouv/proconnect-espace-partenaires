@@ -7,6 +7,7 @@ import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth/next";
 import { useState } from "react";
 import { MaintenanceBanner } from "../../components/MaintenanceBanner";
+import { logger } from "../../lib/log";
 import { OidcClient, pcdbClient } from "../../lib/pcdbapi";
 import { authOptions } from "../api/auth/[...nextauth]";
 
@@ -29,6 +30,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const apps = await pcdbClient.listOidcClients(session.user.email);
     return { props: { apps, isYourApplicationsServiceDisabled } };
   } catch (error) {
+    logger.error("Failed to list apps:", error);
     return { props: { apps: [], error: String(error) } };
   }
 };

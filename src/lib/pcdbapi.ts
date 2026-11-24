@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import { track } from "./log";
 
 const API_SECRET = process.env.PCDB_API_SECRET!;
 const API_URL = process.env.PCDB_API_URL!;
@@ -63,7 +64,13 @@ export class PCDBClient {
     });
 
     if (!response.ok) {
-      const error = await response.json();
+      const error = await response.json().catch(() => ({}));
+      track("api_partenaires.request.failed", {
+        detail: error.detail,
+        "http.request.method": method,
+        "http.response.status_code": response.status,
+        "url.path": path.split("?")[0],
+      });
       throw new Error(error.detail || "API request failed");
     }
 
