@@ -6,8 +6,8 @@ import { Card } from "@codegouvfr/react-dsfr/Card";
 import { GetServerSideProps } from "next";
 import { useState } from "react";
 import { MaintenanceBanner } from "../../components/MaintenanceBanner";
+import { OidcClient, apiPartenairesClient } from "../../lib/api-partenaires";
 import { logger } from "../../lib/log";
-import { OidcClient, pcdbClient } from "../../lib/pcdbapi";
 import { getSessionUser } from "../../lib/session";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -26,7 +26,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     process.env.IS_YOUR_APPLICATIONS_SERVICE_DISABLED === "true";
 
   try {
-    const apps = await pcdbClient.listOidcClients(user);
+    const apps = await apiPartenairesClient.listOidcClients(user);
     return { props: { apps, isYourApplicationsServiceDisabled } };
   } catch (error) {
     logger.error("Failed to list apps:", error);

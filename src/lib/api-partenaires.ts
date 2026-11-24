@@ -1,5 +1,6 @@
 import crypto from "crypto";
 import { track } from "./log";
+import { prisma_espace } from "./prisma";
 import { SessionUser } from "./session";
 
 const API_SECRET = process.env.PCDB_API_SECRET!;
@@ -32,12 +33,22 @@ export interface OidcClient {
   jwks_uri?: string;
 }
 
-export class PCDBClient {
+export class ApiPartenairesClient {
   private generateSignature(timestamp: string, method: string, path: string, body?: string) {
     const message = body
       ? `${timestamp}:${method}:${path}:${body}`
       : `${timestamp}:${method}:${path}`;
     return crypto.createHmac("sha256", API_SECRET).update(message).digest("hex");
+  }
+
+  private async findProconnectAccessToken(email: string): Promise<string | null> {
+    const account = await prisma_espace.account.findFirst({
+      where: { provider: "proconnect", user: { email } },
+      select: { access_token: true, expires_at: true },
+    });
+    const now = Math.floor(Date.now() / 1000);
+    if (!account?.access_token || !account.expires_at || account.expires_at <= now) return null;
+    return account.access_token;
   }
 
   private async request<T>(
@@ -46,21 +57,30 @@ export class PCDBClient {
     user: SessionUser,
     requestData?: Partial<OidcClient>,
   ): Promise<T> {
-    const timestamp = Math.floor(Date.now() / 1000).toString();
     const body = requestData ? JSON.stringify(requestData) : undefined;
-    const signature = this.generateSignature(timestamp, method, path, body);
+    const accessToken = await this.findProconnectAccessToken(user.email);
 
-    const headers: Record<string, string> = {
-      "X-Signature": signature,
-      "X-Timestamp": timestamp,
-    };
+    let url: URL;
+    let headers: Record<string, string>;
+    if (accessToken) {
+      url = new URL(`${API_URL}${path}`);
+      headers = { Authorization: `Bearer ${accessToken}` };
+    } else {
+      const signedPath = `${path}?email=${user.email}`;
+      const timestamp = Math.floor(Date.now() / 1000).toString();
+      url = new URL(`${API_URL}${signedPath}`);
+      headers = {
+        "X-Signature": this.generateSignature(timestamp, method, signedPath, body),
+        "X-Timestamp": timestamp,
+      };
+    }
 
     if (body) {
       headers["Content-Type"] = "application/json";
     }
 
-    const url = new URL(`${API_URL}${path}`);
     const request_fields = {
+      auth_method: accessToken ? "bearer" : "signature",
       "http.request.method": method,
       "server.address": url.hostname,
       "server.port": Number(url.port) || (url.protocol === "https:" ? 443 : 80),
@@ -96,15 +116,15 @@ export class PCDBClient {
   }
 
   async listOidcClients(user: SessionUser): Promise<OidcClient[]> {
-    return this.request("GET", `/api/oidc_clients?email=${user.email}`, user);
+    return this.request("GET", "/api/oidc_clients", user);
   }
 
   async getOidcClient(id: string, user: SessionUser): Promise<OidcClient> {
-    return this.request("GET", `/api/oidc_clients/${id}?email=${user.email}`, user);
+    return this.request("GET", `/api/oidc_clients/${id}`, user);
   }
 
   async createOidcClient(user: SessionUser, data: Partial<OidcClient>): Promise<OidcClient> {
-    return this.request("POST", `/api/oidc_clients?email=${user.email}`, user, data);
+    return this.request("POST", "/api/oidc_clients", user, data);
   }
 
   async updateOidcClient(
@@ -112,12 +132,12 @@ export class PCDBClient {
     user: SessionUser,
     data: Partial<OidcClient>,
   ): Promise<OidcClient> {
-    return this.request("PATCH", `/api/oidc_clients/${id}?email=${user.email}`, user, data);
+    return this.request("PATCH", `/api/oidc_clients/${id}`, user, data);
   }
 
   async deleteOidcClient(id: string, user: SessionUser): Promise<{ deleted: boolean }> {
-    return this.request("DELETE", `/api/oidc_clients/${id}?email=${user.email}`, user);
+    return this.request("DELETE", `/api/oidc_clients/${id}`, user);
   }
 }
 
-export const pcdbClient = new PCDBClient();
+export const apiPartenairesClient = new ApiPartenairesClient();

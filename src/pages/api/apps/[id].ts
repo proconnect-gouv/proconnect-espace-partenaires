@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { apiPartenairesClient } from "../../../lib/api-partenaires";
 import { logger } from "../../../lib/log";
-import { pcdbClient } from "../../../lib/pcdbapi";
 import { getSessionUser } from "../../../lib/session";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -16,17 +16,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     if (req.method === "PATCH") {
-      const app = await pcdbClient.updateOidcClient(id, user, req.body);
+      const app = await apiPartenairesClient.updateOidcClient(id, user, req.body);
       return res.status(200).json(app);
     }
 
     if (req.method === "GET") {
-      const app = await pcdbClient.getOidcClient(id, user);
+      const app = await apiPartenairesClient.getOidcClient(id, user);
       return res.status(200).json(app);
     }
 
     if (req.method === "DELETE") {
-      const result = await pcdbClient.deleteOidcClient(id, user);
+      const result = await apiPartenairesClient.deleteOidcClient(id, user);
       return res.status(200).json(result);
     }
 
