@@ -4,17 +4,16 @@ import { Badge } from "@codegouvfr/react-dsfr/Badge";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Card } from "@codegouvfr/react-dsfr/Card";
 import { GetServerSideProps } from "next";
-import { getServerSession } from "next-auth/next";
 import { useState } from "react";
 import { MaintenanceBanner } from "../../components/MaintenanceBanner";
 import { logger } from "../../lib/log";
 import { OidcClient, pcdbClient } from "../../lib/pcdbapi";
-import { authOptions } from "../api/auth/[...nextauth]";
+import { getSessionUser } from "../../lib/session";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getServerSession(context.req, context.res, authOptions);
+  const user = await getSessionUser(context.req, context.res);
 
-  if (!session?.user?.email) {
+  if (!user) {
     return {
       redirect: {
         destination: "/login",
@@ -27,10 +26,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     process.env.IS_YOUR_APPLICATIONS_SERVICE_DISABLED === "true";
 
   try {
-    const apps = await pcdbClient.listOidcClients({
-      email: session.user.email,
-      id: session.user.id,
-    });
+    const apps = await pcdbClient.listOidcClients(user);
     return { props: { apps, isYourApplicationsServiceDisabled } };
   } catch (error) {
     logger.error("Failed to list apps:", error);

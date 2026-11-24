@@ -1,5 +1,6 @@
 import crypto from "crypto";
 import { track } from "./log";
+import { SessionUser } from "./session";
 
 const API_SECRET = process.env.PCDB_API_SECRET!;
 const API_URL = process.env.PCDB_API_URL!;
@@ -30,8 +31,6 @@ export interface OidcClient {
   type?: string;
   jwks_uri?: string;
 }
-
-export type SessionUser = { email: string; id: string };
 
 export class PCDBClient {
   private generateSignature(timestamp: string, method: string, path: string, body?: string) {

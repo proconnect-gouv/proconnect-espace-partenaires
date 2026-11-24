@@ -7,7 +7,6 @@ import { createModal } from "@codegouvfr/react-dsfr/Modal";
 import { Select } from "@codegouvfr/react-dsfr/Select";
 import debounce from "debounce";
 import { GetServerSideProps } from "next";
-import { getServerSession } from "next-auth/next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useMemo, useState } from "react";
@@ -18,11 +17,11 @@ import { MaintenanceBanner } from "../../components/MaintenanceBanner";
 import { NotificationsContainer } from "../../components/NotificationsContainer";
 import { logger } from "../../lib/log";
 import { OidcClient, pcdbClient } from "../../lib/pcdbapi";
-import { authOptions } from "../api/auth/[...nextauth]";
+import { getSessionUser } from "../../lib/session";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getServerSession(context.req, context.res, authOptions);
-  if (!session?.user?.email) {
+  const user = await getSessionUser(context.req, context.res);
+  if (!user) {
     return { redirect: { destination: "/login", permanent: false } };
   }
 
@@ -32,15 +31,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     process.env.IS_YOUR_APPLICATIONS_SERVICE_DISABLED === "true";
 
   try {
-    const app = await pcdbClient.getOidcClient(id, {
-      email: session.user.email,
-      id: session.user.id,
-    });
+    const app = await pcdbClient.getOidcClient(id, user);
     return {
       props: {
         app,
         isYourApplicationsServiceDisabled,
-        userEmail: session.user.email,
+        userEmail: user.email,
       },
     };
   } catch (error) {
