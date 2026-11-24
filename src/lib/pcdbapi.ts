@@ -57,23 +57,38 @@ export class PCDBClient {
       headers["Content-Type"] = "application/json";
     }
 
-    const response = await fetch(`${API_URL}${path}`, {
+    const url = new URL(`${API_URL}${path}`);
+    const request_fields = {
+      "http.request.method": method,
+      "server.address": url.hostname,
+      "server.port": Number(url.port) || (url.protocol === "https:" ? 443 : 80),
+      "url.path": url.pathname,
+    };
+    track("api_partenaires.request.started", request_fields);
+    const start = performance.now();
+    const response = await fetch(url, {
       method,
       headers,
       body,
     });
+    const duration_ms = Math.round(performance.now() - start);
 
     if (!response.ok) {
       const error = await response.json().catch(() => ({}));
       track("api_partenaires.request.failed", {
+        ...request_fields,
         detail: error.detail,
-        "http.request.method": method,
+        duration_ms,
         "http.response.status_code": response.status,
-        "url.path": path.split("?")[0],
       });
       throw new Error(error.detail || "API request failed");
     }
 
+    track("api_partenaires.request.completed", {
+      ...request_fields,
+      duration_ms,
+      "http.response.status_code": response.status,
+    });
     return response.json();
   }
 

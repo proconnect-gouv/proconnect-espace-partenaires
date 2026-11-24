@@ -66,7 +66,7 @@ function detail_value(value: TrackDetails[string]) {
 export function track(name: string, details: TrackDetails) {
   write("info", {
     "event.name": name,
-    "http.route": getIsolationScope().getScopeData().transactionName,
+    "http.route": getActiveSpan() ? getIsolationScope().getScopeData().transactionName : undefined,
     ...Object.fromEntries(
       Object.entries(details).map(([key, value]) => [key, detail_value(value)]),
     ),
