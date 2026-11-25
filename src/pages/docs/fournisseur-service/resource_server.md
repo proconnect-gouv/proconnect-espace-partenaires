@@ -25,6 +25,10 @@ Il doit ensuite écrire à support.partenaires@mail.proconnect.gouv.fr en spéci
 - le `client_id` de son FS qui lui aura été transmis après inscription
 - l'`introspection_signed_response_alg` : aucun, RS256, HS256 ou ES256. Par défaut, le retour ne sera pas signé. Si vous souhaitez néanmoins que la réponse de l'introspection soit signé, nous recommandons l'algorithme RS256.
 
+Un client dédié au SR (recommandé, voir la FAQ ci-dessous) n'a besoin d'aucune `redirect_uri`, puisque le SR ne redirige jamais d'utilisateur vers ProConnect. Le support passe alors ce client en configuration SR : `response_types` et `grant_types` vides.
+
+Si votre SR utilise le `client_id` de votre FS, ce client garde sa configuration FS : le passer en configuration SR empêcherait vos utilisateurs de se connecter au FS.
+
 Une fois la réponse du support reçue, votre SR est capable d'effectuer les appels à ProConnect !
 
 > NB: l'`introspection_signed_response_alg` indique comment ProConnect signe le contenu de la réponse d’introspection.
@@ -39,3 +43,7 @@ Voici un exemple de Resource Server implémenté en ExpressJS : https://github.c
 ### Ai-je besoin d'un nouveau client ID pour le SR que je souhaite implémenter ?
 
 > Oui, nous recommandons de faire une demande de couple client ID / client secret spécifique pour votre SR
+
+### Mon SR doit-il déclarer des `redirect_uri` ?
+
+> Non. Un SR n'appelle que l'`introspection_endpoint` (et éventuellement l'`userinfo_endpoint`) : il ne redirige personne vers ProConnect. Un client dédié au SR est donc configuré sans `redirect_uris`, avec `response_types` et `grant_types` vides ; sans cette configuration, ProConnect refuse ses appels avec l'erreur `invalid_redirect_uri`.
